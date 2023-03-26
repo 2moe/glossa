@@ -99,7 +99,7 @@
 //!
 //!     // You can think of `.find()` as the equivalent of `.get()` for a HashMap, but the difference is that it returns a `Result` instead of an `Option`.
 //!     let text = res.find("welcome").expect(
-//!         r#"Failed to get the value of "greeting" from locales/[lang-id]/test.ftl."#,
+//!         r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#,
 //!     );
 //!
 //!     // Since I'm not sure what language your system is in, I'm using match to determine the language, and then `assert_eq`.

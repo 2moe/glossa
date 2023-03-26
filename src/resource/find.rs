@@ -71,7 +71,7 @@ impl<'a> LangResource<'a> {
     ///
     /// let text = res
     ///     .find("welcome")
-    ///     .expect(r#"Failed to get the value of "greeting" from locales/[lang-id]/test.ftl."#);
+    ///     .expect(r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#);
     ///
     /// // if the res.language is en, then
     /// assert_eq!(text, "Welcome to glossa🥳")
@@ -222,7 +222,7 @@ mod tests {
         let res = LangRes::from(&LOADER);
 
         let text = res.find("welcome").expect(
-        r#"Failed to get the value of "greeting" from locales/[lang-id]/test.ftl."#,
+        r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#,
     );
 
         // Since I'm not sure what language your system is in, I'm using match to determine the language, and then asset.
