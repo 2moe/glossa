@@ -97,14 +97,13 @@
 //!     // Although there is only Loader, not Lang, `from()` will automatically set your system language to the language of `LangRes`.
 //!     let res = LangRes::from(&LOADER);
 //!
-//!     // You can think of `.find()` as the equivalent of `.get()` for a HashMap, but the difference is that it returns a `Result` instead of an `Option`.
-//!     let text = res.find("welcome").expect(
+//!     let text = res.get("welcome").expect(
 //!         r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#,
 //!     );
 //!
 //!     // Since I'm not sure what language your system is in, I'm using match to determine the language, and then `assert_eq`.
 //!     // In fact, this step is not needed at all.
-//!     // When you call `find()`, the text will already be the localised text you want.
+//!     // When you call `get()`, the text will already be the localised text you want.
 //!     // If it can't be found, then it's probably not what you want, but it will automatically use fallback. e.g. zh-Hant-HK -> zh-Hant -> zh -> en
 //!     match res.language.as_str() {
 //!         "zh" => assert_eq!(text, "欢迎使用 glossa🥰"),
@@ -139,12 +138,12 @@
 //! greetings = { time-period }! { gender }{ $name }
 //! ```
 //!
-//! Since `greetings` has multiple parameters, we cannot use `find()`.
-//! We need to use `find_with_kv()`.
+//! Since `greetings` has multiple parameters, we cannot use `get()`.
+//! We need to use `get_with_kv()`.
 //!
 //! ```rust
 //!     let text = res
-//!         .find_with_kv(
+//!         .get_with_kv(
 //!             "greetings",
 //!             [
 //!                 ("period", "evening"),
@@ -198,11 +197,11 @@
 //! greetings = { time-period }、{ $name }{ appellation }
 //! ```
 //!
-//! Then we can use the `find_with_kv()` function.
+//! Then we can use the `get_with_kv()` function.
 //!
 //! ```rust
 //!     let text = res
-//!         .find_with_kv(
+//!         .get_with_kv(
 //!             "greetings",
 //!             [
 //!                 ("period", "morning"),

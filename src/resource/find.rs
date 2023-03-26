@@ -32,7 +32,7 @@ impl<'a> LangResource<'a> {
         }
     }
 
-    fn find_from_fallback_chain<K: AsRef<str>>(
+    fn get_from_fallback_chain<K: AsRef<str>>(
         &self,
         id: &str,
         map: FluentMap<K>,
@@ -58,7 +58,7 @@ impl<'a> LangResource<'a> {
 
     /// A function to find a text string with the given ID.
     ///
-    /// In fact, it calls `find_from_fallback_chain()` in the same way as `find_with_map()`, but the map is None.
+    /// In fact, it calls `get_from_fallback_chain()` in the same way as `get_with_map()`, but the map is None.
     /// This is useful for simple cases. For example, if `hi = hello world`, we only need the id (i.e. hi), not the map.
     ///
     /// # Examples
@@ -70,7 +70,7 @@ impl<'a> LangResource<'a> {
     /// // locales/zh/test.ftl: welcome = 欢迎使用 glossa🥰
     ///
     /// let text = res
-    ///     .find("welcome")
+    ///     .get("welcome")
     ///     .expect(r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#);
     ///
     /// // if the res.language is en, then
@@ -80,8 +80,8 @@ impl<'a> LangResource<'a> {
     /// // zh:
     /// assert_eq!(text, "欢迎使用 glossa🥰")
     /// ```
-    pub fn find(&self, id: &str) -> crate::Result<String> {
-        self.find_from_fallback_chain::<&str>(id, None) // Call `find_from_fallback_chain` with an empty Fluent map (i.e., `None`) and a type parameter of `&str`.
+    pub fn get(&self, id: &str) -> crate::Result<String> {
+        self.get_from_fallback_chain::<&str>(id, None) // Call `get_from_fallback_chain` with an empty Fluent map (i.e., `None`) and a type parameter of `&str`.
     }
     /// Public function to find a text string with the given ID and key-value pairs.
     ///
@@ -111,7 +111,7 @@ impl<'a> LangResource<'a> {
     /// let res = LangRes::from(&LOADER);
     ///
     /// let text = res
-    ///   .find_with_kv(
+    ///   .get_with_kv(
     ///     "greetings",
     ///       [
     ///         ("period", "evening"),
@@ -122,7 +122,7 @@ impl<'a> LangResource<'a> {
     ///
     /// assert_eq!(text, "Good evening! Ms.Alice");
     /// ```
-    pub fn find_with_kv<'v, K, V, T>(&self, id: &str, kv: T) -> crate::Result<String>
+    pub fn get_with_kv<'v, K, V, T>(&self, id: &str, kv: T) -> crate::Result<String>
     where
         K: AsRef<str> + Eq + ::core::hash::Hash,
         V: Into<FluentValue<'v>>,
@@ -133,17 +133,17 @@ impl<'a> LangResource<'a> {
             kv.into_iter()
                 .map(|(k, v)| (k, v.into())),
         );
-        // Search for the given ID in the fallback chain using the `find_from_fallback_chain` helper function.
-        self.find_from_fallback_chain(id, Some(&map))
+        // Search for the given ID in the fallback chain using the `get_from_fallback_chain` helper function.
+        self.get_from_fallback_chain(id, Some(&map))
     }
 
-    /// Similar to `find_with_kv()`, both are used to find localized text, but the difference is that this function passes in `&HashMap<k, v>`, instead of `[(k1, v1), (k2, v2)]`
-    pub fn find_with_map<K: AsRef<str>>(
+    /// Similar to `get_with_kv()`, both are used to find localized text, but the difference is that this function passes in `&HashMap<k, v>`, instead of `[(k1, v1), (k2, v2)]`
+    pub fn get_with_map<K: AsRef<str>>(
         &self,
         id: &str,
         map: &HashMap<K, FluentValue>,
     ) -> crate::Result<String> {
-        self.find_from_fallback_chain(id, Some(map)) // Call `find_from_fallback_chain` with the provided Fluent map and the ID to search for.
+        self.get_from_fallback_chain(id, Some(map)) // Call `get_from_fallback_chain` with the provided Fluent map and the ID to search for.
     }
 }
 
@@ -151,7 +151,7 @@ impl<'a> LangResource<'a> {
 mod tests {
 
     #[test]
-    fn test_find() {
+    fn test_get() {
         use crate::{
             resource::loader::{new_arc_loader, ArcLoader},
             LangRes,
@@ -221,13 +221,13 @@ mod tests {
         // Although there is only Loader, not Lang, `from()` will automatically set your system language to the language of `LangRes`.
         let res = LangRes::from(&LOADER);
 
-        let text = res.find("welcome").expect(
+        let text = res.get("welcome").expect(
         r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#,
     );
 
         // Since I'm not sure what language your system is in, I'm using match to determine the language, and then asset.
         // In fact, this step is not needed at all.
-        // When you call `find()`, the text will already be the localised text you want.
+        // When you call `get()`, the text will already be the localised text you want.
         // If it can't be found, then it's probably not what you want, but it will automatically use fallback. e.g. zh-Hant-HK -> zh-Hant -> zh -> en
         match res.language.as_str() {
             "zh" => assert_eq!(text, "欢迎使用 glossa🥰"),
@@ -236,7 +236,7 @@ mod tests {
         }
 
         let text = res
-            .find_with_kv(
+            .get_with_kv(
                 "greetings",
                 [
                     ("period", "evening"),
@@ -248,7 +248,7 @@ mod tests {
 
         assert_eq!(text, "Good evening! Ms.Alice");
 
-        let text = res.find_with_kv(
+        let text = res.get_with_kv(
             "greeting",
             [
                 ("period", "morning"),

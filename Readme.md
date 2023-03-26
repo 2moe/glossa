@@ -6,7 +6,7 @@ Glossa is a language localisation library for software.
 
 [![Apache-2 licensed](https://img.shields.io/crates/l/glossa.svg)](./License)
 
-You can easily load localised resources using `LangRes` and retrieve localised text using `.find()` or `.find_with_kv()` (depending on the syntax of `fluent`).
+You can easily load localised resources using `LangRes` and retrieve localised text using `.get()` or `.get_with_kv()` (depending on the syntax of `fluent`).
 
 Before we get started, we may have some questions about it.
 
@@ -125,14 +125,14 @@ fn main() {
     // Although there is only Loader, not Lang, `from()` will automatically set your system language to the language of `LangRes`.
     let res = LangRes::from(&LOADER);
 
-    // You can think of `.find()` as the equivalent of `.get()` for a HashMap, but the difference is that it returns a `Result` instead of an `Option`.
-    let text = res.find("welcome").expect(
+    // You can think of `.get()` as the equivalent of `.get()` for a HashMap, but the difference is that it returns a `Result` instead of an `Option`.
+    let text = res.get("welcome").expect(
         r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#,
     );
 
     // Since I'm not sure what language your system is in, I'm using match to determine the language, and then `assert_eq`.
     // In fact, this step is not needed at all.
-    // When you call `find()`, the text will already be the localised text you want.
+    // When you call `get()`, the text will already be the localised text you want.
     // If it can't be found, then it's probably not what you want, but it will automatically use fallback. e.g. zh-Hant-HK -> zh-Hant -> zh -> en
     match res.language.as_str() {
         "zh" => assert_eq!(text, "欢迎使用 glossa🥰"),
@@ -167,12 +167,12 @@ gender = { $attr ->
 greetings = { time-period }! { gender }{ $name }
 ```
 
-Since `greetings` has multiple parameters, we cannot use `find()`.  
-We need to use `find_with_kv()`.
+Since `greetings` has multiple parameters, we cannot use `get()`.  
+We need to use `get_with_kv()`.
 
 ```rust
     let text = res
-        .find_with_kv(
+        .get_with_kv(
             "greetings",
             [
                 ("period", "evening"),
@@ -226,11 +226,11 @@ appellation = { $attr ->
 greetings = { time-period }、{ $name }{ appellation }
 ```
 
-Then we can use the `find_with_kv()` function.
+Then we can use the `get_with_kv()` function.
 
 ```rust
     let text = res
-        .find_with_kv(
+        .get_with_kv(
             "greetings",
             [
                 ("period", "morning"),
@@ -313,6 +313,6 @@ On the other hand, if your language ID is `zh-Hant-MO` and there are no matches,
 - For languages with the same name, scripts have higher priority than regions.
   - If the current resource list is `["zh", "zh-Hans", "zh-Hant-HK", "zh-Hans-MO"]`, then `zh-Hant-HK` has higher priority than `zh-Hans-MO`.
 
-If you need to customise the fallback chain, use `set_chain_once()` before calling `find()` or `find_with_kv()`.
+If you need to customise the fallback chain, use `set_chain_once()` before calling `get()` or `get_with_kv()`.
 
 Once the fallback chain is initialised, you cannot modify its value, but you can replace it with a new `OnceCell` instance.

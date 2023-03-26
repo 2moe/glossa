@@ -75,7 +75,7 @@ pub mod loader;
 /// - For languages with the same name, scripts have higher priority than regions.
 ///   - If the current resource list is `["zh", "zh-Hans", "zh-Hant-HK", "zh-Hans-MO"]`, then `zh-Hant-HK` has higher priority than `zh-Hans-MO`.
 ///
-/// If you need to customise the fallback chain, use `set_chain_once()` before calling `find()` or `find_with_kv()`.
+/// If you need to customise the fallback chain, use `set_chain_once()` before calling `get()` or `get_with_kv()`.
 ///
 /// Once the fallback chain is initialised, you cannot modify its value, but you can replace it with a new `OnceCell` instance.
 ///
@@ -140,7 +140,7 @@ mod tests {
         let res = LangResource::from(&LOADER);
         dbg!(&res);
         dbg!(res
-            .find_with_kv("greeting", [("name", "Alice")])
+            .get_with_kv("greeting", [("name", "Alice")])
             .unwrap());
         Ok(res)
     }
