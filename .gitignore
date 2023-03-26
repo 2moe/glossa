@@ -1,0 +1,15 @@
+/*
+# target
+# Cargo.lock
+# test
+# i18n
+
+!/src
+!/Cargo.toml
+!/License
+!/Readme*
+!/.git*
+# !/assets
+# !/locales
+
+ignore.rs
