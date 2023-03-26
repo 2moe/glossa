@@ -72,7 +72,7 @@ fn create_l10n_text<P: AsRef<Path>>(
     fs::create_dir_all(
             path.parent()
                 .expect(r#"Please bring your parent to meet me😅.
-                Just joke, this directory doesn't seem to contain the previous level, please double check.
+                Just joke, this path doesn't seem to contain the previous level, please double check.
                 For example: for `main.ftl`, you need to store it in "en/main.ftl" or "en-GB/main.ftl".
                 (The lang-id can be changed at will)"#),
         )?;
