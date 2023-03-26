@@ -18,7 +18,7 @@ use std::{
 /// | ---------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 /// | `Static`   | `&'static StaticLoader` | Represents a static Fluent loader that loads Fluent resources at compile time.                                                                                      |
 /// | `Arc`      | `&'a ArcLoader`         | Represents a reference-counted smart pointer-based Fluent loader that allows loading resources at runtime. Both `'static ArcLoader` and `'a ArcLoader` can be used. |
-/// | `ArcOwned` | `Arc<ArcLoader>`        | Represents a reference-counted smart pointer-based Fluent loader with ownership. The main difference from `ArcLoader` is that it has ownership.                    |
+/// | `ArcOwned` | `Arc<ArcLoader>`        | Represents a reference-counted smart pointer-based Fluent loader with ownership. The main difference from `&'a ArcLoader` is that it has ownership.                    |
 #[derive(Clone)]
 pub enum FluentLoader<'a> {
     Static(&'static StaticLoader),

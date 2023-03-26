@@ -44,7 +44,7 @@ pub mod loader;
 /// | ---------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 /// | `Static`   | `&'static StaticLoader` | Represents a static Fluent loader that loads Fluent resources at compile time.                                                                                      |
 /// | `Arc`      | `&'a ArcLoader`         | Represents a reference-counted smart pointer-based Fluent loader that allows loading resources at runtime. Both `'static ArcLoader` and `'a ArcLoader` can be used. |
-/// | `ArcOwned` | `Arc<ArcLoader>`        | Represents a reference-counted smart pointer-based Fluent loader with ownership. The main difference from `ArcLoader` is that it has ownership.                    |
+/// | `ArcOwned` | `Arc<ArcLoader>`        | Represents a reference-counted smart pointer-based Fluent loader with ownership. The main difference from `&'a ArcLoader` is that it has ownership.                    |
 ///
 /// The `FluentLoader` enum represents two types of Fluent loaders: the `StaticLoader`, which loads Fluent resources (i18n/l10n resources) at compile time, and the `ArcLoader`, which allows loading resources at runtime using both `'static ArcLoader` and `'a ArcLoader`. The `ArcOwned` variant is another type of `ArcLoader` that has ownership.
 ///
