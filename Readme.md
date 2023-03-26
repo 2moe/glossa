@@ -134,11 +134,14 @@ fn main() {
     // In fact, this step is not needed at all.
     // When you call `get()`, the text will already be the localised text you want.
     // If it can't be found, then it's probably not what you want, but it will automatically use fallback. e.g. zh-Hant-HK -> zh-Hant -> zh -> en
-    match res.language.as_str() {
-        "zh" => assert_eq!(text, "欢迎使用 glossa🥰"),
-        "de" => assert_eq!(text, "Willkommen bei glossa😚"),
-        _ => assert_eq!(text, "Welcome to glossa🥳"),
-    }
+    assert_eq!(
+        text,
+        match res.language.as_str() {
+            "zh" => "欢迎使用 glossa🥰",
+            "de" => "Willkommen bei glossa😚",
+            _ => "Welcome to glossa🥳",
+        }
+    );
 }
 ```
 
