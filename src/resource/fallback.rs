@@ -36,7 +36,7 @@ impl<'a> LangResource<'a> {
 
     /// Prints the generated fallback chain for debugging purposes.
     ///
-    /// As the fallback_chain is a static variable and to reduce overhead, it is only generated on the first initialisation.
+    /// The fallback_chain is only generated on the first initialisation.
     ///
     /// If you need a custom chain, call `set_chain_once()` manually first, then call this function.
     ///
@@ -194,27 +194,5 @@ mod tests {
         lang: LangID,
     ) -> &'static FallbackChain {
         a.get_or_init(|| vec![lang])
-    }
-
-    #[test]
-    fn once_cell_struct() {
-        #[derive(Debug)]
-        struct A {
-            u: OnceCell<u32>,
-        }
-
-        impl A {
-            fn new(num: u32) -> Self {
-                let cell = OnceCell::new();
-                let u = num;
-                cell.get_or_init(|| u);
-                Self { u: cell }
-            }
-        }
-
-        let mut a = A::new(3);
-        dbg!(&a.u);
-        a = A::new(6);
-        dbg!(&a);
     }
 }

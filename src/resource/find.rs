@@ -43,13 +43,6 @@ impl<'a> LangResource<'a> {
             return Ok(x); // If the lookup succeeds, return the text string.
         }
 
-        // let guard = get_fb_map_mutex_guard(self.once_set_fallback_chain(None));
-
-        // let list = guard
-        //     .get(&self.chain)
-        //     .expect("Failed to unwrap Fallback Map")
-        //     .wait();
-
         self.set_chain_once(None)
             .iter() // Iterate over the fallback languages.
             .find_map(|l| self.get_text(l, id, map).ok()) // Call `get_text` on each language until a lookup succeeds.

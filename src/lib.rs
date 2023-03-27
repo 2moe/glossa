@@ -101,7 +101,7 @@
 //!         r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#,
 //!     );
 //!
-//!     // Since I'm not sure what language your system is in, I'm using match to determine the language, and then `assert_eq`.
+//!     // Since I'm not sure what language your system is in, I use `match` to determine the language.
 //!     // In fact, this step is not needed at all.
 //!     // When you call `get()`, the text will already be the localised text you want.
 //!     // If it can't be found, then it's probably not what you want, but it will automatically use fallback. e.g. zh-Hant-HK -> zh-Hant -> zh -> en
