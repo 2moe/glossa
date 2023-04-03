@@ -2,14 +2,14 @@
 
 Glossa 是一个用于语言本地化（localisation）的库。
 
-## Features
+## Functionality
 
-Features can be divided into two types based on their functionality.
+划分为两类
 
 - 编译时：将配置文件转换为常量（const fn）rust 代码，从而实现高效的本地化。
   - 优点：高效
   - 缺点：
-    - 需要 `codegen`, 代码膨胀后会有一些冗余的东西。
+    - 需要 `codegen`, 代码膨胀后会有一些冗余的东西
     - 目前仅支持简单的键值（K-V）对
 - 运行时：管理 fluent 资源
   - 优点：fluent 的语法可能更适合本地化
