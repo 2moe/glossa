@@ -38,8 +38,8 @@ env_logger = { version = "0.10.0", default-features = false, features = [
 ] }
 
 [build-dependencies]
-glossa-codegen = { path = "../codegen" }
-# glossa-codegen = "0.0.1-alpha.1"
+# glossa-codegen = { path = "../codegen" }
+glossa-codegen = "0.0.1-alpha.1"
 
 [package.metadata.docs.rs]
 all-features = true
