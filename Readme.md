@@ -48,7 +48,8 @@ This corresponds to different types of configuration files. You can enable all f
 
 By default, the file type is determined based on the file name suffix, and the **map name** (table name) is set based on the file name. Whether deserialisation is needed at compile-time is determined by the enabled feature.
 
-Assuming there are two files under the directory `assets/l10n/en`, named `test.yaml` and `test.yml`. Then we can consider them to have the same name, resulting in two tables(maps):
+Assuming there are two files under the directory `assets/l10n/en`, named `test.yaml` and `test.yml`, then we can consider them to have the same name.  
+Resulting in two tables(maps):
 
 - test
 - test.yml
