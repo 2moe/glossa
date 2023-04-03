@@ -230,9 +230,10 @@ If your system language is "en", the test should pass.
 Note that `locale_hashmap()` is not a `const fn` but a regular function.
 However, this does not mean that it is particularly expensive.
 
+The time complexity of HashMap query operation is **O(1)**.
+
 Its value points to a sub-map, and all sub-maps and their sub-maps are `consts`.
 
-The time complexity of HashMap query operation is **O(1)**.  
 In addition, if the `ahash` feature is enabled, the RandomState of ahash will be used by default instead of the `std::collections`.
 
 You can also use OnceCell to create global static data, creating data only once.

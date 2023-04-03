@@ -222,9 +222,10 @@ cargo add phf glossa
 请注意: `locale_hashmap()` 不是 `const fn`, 而是普通的函数。  
 但这并不意味着开销特别大。
 
+HashMap 查询操作的时间复杂度是 **O(1)**。
+
 它的值指向了子表，子表以及子表的子表全都是 `consts`。
 
-HashMap 查询操作的时间复杂度是 **O(1)**。  
 此外，如果启用了 ahash feature，那么默认会使用 ahash 的 RandomState, 而不是标准库的。
 
 您还可以用 OnceCell 来创建全局静态数据, 只创建一次数据。
