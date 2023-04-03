@@ -1,321 +1,277 @@
 # Glossa
 
-Glossa is a language localisation library for software.
+[![crates.io](https://img.shields.io/crates/v/glossa.svg)](https://crates.io/crates/glossa)
 
 [![Documentation](https://docs.rs/glossa/badge.svg)](https://docs.rs/glossa)
 
 [![Apache-2 licensed](https://img.shields.io/crates/l/glossa.svg)](./License)
 
-You can easily load localised resources using `LangRes` and retrieve localised text using `.get()` or `.get_with_kv()` (depending on the syntax of `fluent`).
+[中文](Readme-zh.md)
 
-Before we get started, we may have some questions about it.
+Glossa is a language localisation library.
 
-- Why should I use it?
-- Can't I just use configuration files for simple localisation?
+## Functionality
 
-Glossa currently uses the loader of [fluent-templates](https://docs.rs/fluent-templates), and the so-called localised resources are actually some `ftl (fluent)` files.
+By functional type, it can be divided into two categories.
 
-You can think of `fluent` as a type of configuration file, except that it uses a domain-specific language (DSL). It may be more suitable for localisation than conventional configuration languages.
+- Compile-time: Converts the configuration file into constant (`const fn`) Rust code to achieve efficient localisation.
+  - Pros: High efficiency
+  - Cons:
+    - Requires codegen, which may result in some redundant code expansion.
+    - Currently only supports simple key-value (K-V) pairs.
+- Runtime: Manages `fluent` resources.
+  - Pros: Fluent syntax may be more suitable for localisation.
+  - Cons: Occupies more resources than `const fn`.
 
-These advantages allow us to increase efficiency and productivity.
+Note: Fluent also supports loading localisation resources (localised files) at compile time, but data needs to be parsed at runtime.  
+The former is just the simple K-V pair that uses some const maps from phf to store data. Because it's simple, it's efficient.
 
-Moreover, since the open-source **Mozilla Pontoon** supports `fluent`, we can set up our own **Pontoon** platform using `docker` or other technologies. This allows everyone to participate in localisation together ~~and make the world a better place~~.
+The two types of functionalities are independent of each other. For the latter, please read [Fluent.md](Fluent.md).
 
-These are actually the benefits of fluent.
+## Codegen
 
-If you want more granular control over your resources, you might want to check out [fluent](https://docs.rs/fluent).
-If you're just interested in this crate, you can keep reading.
+Use a code generator to generate code.
 
-If you have simple localisation needs, using conventional configuration files is also a good option.
+`glossa-codegen` has the following features:
 
-This mainly depends on your requirements and preferences.
+- yaml
+  - Enabled by default.
+  - The default file extension is ".yaml" or ".yml"
+- ron
+  - The default ext is ".ron"
+- toml
+  - The ext is ".toml"
+- json
+  - ext: ".json"
 
-## Get started
+This corresponds to different types of configuration files. You can enable all features or add them as needed.
 
-Firstly, we need to add some dependencies:
+By default, the file type is determined based on the file name suffix, and the **map name** (table name) is set based on the file name. Whether deserialisation is needed at compile-time is determined by the enabled feature.
+
+Assuming there are two files under the directory `assets/l10n/en`, named `test.yaml` and `test.yml`. Then we can consider them to have the same name, resulting in two tables(maps):
+
+- test
+- test.yml
+
+> When using `.get()` with `MapLoader`, you need to pass in the map-name
+
+To avoid this situation, it is recommended to use different names for different files.
+
+### Preparations
+
+Before writing `build.rs`, we need to prepare the localisation resource files.
+
+de (Deutsch, Lateinisch, Deutschland):
+
+- "assets/l10n/de/error.yaml"
+
+```yaml
+text-not-found: Kein lokalisierter Text gefunden
+```
+
+en (English, Latin, United States):
+
+- "assets/l10n/en/error.yaml"
+
+```yaml
+text-not-found: No localized text found
+```
+
+en-GB (English, Latin, Great Britain):
+
+- `assets/l10n/en-GB/error.yaml`
+
+```yaml
+text-not-found: No localised text found
+```
+
+es (español, latino, España):
+
+- `assets/l10n/es/error.yaml`
+
+```yaml
+text-not-found: No se encontró texto localizado
+```
+
+pt (português, latim, Brasil)
+
+- `assets/l10n/pt/error.yaml`
+
+> Note: "pt" refers to "Portuguese (Brazil)", not "Portuguese (Portugal)" (português, Portugal).
+
+```yaml
+text-not-found: Nenhum texto localizado encontrado
+```
+
+### build.rs
+
+First, add the compile-time dependency:
 
 ```sh
-cargo add glossa
-cargo add lang-id
-cargo add once_cell
+cargo add --build glossa-codegen
 ```
 
-If you don't need a custom language ID and would rather use automatic detection, you can skip the `lang-id` dependency.
+Then start creating `build.rs`.
 
-If you don't require an `ArcLoader` with a global variable or static lifetime, you can omit adding `once_cell`.
+> This file is at the same level as Cargo.toml.
 
-Although the following example may appear lengthy, it actually consists of simple components.
+For a simple single-project structure:
+
+```js
+.
+├── assets
+├── build.rs
+├── Cargo.lock
+├── Cargo.toml
+├── src
+└── target
+```
+
+A slightly more complex multi-project structure:
+
+```js
+.
+├── assets
+│   └── l10n
+├── Cargo.lock
+├── Cargo.toml
+├── codegen
+│   ├── Cargo.toml
+│   ├── src
+│   └── tests
+├── glossa
+│   ├── build.rs
+│   ├── Cargo.toml
+│   └── src
+├── target
+└── tests
+```
+
+Of course, you can also specify the path to `build.rs` manually, instead of using the default.
+
+---
+
+`build.rs`：
 
 ```rust
-use glossa::{
-    resource::loader::{new_arc_loader, ArcLoader},
-    LangRes,
-};
-use once_cell::sync::Lazy;
+use glossa_codegen::{consts::*, prelude::*};
 use std::{
-    fs::{self, File},
-    io::{self, Write},
-    path::{Path, PathBuf},
+    fs::File,
+    io::{self, BufWriter},
+    path::PathBuf,
 };
 
-/// This function is used to create a directory and write the contents to the relevant file.
-//
-// Note: In practice, you don't actually need to create such a function.
-// It's only written here for tutorial purposes.
-fn create_l10n_text<P: AsRef<Path>>(
-    path: P,
-    append: bool,
-    contents: &str,
-) -> io::Result<()> {
-    let path = path.as_ref();
+fn main() -> io::Result<()> {
+    // Specify the version as the current package version to avoid repetitive compilation for the same version.
+    let version = Some(get_pkg_version!());
+    // During development, we can set it to None.
+    // let version = None;
 
-    fs::create_dir_all(
-            path.parent()
-                .expect(r#"Please bring your parent to meet me😅.
-                Just joke, this path doesn't seem to contain the previous level, please double check.
-                For example: for `main.ftl`, you need to store it in "en/main.ftl" or "en-GB/main.ftl".
-                (The lang-id can be changed at will)"#),
-        )?;
+    // This is a constant array: ["src", "assets", "localisation.rs"], which is converted into a path for storing automatically generated Rust code related to localisation.
+    // On Windows, the path is 'src\assets\localisation.rs'.
+    // On Unix, the path is "src/assets/localisation.rs".
+    // Note: this is a relative path!
+    let mut path = PathBuf::from_iter(default_l10n_rs_file_arr());
 
-    let mut file = File::options()
-        .create(true)
-        .append(append)
-        .write(true)
-        .open(path)?;
-
-    writeln!(file, "{contents}")
-}
-
-fn main() {
-    // Specify the fluent file for en(en-Latn-US)
-    // On Windows, it's "locales\en\test.ftl".
-    // On Unix, it's "locales/en/test.ftl".
-    let mut arr = ["locales", "en", "test.ftl"];
-    let mut file = PathBuf::from_iter(&arr);
-    const IO_MSG: &str = "I/O Error, failed to create/write the file";
-
-    // We've created a file with only one line of data, where the key is "welcome" and the value is "Welcome to glossa🥳".
-    create_l10n_text(file, false, "welcome = Welcome to glossa🥳").expect(IO_MSG);
-
-    // We change the second element from "en" to "de" to start our German localisation.
-    if let Some(p) = arr.iter_mut().nth(1) {
-        *p = "de"
+    // If it's the same version, then exit.
+    if is_same_version(&path, version)? {
+        return Ok(());
     }
-    file = PathBuf::from_iter(&arr);
 
-    // This is the localised content in German([de] de-Latn-DE: Deutsch, Lateinisch, Deutschland) that we'll use for testing later on.
-    create_l10n_text(file, false, "welcome = Willkommen bei glossa😚")
-        .expect(IO_MSG);
+    // If the path is "src/assets/localisation.rs", then it will append `mod localisation;` and related `use` statements to "src/assets/mod.rs".
+    append_to_l10n_mod(&path)?;
 
-    // We change the second element to "zh"
-    if let Some(p) = arr.iter_mut().nth(1) {
-        *p = "zh"
+    // This creates a new file: "src/assets/localisation.rs".
+    // Unlike append, if only create is used, the file will be cleared.
+    let mut file = BufWriter::new(File::create(&path)?);
+
+    // default_l10n_dir_arr() is also a constant array: ["assets", "l10n"].
+    // If the current localisation resource path is at the parent level, then you can use `path = PathBuf::from_iter([".."].into_iter().chain(default_l10n_dir_arr()));`.
+    path = PathBuf::from_iter(default_l10n_dir_arr());
+
+    // Here, the l10n file is deserialised into a map and written to the rs file.
+    // file: "src/assets/localisation.rs"
+    // path: "assets/l10n"
+    // visibility: Used to set the visibility of the generated `fn`. If it is None, then Some("pub(crate)") is used. You can use `Some("pub(in path)")` or `Some("pub")`
+    deser_cfg_to_map(&mut file, &mut path, Some("pub(crate)"), version)
+}
+```
+
+## Get Text
+
+Now that the code has been generated, let's write a function to test it!
+
+But before that, we need to add some dependencies.
+
+```sh
+cargo add phf glossa
+```
+
+The test function is as follows:
+
+```rust
+    #[test]
+    fn new_loader() {
+        use crate::assets::localisation::locale_hashmap;
+        use glossa::{fallback::FallbackChain, GetText, MapLoader};
+
+        let loader = MapLoader::new(locale_hashmap());
+        loader.show_chain();
+        // Here, for simplicity, `get_or_default()` is used.
+        // Actually, the usage of `.get()` is the same, but it returns Result<&str>, not Cow<str>.
+        let msg = loader.get_or_default("error", "text-not-found");
+        assert_eq!(msg, "No localized text found");
     }
-    file = PathBuf::from_iter(arr);
-
-    // This is the localised content in Simplified Chinese.([zh] zh-Hans-CN: 简体中文, 中国)
-    create_l10n_text(file, false, "welcome = 欢迎使用 glossa🥰").expect(IO_MSG);
-
-    const ERR_MSG: &str = "Failed to create arc loader";
-
-    // We've created a loader that reads localised resources at runtime.
-    static LOADER: Lazy<ArcLoader> =
-        Lazy::new(|| new_arc_loader(Path::new("locales"), None).expect(ERR_MSG));
-
-    // Although there is only Loader, not Lang, `from()` will automatically set your system language to the language of `LangRes`.
-    let res = LangRes::from(&LOADER);
-
-    // You can think of `.get()` as the equivalent of `.get()` for a HashMap, but the difference is that it returns a `Result` instead of an `Option`.
-    let text = res.get("welcome").expect(
-        r#"Failed to get the value of "welcome" from locales/[lang-id]/test.ftl."#,
-    );
-
-    // Since I'm not sure what language your system is in, I use `match` to determine the language.
-    // In fact, this step is not needed at all.
-    // When you call `get()`, the text will already be the localised text you want.
-    // If it can't be found, then it's probably not what you want, but it will automatically use fallback. e.g. zh-Hant-HK -> zh-Hant -> zh -> en
-    assert_eq!(
-        text,
-        match res.language.as_str() {
-            "zh" => "欢迎使用 glossa🥰",
-            "de" => "Willkommen bei glossa😚",
-            _ => "Welcome to glossa🥳",
-        }
-    );
-}
 ```
 
-After reading this, you might think: why not just use a configuration file instead of all this?
+If your system language is "en", the test should pass.
 
-In reality, fluent has more advanced syntax than just "k = v".
+Note that `locale_hashmap()` is not a `const fn` but a regular function.
+However, this does not mean that it is particularly expensive.
 
-Don't worry, let's take it step by step.
+Its value points to a sub-map, and all sub-maps and their sub-maps are `consts`.
 
-Let's assume the following file exists: **locales/en/test2.ftl**
+The time complexity of HashMap query operation is **O(1)**.  
+In addition, if the `ahash` feature is enabled, the RandomState of ahash will be used by default instead of the `std::collections`.
 
-> Although we could use `create_l10n_text()` above to write the text to a file, for simplicity's sake, we'll just paste the content here!
-
-```fluent
-time-period = { $period ->
-        *[morning] Good morning
-        [evening] Good evening
-}
-
-gender = { $attr ->
-        [male] Mr.
-        *[female] Ms.
-}
-# [walmart-bag]
-
-greetings = { time-period }! { gender }{ $name }
-```
-
-Since `greetings` has multiple parameters, we cannot use `get()`.  
-We need to use `get_with_kv()`.
+You can also use OnceCell to create global static data, creating data only once.
 
 ```rust
-    let text = res
-        .get_with_kv(
-            "greetings",
-            [
-                ("period", "evening"),
-                ("name", "Alice"),
-                ("attr", "unknown"),
-            ],
-        )
-        .expect(r#"Failed to get "greetings"! "#);
-```
-
-Let's take a guess at what the content of `text` is.
-
-Is it "Good evening! unknown Alice"?
-
-No, because `*` is the default option. If you pass in an unknown value, it automatically becomes the default value.
-
-Let's test it using `assert_eq`!
-
-```rust
-assert_eq!(text, "Good evening! Ms.Alice");
-```
-
-Let's give another example, this time in Japanese (ja-Jpan-JP).
-
-Since using `from()` will automatically detect our system language, we'll use `with_arc()` here to specify the language and ArcLoader.
-
-```rust
-let res = LangRes::with_arc(unsafe { lang_id::consts::get_ja() }, &LOADER);
-```
-
-Create a new file： **locales/ja/test.ftl**
-
-```fluent
-time-period = { $period ->
-        [morning] おはようございます
-        *[evening] こんばんは
-}
-
-appellation = { $attr ->
-        *[male] さん
-        [young-male] 君
-        [old-male] お爺さん
-        [noble-man] 様
-        [noble-young-male] お坊ちゃま
-        [female] さん
-        [young-female] ちゃん
-        [old-female] お婆さん
-        [noble-young-female] お嬢様
-}
-
-greetings = { time-period }、{ $name }{ appellation }
-```
-
-Then we can use the `get_with_kv()` function.
-
-```rust
-    let text = res
-        .get_with_kv(
-            "greetings",
-            [
-                ("period", "morning"),
-                ("name", "Alice"),
-                ("attr", "noble-young-female"),
-            ],
-        )
-        .expect(r#"Failed to get "greetings"! "#);
-```
-
-Using `println!("{text}")`, we can see that the output is `おはようございます、Aliceお嬢様`
-
-After reading the content above, I believe you have a clear understanding of it now.
-
-However, this is only the beginning. If you want to learn more about fluent syntax, you can visit [Project Fluent](https://projectfluent.org/).  
-We won't go into further detail here.
-
-## Language Resource
-
-Let's learn about what `resource::LangResource` is.
-
-| Member Variable | Type                      | Description                                                       |
-| --------------- | ------------------------- | ----------------------------------------------------------------- |
-| `id`            | `LangID`                  | Represents the ID of the language resource.                       |
-| `loader`        | `FluentLoader<'a>`        | Represents the loader for Fluent resources.                       |
-| `chain`         | `OnceCell<FallbackChain>` | Represents the fallback chain for alternative language resources. |
-
-### ID
-
-ID refers to language identifier, such as `en`, `en-001`, and `en-Latn-001` are all valid lang-ids.
-
-`en` refers to en-Latn-US, not en-GB.
-
-`001` refers to the world.
-
-> The related rules come from Unicode CLDR (Unicode Common Locale Data Repository) version 42.0.0.
-
-If you use `from()` to create a struct, you don't need to worry about the ID field because it will automatically obtain your system's language.
-
-> For a detailed list of lang-ids, you can refer to [lang-id](https://github.com/2moe/lang-id).
-
-### loader
-
-`FluentLoader` is an enum type that currently supports `StaticLoader` and `ArcLoader`, both of which come from fluent-templates.
-
-Perhaps more loaders can be added in the future.
-
-| Variable   | Type                    | Description                                                                                                                                                         |
-| ---------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Static`   | `&'static StaticLoader` | Represents a static Fluent loader that loads Fluent resources at compile time.                                                                                      |
-| `Arc`      | `&'a ArcLoader`         | Represents a reference-counted smart pointer-based Fluent loader that allows loading resources at runtime. Both `'static ArcLoader` and `'a ArcLoader` can be used. |
-| `ArcOwned` | `Arc<ArcLoader>`        | Represents a reference-counted smart pointer-based Fluent loader with ownership. The main difference from `&'a ArcLoader` is that it has ownership.                 |
-
-The `FluentLoader` enum represents two types of Fluent loaders: the `StaticLoader`, which loads Fluent resources (i18n/l10n resources) at compile time, and the `ArcLoader`, which allows loading resources at runtime using both `'static ArcLoader` and `'a ArcLoader`. The `ArcOwned` variant is another type of `ArcLoader` that has ownership.
-
-This enum is used to specify the type of Fluent loader when initializing a `LangResource` struct.
-
-Note: `static_loader` comes from fluent-templates, you can use the same syntax as it.
-
-```rust
-use glossa::resource::loader::static_loader;
-
-static_loader! {
-    static LOADER = {
-        locales: "locales",
-        fallback_language: "en",
-        customise: |bundle| bundle.set_use_isolating(false),
-    };
+pub(crate) fn locales() -> &'static MapLoader {
+    static RES: OnceCell<MapLoader> = OnceCell::new();
+    RES.get_or_init(|| MapLoader::new(locale_hashmap()))
 }
 ```
 
-### chain
+> Wait a minute, don't waste time on these things, our previous test failed.
 
-`chain` can be lazily initialised. By default, it won't be initialised automatically when not needed and will only be initialised once when needed.
+All right, let's revisit what we did before.  
+We have previously created localisation resource files for German, Spanish and Portuguese.
 
-For example, if your language ID is "en" and all the localisation resources match, then it won't automatically initialise the fallback chain.
+Firstly, it will automatically detect the system language. If the localisation resource does not exist, it will automatically use a fallback chain.
+If the localisation resource exists and your system language is not English, then the above test will fail.
 
-On the other hand, if your language ID is `zh-Hant-MO` and there are no matches, then it will automatically generate a fallback chain based on the resource list.
+Let's continue to test:
 
-- For languages with the same name, scripts have higher priority than regions.
-  - If the current resource list is `["zh", "zh-Hans", "zh-Hant-HK", "zh-Hans-MO"]`, then `zh-Hant-HK` has higher priority than `zh-Hans-MO`.
+```rust
+let loader = locales();
+let msg = loader.get("error", "text-not-found")?;
+```
 
-If you need to customise the fallback chain, use `set_chain_once()` before calling `get()` or `get_with_kv()`.
+Assuming your language is German (de-Latn-DE)
 
-Once the fallback chain is initialised, you cannot modify its value, but you can replace it with a new `OnceCell` instance.
+```rust
+assert_eq!(msg, "Kein lokalisierter Text gefunden");
+```
+
+Spanish (es-Latn-ES)
+
+```rust
+assert_eq!(msg, "No se encontró texto localizado");
+```
+
+Portuguese (pt-Latn-BR)
+
+```rust
+assert_eq!(msg, "Nenhum texto localizado encontrado");
+```

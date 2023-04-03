@@ -1,15 +1,19 @@
 /*
-# target
+target
 # Cargo.lock
 # test
-# i18n
 
 !/src
 !/Cargo.toml
 !/License
-!/Readme*
+!/Readme*.md
 !/.git*
-# !/assets
+!/assets
+!/build.rs
 # !/locales
+!/codegen
+!/glossa
+!/Fluent.md
 
+main.rs
 ignore.rs
