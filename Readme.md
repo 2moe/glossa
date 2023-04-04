@@ -183,7 +183,7 @@ fn main() -> io::Result<()> {
     append_to_l10n_mod(&path)?;
 
     // This creates a new file: "src/assets/localisation.rs".
-    // Unlike append, if only create is used, the file will be cleared.
+    // Unlike append, if only create is used, then the file will be cleared when it is written.
     let mut file = BufWriter::new(File::create(&path)?);
 
     // default_l10n_dir_arr() is also a constant array: ["assets", "l10n"].

@@ -175,7 +175,7 @@ fn main() -> io::Result<()> {
     append_to_l10n_mod(&path)?;
 
     // 这里会创建一个新的文件： "src/assets/localisation.rs"
-    // 与 append 不同，如果只是单纯的 create 的话，那么会清空文件。
+    // 与 append (追加) 不同，如果只是单纯的 create (创建) 的话，那么在写入时会清空文件。
     let mut file = BufWriter::new(File::create(&path)?);
 
     // default_l10n_dir_arr() 也是一个常量数组： ["assets", "l10n"]
