@@ -2,7 +2,7 @@ use crate::{
     assets::OnceCell,
     l10n::locales,
     log::{err, trace, warning},
-    map_loader::get::GetText,
+    GetText,
 };
 use std::io;
 use thiserror::Error;
@@ -22,8 +22,8 @@ impl std::fmt::Display for GlossaError<'_> {
 
         match self {
             TextNotFound(key) => {
-                warning!("{} (key: `{key}`)", msg());
-                write!(f, r#"{} (key: "{key}")"#, msg())
+                warning!(r#"{} (key: "{key}")"#, msg());
+                write!(f, "{} (key: `{key}`)", msg())
             }
             CreateArcLoader(e) => {
                 let err_msg = "Failed to create arc loader.";
@@ -31,8 +31,8 @@ impl std::fmt::Display for GlossaError<'_> {
                 write!(f, "{err_msg}\n{e}")
             }
             MapTextNotFound(map, key) => {
-                warning!("{} (map: `{map}`, key: `{key}`)", msg());
-                write!(f, r#"{} (map: "{map}", key: "{key}")"#, msg())
+                warning!(r#"{} (map: "{map}", key: "{key}")"#, msg());
+                write!(f, "{} (map: `{map}`, key: `{key}`)", msg())
             }
         }
     }

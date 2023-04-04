@@ -8,7 +8,7 @@ use std::{collections::HashMap, hash::BuildHasher};
 type Map<S> = HashMap<LangID, SubLocaleMap, S>;
 
 mod from;
-pub mod get;
+pub(crate) mod get;
 mod traits;
 
 #[derive(Getters, MutGetters, Debug, Default)]

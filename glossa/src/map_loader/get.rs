@@ -1,6 +1,10 @@
 use crate::{
-    assets::localisation::SubLocaleMap, debug, error::GlossaError,
-    fallback::FallbackChain, map_loader::MapLoader, trace, LangID,
+    assets::localisation::SubLocaleMap,
+    error::GlossaError,
+    fallback::FallbackChain,
+    log::{debug, trace},
+    map_loader::MapLoader,
+    LangID,
 };
 use std::{borrow::Cow, hash::BuildHasher, io};
 
