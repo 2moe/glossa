@@ -101,14 +101,14 @@ pub trait FallbackChain {
     ///
     /// ```no_run
     /// fn get_locale_list(&self) -> Chain {
-    ///     iter.filter(|x| self.get_locale_list_filter(x))
+    ///     iter.filter(|x| self.locale_list_filter(x))
     ///     .cloned()
     ///     .collect()
     /// };
     /// ```
     fn get_locale_list(&self) -> Chain;
 
-    fn get_locale_list_filter(&self, id: &LangID) -> bool {
+    fn locale_list_filter(&self, id: &LangID) -> bool {
         id.language == self.get_id().language && id != self.get_id()
     }
 

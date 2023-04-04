@@ -48,7 +48,7 @@ impl<S: BuildHasher> FallbackChain for MapLoader<S> {
 
         self.map
             .keys()
-            .filter(|&x| self.get_locale_list_filter(x))
+            .filter(|&x| self.locale_list_filter(x))
             .cloned()
             .collect()
     }

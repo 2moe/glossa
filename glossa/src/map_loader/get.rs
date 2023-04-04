@@ -124,7 +124,7 @@ pub trait GetText<S: BuildHasher>: FallbackChain {
 
 impl<S: BuildHasher> GetText<S> for MapLoader<S> {
     fn get_map(&self) -> &super::Map<S> {
-        self.get_map()
+        &self.map
     }
 }
 
