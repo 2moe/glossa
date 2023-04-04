@@ -192,6 +192,9 @@ fn main() -> io::Result<()> {
 }
 ```
 
+运行 `cargo b` 后，会自动生成代码。  
+若你的 l10n rs 文件为 `src/assets/localisation.rs`，则您还需要手动将 `pub(crate) mod assets;` 添加到 `lib.rs` 或者是 `main.rs`（这取决于您的 crate 类型）。
+
 ## Get Text
 
 代码生成完毕后，让我们编写一个函数来测试一下吧！

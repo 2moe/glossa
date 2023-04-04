@@ -1,8 +1,11 @@
 use crate::{
-    assets::OnceCell, err, l10n::locales, map_loader::get::GetText, trace, warning,
+    assets::OnceCell,
+    l10n::locales,
+    log::{err, trace, warning},
+    map_loader::get::GetText,
 };
 use std::io;
-use thiserror::Error;
+pub use thiserror::Error;
 
 /// A custom error type for Glossa
 #[derive(Error, Debug)]

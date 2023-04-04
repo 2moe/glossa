@@ -200,6 +200,8 @@ fn main() -> io::Result<()> {
 }
 ```
 
+After running `cargo b`, the code will be generated automatically. If your l10n rs file is `src/assets/localisation.rs`, you will also need to manually add `pub(crate) mod assets;` to `lib.rs` or `main.rs` (depending on the type of crate you have).
+
 ## Get Text
 
 Now that the code has been generated, let's write a function to test it!
