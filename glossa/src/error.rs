@@ -5,7 +5,7 @@ use crate::{
     map_loader::get::GetText,
 };
 use std::io;
-pub use thiserror::Error;
+use thiserror::Error;
 
 /// A custom error type for Glossa
 #[derive(Error, Debug)]

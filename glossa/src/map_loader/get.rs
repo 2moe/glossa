@@ -2,7 +2,7 @@ use crate::{
     assets::localisation::SubLocaleMap, debug, error::GlossaError,
     fallback::FallbackChain, map_loader::MapLoader, trace, LangID,
 };
-use std::{borrow::Cow, hash::BuildHasher};
+use std::{borrow::Cow, hash::BuildHasher, io};
 
 pub trait GetText<S: BuildHasher>: FallbackChain {
     fn get_map(&self) -> &super::Map<S>;
@@ -45,6 +45,24 @@ pub trait GetText<S: BuildHasher>: FallbackChain {
                 fb()
             }
         }
+    }
+
+    /// Similar to `.get()` but returns `io::Result<String>`, not `glossa::Result<&str>`
+    fn get_owned(&self, map_name: &str, key: &str) -> io::Result<String> {
+        self.get(map_name, key)
+            .map(ToOwned::to_owned)
+            .map_err(|e| io::Error::new(io::ErrorKind::NotFound, e.to_string()))
+    }
+
+    /// Similar to `.get_owned()` but returns `io::Result<Cow<str>>`, not `io::Result<String>`
+    fn get_cow<'a>(
+        &'a self,
+        map_name: &'a str,
+        key: &'a str,
+    ) -> io::Result<Cow<str>> {
+        self.get(map_name, key)
+            .map(Cow::from)
+            .map_err(|e| io::Error::new(io::ErrorKind::NotFound, e.to_string()))
     }
 
     /// Much like `get()`, but returns the error message as a default value when it fails.
@@ -136,7 +154,9 @@ mod tests {
         let loader = MapLoader::new(locale_hashmap());
         // loader.show_chain();
 
-        let s = loader.get_or_default("error", "not-found");
+        // let s = loader.get_or_default("error", "not-found");
+        let s = loader.get_cow("error", "not-found")?;
+
         println!("{s}");
 
         Ok(())
