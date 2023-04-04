@@ -12,16 +12,18 @@ Glossa is a language localisation library.
 
 ## Functionality
 
-By functional type, it can be divided into two categories.
+It can be divided into two categories.
 
-- Compile-time: Converts the configuration file into constant (`const fn`) Rust code to achieve efficient localisation.
-  - Pros: High efficiency
+- Const map: Load localisation data efficiently through constant data.
+  - Description: Convert configuration files into constant (`const fn`) code at compile time and read constant data at runtime.
+  - Pros: Efficient
   - Cons:
-    - Requires codegen, which may result in some redundant code expansion.
+    - Requires `codegen`, which may result in some redundant code after expansion.
     - Currently only supports simple key-value (K-V) pairs.
-- Runtime: Manages `fluent` resources.
+- Flunt
+  - Description: Manage Fluent resources at runtime.
   - Pros: Fluent syntax may be more suitable for localisation.
-  - Cons: Occupies more resources than `const fn`.
+  - Cons: Requires more resources than `const map`.
 
 Note: Fluent also supports loading localisation resources (localised files) at compile time, but data needs to be parsed at runtime.  
 The former is just the simple K-V pair that uses some const maps from phf to store data. Because it's simple, it's efficient.
@@ -36,17 +38,17 @@ Use a code generator to generate code.
 
 - yaml
   - Enabled by default.
-  - The default file extension is ".yaml" or ".yml"
+  - The default file extension is "yaml" or "yml"
 - ron
-  - The default ext is ".ron"
+  - The default ext is "ron"
 - toml
-  - The ext is ".toml"
+  - The ext is "toml"
 - json
-  - ext: ".json"
+  - ext: "json"
 
 This corresponds to different types of configuration files. You can enable all features or add them as needed.
 
-By default, the file type is determined based on the file name suffix, and the **map name** (table name) is set based on the file name. Whether deserialisation is needed at compile-time is determined by the enabled feature.
+By default, the file type is determined based on the file name extension, and the **map name** (table name) is set based on the file name. Whether deserialisation is needed at compile-time is determined by the enabled feature.
 
 Assuming there are two files under the directory `assets/l10n/en`, named `test.yaml` and `test.yml`, then we can consider them to have the same name.  
 Resulting in two tables(maps):

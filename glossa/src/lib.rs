@@ -10,16 +10,18 @@
 //!
 //! ## Functionality
 //!
-//! By functional type, it can be divided into two categories.
+//! It can be divided into two categories.
 //!
-//! - Compile-time: Converts the configuration file into constant (`const fn`) Rust code to achieve efficient localisation.
-//!   - Pros: High efficiency
+//! - Const map: Load localisation data efficiently through constant data.
+//!   - Description: Convert configuration files into constant (`const fn`) Rust code at compile time and read constant data at runtime.
+//!   - Pros: Efficient
 //!   - Cons:
-//!     - Requires `codegen`, which may result in some redundant code expansion.
+//!     - Requires `codegen`, which may result in some redundant code after expansion.
 //!     - Currently only supports simple key-value (K-V) pairs.
-//! - Runtime: Manages `fluent` resources.
+//! - Flunt
+//!   - Description: Manage Fluent resources at runtime.
 //!   - Pros: Fluent syntax may be more suitable for localisation.
-//!   - Cons: Occupies more resources than `const fn`.
+//!   - Cons: Requires more resources than `const map`.
 //!
 //! The former is just the simple K-V pair that uses some const maps from phf to store data. Because it's simple, it's efficient.
 //!
