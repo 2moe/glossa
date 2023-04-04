@@ -1,21 +1,24 @@
 #![allow(unused_macros, unused_imports)]
 
 #[cfg(feature = "log")]
-macro_rules! error {
+#[macro_export]
+macro_rules! err {
     ($($arg:tt)*) => {{
-        log::error!($($arg)*);
+        $crate::assets::log::error!($($arg)*);
     }}
 }
 
 #[cfg(not(feature = "log"))]
-macro_rules! error {
+#[macro_export]
+macro_rules! err {
     ($($arg:tt)*) => {{}};
 }
 
 #[cfg(feature = "log")]
+#[macro_export]
 macro_rules! warning {
     ($($arg:tt)*) => {{
-        log::warn!($($arg)*);
+        $crate::assets::log::warn!($($arg)*);
     }}
 }
 
@@ -26,43 +29,49 @@ macro_rules! warning {
 }
 
 #[cfg(feature = "log")]
+#[macro_export]
 macro_rules! info {
     ($($arg:tt)*) => {{
-        log::info!($($arg)*);
+        $crate::assets::log::info!($($arg)*);
     }}
 }
 
 #[cfg(not(feature = "log"))]
+#[macro_export]
 macro_rules! info {
     ($($arg:tt)*) => {{}};
 }
 
 #[cfg(feature = "log")]
+#[macro_export]
 macro_rules! debug {
     ($($arg:tt)*) => {{
-        log::debug!($($arg)*);
+        $crate::assets::log::debug!($($arg)*);
     }}
 }
 
 #[cfg(not(feature = "log"))]
+#[macro_export]
 macro_rules! debug {
     ($($arg:tt)*) => {{}};
 }
 
 #[cfg(feature = "log")]
+#[macro_export]
 macro_rules! trace {
     ($($arg:tt)*) => {{
-        log::trace!($($arg)*);
+        $crate::assets::log::trace!($($arg)*);
     }}
 }
 
 #[cfg(not(feature = "log"))]
+#[macro_export]
 macro_rules! trace {
     ($($arg:tt)*) => {{}};
 }
 
-pub(crate) use debug;
-pub(crate) use error;
-pub(crate) use info;
-pub(crate) use trace;
-pub(crate) use warning;
+pub use debug;
+pub use err;
+pub use info;
+pub use trace;
+pub use warning;

@@ -1,7 +1,4 @@
-use crate::{
-    log::{debug, info, trace},
-    LangID,
-};
+use crate::{debug, info, trace, LangID};
 use std::io::Write;
 
 /// Define a type alias for the fallback chain

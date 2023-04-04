@@ -1,8 +1,9 @@
 use crate::{
+    debug,
     // assets::OnceCell, // OnceCell module for lazy initialization
     fallback::{Chain, FallbackChain}, // FallbackChain trait for handling fallback chains
-    log::{debug, trace},              // Language ID type
     map_loader::MapLoader, // MapLoader struct for loading Language Resource map
+    trace,
     LangID,
 };
 use std::{

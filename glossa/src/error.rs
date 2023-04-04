@@ -1,8 +1,5 @@
 use crate::{
-    assets::OnceCell,
-    l10n::locales,
-    log::{error, trace, warning},
-    map_loader::get::GetText,
+    assets::OnceCell, err, l10n::locales, map_loader::get::GetText, trace, warning,
 };
 use std::io;
 use thiserror::Error;
@@ -27,7 +24,7 @@ impl std::fmt::Display for GlossaError<'_> {
             }
             CreateArcLoader(e) => {
                 let err_msg = "Failed to create arc loader.";
-                error!("{err_msg}\nError: {e}");
+                err!("{err_msg}\nError: {e}");
                 write!(f, "{err_msg}\n{e}")
             }
             MapTextNotFound(map, key) => {
@@ -85,8 +82,11 @@ mod tests {
 
     #[test]
     fn any_error() -> crate::Result<'static, ()> {
+        use crate::log::err;
         std::env::set_var("RUST_LOG", "trace");
+
         env_logger::init();
+        err!("hello");
         let err = locales().get("err", "test-err-msg")?;
         eprintln!("{err}");
         Ok(())

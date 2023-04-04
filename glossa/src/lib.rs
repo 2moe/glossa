@@ -52,8 +52,6 @@ pub mod error;
 /// The default error type is `GlossaError<'map>`
 pub type Result<'map, T> = ::core::result::Result<T, error::GlossaError<'map>>;
 
-pub(crate) mod log;
-
 #[cfg(feature = "fluent")]
 pub mod fluent;
 #[cfg(feature = "fluent")]
@@ -76,3 +74,7 @@ pub use lang_id::LangID;
 pub mod fallback;
 
 pub use l10n::locales;
+
+// Whether or not the log feature is enabled, log_macros is used
+// If there is no `log`, the macro will be called without doing anything.
+pub mod log;

@@ -7,8 +7,11 @@ pub use ahash::HashMap;
 pub use std::collections::HashMap;
 
 pub use lang_id::consts as lang_id_consts;
-pub use once_cell::sync::OnceCell;
 
+#[cfg(feature = "log")]
+pub use log;
+
+pub use once_cell::sync::OnceCell;
 #[cfg(test)]
 mod tests {
     use super::*;

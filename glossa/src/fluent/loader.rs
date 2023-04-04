@@ -1,4 +1,4 @@
-use crate::{error::GlossaError, log::trace, Result};
+use crate::{error::GlossaError, info, trace, Result};
 pub use fluent_templates::{self, static_loader, ArcLoader};
 use fluent_templates::{Loader, StaticLoader};
 use lang_id::LangID;
@@ -29,7 +29,7 @@ impl<'a> FluentLoader<'a> {
     pub(crate) fn get_locales(&self) -> Box<dyn Iterator<Item = &LangID> + '_> {
         trace!("Getting locales");
 
-        crate::log::info!("hello");
+        info!("hello");
         match self {
             // If the loader is a static loader, return an iterator over its locales.
             Self::Static(x) => x.locales(),
