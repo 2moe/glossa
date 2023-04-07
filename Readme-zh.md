@@ -39,7 +39,7 @@ glossa-codegen 有以下 features：
 这对应不同类型的配置文件。  
 您可以启用全部的功能，也可以按需添加。
 
-默认根据文件名扩展名(extension, e.g. yaml, yaml, toml, ron, json)来判断文件类型，根据文件名称来设置 Map Name(表的名称)，根据启用的功能来判断是否需要在编译时解析（反序列化）。
+默认根据文件名扩展名(extension, e.g. yml, yaml, toml, ron)来判断文件类型，根据文件名称来设置 Map Name(表的名称)，根据启用的功能来判断是否需要在编译时解析（反序列化）。
 
 假设 `assets/l10n/zh` 目录下存在两个文件，分别是 `test.yaml` 和 `test.yml`，那么我们可以认为它们有着相同的名称。
 

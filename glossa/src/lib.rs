@@ -1,3 +1,5 @@
+#![cfg_attr(__glossa_doc, feature(doc_auto_cfg, doc_notable_trait))]
+
 //! # Glossa
 //!
 //! Glossa is a language localisation library.

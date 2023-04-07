@@ -6,7 +6,10 @@ pub use ahash::HashMap;
 #[cfg(not(feature = "ahash"))]
 pub use std::collections::HashMap;
 
+#[doc(inline)]
 pub use lang_id::consts as lang_id_consts;
+
+pub use lang_id;
 
 #[cfg(feature = "log")]
 pub use log;
