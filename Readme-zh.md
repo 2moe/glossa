@@ -184,11 +184,14 @@ fn main() -> io::Result<()> {
     // 如果当前本地化资源的路径位于上一级的话，那么您可以使用 `path = PathBuf::from_iter([".."].into_iter().chain(default_l10n_dir_arr()));`
     path = PathBuf::from_iter(default_l10n_dir_arr());
 
+    // 是否自动生成文档
+    let gen_doc = true;
+
     // 此处将 l10n 文件反序列化为 map， 并写入 rs 文件
     // file: "src/assets/localisation.rs"
     // path: "assets/l10n"
-    // visibility（可见性）：用来设定自动生成的 `fn` 的可见性。 若为 None, 则使用 Some("pub(crate)")。您可以传入 `Some("pub(in path)")` 或 `Some("pub")` 等值。
-    deser_cfg_to_map(&mut file, &mut path, Some("pub(crate)"), version)
+    // visibility（可见性）：用来设定自动生成的 `fn` 的可见性。 若为 "", 则为私有。您可以传入 "pub(in path)"` 或 `"pub"` 等值。
+    deser_cfg_to_map(&mut file, &mut path, "pub(crate)", version, gen_doc)
 }
 ```
 

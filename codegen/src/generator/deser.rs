@@ -25,23 +25,22 @@ impl std::ops::Deref for L10nData {
     }
 }
 
-/// visibility : Some("pub"), Some("pub(in path)"), etc.
-/// If it's None, then use `Some("pub(crate)")`
+/// visibility : "pub", "pub(in path)", etc.
 pub fn deser_cfg_to_map<W: Write>(
     rs_file: &mut W,
     l10n_path: &mut PathBuf,
-    visibility: Option<&str>,
+    visibility: &str,
     version: Option<&str>,
+    gen_doc: bool,
 ) -> io::Result<()> {
     writeln!(rs_file, "// Version: {}", version.unwrap_or("None"))?;
 
     defind_rs_file_header(rs_file)?;
 
-    let pub_crate = visibility.unwrap_or("pub(crate)");
-
     let mut writer = MapWriter {
         rs_file,
-        visibility: pub_crate,
+        visibility,
+        gen_doc,
     };
 
     // Create a new, empty map for locale data
@@ -133,7 +132,7 @@ fn iterate_over_all_cfg_files<W: Write>(
 ) -> Result<(), io::Error> {
     #[allow(unused_assignments)]
     let mut cfg = L10nData::default();
-    let mut data_hashmap = HashMap::new();
+    let mut data_doc_map = HashMap::new();
     let mut file_sets = HashSet::with_capacity(20);
 
     let iter = fs::read_dir(&*fpath)?.filter_map(Result::ok);
@@ -170,14 +169,14 @@ fn iterate_over_all_cfg_files<W: Write>(
 
         // Clear the data map
         *data_map = phf_codegen::Map::new();
-        data_hashmap.clear();
+        data_doc_map.clear();
 
         let (mut org, mut sub_map_fn) = get_sub_map_fn_name(cfg_file, lc_map_fn);
         locale_map_collision_checker(sub_sets, &mut sub_map_fn);
         file_collision_checker(&mut file_sets, &mut org, cfg_file.file_name());
 
         if let Some((k, v)) = cfg.0.iter().next() {
-            data_hashmap
+            data_doc_map
                 .entry((locale, org.to_owned()))
                 .or_insert((k.to_owned(), v.to_owned()));
         }
@@ -187,7 +186,9 @@ fn iterate_over_all_cfg_files<W: Write>(
 
         sub_locale_map.entry(org, &sub_map_fn);
 
-        writer.build_data_hashmap(&data_hashmap)?;
+        if writer.gen_doc {
+            writer.build_data_doc(&data_doc_map)?;
+        }
         writer.build_data_map(&sub_map_fn, data_map)?;
     }
     Ok(())

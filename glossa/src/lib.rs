@@ -1,3 +1,4 @@
+// cargo +nightly rustdoc --all-features -- --cfg __glossa_doc --document-private-items ; open ../target/doc/glossa/index.html
 #![cfg_attr(__glossa_doc, feature(doc_auto_cfg, doc_notable_trait))]
 
 //! # Glossa
@@ -60,7 +61,6 @@ pub mod fluent;
 pub use fluent::LangResource as LangRes;
 
 pub mod assets;
-mod l10n;
 
 mod map_loader;
 /// Get text from localised resources.
@@ -75,6 +75,7 @@ pub use lang_id::LangID;
 /// Contains the FallbackChain Trait implementation
 pub mod fallback;
 
+mod l10n;
 pub use l10n::locales;
 
 // Whether or not the log feature is enabled, log_macros is used

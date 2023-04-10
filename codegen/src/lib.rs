@@ -107,8 +107,8 @@
 //!     // Here, the l10n file is deserialised into a map and written to the rs file.
 //!     // file: "src/assets/localisation.rs"
 //!     // path: "assets/l10n"
-//!     // visibility: Used to set the visibility of the generated `fn`. If it is None, then Some("pub(crate)") is used. You can use `Some("pub(in path)")` or `Some("pub")`
-//!     deser_cfg_to_map(&mut file, &mut path, Some("pub(crate)"), version)
+//!     // visibility: Used to set the visibility of the generated `fn`. If it is "", then privacy. You can use `"pub(in path)"` or `"pub"`
+//!     deser_cfg_to_map(&mut file, &mut path, "pub(crate)", version)
 //! }
 //! ```
 

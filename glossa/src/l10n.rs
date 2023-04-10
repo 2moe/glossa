@@ -7,7 +7,7 @@ use crate::{
 pub fn locales() -> &'static MapLoader {
     // Create a new `OnceCell` that can hold a `MapLoader` instance.
     static RES: OnceCell<MapLoader> = OnceCell::new();
-    // Retrieve the `MapLoader` instance from the `OnceCell`, or create a new one if it has not been initialized yet.
+    // Retrieve the `MapLoader` instance from the `OnceCell`, or create a new one if it has not been initialised yet.
     RES.get_or_init(|| MapLoader::new(locale_hashmap()))
 }
 

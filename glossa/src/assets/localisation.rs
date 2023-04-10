@@ -1,4 +1,4 @@
-// Version: 0.0.1-alpha.5
+// Version: 0.0.1-alpha.6
 #![allow(dead_code)]
 
 use super::{lang_id_consts, HashMap, LangID};
@@ -667,9 +667,9 @@ pub(crate) const fn get_en_map_error() -> L10nMap {
 /// use glossa::{GetText, MapLoader};
 /// 
 /// let loader = MapLoader::new(locale_hashmap());
-/// let msg = loader.get_or_default("test", "👋🌐");
+/// let msg = loader.get_or_default("test", "hello");
 ///
-/// assert_eq!(msg, r#"hello world"#);
+/// assert_eq!(msg, r#"world"#);
 /// ```
 pub(crate) const fn get_en_map_test() -> L10nMap {
     ::phf::Map {

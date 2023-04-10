@@ -21,12 +21,8 @@ fn main() -> io::Result<()> {
     let mut file = BufWriter::new(File::create(&path)?);
 
     // Update the `PathBuf` to point to the directory containing the localisation data
-    path = PathBuf::from_iter(
-        [".."]
-            .into_iter()
-            .chain(default_l10n_dir_arr()),
-    );
+    path = PathBuf::from_iter(parent_l10n_dir_arr());
 
-    // Deserialize the config files in the given path
-    deser_cfg_to_map(&mut file, &mut path, Some("pub(crate)"), version)
+    // Deserialise the config files in the given path
+    deser_cfg_to_map(&mut file, &mut path, "pub(crate)", version, true)
 }

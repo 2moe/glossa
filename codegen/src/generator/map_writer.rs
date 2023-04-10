@@ -10,6 +10,7 @@ type TupStrMap<'a> = HashMap<(&'a str, String), (String, String)>;
 pub(crate) struct MapWriter<'v, W: Write> {
     pub(crate) rs_file: W,
     pub(crate) visibility: &'v str,
+    pub(crate) gen_doc: bool,
 }
 
 impl<'v, W: Write> MapWriter<'v, W> {
@@ -17,7 +18,6 @@ impl<'v, W: Write> MapWriter<'v, W> {
         &mut self,
         fn_name: &str,
         map: &mut DataMap,
-        // map: &mut phf_codegen::Map<&String>,
     ) -> io::Result<()> {
         writeln!(
             self.rs_file,
@@ -28,7 +28,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
         )
     }
 
-    pub(crate) fn build_data_hashmap(&mut self, map: &TupStrMap) -> io::Result<()> {
+    pub(crate) fn build_data_doc(&mut self, map: &TupStrMap) -> io::Result<()> {
         for ((loc, k1), (v1, v2)) in map.iter().take(1) {
             writeln!(
                 self.rs_file,
@@ -60,23 +60,12 @@ impl<'v, W: Write> MapWriter<'v, W> {
 /// ```",
                 v2
             )?;
-
-            /*
-            ///
-            /// for (k, v) in {}().into_iter() {{
-            ///     println!("key: {{k}}, value: {{v}}")
-            /// }}
-             */
         }
 
         Ok(())
     }
-    pub(crate) fn build_sub_locale_map(
-        &mut self,
-        lc_map_fn: &str,
-        locale: &str,
-        map: &mut DataMap,
-    ) -> io::Result<()> {
+
+    fn gen_sub_locale_doc(&mut self, locale: &str) -> io::Result<()> {
         match lang_id::map::description::desc_map().get(locale) {
             Some(desc) => {
                 writeln!(self.rs_file, r#"/// {}: {}"#, locale, desc)?;
@@ -90,6 +79,18 @@ impl<'v, W: Write> MapWriter<'v, W> {
                 }
             }
         }
+        Ok(())
+    }
+
+    pub(crate) fn build_sub_locale_map(
+        &mut self,
+        lc_map_fn: &str,
+        locale: &str,
+        map: &mut DataMap,
+    ) -> io::Result<()> {
+        if self.gen_doc {
+            self.gen_sub_locale_doc(locale)?;
+        }
         writeln!(
             self.rs_file,
             "{} const fn {}() -> SubLocaleMap {{\n    {}\n}}\n",
@@ -99,10 +100,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
         )
     }
 
-    pub(crate) fn build_locale_phf_map(
-        &mut self,
-        map: phf_codegen::Map<&String>,
-    ) -> Result<(), io::Error> {
+    fn gen_locale_phf_doc(&mut self) -> io::Result<()> {
         writeln!(
             self.rs_file,
             r##"/// # Example
@@ -116,7 +114,16 @@ impl<'v, W: Write> MapWriter<'v, W> {
 ///
 /// map.get("en").map(|v| dbg!(v()));
 /// ```"##
-        )?;
+        )
+    }
+
+    pub(crate) fn build_locale_phf_map(
+        &mut self,
+        map: phf_codegen::Map<&String>,
+    ) -> Result<(), io::Error> {
+        if self.gen_doc {
+            self.gen_locale_phf_doc()?;
+        }
 
         writeln!(
             self.rs_file,
@@ -126,13 +133,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
         )
     }
 
-    pub(crate) fn build_lc_hashmap(
-        &mut self,
-        // map: HashMap<&str, String>,
-        map: BTreeMap<&str, String>, // rs_file: &mut W,
-    ) -> io::Result<()> {
-        let mut sets = HashSet::new();
-
+    fn gen_lc_doc(&mut self) -> io::Result<()> {
         writeln!(
             self.rs_file,
             r#"/// # Example
@@ -142,7 +143,17 @@ impl<'v, W: Write> MapWriter<'v, W> {
 ///
 /// dbg!(&loader);
 /// ```"#
-        )?;
+        )
+    }
+    pub(crate) fn build_lc_hashmap(
+        &mut self,
+        // map: HashMap<&str, String>,
+        map: BTreeMap<&str, String>, // rs_file: &mut W,
+    ) -> io::Result<()> {
+        let mut sets = HashSet::new();
+        if self.gen_doc {
+            self.gen_lc_doc()?;
+        }
         self.rs_file
             .write_all(self.visibility.as_bytes())?;
         self.rs_file.write_all(

@@ -192,11 +192,14 @@ fn main() -> io::Result<()> {
     // If the current localisation resource path is at the parent level, then you can use `path = PathBuf::from_iter([".."].into_iter().chain(default_l10n_dir_arr()));`.
     path = PathBuf::from_iter(default_l10n_dir_arr());
 
+    // Whether the doc is automatically generated
+    let gen_doc = true;
+
     // Here, the l10n file is deserialised into a map and written to the rs file.
     // file: "src/assets/localisation.rs"
     // path: "assets/l10n"
-    // visibility: Used to set the visibility of the generated `fn`. If it is None, then Some("pub(crate)") is used. You can use `Some("pub(in path)")` or `Some("pub")`
-    deser_cfg_to_map(&mut file, &mut path, Some("pub(crate)"), version)
+    // visibility: Used to set the visibility of the generated `fn`. If it is "", then privacy. You can use `"pub(in path)"` or `"pub"`
+    deser_cfg_to_map(&mut file, &mut path, "pub(crate)", version, gen_doc)
 }
 ```
 
