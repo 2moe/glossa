@@ -5,7 +5,7 @@ edition = "2021"
 license = "Apache-2.0"
 authors = ["Moe <m@tmoe.me>"]
 categories = ["internationalization", "localization"]
-readme = "../Readme.md"
+# readme = "Readme.md"
 repository = "https://github.com/2moe/glossa"
 description = "Generate const language localisation map for code at compile time"
 
