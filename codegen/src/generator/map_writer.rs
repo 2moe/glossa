@@ -1,11 +1,11 @@
 use lang_id::LangID;
 use std::{
-    collections::{BTreeMap, HashMap, HashSet},
+    collections::{BTreeMap, HashSet},
     io::{self, Write},
 };
 
 pub(crate) type DataMap = phf_codegen::Map<String>;
-type TupStrMap<'a> = HashMap<(&'a str, String), (String, String)>;
+type TupStrMap<'a> = BTreeMap<(&'a str, String), (String, String)>;
 
 pub(crate) struct MapWriter<'v, W: Write> {
     pub(crate) rs_file: W,
@@ -32,7 +32,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
         for ((loc, k1), (v1, v2)) in map.iter().take(1) {
             writeln!(
                 self.rs_file,
-                "/// Language ID: {};\n/// Map name: {};",
+                "/// Language ID: {};\n/// Map name: {:?};",
                 loc, k1
             )?;
 
@@ -41,23 +41,34 @@ impl<'v, W: Write> MapWriter<'v, W> {
             }
             writeln!(self.rs_file, "///")?;
 
+            /*
+            /// use glossa::{{GetText, MapLoader}};
+            ///
+            /// let loader = MapLoader::new(locale_hashmap());
+             */
             writeln!(
                 self.rs_file,
                 r#"/// # Example
 ///
 /// ```no_run
-/// use glossa::{{GetText, MapLoader}};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
-/// let msg = loader.get_or_default("{}", "{}");
+/// let msg = loader.get_or_default({:?}, {:?});
 ///"#,
                 k1, v1
             )?;
 
+            // let mut buffer = String::with_capacity(v2.len());
+            // let split_line = v2.split_inclusive('\n');
+            // if split_line.clone().count() >= 2 {
+            //     for line in split_line {
+            //         buffer.push_str(line);
+            //         buffer.push_str("///");
+            //     }
+            // }
+
             writeln!(
                 self.rs_file,
-                "/// assert_eq!(msg, r#\"{}\"#);
-/// ```",
+                r##"/// assert_eq!(msg, {:?});
+/// ```"##,
                 v2
             )?;
         }
@@ -145,7 +156,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
 /// ```"#
         )
     }
-    pub(crate) fn build_lc_hashmap(
+    pub(crate) fn build_lc_treemap(
         &mut self,
         // map: HashMap<&str, String>,
         map: BTreeMap<&str, String>, // rs_file: &mut W,

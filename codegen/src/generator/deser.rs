@@ -1,6 +1,6 @@
 use serde::Deserialize;
 use std::{
-    collections::{BTreeMap, HashMap, HashSet},
+    collections::{BTreeMap, HashSet},
     ffi::OsStr,
     fs,
     io::{self, Write},
@@ -15,10 +15,12 @@ use crate::generator::{
 
 #[derive(Debug, Deserialize, Clone, Default)]
 // struct L10nData<'a>(#[serde(borrow)] HashMap<String, &'a str>);
-struct L10nData(HashMap<String, String>);
+
+// BTreeMap is used here, not HashMap
+struct L10nData(BTreeMap<String, String>);
 
 impl std::ops::Deref for L10nData {
-    type Target = HashMap<String, String>;
+    type Target = BTreeMap<String, String>;
 
     fn deref(&self) -> &Self::Target {
         &self.0
@@ -104,7 +106,7 @@ pub fn deser_cfg_to_map<W: Write>(
         writer.build_sub_locale_map(&lc_map_fn, locale, &mut sub_locale_map)?;
     }
     writer.build_locale_phf_map(locale_map)?;
-    writer.build_lc_hashmap(locale_treemap)?;
+    writer.build_lc_treemap(locale_treemap)?;
 
     Ok(())
 }
@@ -132,7 +134,7 @@ fn iterate_over_all_cfg_files<W: Write>(
 ) -> Result<(), io::Error> {
     #[allow(unused_assignments)]
     let mut cfg = L10nData::default();
-    let mut data_doc_map = HashMap::new();
+    let mut data_doc_map = BTreeMap::new();
     let mut file_sets = HashSet::with_capacity(20);
 
     let iter = fs::read_dir(&*fpath)?.filter_map(Result::ok);
