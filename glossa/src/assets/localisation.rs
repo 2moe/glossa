@@ -9,18 +9,15 @@ pub(crate) type LocaleMap = ::phf::Map<&'static str, fn() -> SubLocaleMap>;
 pub(crate) type LocaleHashMap = HashMap<LangID, SubLocaleMap>;
 
 /// Language ID: af;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Afrikaans, Latyn, Suid-Afrika;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Geen gelokaliseerde teks gevind nie"#);
+/// assert_eq!(msg, "Geen gelokaliseerde teks gevind nie");
 /// ```
 pub(crate) const fn get_af_map_error() -> L10nMap {
     ::phf::Map {
@@ -48,18 +45,15 @@ pub(crate) const fn get_af_map() -> SubLocaleMap {
 }
 
 /// Language ID: am;
-/// Map name: error;
+/// Map name: "error";
 /// Description: አማርኛ, ኢትዮፒክ, ኢትዮጵያ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"የተካሄደው ጽሑፍ አልተገኘም"#);
+/// assert_eq!(msg, "የተካሄደው ጽሑፍ አልተገኘም");
 /// ```
 pub(crate) const fn get_am_map_error() -> L10nMap {
     ::phf::Map {
@@ -87,18 +81,15 @@ pub(crate) const fn get_am_map() -> SubLocaleMap {
 }
 
 /// Language ID: ar;
-/// Map name: error;
+/// Map name: "error";
 /// Description: العربية, العربية, مصر;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"لم يتم العثور على نص محلي"#);
+/// assert_eq!(msg, "لم يتم العثور على نص محلي");
 /// ```
 pub(crate) const fn get_ar_map_error() -> L10nMap {
     ::phf::Map {
@@ -126,18 +117,15 @@ pub(crate) const fn get_ar_map() -> SubLocaleMap {
 }
 
 /// Language ID: az;
-/// Map name: error;
+/// Map name: "error";
 /// Description: azərbaycan, latın, Azərbaycan;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Yerli mətn tapılmadı"#);
+/// assert_eq!(msg, "Yerli mətn tapılmadı");
 /// ```
 pub(crate) const fn get_az_map_error() -> L10nMap {
     ::phf::Map {
@@ -165,18 +153,15 @@ pub(crate) const fn get_az_map() -> SubLocaleMap {
 }
 
 /// Language ID: be;
-/// Map name: error;
+/// Map name: "error";
 /// Description: беларуская, кірыліца, Беларусь;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ніякага лакалізаванага тэксту не знойдзена"#);
+/// assert_eq!(msg, "Ніякага лакалізаванага тэксту не знойдзена");
 /// ```
 pub(crate) const fn get_be_map_error() -> L10nMap {
     ::phf::Map {
@@ -204,18 +189,15 @@ pub(crate) const fn get_be_map() -> SubLocaleMap {
 }
 
 /// Language ID: bg;
-/// Map name: error;
+/// Map name: "error";
 /// Description: български, кирилица, България;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Не е намерен локализиран текст"#);
+/// assert_eq!(msg, "Не е намерен локализиран текст");
 /// ```
 pub(crate) const fn get_bg_map_error() -> L10nMap {
     ::phf::Map {
@@ -243,18 +225,15 @@ pub(crate) const fn get_bg_map() -> SubLocaleMap {
 }
 
 /// Language ID: bn;
-/// Map name: error;
+/// Map name: "error";
 /// Description: বাংলা, বাংলা, বাংলাদেশ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"স্থানীয় কোনও পাঠ্য পাওয়া যায় নি"#);
+/// assert_eq!(msg, "স\u{9cd}থ\u{9be}নীয\u{9bc} কোনও প\u{9be}ঠ\u{9cd}য প\u{9be}ওয\u{9bc}\u{9be} য\u{9be}য\u{9bc} নি");
 /// ```
 pub(crate) const fn get_bn_map_error() -> L10nMap {
     ::phf::Map {
@@ -282,18 +261,15 @@ pub(crate) const fn get_bn_map() -> SubLocaleMap {
 }
 
 /// Language ID: bs;
-/// Map name: error;
+/// Map name: "error";
 /// Description: bosanski, latinica, Bosna i Hercegovina;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nije pronađen lokalizirani tekst"#);
+/// assert_eq!(msg, "Nije pronađen lokalizirani tekst");
 /// ```
 pub(crate) const fn get_bs_map_error() -> L10nMap {
     ::phf::Map {
@@ -321,18 +297,15 @@ pub(crate) const fn get_bs_map() -> SubLocaleMap {
 }
 
 /// Language ID: ca;
-/// Map name: error;
+/// Map name: "error";
 /// Description: català, llatí, Espanya;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"No s'ha trobat cap text localitzat"#);
+/// assert_eq!(msg, "No s'ha trobat cap text localitzat");
 /// ```
 pub(crate) const fn get_ca_map_error() -> L10nMap {
     ::phf::Map {
@@ -360,18 +333,15 @@ pub(crate) const fn get_ca_map() -> SubLocaleMap {
 }
 
 /// Language ID: ceb;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Cebuano, Latin, Pilipinas;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Wala'y nakit-an nga lokal nga teksto"#);
+/// assert_eq!(msg, "Wala'y nakit-an nga lokal nga teksto");
 /// ```
 pub(crate) const fn get_ceb_map_error() -> L10nMap {
     ::phf::Map {
@@ -399,17 +369,14 @@ pub(crate) const fn get_ceb_map() -> SubLocaleMap {
 }
 
 /// Language ID: co;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nisun testu localizatu truvatu"#);
+/// assert_eq!(msg, "Nisun testu localizatu truvatu");
 /// ```
 pub(crate) const fn get_co_map_error() -> L10nMap {
     ::phf::Map {
@@ -437,18 +404,15 @@ pub(crate) const fn get_co_map() -> SubLocaleMap {
 }
 
 /// Language ID: cs;
-/// Map name: error;
+/// Map name: "error";
 /// Description: čeština, latinka, Česko;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Žádný lokalizovaný text"#);
+/// assert_eq!(msg, "Žádný lokalizovaný text");
 /// ```
 pub(crate) const fn get_cs_map_error() -> L10nMap {
     ::phf::Map {
@@ -476,18 +440,15 @@ pub(crate) const fn get_cs_map() -> SubLocaleMap {
 }
 
 /// Language ID: cy;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Cymraeg, Lladin, Y Deyrnas Unedig;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ni ddarganfuwyd testun lleol"#);
+/// assert_eq!(msg, "Ni ddarganfuwyd testun lleol");
 /// ```
 pub(crate) const fn get_cy_map_error() -> L10nMap {
     ::phf::Map {
@@ -515,18 +476,15 @@ pub(crate) const fn get_cy_map() -> SubLocaleMap {
 }
 
 /// Language ID: da;
-/// Map name: error;
+/// Map name: "error";
 /// Description: dansk, latinsk, Danmark;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ingen lokaliseret tekst fundet"#);
+/// assert_eq!(msg, "Ingen lokaliseret tekst fundet");
 /// ```
 pub(crate) const fn get_da_map_error() -> L10nMap {
     ::phf::Map {
@@ -554,18 +512,15 @@ pub(crate) const fn get_da_map() -> SubLocaleMap {
 }
 
 /// Language ID: de;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Deutsch, Lateinisch, Deutschland;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Kein lokalisierter Text gefunden"#);
+/// assert_eq!(msg, "Kein lokalisierter Text gefunden");
 /// ```
 pub(crate) const fn get_de_map_error() -> L10nMap {
     ::phf::Map {
@@ -593,18 +548,15 @@ pub(crate) const fn get_de_map() -> SubLocaleMap {
 }
 
 /// Language ID: el;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Ελληνικά, Ελληνικό, Ελλάδα;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Δεν βρέθηκε κανένα τοπικό κείμενο"#);
+/// assert_eq!(msg, "Δεν βρέθηκε κανένα τοπικό κείμενο");
 /// ```
 pub(crate) const fn get_el_map_error() -> L10nMap {
     ::phf::Map {
@@ -632,18 +584,15 @@ pub(crate) const fn get_el_map() -> SubLocaleMap {
 }
 
 /// Language ID: en;
-/// Map name: error;
+/// Map name: "error";
 /// Description: English, Latin, United States;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"No localized text found"#);
+/// assert_eq!(msg, "No localized text found");
 /// ```
 pub(crate) const fn get_en_map_error() -> L10nMap {
     ::phf::Map {
@@ -658,18 +607,15 @@ pub(crate) const fn get_en_map_error() -> L10nMap {
 }
 
 /// Language ID: en;
-/// Map name: test;
+/// Map name: "test";
 /// Description: English, Latin, United States;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("test", "hello");
 ///
-/// assert_eq!(msg, r#"world"#);
+/// assert_eq!(msg, "world");
 /// ```
 pub(crate) const fn get_en_map_test() -> L10nMap {
     ::phf::Map {
@@ -685,18 +631,15 @@ pub(crate) const fn get_en_map_test() -> L10nMap {
 }
 
 /// Language ID: en;
-/// Map name: test.yml;
+/// Map name: "test.yml";
 /// Description: English, Latin, United States;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
-/// let msg = loader.get_or_default("test.yml", "👋🌐");
+/// let msg = loader.get_or_default("test.yml", "hello");
 ///
-/// assert_eq!(msg, r#"hello world"#);
+/// assert_eq!(msg, "world");
 /// ```
 pub(crate) const fn get_en_map_test_0() -> L10nMap {
     ::phf::Map {
@@ -727,18 +670,15 @@ pub(crate) const fn get_en_map() -> SubLocaleMap {
 }
 
 /// Language ID: en-GB;
-/// Map name: error;
+/// Map name: "error";
 /// Description: English, Latin, United Kingdom;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"No localised text found"#);
+/// assert_eq!(msg, "No localised text found");
 /// ```
 pub(crate) const fn get_en_gb_map_error() -> L10nMap {
     ::phf::Map {
@@ -766,18 +706,15 @@ pub(crate) const fn get_en_gb_map() -> SubLocaleMap {
 }
 
 /// Language ID: eo;
-/// Map name: error;
+/// Map name: "error";
 /// Description: esperanto, Latn, Mondo;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Neniu lokalizita teksto trovita"#);
+/// assert_eq!(msg, "Neniu lokalizita teksto trovita");
 /// ```
 pub(crate) const fn get_eo_map_error() -> L10nMap {
     ::phf::Map {
@@ -805,18 +742,15 @@ pub(crate) const fn get_eo_map() -> SubLocaleMap {
 }
 
 /// Language ID: es;
-/// Map name: error;
+/// Map name: "error";
 /// Description: español, latino, España;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"No se encontró texto localizado"#);
+/// assert_eq!(msg, "No se encontró texto localizado");
 /// ```
 pub(crate) const fn get_es_map_error() -> L10nMap {
     ::phf::Map {
@@ -844,18 +778,15 @@ pub(crate) const fn get_es_map() -> SubLocaleMap {
 }
 
 /// Language ID: et;
-/// Map name: error;
+/// Map name: "error";
 /// Description: eesti, ladina, Eesti;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Lokaliseeritud teksti ei leitud"#);
+/// assert_eq!(msg, "Lokaliseeritud teksti ei leitud");
 /// ```
 pub(crate) const fn get_et_map_error() -> L10nMap {
     ::phf::Map {
@@ -883,18 +814,15 @@ pub(crate) const fn get_et_map() -> SubLocaleMap {
 }
 
 /// Language ID: eu;
-/// Map name: error;
+/// Map name: "error";
 /// Description: euskara, latinoa, Espainia;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ez da testurik aurkitu"#);
+/// assert_eq!(msg, "Ez da testurik aurkitu");
 /// ```
 pub(crate) const fn get_eu_map_error() -> L10nMap {
     ::phf::Map {
@@ -922,18 +850,15 @@ pub(crate) const fn get_eu_map() -> SubLocaleMap {
 }
 
 /// Language ID: fa;
-/// Map name: error;
+/// Map name: "error";
 /// Description: فارسی, عربی, ایران;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"هیچ متن محلی یافت نشده است"#);
+/// assert_eq!(msg, "هیچ متن محلی یافت نشده است");
 /// ```
 pub(crate) const fn get_fa_map_error() -> L10nMap {
     ::phf::Map {
@@ -961,18 +886,15 @@ pub(crate) const fn get_fa_map() -> SubLocaleMap {
 }
 
 /// Language ID: fi;
-/// Map name: error;
+/// Map name: "error";
 /// Description: suomi, latinalainen, Suomi;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Paikallista tekstiä ei löydy"#);
+/// assert_eq!(msg, "Paikallista tekstiä ei löydy");
 /// ```
 pub(crate) const fn get_fi_map_error() -> L10nMap {
     ::phf::Map {
@@ -1000,18 +922,15 @@ pub(crate) const fn get_fi_map() -> SubLocaleMap {
 }
 
 /// Language ID: fr;
-/// Map name: error;
+/// Map name: "error";
 /// Description: français, latin, France;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Aucun texte localisé trouvé"#);
+/// assert_eq!(msg, "Aucun texte localisé trouvé");
 /// ```
 pub(crate) const fn get_fr_map_error() -> L10nMap {
     ::phf::Map {
@@ -1039,18 +958,15 @@ pub(crate) const fn get_fr_map() -> SubLocaleMap {
 }
 
 /// Language ID: fy;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Frysk, Latyn, Nederlân;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Gjin lokaliseare tekst fûn"#);
+/// assert_eq!(msg, "Gjin lokaliseare tekst fûn");
 /// ```
 pub(crate) const fn get_fy_map_error() -> L10nMap {
     ::phf::Map {
@@ -1078,18 +994,15 @@ pub(crate) const fn get_fy_map() -> SubLocaleMap {
 }
 
 /// Language ID: ga;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Gaeilge, Laidineach, Éire;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ní bhfuarthas aon téacs logánta"#);
+/// assert_eq!(msg, "Ní bhfuarthas aon téacs logánta");
 /// ```
 pub(crate) const fn get_ga_map_error() -> L10nMap {
     ::phf::Map {
@@ -1117,18 +1030,15 @@ pub(crate) const fn get_ga_map() -> SubLocaleMap {
 }
 
 /// Language ID: gd;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Gàidhlig, Laideann, An Rìoghachd Aonaichte;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Cha deach teacsa ionadail a lorg"#);
+/// assert_eq!(msg, "Cha deach teacsa ionadail a lorg");
 /// ```
 pub(crate) const fn get_gd_map_error() -> L10nMap {
     ::phf::Map {
@@ -1156,18 +1066,15 @@ pub(crate) const fn get_gd_map() -> SubLocaleMap {
 }
 
 /// Language ID: gl;
-/// Map name: error;
+/// Map name: "error";
 /// Description: galego, latino, España;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Non se atopou texto localizado"#);
+/// assert_eq!(msg, "Non se atopou texto localizado");
 /// ```
 pub(crate) const fn get_gl_map_error() -> L10nMap {
     ::phf::Map {
@@ -1195,18 +1102,15 @@ pub(crate) const fn get_gl_map() -> SubLocaleMap {
 }
 
 /// Language ID: gu;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ગુજરાતી, ગુજરાતી, ભારત;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"કોઈ સ્થાનિક લખાણ મળ્યું નથી"#);
+/// assert_eq!(msg, "કોઈ સ\u{acd}થાનિક લખાણ મળ\u{acd}ય\u{ac1}\u{a82} નથી");
 /// ```
 pub(crate) const fn get_gu_map_error() -> L10nMap {
     ::phf::Map {
@@ -1234,18 +1138,15 @@ pub(crate) const fn get_gu_map() -> SubLocaleMap {
 }
 
 /// Language ID: ha;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Hausa, Latin, Nijeriya;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ba a sami rubutu mara nauyi ba"#);
+/// assert_eq!(msg, "Ba a sami rubutu mara nauyi ba");
 /// ```
 pub(crate) const fn get_ha_map_error() -> L10nMap {
     ::phf::Map {
@@ -1273,18 +1174,15 @@ pub(crate) const fn get_ha_map() -> SubLocaleMap {
 }
 
 /// Language ID: haw;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ʻŌlelo Hawaiʻi, Latn, ʻAmelika Hui Pū ʻIa;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"ʻAʻohe mea iʻikeʻia"#);
+/// assert_eq!(msg, "ʻAʻohe mea iʻikeʻia");
 /// ```
 pub(crate) const fn get_haw_map_error() -> L10nMap {
     ::phf::Map {
@@ -1312,18 +1210,15 @@ pub(crate) const fn get_haw_map() -> SubLocaleMap {
 }
 
 /// Language ID: he;
-/// Map name: error;
+/// Map name: "error";
 /// Description: עברית, עברי, ישראל;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"לא נמצא טקסט מקומי"#);
+/// assert_eq!(msg, "לא נמצא טקסט מקומי");
 /// ```
 pub(crate) const fn get_he_map_error() -> L10nMap {
     ::phf::Map {
@@ -1351,18 +1246,15 @@ pub(crate) const fn get_he_map() -> SubLocaleMap {
 }
 
 /// Language ID: hi;
-/// Map name: error;
+/// Map name: "error";
 /// Description: हिन्दी, देवनागरी, भारत;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"कोई स्थानीय पाठ नहीं मिला"#);
+/// assert_eq!(msg, "कोई स\u{94d}थानीय पाठ नही\u{902} मिला");
 /// ```
 pub(crate) const fn get_hi_map_error() -> L10nMap {
     ::phf::Map {
@@ -1390,18 +1282,15 @@ pub(crate) const fn get_hi_map() -> SubLocaleMap {
 }
 
 /// Language ID: hr;
-/// Map name: error;
+/// Map name: "error";
 /// Description: hrvatski, latinica, Hrvatska;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nije pronađen lokalizirani tekst"#);
+/// assert_eq!(msg, "Nije pronađen lokalizirani tekst");
 /// ```
 pub(crate) const fn get_hr_map_error() -> L10nMap {
     ::phf::Map {
@@ -1429,17 +1318,14 @@ pub(crate) const fn get_hr_map() -> SubLocaleMap {
 }
 
 /// Language ID: ht;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Pa gen tèks lokalize yo te jwenn"#);
+/// assert_eq!(msg, "Pa gen tèks lokalize yo te jwenn");
 /// ```
 pub(crate) const fn get_ht_map_error() -> L10nMap {
     ::phf::Map {
@@ -1467,18 +1353,15 @@ pub(crate) const fn get_ht_map() -> SubLocaleMap {
 }
 
 /// Language ID: hu;
-/// Map name: error;
+/// Map name: "error";
 /// Description: magyar, Latin, Magyarország;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nem található lokalizált szöveg"#);
+/// assert_eq!(msg, "Nem található lokalizált szöveg");
 /// ```
 pub(crate) const fn get_hu_map_error() -> L10nMap {
     ::phf::Map {
@@ -1506,18 +1389,15 @@ pub(crate) const fn get_hu_map() -> SubLocaleMap {
 }
 
 /// Language ID: hy;
-/// Map name: error;
+/// Map name: "error";
 /// Description: հայերեն, հայկական, Հայաստան;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Տեղայնացված տեքստ չի գտնվել"#);
+/// assert_eq!(msg, "Տեղայնացված տեքստ չի գտնվել");
 /// ```
 pub(crate) const fn get_hy_map_error() -> L10nMap {
     ::phf::Map {
@@ -1545,18 +1425,15 @@ pub(crate) const fn get_hy_map() -> SubLocaleMap {
 }
 
 /// Language ID: id;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Indonesia, Latin, Indonesia;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Tidak ada teks lokal yang ditemukan"#);
+/// assert_eq!(msg, "Tidak ada teks lokal yang ditemukan");
 /// ```
 pub(crate) const fn get_id_map_error() -> L10nMap {
     ::phf::Map {
@@ -1584,18 +1461,15 @@ pub(crate) const fn get_id_map() -> SubLocaleMap {
 }
 
 /// Language ID: ig;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Igbo, Latin, Naịjịrịa;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Enweghị ederede edepụtara"#);
+/// assert_eq!(msg, "Enweghị ederede edepụtara");
 /// ```
 pub(crate) const fn get_ig_map_error() -> L10nMap {
     ::phf::Map {
@@ -1623,18 +1497,15 @@ pub(crate) const fn get_ig_map() -> SubLocaleMap {
 }
 
 /// Language ID: is;
-/// Map name: error;
+/// Map name: "error";
 /// Description: íslenska, latneskt, Ísland;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Enginn staðbundinn texti fannst"#);
+/// assert_eq!(msg, "Enginn staðbundinn texti fannst");
 /// ```
 pub(crate) const fn get_is_map_error() -> L10nMap {
     ::phf::Map {
@@ -1662,18 +1533,15 @@ pub(crate) const fn get_is_map() -> SubLocaleMap {
 }
 
 /// Language ID: it;
-/// Map name: error;
+/// Map name: "error";
 /// Description: italiano, latino, Italia;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nessun testo localizzato trovato"#);
+/// assert_eq!(msg, "Nessun testo localizzato trovato");
 /// ```
 pub(crate) const fn get_it_map_error() -> L10nMap {
     ::phf::Map {
@@ -1701,17 +1569,14 @@ pub(crate) const fn get_it_map() -> SubLocaleMap {
 }
 
 /// Language ID: iw;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"לא נמצא טקסט מקומי"#);
+/// assert_eq!(msg, "לא נמצא טקסט מקומי");
 /// ```
 pub(crate) const fn get_iw_map_error() -> L10nMap {
     ::phf::Map {
@@ -1739,18 +1604,15 @@ pub(crate) const fn get_iw_map() -> SubLocaleMap {
 }
 
 /// Language ID: ja;
-/// Map name: error;
+/// Map name: "error";
 /// Description: 日本語, 日本語の文字, 日本;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"ローカライズされたテキストは見つかりません"#);
+/// assert_eq!(msg, "ローカライズされたテキストは見つかりません");
 /// ```
 pub(crate) const fn get_ja_map_error() -> L10nMap {
     ::phf::Map {
@@ -1778,17 +1640,14 @@ pub(crate) const fn get_ja_map() -> SubLocaleMap {
 }
 
 /// Language ID: jw;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ora ditemokake teks lokal"#);
+/// assert_eq!(msg, "Ora ditemokake teks lokal");
 /// ```
 pub(crate) const fn get_jw_map_error() -> L10nMap {
     ::phf::Map {
@@ -1816,18 +1675,15 @@ pub(crate) const fn get_jw_map() -> SubLocaleMap {
 }
 
 /// Language ID: ka;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ქართული, ქართული, საქართველო;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"ლოკალიზებული ტექსტი ვერ მოიძებნა"#);
+/// assert_eq!(msg, "ლოკალიზებული ტექსტი ვერ მოიძებნა");
 /// ```
 pub(crate) const fn get_ka_map_error() -> L10nMap {
     ::phf::Map {
@@ -1855,18 +1711,15 @@ pub(crate) const fn get_ka_map() -> SubLocaleMap {
 }
 
 /// Language ID: kk;
-/// Map name: error;
+/// Map name: "error";
 /// Description: қазақ тілі, кирилл жазуы, Қазақстан;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Локализацияланған мәтін табылған жоқ"#);
+/// assert_eq!(msg, "Локализацияланған мәтін табылған жоқ");
 /// ```
 pub(crate) const fn get_kk_map_error() -> L10nMap {
     ::phf::Map {
@@ -1894,18 +1747,15 @@ pub(crate) const fn get_kk_map() -> SubLocaleMap {
 }
 
 /// Language ID: km;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ខ្មែរ, ខ្មែរ, កម្ពុជា;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"រកមិនឃើញអត្ថបទដែលបានធ្វើមូលដ្ឋានីយកម្ម"#);
+/// assert_eq!(msg, "រកម\u{17b7}នឃើញអត\u{17d2}ថបទដែលបានធ\u{17d2}វើម\u{17bc}លដ\u{17d2}ឋាន\u{17b8}យកម\u{17d2}ម");
 /// ```
 pub(crate) const fn get_km_map_error() -> L10nMap {
     ::phf::Map {
@@ -1933,18 +1783,15 @@ pub(crate) const fn get_km_map() -> SubLocaleMap {
 }
 
 /// Language ID: kn;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ಕನ್ನಡ, ಕನ್ನಡ, ಭಾರತ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"ಯಾವುದೇ ಸ್ಥಳೀಯ ಪಠ್ಯ ಕಂಡುಬಂದಿಲ್ಲ"#);
+/// assert_eq!(msg, "ಯಾವುದೇ ಸ\u{ccd}ಥಳೀಯ ಪಠ\u{ccd}ಯ ಕಂಡುಬಂದ\u{cbf}ಲ\u{ccd}ಲ");
 /// ```
 pub(crate) const fn get_kn_map_error() -> L10nMap {
     ::phf::Map {
@@ -1972,18 +1819,15 @@ pub(crate) const fn get_kn_map() -> SubLocaleMap {
 }
 
 /// Language ID: ko;
-/// Map name: error;
+/// Map name: "error";
 /// Description: 한국어, 한국 문자, 대한민국;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"현지화 된 텍스트가 없습니다"#);
+/// assert_eq!(msg, "현지화 된 텍스트가 없습니다");
 /// ```
 pub(crate) const fn get_ko_map_error() -> L10nMap {
     ::phf::Map {
@@ -2011,18 +1855,15 @@ pub(crate) const fn get_ko_map() -> SubLocaleMap {
 }
 
 /// Language ID: ku;
-/// Map name: error;
+/// Map name: "error";
 /// Description: kurdî, latînî, Tirkiye;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nivîsek herêmî nehat dîtin"#);
+/// assert_eq!(msg, "Nivîsek herêmî nehat dîtin");
 /// ```
 pub(crate) const fn get_ku_map_error() -> L10nMap {
     ::phf::Map {
@@ -2050,18 +1891,15 @@ pub(crate) const fn get_ku_map() -> SubLocaleMap {
 }
 
 /// Language ID: ky;
-/// Map name: error;
+/// Map name: "error";
 /// Description: кыргызча, Кирилл, Кыргызстан;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Локалдаштырылган текст табылган жок"#);
+/// assert_eq!(msg, "Локалдаштырылган текст табылган жок");
 /// ```
 pub(crate) const fn get_ky_map_error() -> L10nMap {
     ::phf::Map {
@@ -2089,17 +1927,14 @@ pub(crate) const fn get_ky_map() -> SubLocaleMap {
 }
 
 /// Language ID: la;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Non localized illud invenitur"#);
+/// assert_eq!(msg, "Non localized illud invenitur");
 /// ```
 pub(crate) const fn get_la_map_error() -> L10nMap {
     ::phf::Map {
@@ -2127,18 +1962,15 @@ pub(crate) const fn get_la_map() -> SubLocaleMap {
 }
 
 /// Language ID: lb;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Lëtzebuergesch, Laténgesch, Lëtzebuerg;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Kee lokalen Text fonnt"#);
+/// assert_eq!(msg, "Kee lokalen Text fonnt");
 /// ```
 pub(crate) const fn get_lb_map_error() -> L10nMap {
     ::phf::Map {
@@ -2166,18 +1998,15 @@ pub(crate) const fn get_lb_map() -> SubLocaleMap {
 }
 
 /// Language ID: lo;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ລາວ, ລາວ, ລາວ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"ບໍ່ພົບຂໍ້ຄວາມທ້ອງຖິ່ນ"#);
+/// assert_eq!(msg, "ບ\u{ecd}\u{ec8}ພ\u{ebb}ບຂ\u{ecd}\u{ec9}ຄວາມທ\u{ec9}ອງຖ\u{eb4}\u{ec8}ນ");
 /// ```
 pub(crate) const fn get_lo_map_error() -> L10nMap {
     ::phf::Map {
@@ -2205,18 +2034,15 @@ pub(crate) const fn get_lo_map() -> SubLocaleMap {
 }
 
 /// Language ID: lt;
-/// Map name: error;
+/// Map name: "error";
 /// Description: lietuvių, lotynų, Lietuva;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nerasta lokalizuoto teksto"#);
+/// assert_eq!(msg, "Nerasta lokalizuoto teksto");
 /// ```
 pub(crate) const fn get_lt_map_error() -> L10nMap {
     ::phf::Map {
@@ -2244,18 +2070,15 @@ pub(crate) const fn get_lt_map() -> SubLocaleMap {
 }
 
 /// Language ID: lv;
-/// Map name: error;
+/// Map name: "error";
 /// Description: latviešu, latīņu, Latvija;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nav atrasts lokalizēts teksts"#);
+/// assert_eq!(msg, "Nav atrasts lokalizēts teksts");
 /// ```
 pub(crate) const fn get_lv_map_error() -> L10nMap {
     ::phf::Map {
@@ -2283,18 +2106,15 @@ pub(crate) const fn get_lv_map() -> SubLocaleMap {
 }
 
 /// Language ID: mg;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Malagasy, Latn, Madagasikara;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Tsy nisy lahatsoratra hita teo an-toerana hita"#);
+/// assert_eq!(msg, "Tsy nisy lahatsoratra hita teo an-toerana hita");
 /// ```
 pub(crate) const fn get_mg_map_error() -> L10nMap {
     ::phf::Map {
@@ -2322,18 +2142,15 @@ pub(crate) const fn get_mg_map() -> SubLocaleMap {
 }
 
 /// Language ID: mi;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Māori, Rātina, Aotearoa;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Kaore i kitea he tuhinga kua kitea"#);
+/// assert_eq!(msg, "Kaore i kitea he tuhinga kua kitea");
 /// ```
 pub(crate) const fn get_mi_map_error() -> L10nMap {
     ::phf::Map {
@@ -2361,18 +2178,15 @@ pub(crate) const fn get_mi_map() -> SubLocaleMap {
 }
 
 /// Language ID: mk;
-/// Map name: error;
+/// Map name: "error";
 /// Description: македонски, кирилско писмо, Северна Македонија;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Не е пронајден локализиран текст"#);
+/// assert_eq!(msg, "Не е пронајден локализиран текст");
 /// ```
 pub(crate) const fn get_mk_map_error() -> L10nMap {
     ::phf::Map {
@@ -2400,18 +2214,15 @@ pub(crate) const fn get_mk_map() -> SubLocaleMap {
 }
 
 /// Language ID: ml;
-/// Map name: error;
+/// Map name: "error";
 /// Description: മലയാളം, മലയാളം, ഇന്ത്യ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"പ്രാദേശികവൽക്കരിച്ച വാചകം കണ്ടെത്തിയില്ല"#);
+/// assert_eq!(msg, "പ\u{d4d}ര\u{d3e}ദേശികവൽക\u{d4d}കരിച\u{d4d}ച വ\u{d3e}ചകം കണ\u{d4d}ടെത\u{d4d}തിയില\u{d4d}ല");
 /// ```
 pub(crate) const fn get_ml_map_error() -> L10nMap {
     ::phf::Map {
@@ -2439,18 +2250,15 @@ pub(crate) const fn get_ml_map() -> SubLocaleMap {
 }
 
 /// Language ID: mn;
-/// Map name: error;
+/// Map name: "error";
 /// Description: монгол, кирилл, Монгол;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Орон нутгийн текст олдсонгүй"#);
+/// assert_eq!(msg, "Орон нутгийн текст олдсонгүй");
 /// ```
 pub(crate) const fn get_mn_map_error() -> L10nMap {
     ::phf::Map {
@@ -2478,18 +2286,15 @@ pub(crate) const fn get_mn_map() -> SubLocaleMap {
 }
 
 /// Language ID: mr;
-/// Map name: error;
+/// Map name: "error";
 /// Description: मराठी, देवनागरी, भारत;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"कोणताही स्थानिक मजकूर सापडला नाही"#);
+/// assert_eq!(msg, "कोणताही स\u{94d}थानिक मजक\u{942}र सापडला नाही");
 /// ```
 pub(crate) const fn get_mr_map_error() -> L10nMap {
     ::phf::Map {
@@ -2517,18 +2322,15 @@ pub(crate) const fn get_mr_map() -> SubLocaleMap {
 }
 
 /// Language ID: ms;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Melayu, Latin, Malaysia;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Tidak ada teks setempat yang dijumpai"#);
+/// assert_eq!(msg, "Tidak ada teks setempat yang dijumpai");
 /// ```
 pub(crate) const fn get_ms_map_error() -> L10nMap {
     ::phf::Map {
@@ -2556,18 +2358,15 @@ pub(crate) const fn get_ms_map() -> SubLocaleMap {
 }
 
 /// Language ID: mt;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Malti, Latin, Malta;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ma nstab l-ebda test lokalizzat"#);
+/// assert_eq!(msg, "Ma nstab l-ebda test lokalizzat");
 /// ```
 pub(crate) const fn get_mt_map_error() -> L10nMap {
     ::phf::Map {
@@ -2595,18 +2394,15 @@ pub(crate) const fn get_mt_map() -> SubLocaleMap {
 }
 
 /// Language ID: my;
-/// Map name: error;
+/// Map name: "error";
 /// Description: မြန်မာ, မြန်မာ, မြန်မာ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"အဘယ်သူမျှမဒေသဆိုင်ရာစာသားကိုရှာမတွေ့ပါ"#);
+/// assert_eq!(msg, "အဘယ\u{103a}သ\u{1030}မျ\u{103e}မဒေသဆ\u{102d}\u{102f}င\u{103a}ရာစာသားက\u{102d}\u{102f}ရ\u{103e}ာမတ\u{103d}ေ\u{1037}ပါ");
 /// ```
 pub(crate) const fn get_my_map_error() -> L10nMap {
     ::phf::Map {
@@ -2634,18 +2430,15 @@ pub(crate) const fn get_my_map() -> SubLocaleMap {
 }
 
 /// Language ID: ne;
-/// Map name: error;
+/// Map name: "error";
 /// Description: नेपाली, देवानागरी, नेपाल;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"कुनै स्थानीय पद फेला परेन"#);
+/// assert_eq!(msg, "क\u{941}न\u{948} स\u{94d}थानीय पद फ\u{947}ला पर\u{947}न");
 /// ```
 pub(crate) const fn get_ne_map_error() -> L10nMap {
     ::phf::Map {
@@ -2673,18 +2466,15 @@ pub(crate) const fn get_ne_map() -> SubLocaleMap {
 }
 
 /// Language ID: nl;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Nederlands, Latijns, Nederland;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Geen gelokaliseerde tekst gevonden"#);
+/// assert_eq!(msg, "Geen gelokaliseerde tekst gevonden");
 /// ```
 pub(crate) const fn get_nl_map_error() -> L10nMap {
     ::phf::Map {
@@ -2712,18 +2502,15 @@ pub(crate) const fn get_nl_map() -> SubLocaleMap {
 }
 
 /// Language ID: no;
-/// Map name: error;
+/// Map name: "error";
 /// Description: norsk, latinsk, Norge;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ingen lokalisert tekst funnet"#);
+/// assert_eq!(msg, "Ingen lokalisert tekst funnet");
 /// ```
 pub(crate) const fn get_no_map_error() -> L10nMap {
     ::phf::Map {
@@ -2751,17 +2538,14 @@ pub(crate) const fn get_no_map() -> SubLocaleMap {
 }
 
 /// Language ID: ny;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Palibe zolemba zomwe zapezeka"#);
+/// assert_eq!(msg, "Palibe zolemba zomwe zapezeka");
 /// ```
 pub(crate) const fn get_ny_map_error() -> L10nMap {
     ::phf::Map {
@@ -2789,18 +2573,15 @@ pub(crate) const fn get_ny_map() -> SubLocaleMap {
 }
 
 /// Language ID: or;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ଓଡ଼ିଆ, ଓଡ଼ିଆ, ଭାରତ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"କ local ଣସି ସ୍ଥାନୀୟ ପାଠ୍ୟ ମିଳିଲା ନାହିଁ |"#);
+/// assert_eq!(msg, "କ local ଣସ\u{b3f} ସ\u{b4d}ଥ\u{b3e}ନୀୟ ପ\u{b3e}ଠ\u{b4d}ୟ ମ\u{b3f}ଳ\u{b3f}ଲ\u{b3e} ନ\u{b3e}ହ\u{b3f}\u{b01} |");
 /// ```
 pub(crate) const fn get_or_map_error() -> L10nMap {
     ::phf::Map {
@@ -2828,18 +2609,15 @@ pub(crate) const fn get_or_map() -> SubLocaleMap {
 }
 
 /// Language ID: pa;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ਪੰਜਾਬੀ, ਗੁਰਮੁਖੀ, ਭਾਰਤ;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"ਕੋਈ ਸਥਾਨਕ ਨਹੀਂ ਲੱਭਿਆ"#);
+/// assert_eq!(msg, "ਕ\u{a4b}ਈ ਸਥਾਨਕ ਨਹੀ\u{a02} ਲ\u{a71}ਭਿਆ");
 /// ```
 pub(crate) const fn get_pa_map_error() -> L10nMap {
     ::phf::Map {
@@ -2867,18 +2645,15 @@ pub(crate) const fn get_pa_map() -> SubLocaleMap {
 }
 
 /// Language ID: pl;
-/// Map name: error;
+/// Map name: "error";
 /// Description: polski, łacińskie, Polska;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nie znaleziono zlokalizowanego tekstu"#);
+/// assert_eq!(msg, "Nie znaleziono zlokalizowanego tekstu");
 /// ```
 pub(crate) const fn get_pl_map_error() -> L10nMap {
     ::phf::Map {
@@ -2906,18 +2681,15 @@ pub(crate) const fn get_pl_map() -> SubLocaleMap {
 }
 
 /// Language ID: ps;
-/// Map name: error;
+/// Map name: "error";
 /// Description: پښتو, عربي, افغانستان;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"هیڅ ځایی شوی متن وموندل شو"#);
+/// assert_eq!(msg, "هیڅ ځایی شوی متن وموندل شو");
 /// ```
 pub(crate) const fn get_ps_map_error() -> L10nMap {
     ::phf::Map {
@@ -2945,18 +2717,15 @@ pub(crate) const fn get_ps_map() -> SubLocaleMap {
 }
 
 /// Language ID: pt;
-/// Map name: error;
+/// Map name: "error";
 /// Description: português, latim, Brasil;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nenhum texto localizado encontrado"#);
+/// assert_eq!(msg, "Nenhum texto localizado encontrado");
 /// ```
 pub(crate) const fn get_pt_map_error() -> L10nMap {
     ::phf::Map {
@@ -2984,18 +2753,15 @@ pub(crate) const fn get_pt_map() -> SubLocaleMap {
 }
 
 /// Language ID: ro;
-/// Map name: error;
+/// Map name: "error";
 /// Description: română, latină, România;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nu a fost găsit niciun text localizat"#);
+/// assert_eq!(msg, "Nu a fost găsit niciun text localizat");
 /// ```
 pub(crate) const fn get_ro_map_error() -> L10nMap {
     ::phf::Map {
@@ -3023,18 +2789,15 @@ pub(crate) const fn get_ro_map() -> SubLocaleMap {
 }
 
 /// Language ID: ru;
-/// Map name: error;
+/// Map name: "error";
 /// Description: русский, кириллица, Россия;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Локализованный текст не найден"#);
+/// assert_eq!(msg, "Локализованный текст не найден");
 /// ```
 pub(crate) const fn get_ru_map_error() -> L10nMap {
     ::phf::Map {
@@ -3062,18 +2825,15 @@ pub(crate) const fn get_ru_map() -> SubLocaleMap {
 }
 
 /// Language ID: sd;
-/// Map name: error;
+/// Map name: "error";
 /// Description: سنڌي, عربي, پاڪستان;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"مقامي متن نه مليو"#);
+/// assert_eq!(msg, "مقامي متن نه مليو");
 /// ```
 pub(crate) const fn get_sd_map_error() -> L10nMap {
     ::phf::Map {
@@ -3101,18 +2861,15 @@ pub(crate) const fn get_sd_map() -> SubLocaleMap {
 }
 
 /// Language ID: si;
-/// Map name: error;
+/// Map name: "error";
 /// Description: සිංහල, සිංහල, ශ්‍රී ලංකාව;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"දේශීයකරණය කළ පෙළක් හමු නොවීය"#);
+/// assert_eq!(msg, "දේශ\u{dd3}යකරණය කළ පෙළක\u{dca} හම\u{dd4} නොව\u{dd3}ය");
 /// ```
 pub(crate) const fn get_si_map_error() -> L10nMap {
     ::phf::Map {
@@ -3140,18 +2897,15 @@ pub(crate) const fn get_si_map() -> SubLocaleMap {
 }
 
 /// Language ID: sk;
-/// Map name: error;
+/// Map name: "error";
 /// Description: slovenčina, latinka, Slovensko;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Nenašiel sa žiadny lokalizovaný text"#);
+/// assert_eq!(msg, "Nenašiel sa žiadny lokalizovaný text");
 /// ```
 pub(crate) const fn get_sk_map_error() -> L10nMap {
     ::phf::Map {
@@ -3179,18 +2933,15 @@ pub(crate) const fn get_sk_map() -> SubLocaleMap {
 }
 
 /// Language ID: sl;
-/// Map name: error;
+/// Map name: "error";
 /// Description: slovenščina, latinica, Slovenija;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ni bilo najdenega lokaliziranega besedila"#);
+/// assert_eq!(msg, "Ni bilo najdenega lokaliziranega besedila");
 /// ```
 pub(crate) const fn get_sl_map_error() -> L10nMap {
     ::phf::Map {
@@ -3218,17 +2969,14 @@ pub(crate) const fn get_sl_map() -> SubLocaleMap {
 }
 
 /// Language ID: sm;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Leai se tusitusiga i le lotoifale maua"#);
+/// assert_eq!(msg, "Leai se tusitusiga i le lotoifale maua");
 /// ```
 pub(crate) const fn get_sm_map_error() -> L10nMap {
     ::phf::Map {
@@ -3256,18 +3004,15 @@ pub(crate) const fn get_sm_map() -> SubLocaleMap {
 }
 
 /// Language ID: sn;
-/// Map name: error;
+/// Map name: "error";
 /// Description: chiShona, Latn, Zimbabwe;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Hapana zvinyorwa zvemukati zvinowanikwa"#);
+/// assert_eq!(msg, "Hapana zvinyorwa zvemukati zvinowanikwa");
 /// ```
 pub(crate) const fn get_sn_map_error() -> L10nMap {
     ::phf::Map {
@@ -3295,18 +3040,15 @@ pub(crate) const fn get_sn_map() -> SubLocaleMap {
 }
 
 /// Language ID: so;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Soomaali, Laatiin, Soomaaliya;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ma jiro qoraal maxalli ah oo la helay"#);
+/// assert_eq!(msg, "Ma jiro qoraal maxalli ah oo la helay");
 /// ```
 pub(crate) const fn get_so_map_error() -> L10nMap {
     ::phf::Map {
@@ -3334,18 +3076,15 @@ pub(crate) const fn get_so_map() -> SubLocaleMap {
 }
 
 /// Language ID: sq;
-/// Map name: error;
+/// Map name: "error";
 /// Description: shqip, latin, Shqipëri;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Asnjë tekst i lokalizuar nuk u gjet"#);
+/// assert_eq!(msg, "Asnjë tekst i lokalizuar nuk u gjet");
 /// ```
 pub(crate) const fn get_sq_map_error() -> L10nMap {
     ::phf::Map {
@@ -3373,18 +3112,15 @@ pub(crate) const fn get_sq_map() -> SubLocaleMap {
 }
 
 /// Language ID: sr;
-/// Map name: error;
+/// Map name: "error";
 /// Description: српски, ћирилица, Србија;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Није пронађен ниједан локализовани текст"#);
+/// assert_eq!(msg, "Није пронађен ниједан локализовани текст");
 /// ```
 pub(crate) const fn get_sr_map_error() -> L10nMap {
     ::phf::Map {
@@ -3412,17 +3148,14 @@ pub(crate) const fn get_sr_map() -> SubLocaleMap {
 }
 
 /// Language ID: st;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ha ho na sengoloa sa lehae se fumanoeng"#);
+/// assert_eq!(msg, "Ha ho na sengoloa sa lehae se fumanoeng");
 /// ```
 pub(crate) const fn get_st_map_error() -> L10nMap {
     ::phf::Map {
@@ -3450,18 +3183,15 @@ pub(crate) const fn get_st_map() -> SubLocaleMap {
 }
 
 /// Language ID: su;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Basa Sunda, Latin, Indonesia;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Henteu aya téks anu dilereskeun"#);
+/// assert_eq!(msg, "Henteu aya téks anu dilereskeun");
 /// ```
 pub(crate) const fn get_su_map_error() -> L10nMap {
     ::phf::Map {
@@ -3489,18 +3219,15 @@ pub(crate) const fn get_su_map() -> SubLocaleMap {
 }
 
 /// Language ID: sv;
-/// Map name: error;
+/// Map name: "error";
 /// Description: svenska, latinska, Sverige;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ingen lokaliserad text hittades"#);
+/// assert_eq!(msg, "Ingen lokaliserad text hittades");
 /// ```
 pub(crate) const fn get_sv_map_error() -> L10nMap {
     ::phf::Map {
@@ -3528,18 +3255,15 @@ pub(crate) const fn get_sv_map() -> SubLocaleMap {
 }
 
 /// Language ID: sw;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Kiswahili, Kilatini, Tanzania;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Hakuna maandishi ya ndani yaliyopatikana"#);
+/// assert_eq!(msg, "Hakuna maandishi ya ndani yaliyopatikana");
 /// ```
 pub(crate) const fn get_sw_map_error() -> L10nMap {
     ::phf::Map {
@@ -3567,18 +3291,15 @@ pub(crate) const fn get_sw_map() -> SubLocaleMap {
 }
 
 /// Language ID: ta;
-/// Map name: error;
+/// Map name: "error";
 /// Description: தமிழ், தமிழ், இந்தியா;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"உள்ளூர்மயமாக்கப்பட்ட உரை எதுவும் கிடைக்கவில்லை"#);
+/// assert_eq!(msg, "உள\u{bcd}ளூர\u{bcd}மயம\u{bbe}க\u{bcd}கப\u{bcd}பட\u{bcd}ட உரை எதுவும\u{bcd} கிடைக\u{bcd}கவில\u{bcd}லை");
 /// ```
 pub(crate) const fn get_ta_map_error() -> L10nMap {
     ::phf::Map {
@@ -3606,18 +3327,15 @@ pub(crate) const fn get_ta_map() -> SubLocaleMap {
 }
 
 /// Language ID: te;
-/// Map name: error;
+/// Map name: "error";
 /// Description: తెలుగు, తెలుగు, భారతదేశం;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"స్థానికీకరించిన వచనం కనుగొనబడలేదు"#);
+/// assert_eq!(msg, "స\u{c4d}థ\u{c3e}న\u{c3f}క\u{c40}కర\u{c3f}ంచ\u{c3f}న వచనం కనుగ\u{c4a}నబడల\u{c47}దు");
 /// ```
 pub(crate) const fn get_te_map_error() -> L10nMap {
     ::phf::Map {
@@ -3645,18 +3363,15 @@ pub(crate) const fn get_te_map() -> SubLocaleMap {
 }
 
 /// Language ID: tg;
-/// Map name: error;
+/// Map name: "error";
 /// Description: тоҷикӣ, Кириллӣ, Тоҷикистон;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ягон матни маҳаллӣ ёфт нашуд"#);
+/// assert_eq!(msg, "Ягон матни маҳаллӣ ёфт нашуд");
 /// ```
 pub(crate) const fn get_tg_map_error() -> L10nMap {
     ::phf::Map {
@@ -3684,18 +3399,15 @@ pub(crate) const fn get_tg_map() -> SubLocaleMap {
 }
 
 /// Language ID: th;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ไทย, ไทย, ไทย;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"ไม่พบข้อความที่แปลเป็นภาษาท้องถิ่น"#);
+/// assert_eq!(msg, "ไม\u{e48}พบข\u{e49}อความท\u{e35}\u{e48}แปลเป\u{e47}นภาษาท\u{e49}องถ\u{e34}\u{e48}น");
 /// ```
 pub(crate) const fn get_th_map_error() -> L10nMap {
     ::phf::Map {
@@ -3723,17 +3435,14 @@ pub(crate) const fn get_th_map() -> SubLocaleMap {
 }
 
 /// Language ID: tl;
-/// Map name: error;
+/// Map name: "error";
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Walang nahanap na naisalokal na teksto"#);
+/// assert_eq!(msg, "Walang nahanap na naisalokal na teksto");
 /// ```
 pub(crate) const fn get_tl_map_error() -> L10nMap {
     ::phf::Map {
@@ -3761,18 +3470,15 @@ pub(crate) const fn get_tl_map() -> SubLocaleMap {
 }
 
 /// Language ID: tr;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Türkçe, Latin, Türkiye;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Yerelleştirilmiş metin bulunamadı"#);
+/// assert_eq!(msg, "Yerelleştirilmiş metin bulunamadı");
 /// ```
 pub(crate) const fn get_tr_map_error() -> L10nMap {
     ::phf::Map {
@@ -3800,18 +3506,15 @@ pub(crate) const fn get_tr_map() -> SubLocaleMap {
 }
 
 /// Language ID: ug;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ئۇيغۇرچە, ئەرەب, جۇڭگو;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"يەرلىكلەشتۈرۈلگەن تېكىست تېپىلمىدى"#);
+/// assert_eq!(msg, "يەرلىكلەشتۈرۈلگەن تېكىست تېپىلمىدى");
 /// ```
 pub(crate) const fn get_ug_map_error() -> L10nMap {
     ::phf::Map {
@@ -3839,18 +3542,15 @@ pub(crate) const fn get_ug_map() -> SubLocaleMap {
 }
 
 /// Language ID: uk;
-/// Map name: error;
+/// Map name: "error";
 /// Description: українська, кирилиця, Україна;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Не знайдено локалізованого тексту"#);
+/// assert_eq!(msg, "Не знайдено локалізованого тексту");
 /// ```
 pub(crate) const fn get_uk_map_error() -> L10nMap {
     ::phf::Map {
@@ -3878,18 +3578,15 @@ pub(crate) const fn get_uk_map() -> SubLocaleMap {
 }
 
 /// Language ID: ur;
-/// Map name: error;
+/// Map name: "error";
 /// Description: اردو, عربی, پاکستان;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"کوئی مقامی متن نہیں ملا"#);
+/// assert_eq!(msg, "کوئی مقامی متن نہیں ملا");
 /// ```
 pub(crate) const fn get_ur_map_error() -> L10nMap {
     ::phf::Map {
@@ -3917,18 +3614,15 @@ pub(crate) const fn get_ur_map() -> SubLocaleMap {
 }
 
 /// Language ID: uz;
-/// Map name: error;
+/// Map name: "error";
 /// Description: o‘zbek, lotin, Oʻzbekiston;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Mahalliy matn topilmadi"#);
+/// assert_eq!(msg, "Mahalliy matn topilmadi");
 /// ```
 pub(crate) const fn get_uz_map_error() -> L10nMap {
     ::phf::Map {
@@ -3956,18 +3650,15 @@ pub(crate) const fn get_uz_map() -> SubLocaleMap {
 }
 
 /// Language ID: vi;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Tiếng Việt, Chữ La tinh, Việt Nam;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Không tìm thấy văn bản bản địa hóa"#);
+/// assert_eq!(msg, "Không tìm thấy văn bản bản địa hóa");
 /// ```
 pub(crate) const fn get_vi_map_error() -> L10nMap {
     ::phf::Map {
@@ -3995,18 +3686,15 @@ pub(crate) const fn get_vi_map() -> SubLocaleMap {
 }
 
 /// Language ID: xh;
-/// Map name: error;
+/// Map name: "error";
 /// Description: IsiXhosa, IsiLatin, EMzantsi Afrika;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Akukho sicatshulwa sendawo sifunyenwe"#);
+/// assert_eq!(msg, "Akukho sicatshulwa sendawo sifunyenwe");
 /// ```
 pub(crate) const fn get_xh_map_error() -> L10nMap {
     ::phf::Map {
@@ -4034,18 +3722,15 @@ pub(crate) const fn get_xh_map() -> SubLocaleMap {
 }
 
 /// Language ID: yi;
-/// Map name: error;
+/// Map name: "error";
 /// Description: ייִדיש, העברעיש, וועלט;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"קיין לאָוקאַלייזד טעקסט געפֿונען"#);
+/// assert_eq!(msg, "קיין לא\u{5b8}וקא\u{5b7}לייזד טעקסט געפ\u{5bf}ונען");
 /// ```
 pub(crate) const fn get_yi_map_error() -> L10nMap {
     ::phf::Map {
@@ -4073,18 +3758,15 @@ pub(crate) const fn get_yi_map() -> SubLocaleMap {
 }
 
 /// Language ID: yo;
-/// Map name: error;
+/// Map name: "error";
 /// Description: Èdè Yorùbá, Èdè Látìn, Nàìjíríà;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Ko si ọrọ ti agbegbe ti a rii"#);
+/// assert_eq!(msg, "Ko si ọrọ ti agbegbe ti a rii");
 /// ```
 pub(crate) const fn get_yo_map_error() -> L10nMap {
     ::phf::Map {
@@ -4112,18 +3794,15 @@ pub(crate) const fn get_yo_map() -> SubLocaleMap {
 }
 
 /// Language ID: zh;
-/// Map name: error;
+/// Map name: "error";
 /// Description: 简体中文, 中国;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"没有找到本地化文本"#);
+/// assert_eq!(msg, "没有找到本地化文本");
 /// ```
 pub(crate) const fn get_zh_map_error() -> L10nMap {
     ::phf::Map {
@@ -4138,18 +3817,15 @@ pub(crate) const fn get_zh_map_error() -> L10nMap {
 }
 
 /// Language ID: zh;
-/// Map name: test;
+/// Map name: "test";
 /// Description: 简体中文, 中国;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("test", "quote");
 ///
-/// assert_eq!(msg, r#"""no"''""#);
+/// assert_eq!(msg, "\"\"no\"''\"");
 /// ```
 pub(crate) const fn get_zh_map_test() -> L10nMap {
     ::phf::Map {
@@ -4178,18 +3854,15 @@ pub(crate) const fn get_zh_map() -> SubLocaleMap {
 }
 
 /// Language ID: zh-Hant;
-/// Map name: error;
+/// Map name: "error";
 /// Description: 正體中文, 中國台灣;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"沒有找到本地化文本"#);
+/// assert_eq!(msg, "沒有找到本地化文本");
 /// ```
 pub(crate) const fn get_zh_hant_map_error() -> L10nMap {
     ::phf::Map {
@@ -4217,18 +3890,15 @@ pub(crate) const fn get_zh_hant_map() -> SubLocaleMap {
 }
 
 /// Language ID: zu;
-/// Map name: error;
+/// Map name: "error";
 /// Description: isiZulu, isi-Latin, iNingizimu Afrika;
 ///
 /// # Example
 ///
 /// ```no_run
-/// use glossa::{GetText, MapLoader};
-/// 
-/// let loader = MapLoader::new(locale_hashmap());
 /// let msg = loader.get_or_default("error", "text-not-found");
 ///
-/// assert_eq!(msg, r#"Awukho umbhalo wasendaweni otholakala"#);
+/// assert_eq!(msg, "Awukho umbhalo wasendaweni otholakala");
 /// ```
 pub(crate) const fn get_zu_map_error() -> L10nMap {
     ::phf::Map {

@@ -126,6 +126,8 @@ pub trait FallbackChain {
             max.language, max.script, max.region,
         );
 
+        let en_gb_list = ["HK", "AU", "NZ", "ZA"];
+
         chain.sort_unstable_by_key(|id| {
             use std::cmp::Ordering::*;
 
@@ -137,28 +139,55 @@ pub trait FallbackChain {
             info!("maximised-x: {x}");
 
             trace!("Compare the subtags of the current LangID to the subtags of the language resource.");
+
+            let s_ord =
             match (
                 x.script,
                 max.script,
-                x.region,
-                max.region,
             ) {
-                (Some(xs), Some(ys), ..) if xs == ys => {
+                (Some(xs), Some(ys)) if xs == ys => {
                     debug!("x.script = self.script,\nxs:{xs}, self.script: {ys}");
                     Less
                 },
-                (.., Some(xr), Some(yr)) if xr == yr => {
+                _=> Greater,
+            };
+
+            let r_ord= match (
+                x.region,
+                max.region,
+            ) {
+                (Some(xr), Some(yr)) if xr == yr => {
                     debug!("x.region = self.region,\nxr:{xr}, self.region: {yr}");
                     Less
                 },
-                _ => Greater,
-            }
+                _=> Greater, 
+            };
+
+            let partial_r_ord = match (
+                x.region,
+                max.region,
+            ) {
+                (Some(xr), Some(yr))
+                => {
+                    let self_region = yr.as_str();
+                    match (xr.as_str(), self_region) {
+                        ("HK", "MO") => Less,
+                        ("GB", y) if en_gb_list.contains(&y) => Less,
+                        _=> Equal,
+                    }
+                }
+                _=> Equal,
+            };
+            
+            (s_ord, r_ord, partial_r_ord)
         });
 
+        
         trace!("Remove duplicate entries from the sorted fallback chain.");
         chain.dedup();
-
         Self::push_default_lang(chain);
+        // dbg!(&chain);
+        log::debug!("chain: {:?}", chain);
     }
 
     /// Adds the default language to the provided fallback chain if it is not already present.

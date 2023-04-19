@@ -1,19 +1,30 @@
+use getset::{Getters, MutGetters};
 use lang_id::LangID;
 use std::{
-    collections::{BTreeMap, HashSet},
+    collections::{BTreeMap, HashMap, HashSet},
     io::{self, Write},
 };
 
 pub(crate) type DataMap = phf_codegen::Map<String>;
-type TupStrMap<'a> = BTreeMap<(&'a str, String), (String, String)>;
+pub(crate) type TupStrMap<'a> = HashMap<(&'a str, String), (String, String)>;
 
-pub(crate) struct MapWriter<'v, W: Write> {
+#[derive(Getters, MutGetters, Debug, Default, Clone, Copy)]
+#[getset(get = "pub with_prefix", get_mut = "pub with_prefix")]
+pub struct MapWriter<'v, W: Write> {
     pub(crate) rs_file: W,
     pub(crate) visibility: &'v str,
     pub(crate) gen_doc: bool,
 }
 
 impl<'v, W: Write> MapWriter<'v, W> {
+    pub fn new(rs_file: W) -> Self {
+        Self {
+            rs_file,
+            visibility: "pub(crate)",
+            gen_doc: true,
+        }
+    }
+
     pub(crate) fn build_data_map(
         &mut self,
         fn_name: &str,
@@ -28,7 +39,11 @@ impl<'v, W: Write> MapWriter<'v, W> {
         )
     }
 
-    pub(crate) fn build_data_doc(&mut self, map: &TupStrMap) -> io::Result<()> {
+    pub(crate) fn build_data_doc(
+        &mut self,
+        map: &TupStrMap,
+        lite_doc: bool,
+    ) -> io::Result<()> {
         for ((loc, k1), (v1, v2)) in map.iter().take(1) {
             writeln!(
                 self.rs_file,
@@ -39,13 +54,13 @@ impl<'v, W: Write> MapWriter<'v, W> {
             if let Some(desc) = lang_id::map::description::desc_map().get(loc) {
                 writeln!(self.rs_file, "/// Description: {};", desc)?;
             }
+
+            if lite_doc {
+                return Ok(());
+            }
+
             writeln!(self.rs_file, "///")?;
 
-            /*
-            /// use glossa::{{GetText, MapLoader}};
-            ///
-            /// let loader = MapLoader::new(locale_hashmap());
-             */
             writeln!(
                 self.rs_file,
                 r#"/// # Example
@@ -55,15 +70,6 @@ impl<'v, W: Write> MapWriter<'v, W> {
 ///"#,
                 k1, v1
             )?;
-
-            // let mut buffer = String::with_capacity(v2.len());
-            // let split_line = v2.split_inclusive('\n');
-            // if split_line.clone().count() >= 2 {
-            //     for line in split_line {
-            //         buffer.push_str(line);
-            //         buffer.push_str("///");
-            //     }
-            // }
 
             writeln!(
                 self.rs_file,

@@ -15,8 +15,9 @@
 //!   - The ext is ".toml"
 //! - json
 //!   - ext: ".json"
+//! - highlight
 //!
-//! This corresponds to different types of configuration files. You can enable all features or add them as needed.
+//! In addition to highlight, this corresponds to different types of configuration. You can enable all features or add them as needed.
 //!
 //! By default, the file type is determined based on the file name suffix, and the **map name** (table name) is set based on the file name. Whether deserialisation is needed at compile-time is determined by the enabled feature.
 //!
@@ -66,7 +67,7 @@
 //!
 //! ---
 //!
-//! `build.rs`：
+//! ## build.rs
 //!
 //! ```rust
 //! use glossa_codegen::{consts::*, prelude::*};
@@ -78,9 +79,7 @@
 //!
 //! fn main() -> io::Result<()> {
 //!     // Specify the version as the current package version to avoid repetitive compilation for the same version.
-//!     let version = Some(get_pkg_version!());
-//!     // During development, we can set it to None.
-//!     // let version = None;
+//!     let ver = get_pkg_version!();
 //!
 //!     // This is a constant array: ["src", "assets", "localisation.rs"], which is converted into a path for storing automatically generated Rust code related to localisation.
 //!     // On Windows, the path is 'src\assets\localisation.rs'.
@@ -89,7 +88,8 @@
 //!     let mut path = PathBuf::from_iter(default_l10n_rs_file_arr());
 //!
 //!     // If it's the same version, then exit.
-//!     if is_same_version(&path, version)? {
+//!     if is_same_version(&path, Some(ver))? {
+//!       // When developing, we can comment out the `return` statement below so that every change will be recompiled and won't exit prematurely.
 //!         return Ok(());
 //!     }
 //!
@@ -97,22 +97,30 @@
 //!     append_to_l10n_mod(&path)?;
 //!
 //!     // This creates a new file: "src/assets/localisation.rs".
-//!     // Unlike append, if only create is used, the file will be cleared.
+//!     // Unlike append, if only create is used, then the file will be cleared when it is written.
 //!     let mut file = BufWriter::new(File::create(&path)?);
+//!     let writer = MapWriter::new(file);
 //!
 //!     // default_l10n_dir_arr() is also a constant array: ["assets", "l10n"].
 //!     // If the current localisation resource path is at the parent level, then you can use `path = PathBuf::from_iter([".."].into_iter().chain(default_l10n_dir_arr()));`.
 //!     path = PathBuf::from_iter(default_l10n_dir_arr());
 //!
-//!     // Here, the l10n file is deserialised into a map and written to the rs file.
-//!     // file: "src/assets/localisation.rs"
-//!     // path: "assets/l10n"
-//!     // visibility: Used to set the visibility of the generated `fn`. If it is "", then privacy. You can use `"pub(in path)"` or `"pub"`
-//!     deser_cfg_to_map(&mut file, &mut path, "pub(crate)", version)
+//!     let generator = Generator::new(path).with_version(ver);
+//!     // Invoke the generator here to generate code and write it to the `rs` file.
+//!     generator.run(writer)
 //! }
 //! ```
 
 pub mod consts;
-pub mod generator;
+mod generator;
+
+#[cfg(feature = "highlight")]
+pub mod highlight;
+
+pub(crate) mod conversion;
+mod create;
+pub(crate) mod deser;
+pub(crate) mod header;
+mod map_writer;
 pub mod prelude;
 mod version;

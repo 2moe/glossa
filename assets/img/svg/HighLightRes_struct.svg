@@ -1,0 +1,174 @@
+<svg viewBox="0 0 890 500" xmlns="http://www.w3.org/2000/svg" class="w-screen h-screen leading-none markmap mm-l473t5-1"
+    style="">
+    <style>
+        svg {
+            background-color: white;
+            color-scheme: light dark;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            svg {
+                background-color: black;
+            }
+        }
+
+        .markmap {
+            font: 300 16px/20px sans-serif
+        }
+
+        .markmap-link {
+            fill: none
+        }
+
+        .markmap-node&gt;
+
+        circle {
+            cursor: pointer
+        }
+
+        .markmap-foreign {
+            display: inline-block
+        }
+
+        .markmap-foreign a {
+            color: #0097e6
+        }
+
+        .markmap-foreign a:hover {
+            color: #00a8ff
+        }
+
+        .markmap-foreign code {
+            background-color: #f0f0f0;
+            border-radius: 2px;
+            color: #555;
+            font-size: calc(1em - 2px)
+        }
+
+        .markmap-foreign :not(pre)&gt;
+
+        code {
+            padding: .2em .4em
+        }
+
+        .markmap-foreign del {
+            text-decoration: line-through
+        }
+
+        .markmap-foreign em {
+            font-style: italic
+        }
+
+        .markmap-foreign strong {
+            font-weight: bolder
+        }
+
+        .markmap-foreign mark {
+            background: #ffeaa7
+        }
+
+        .markmap-foreign pre,
+        .markmap-foreign pre[class*=language-] {
+            margin: 0;
+            padding: .2em .4em
+        }
+    </style>
+    <g transform="translate(-88.61207983193276,248.99606092436977) scale(1.4393697478991596)">
+        <path class="markmap-link" data-depth="1" data-path="1.2" d="M247,30C287,30,287,-113.75,327,-113.75"
+            stroke="rgb(255, 127, 14)" stroke-width="2"></path>
+        <path class="markmap-link" data-depth="1" data-path="1.5" d="M247,30C287,30,287,-18.75,327,-18.75"
+            stroke="rgb(44, 160, 44)" stroke-width="2"></path>
+        <path class="markmap-link" data-depth="1" data-path="1.8" d="M247,30C287,30,287,63.75,327,63.75"
+            stroke="rgb(214, 39, 40)" stroke-width="2"></path>
+        <path class="markmap-link" data-depth="1" data-path="1.10" d="M247,30C287,30,287,133.75,327,133.75"
+            stroke="rgb(127, 127, 127)" stroke-width="2"></path>
+        <path class="markmap-link" data-depth="2" data-path="1.2.3" d="M385,-113.75C425,-113.75,425,-126.25,465,-126.25"
+            stroke="rgb(255, 127, 14)" stroke-width="1.5"></path>
+        <path class="markmap-link" data-depth="2" data-path="1.2.4" d="M385,-113.75C425,-113.75,425,-81.25,465,-81.25"
+            stroke="rgb(255, 127, 14)" stroke-width="1.5"></path>
+        <path class="markmap-link" data-depth="2" data-path="1.5.6" d="M428,-18.75C468,-18.75,468,-11.25,508,-11.25"
+            stroke="rgb(44, 160, 44)" stroke-width="1.5"></path>
+        <path class="markmap-link" data-depth="2" data-path="1.5.7" d="M428,-18.75C468,-18.75,468,13.75,508,13.75"
+            stroke="rgb(44, 160, 44)" stroke-width="1.5"></path>
+        <path class="markmap-link" data-depth="2" data-path="1.8.9" d="M419,63.75C459,63.75,459,83.75,499,83.75"
+            stroke="rgb(214, 39, 40)" stroke-width="1.5"></path>
+        <path class="markmap-link" data-depth="2" data-path="1.10.11" d="M421,133.75C461,133.75,461,153.75,501,153.75"
+            stroke="rgb(127, 127, 127)" stroke-width="1.5"></path>
+        <g data-depth="2" data-path="1.10.11" transform="translate(501, 93.75)" class="markmap-node">
+            <line x1="-1" x2="169" y1="60" y2="60" stroke="rgb(127, 127, 127)" stroke-width="1.5"></line>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="151" height="60" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">A collection of resources for syntaxes.</div>
+            </foreignObject>
+        </g>
+        <g data-depth="2" data-path="1.8.9" transform="translate(499, 23.75)" class="markmap-node">
+            <line x1="-1" x2="169" y1="60" y2="60" stroke="rgb(214, 39, 40)" stroke-width="1.5"></line>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="151" height="60" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">A collection of resources for themes.</div>
+            </foreignObject>
+        </g>
+        <g data-depth="2" data-path="1.5.7" transform="translate(508, -6.25)" class="markmap-node">
+            <line x1="-1" x2="123" y1="20" y2="20" stroke="rgb(44, 160, 44)" stroke-width="1.5"></line>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="105" height="20" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">Default is <span style="color: SkyBlue;">true</span>.</div>
+            </foreignObject>
+        </g>
+        <g data-depth="2" data-path="1.5.6" transform="translate(508, -71.25)" class="markmap-node">
+            <line x1="-1" x2="169" y1="60" y2="60" stroke="rgb(44, 160, 44)" stroke-width="1.5"></line>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="151" height="60" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">Whether to enable the theme background.</div>
+            </foreignObject>
+        </g>
+        <g data-depth="2" data-path="1.2.4" transform="translate(465, -121.25)" class="markmap-node">
+            <line x1="-1" x2="169" y1="40" y2="40" stroke="rgb(255, 127, 14)" stroke-width="1.5"></line>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="151" height="40" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">Default is <em>Monokai Extended</em>.</div>
+            </foreignObject>
+        </g>
+        <g data-depth="2" data-path="1.2.3" transform="translate(465, -166.25)" class="markmap-node">
+            <line x1="-1" x2="169" y1="40" y2="40" stroke="rgb(255, 127, 14)" stroke-width="1.5"></line>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="151" height="40" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">The name of the theme.</div>
+            </foreignObject>
+        </g>
+        <g data-depth="1" data-path="1.10" transform="translate(327, 113.75)" class="markmap-node">
+            <line x1="-1" x2="96" y1="20" y2="20" stroke="rgb(127, 127, 127)" stroke-width="2"></line>
+            <circle stroke-width="1.5" cx="94" cy="20" r="6" stroke="rgb(127, 127, 127)" fill="rgb(255, 255, 255)">
+            </circle>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="78" height="20" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">syntax_set</div>
+            </foreignObject>
+        </g>
+        <g data-depth="1" data-path="1.8" transform="translate(327, 43.75)" class="markmap-node">
+            <line x1="-1" x2="94" y1="20" y2="20" stroke="rgb(214, 39, 40)" stroke-width="2"></line>
+            <circle stroke-width="1.5" cx="92" cy="20" r="6" stroke="rgb(214, 39, 40)" fill="rgb(255, 255, 255)">
+            </circle>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="76" height="20" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">theme_set</div>
+            </foreignObject>
+        </g>
+        <g data-depth="1" data-path="1.5" transform="translate(327, -38.75)" class="markmap-node">
+            <line x1="-1" x2="103" y1="20" y2="20" stroke="rgb(44, 160, 44)" stroke-width="2"></line>
+            <circle stroke-width="1.5" cx="101" cy="20" r="6" stroke="rgb(44, 160, 44)" fill="rgb(255, 255, 255)">
+            </circle>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="85" height="20" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">background</div>
+            </foreignObject>
+        </g>
+        <g data-depth="1" data-path="1.2" transform="translate(327, -133.75)" class="markmap-node">
+            <line x1="-1" x2="60" y1="20" y2="20" stroke="rgb(255, 127, 14)" stroke-width="2"></line>
+            <circle stroke-width="1.5" cx="58" cy="20" r="6" stroke="rgb(255, 127, 14)" fill="rgb(255, 255, 255)">
+            </circle>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="42" height="20" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">name</div>
+            </foreignObject>
+        </g>
+        <g data-depth="0" data-path="1" transform="translate(80, -30)" class="markmap-node">
+            <line x1="-1" x2="169" y1="60" y2="60" stroke="rgb(31, 119, 180)" stroke-width="4"></line>
+            <circle stroke-width="1.5" cx="167" cy="60" r="6" stroke="rgb(31, 119, 180)" fill="rgb(255, 255, 255)">
+            </circle>
+            <foreignObject class="markmap-foreign" x="8" y="0" width="151" height="60" style="opacity: 1;">
+                <div xmlns="http://www.w3.org/1999/xhtml">HighlightRes (Syntax Highlighting Resources)</div>
+            </foreignObject>
+        </g>
+    </g>
+</svg>

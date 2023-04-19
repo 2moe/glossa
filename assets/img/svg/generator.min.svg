@@ -1,0 +1,248 @@
+<svg viewBox="0 0 900 530" xmlns="http://www.w3.org/2000/svg"
+    class="prefix__w-screen prefix__h-screen prefix__leading-none prefix__mm-l473t5-1"
+    style="font:300 16px/20px sans-serif;background-color:#fff;color-scheme:light dark">
+    <style>
+        @media (prefers-color-scheme:dark) {
+            svg {
+                background-color: black
+            }
+        }
+
+        .prefix__markmap-link {
+            fill: none
+        }
+
+        .prefix__markmap-node&gt;
+
+        circle {
+            cursor: pointer
+        }
+
+        .prefix__markmap-foreign {
+            display: inline-block
+        }
+
+        .prefix__markmap-foreign a {
+            color: #0097e6
+        }
+
+        .prefix__markmap-foreign a:hover {
+            color: #00a8ff
+        }
+
+        .prefix__markmap-foreign code {
+            background-color: #f0f0f0;
+            border-radius: 2px;
+            color: #555;
+            font-size: calc(1em - 2px)
+        }
+
+        .prefix__markmap-foreign :not(pre)&gt;
+
+        code {
+            padding: .2em .4em
+        }
+
+        .prefix__markmap-foreign del {
+            text-decoration: line-through
+        }
+
+        .prefix__markmap-foreign em {
+            font-style: italic
+        }
+
+        .prefix__markmap-foreign strong {
+            font-weight: bolder
+        }
+
+        .prefix__markmap-foreign mark {
+            background: #ffeaa7
+        }
+
+        .prefix__markmap-foreign pre,
+        .prefix__markmap-foreign pre[class*=language-] {
+            margin: 0;
+            padding: .2em .4em
+        }
+    </style>
+    <path class="prefix__markmap-link" data-depth="1" data-path="1.2"
+        d="M178.616 257.985c42.983 0 42.983-117.53 85.965-117.53" stroke="#FF7F0E" stroke-width="2.14912" />
+    <path class="prefix__markmap-link" data-depth="1" data-path="1.1"
+        d="M178.616 257.985c42.983 0 42.983 117.53 85.965 117.53" stroke="#7F7F7F" stroke-width="2.14912" />
+    <path class="prefix__markmap-link" data-depth="2" data-path="1.2.3"
+        d="M361.292 140.455c42.982 0 42.982-65.817 85.965-65.817" stroke="#9467BD" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="2" data-path="1.2.6"
+        d="M361.292 140.455c42.982 0 42.982 12.089 85.965 12.089" stroke="#8C564B" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="2" data-path="1.2.8"
+        d="M361.292 140.455c42.982 0 42.982 65.817 85.965 65.817" stroke="#E377C2" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="2" data-path="1.10.11"
+        d="M362.366 375.515c42.983 0 42.983-91.337 85.965-91.337" stroke="#BCBD22" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="2" data-path="1.10.14" d="M362.366 375.515h85.965" stroke="#17BECF"
+        stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="2" data-path="1.10.17"
+        d="M362.366 375.515c42.983 0 42.983 91.338 85.965 91.338" stroke="#1F77B4" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.2.3.4"
+        d="M541.818 74.638c42.982 0 42.982 8.06 85.965 8.06" stroke="#9467BD" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.2.3.5"
+        d="M541.818 74.638c42.982 0 42.982 34.923 85.965 34.923" stroke="#9467BD" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.2.6.7"
+        d="M521.401 152.544c42.983 0 42.983 10.746 85.965 10.746" stroke="#8C564B" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.2.8.9"
+        d="M529.998 206.272c42.982 0 42.982 10.746 85.965 10.746" stroke="#E377C2" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.10.11.12"
+        d="M512.805 284.178c42.982 0 42.982-13.432 85.965-13.432" stroke="#BCBD22" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.10.11.13"
+        d="M512.805 284.178c42.982 0 42.982 34.923 85.965 34.923" stroke="#BCBD22" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.10.14.15"
+        d="M526.774 375.515c42.983 0 42.983-2.686 85.965-2.686" stroke="#17BECF" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.10.14.16"
+        d="M526.774 375.515c42.983 0 42.983 24.178 85.965 24.178" stroke="#17BECF" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.10.17.18"
+        d="M533.221 466.853c42.983 0 42.983 8.06 85.965 8.06" stroke="#1F77B4" stroke-width="1.61184" />
+    <path class="prefix__markmap-link" data-depth="3" data-path="1.10.17.19"
+        d="M533.221 466.853c42.983 0 42.983 34.923 85.965 34.923" stroke="#1F77B4" stroke-width="1.61184" />
+    <g data-depth="3" data-path="1.10.17.19" transform="translate(619.186 480.285) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#1F77B4" stroke-width="1.5" d="M-1 20h119" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="100" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">Default is<span color="#87ceeb">true</span></div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.10.17.18" transform="translate(619.186 410.439) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#1F77B4" stroke-width="1.5" d="M-1 60h220" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="201" height="60">
+            <div xmlns="http://www.w3.org/1999/xhtml">Whether to generate documentation automatically</div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.10.14.16" transform="translate(612.739 378.202) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#17BECF" stroke-width="1.5" d="M-1 20h176" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="157" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">Default is<span color="#00fa9a">&quot;pub(crate)&quot;</span>
+            </div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.10.14.15" transform="translate(612.739 329.846) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#17BECF" stroke-width="1.5" d="M-1 40h220" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="201" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml">The visibility of generated functions</div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.10.11.13" transform="translate(598.77 276.118) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#BCBD22" stroke-width="1.5" d="M-1 40h220" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="201" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml">For example:<span color="#0ff">src/assets/localisation.rs</span>
+            </div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.10.11.12" transform="translate(598.77 227.763) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#BCBD22" stroke-width="1.5" d="M-1 40h220" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="201" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml">The Rust code file that will be generated</div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.2.8.9" transform="translate(615.963 174.035) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#E377C2" stroke-width="1.5" d="M-1 40h220" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="201" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml">Enables<span color="gold">syntax highlighting</span>for localised
+                resources</div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.2.6.7" transform="translate(607.366 120.307) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#8C564B" stroke-width="1.5" d="M-1 40h220" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="201" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml">Version information for localised resources</div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.2.3.5" transform="translate(627.783 88.07) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#9467BD" stroke-width="1.5" d="M-1 20h199" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="180" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">For example:<span color="#f0f">assets/l10n</span></div>
+        </foreignObject>
+    </g>
+    <g data-depth="3" data-path="1.2.3.4" transform="translate(627.783 18.224) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#9467BD" stroke-width="1.5" d="M-1 60h220" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="201" height="60">
+            <div xmlns="http://www.w3.org/1999/xhtml">The directory where localised resources are located</div>
+        </foreignObject>
+    </g>
+    <g data-depth="2" data-path="1.10.17" transform="translate(448.331 445.362) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#1F77B4" stroke-width="1.5" d="M-1 20h82" />
+        <circle stroke-width="1.5" cx="79" cy="20" r="6" stroke="#1F77B4" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="63" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">gen_doc</div>
+        </foreignObject>
+    </g>
+    <g data-depth="2" data-path="1.10.14" transform="translate(448.331 354.024) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#17BECF" stroke-width="1.5" d="M-1 20h76" />
+        <circle stroke-width="1.5" cx="73" cy="20" r="6" stroke="#17BECF" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="57" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">visibility</div>
+        </foreignObject>
+    </g>
+    <g data-depth="2" data-path="1.10.11" transform="translate(448.331 262.686) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#BCBD22" stroke-width="1.5" d="M-1 20h63" />
+        <circle stroke-width="1.5" cx="60" cy="20" r="6" stroke="#BCBD22" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="44" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">rs_file</div>
+        </foreignObject>
+    </g>
+    <g data-depth="2" data-path="1.2.8" transform="translate(447.257 184.78) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#E377C2" stroke-width="1.5" d="M-1 20h80" />
+        <circle stroke-width="1.5" cx="77" cy="20" r="6" stroke="#E377C2" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="61" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">highlight</div>
+        </foreignObject>
+    </g>
+    <g data-depth="2" data-path="1.2.6" transform="translate(447.257 131.053) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#8C564B" stroke-width="1.5" d="M-1 20h72" />
+        <circle stroke-width="1.5" cx="69" cy="20" r="6" stroke="#8C564B" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="53" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">version</div>
+        </foreignObject>
+    </g>
+    <g data-depth="2" data-path="1.2.3" transform="translate(447.257 53.147) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#9467BD" stroke-width="1.5" d="M-1 20h91" />
+        <circle stroke-width="1.5" cx="88" cy="20" r="6" stroke="#9467BD" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="72" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">l10n_path</div>
+        </foreignObject>
+    </g>
+    <g data-depth="1" data-path="1.1" transform="translate(264.581 354.024) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#7F7F7F" stroke-width="2" d="M-1 20h94" />
+        <circle stroke-width="1.5" cx="91" cy="20" r="6" stroke="#7F7F7F" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="75" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">MapWriter</div>
+        </foreignObject>
+    </g>
+    <g data-depth="1" data-path="1.2" transform="translate(264.581 118.964) scale(1.07456)"
+        class="prefix__markmap-node">
+        <path stroke="#FF7F0E" stroke-width="2" d="M-1 20h93" />
+        <circle stroke-width="1.5" cx="90" cy="20" r="6" stroke="#FF7F0E" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="74" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">Generator</div>
+        </foreignObject>
+    </g>
+    <g data-depth="0" data-path="1" transform="translate(4.538 236.494) scale(1.07456)" class="prefix__markmap-node">
+        <path stroke="#1F77B4" stroke-width="4" d="M-1 20h165" />
+        <circle stroke-width="1.5" cx="162" cy="20" r="6" stroke="#1F77B4" fill="#FFF" />
+        <foreignObject class="prefix__markmap-foreign" x="8" y="0" width="146" height="20">
+            <div xmlns="http://www.w3.org/1999/xhtml">generator.run(writer)</div>
+        </foreignObject>
+    </g>
+</svg>
