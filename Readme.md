@@ -20,7 +20,7 @@ It can be divided into two categories.
   - Cons:
     - Requires `codegen`, which may result in some redundant code after expansion.
     - Currently only supports simple key-value (K-V) pairs.
-- Flunt
+- fluent
   - Description: Manage Fluent resources at runtime.
   - Pros: Fluent syntax may be more suitable for localisation.
   - Cons: Requires more resources than `const map`.

@@ -12,7 +12,7 @@ Glossa 是一个用于语言本地化（localisation）的库。
   - 缺点：
     - 需要 `codegen`, 代码膨胀后会有一些冗余的东西
     - 目前仅支持简单的键值（K-V）对
-- flunt
+- fluent
   - 介绍：在运行时管理 fluent 资源
   - 优点：fluent 的语法可能更适合本地化
   - 缺点：占用更多的资源
