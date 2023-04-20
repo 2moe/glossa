@@ -24,20 +24,15 @@ impl<S: BuildHasher> MapLoader<S> {
             m if m.contains_key(&cur) => cur,
             m => {
                 cur.maximize();
-                let r = cur.region;
-                cur.region = None;
 
                 match m.contains_key(&cur) {
                     true => cur,
                     _ => {
-                        cur.region = r;
-                        cur.script = None;
+                        let max = cur.to_owned();
+                        cur.minimize();
                         match m.contains_key(&cur) {
                             true => cur,
-                            _ => {
-                                cur.region = None;
-                                cur
-                            }
+                            _ => max,
                         }
                     }
                 }
