@@ -1,4 +1,4 @@
-use crate::{assets::OnceCell, map_loader::Map, LangID, MapLoader};
+use crate::{assets::OnceCell, debug, map_loader::Map, LangID, MapLoader};
 use std::hash::BuildHasher;
 
 impl<S: BuildHasher> MapLoader<S> {
@@ -16,8 +16,38 @@ impl<S: BuildHasher> MapLoader<S> {
     /// loader.show_chain();
     /// ```
     pub fn new(map: Map<S>) -> Self {
+        let mut cur = lang_id::sys_lang::current();
+
+        debug!("Current lang id: {}", cur);
+
+        let id = match &map {
+            m if m.contains_key(&cur) => cur,
+            m => {
+                cur.maximize();
+                let r = cur.region;
+                cur.region = None;
+
+                match m.contains_key(&cur) {
+                    true => cur,
+                    _ => {
+                        cur.region = r;
+                        cur.script = None;
+                        match m.contains_key(&cur) {
+                            true => cur,
+                            _ => {
+                                cur.region = None;
+                                cur
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        debug!("lang id: {}", id);
+
         Self {
-            id: lang_id::sys_lang::current(),
+            id,
             map,
             chain: OnceCell::new(),
         }

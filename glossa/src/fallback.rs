@@ -23,16 +23,16 @@ pub trait FallbackChain {
             return x;
         }
 
-        info!("Getting fallback chain ...");
+        debug!("Getting fallback chain ...");
 
-        info!(
+        debug!(
             "The fallback chain is being generated from the language resources ..."
         );
 
         debug!("Call `get_locale_list()` to generate a list of current similar languages");
         let mut chain = self.get_locale_list();
-        info!("Locale list: {:?}", chain); // Logging the created list of locales
-        info!("About to sort the fallback chain");
+        debug!("Locale list: {:?}", chain); // Logging the created list of locales
+        debug!("About to sort the fallback chain");
         self.sort_fallback_chain(&mut chain);
 
         chain
@@ -83,7 +83,7 @@ pub trait FallbackChain {
             .iter()
             .zip(1usize..)
         {
-            info!("Chain iteration {}: {}", i, lang);
+            debug!("Chain iteration {}: {}", i, lang);
             writeln!(out, "{i}:\t{lang}").expect(OUT_ERR_MSG)
         }
 
@@ -131,12 +131,12 @@ pub trait FallbackChain {
         chain.sort_unstable_by_key(|id| {
             use std::cmp::Ordering::*;
 
-            trace!("Get a copy of the current LangID and maximize its subtags for comparison purposes.");
+            trace!("Get a copy of the current LangID and maximise its subtags for comparison purposes.");
             x = id.to_owned();
 
-            info!("Maximising the x variable, org-x: {x}");
+            debug!("Maximising the x variable, org-x: {x}");
             x.maximize();
-            info!("maximised-x: {x}");
+            debug!("maximised-x: {x}");
 
             trace!("Compare the subtags of the current LangID to the subtags of the language resource.");
 
@@ -187,7 +187,7 @@ pub trait FallbackChain {
         chain.dedup();
         Self::push_default_lang(chain);
         // dbg!(&chain);
-        log::debug!("chain: {:?}", chain);
+        debug!("chain: {:?}", chain);
     }
 
     /// Adds the default language to the provided fallback chain if it is not already present.
