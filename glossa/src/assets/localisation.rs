@@ -921,6 +921,42 @@ pub(crate) const fn get_fi_map() -> SubLocaleMap {
 }
 }
 
+/// Language ID: fil;
+/// Map name: "error";
+/// Description: Filipino, Latin, Pilipinas;
+///
+/// # Example
+///
+/// ```no_run
+/// let msg = loader.get_or_default("error", "text-not-found");
+///
+/// assert_eq!(msg, "Walang nahanap na naisalokal na teksto");
+/// ```
+pub(crate) const fn get_fil_map_error() -> L10nMap {
+    ::phf::Map {
+    key: 12913932095322966823,
+    disps: &[
+        (0, 0),
+    ],
+    entries: &[
+        ("text-not-found", r##"Walang nahanap na naisalokal na teksto"##),
+    ],
+}
+}
+
+/// fil: Filipino, Latin, Pilipinas
+pub(crate) const fn get_fil_map() -> SubLocaleMap {
+    ::phf::Map {
+    key: 12913932095322966823,
+    disps: &[
+        (0, 0),
+    ],
+    entries: &[
+        ("error", get_fil_map_error),
+    ],
+}
+}
+
 /// Language ID: fr;
 /// Map name: "error";
 /// Description: français, latin, France;
@@ -1564,41 +1600,6 @@ pub(crate) const fn get_it_map() -> SubLocaleMap {
     ],
     entries: &[
         ("error", get_it_map_error),
-    ],
-}
-}
-
-/// Language ID: iw;
-/// Map name: "error";
-///
-/// # Example
-///
-/// ```no_run
-/// let msg = loader.get_or_default("error", "text-not-found");
-///
-/// assert_eq!(msg, "לא נמצא טקסט מקומי");
-/// ```
-pub(crate) const fn get_iw_map_error() -> L10nMap {
-    ::phf::Map {
-    key: 12913932095322966823,
-    disps: &[
-        (0, 0),
-    ],
-    entries: &[
-        ("text-not-found", r##"לא נמצא טקסט מקומי"##),
-    ],
-}
-}
-
-/// iw: iw-Hebr-IL
-pub(crate) const fn get_iw_map() -> SubLocaleMap {
-    ::phf::Map {
-    key: 12913932095322966823,
-    disps: &[
-        (0, 0),
-    ],
-    entries: &[
-        ("error", get_iw_map_error),
     ],
 }
 }
@@ -3434,41 +3435,6 @@ pub(crate) const fn get_th_map() -> SubLocaleMap {
 }
 }
 
-/// Language ID: tl;
-/// Map name: "error";
-///
-/// # Example
-///
-/// ```no_run
-/// let msg = loader.get_or_default("error", "text-not-found");
-///
-/// assert_eq!(msg, "Walang nahanap na naisalokal na teksto");
-/// ```
-pub(crate) const fn get_tl_map_error() -> L10nMap {
-    ::phf::Map {
-    key: 12913932095322966823,
-    disps: &[
-        (0, 0),
-    ],
-    entries: &[
-        ("text-not-found", r##"Walang nahanap na naisalokal na teksto"##),
-    ],
-}
-}
-
-/// tl: tl-Latn-PH
-pub(crate) const fn get_tl_map() -> SubLocaleMap {
-    ::phf::Map {
-    key: 12913932095322966823,
-    disps: &[
-        (0, 0),
-    ],
-    entries: &[
-        ("error", get_tl_map_error),
-    ],
-}
-}
-
 /// Language ID: tr;
 /// Map name: "error";
 /// Description: Türkçe, Latin, Türkiye;
@@ -3940,137 +3906,136 @@ pub(crate) const fn locale_map() -> LocaleMap {
     ::phf::Map {
     key: 12913932095322966823,
     disps: &[
+        (1, 3),
         (0, 2),
-        (0, 2),
-        (1, 1),
-        (0, 74),
-        (3, 68),
-        (5, 53),
-        (0, 7),
-        (0, 47),
-        (0, 14),
-        (0, 7),
-        (1, 39),
-        (0, 105),
-        (1, 91),
-        (0, 8),
-        (1, 5),
-        (2, 49),
+        (2, 1),
+        (0, 24),
+        (4, 26),
+        (1, 86),
+        (0, 13),
+        (6, 34),
+        (1, 48),
+        (0, 1),
+        (1, 6),
+        (0, 76),
+        (2, 35),
         (0, 0),
-        (27, 100),
-        (11, 32),
-        (1, 82),
-        (0, 3),
-        (22, 83),
+        (0, 83),
+        (1, 70),
+        (2, 0),
+        (1, 20),
+        (29, 89),
+        (25, 21),
+        (0, 64),
+        (41, 98),
     ],
     entries: &[
-        ("en-GB", get_en_gb_map),
-        ("pa", get_pa_map),
-        ("ca", get_ca_map),
-        ("te", get_te_map),
-        ("hr", get_hr_map),
-        ("mi", get_mi_map),
-        ("th", get_th_map),
-        ("ug", get_ug_map),
-        ("xh", get_xh_map),
-        ("pl", get_pl_map),
-        ("uz", get_uz_map),
-        ("zh-Hant", get_zh_hant_map),
-        ("si", get_si_map),
-        ("gl", get_gl_map),
-        ("yi", get_yi_map),
-        ("bn", get_bn_map),
-        ("la", get_la_map),
-        ("zu", get_zu_map),
-        ("sn", get_sn_map),
-        ("ga", get_ga_map),
-        ("iw", get_iw_map),
-        ("ig", get_ig_map),
-        ("sw", get_sw_map),
-        ("ms", get_ms_map),
-        ("da", get_da_map),
-        ("lt", get_lt_map),
-        ("ml", get_ml_map),
-        ("tg", get_tg_map),
-        ("eu", get_eu_map),
-        ("el", get_el_map),
-        ("lo", get_lo_map),
-        ("mt", get_mt_map),
-        ("eo", get_eo_map),
-        ("st", get_st_map),
-        ("sk", get_sk_map),
-        ("fy", get_fy_map),
-        ("mn", get_mn_map),
-        ("is", get_is_map),
-        ("ur", get_ur_map),
-        ("lv", get_lv_map),
-        ("am", get_am_map),
-        ("ko", get_ko_map),
-        ("fa", get_fa_map),
-        ("sq", get_sq_map),
-        ("yo", get_yo_map),
-        ("pt", get_pt_map),
-        ("bg", get_bg_map),
-        ("ja", get_ja_map),
-        ("bs", get_bs_map),
-        ("ky", get_ky_map),
-        ("tl", get_tl_map),
-        ("fr", get_fr_map),
-        ("en", get_en_map),
-        ("az", get_az_map),
-        ("or", get_or_map),
-        ("de", get_de_map),
-        ("he", get_he_map),
-        ("be", get_be_map),
-        ("my", get_my_map),
-        ("hu", get_hu_map),
-        ("es", get_es_map),
-        ("mg", get_mg_map),
-        ("sv", get_sv_map),
-        ("sm", get_sm_map),
-        ("af", get_af_map),
-        ("sl", get_sl_map),
-        ("vi", get_vi_map),
-        ("ar", get_ar_map),
-        ("sd", get_sd_map),
-        ("gd", get_gd_map),
         ("mk", get_mk_map),
-        ("tr", get_tr_map),
-        ("ht", get_ht_map),
-        ("cs", get_cs_map),
-        ("ta", get_ta_map),
-        ("km", get_km_map),
-        ("ku", get_ku_map),
-        ("gu", get_gu_map),
-        ("zh", get_zh_map),
-        ("ceb", get_ceb_map),
-        ("nl", get_nl_map),
-        ("ha", get_ha_map),
-        ("su", get_su_map),
-        ("et", get_et_map),
-        ("ne", get_ne_map),
-        ("fi", get_fi_map),
-        ("id", get_id_map),
-        ("ka", get_ka_map),
+        ("ca", get_ca_map),
+        ("en", get_en_map),
         ("kn", get_kn_map),
-        ("lb", get_lb_map),
-        ("ps", get_ps_map),
+        ("my", get_my_map),
+        ("nl", get_nl_map),
+        ("ky", get_ky_map),
+        ("ne", get_ne_map),
         ("mr", get_mr_map),
-        ("hi", get_hi_map),
-        ("hy", get_hy_map),
-        ("uk", get_uk_map),
-        ("ru", get_ru_map),
-        ("ro", get_ro_map),
-        ("it", get_it_map),
-        ("sr", get_sr_map),
-        ("ny", get_ny_map),
-        ("co", get_co_map),
-        ("haw", get_haw_map),
-        ("jw", get_jw_map),
-        ("so", get_so_map),
-        ("kk", get_kk_map),
-        ("cy", get_cy_map),
+        ("ug", get_ug_map),
+        ("lb", get_lb_map),
+        ("zh-Hant", get_zh_hant_map),
+        ("lo", get_lo_map),
+        ("sv", get_sv_map),
+        ("tr", get_tr_map),
+        ("ur", get_ur_map),
+        ("mg", get_mg_map),
+        ("da", get_da_map),
+        ("th", get_th_map),
+        ("eo", get_eo_map),
         ("no", get_no_map),
+        ("gd", get_gd_map),
+        ("gl", get_gl_map),
+        ("pl", get_pl_map),
+        ("tg", get_tg_map),
+        ("az", get_az_map),
+        ("fy", get_fy_map),
+        ("fil", get_fil_map),
+        ("ta", get_ta_map),
+        ("sr", get_sr_map),
+        ("de", get_de_map),
+        ("ru", get_ru_map),
+        ("lv", get_lv_map),
+        ("bs", get_bs_map),
+        ("hr", get_hr_map),
+        ("hu", get_hu_map),
+        ("te", get_te_map),
+        ("xh", get_xh_map),
+        ("sl", get_sl_map),
+        ("ceb", get_ceb_map),
+        ("ja", get_ja_map),
+        ("hy", get_hy_map),
+        ("si", get_si_map),
+        ("et", get_et_map),
+        ("ha", get_ha_map),
+        ("ht", get_ht_map),
+        ("sd", get_sd_map),
+        ("jw", get_jw_map),
+        ("zh", get_zh_map),
+        ("es", get_es_map),
+        ("mt", get_mt_map),
+        ("yi", get_yi_map),
+        ("uk", get_uk_map),
+        ("be", get_be_map),
+        ("eu", get_eu_map),
+        ("yo", get_yo_map),
+        ("ro", get_ro_map),
+        ("ms", get_ms_map),
+        ("sm", get_sm_map),
+        ("el", get_el_map),
+        ("sw", get_sw_map),
+        ("ml", get_ml_map),
+        ("sk", get_sk_map),
+        ("haw", get_haw_map),
+        ("sn", get_sn_map),
+        ("vi", get_vi_map),
+        ("fr", get_fr_map),
+        ("la", get_la_map),
+        ("or", get_or_map),
+        ("co", get_co_map),
+        ("am", get_am_map),
+        ("mn", get_mn_map),
+        ("ig", get_ig_map),
+        ("cs", get_cs_map),
+        ("km", get_km_map),
+        ("is", get_is_map),
+        ("lt", get_lt_map),
+        ("ga", get_ga_map),
+        ("bg", get_bg_map),
+        ("bn", get_bn_map),
+        ("uz", get_uz_map),
+        ("ku", get_ku_map),
+        ("ny", get_ny_map),
+        ("ka", get_ka_map),
+        ("so", get_so_map),
+        ("fa", get_fa_map),
+        ("su", get_su_map),
+        ("ko", get_ko_map),
+        ("kk", get_kk_map),
+        ("he", get_he_map),
+        ("ps", get_ps_map),
+        ("hi", get_hi_map),
+        ("fi", get_fi_map),
+        ("gu", get_gu_map),
+        ("zu", get_zu_map),
+        ("mi", get_mi_map),
+        ("pt", get_pt_map),
+        ("pa", get_pa_map),
+        ("af", get_af_map),
+        ("st", get_st_map),
+        ("id", get_id_map),
+        ("en-GB", get_en_gb_map),
+        ("it", get_it_map),
+        ("sq", get_sq_map),
+        ("cy", get_cy_map),
+        ("ar", get_ar_map),
     ],
 }
 }
@@ -4110,6 +4075,7 @@ pub(crate) fn locale_hashmap() -> LocaleHashMap {
         (unsafe { get_eu() }, get_eu_map()),
         (unsafe { get_fa() }, get_fa_map()),
         (unsafe { get_fi() }, get_fi_map()),
+        (unsafe { get_fil() }, get_fil_map()),
         (unsafe { get_fr() }, get_fr_map()),
         (unsafe { get_fy() }, get_fy_map()),
         (unsafe { get_ga() }, get_ga_map()),
@@ -4128,7 +4094,6 @@ pub(crate) fn locale_hashmap() -> LocaleHashMap {
         (unsafe { get_ig() }, get_ig_map()),
         (unsafe { get_is() }, get_is_map()),
         (unsafe { get_it() }, get_it_map()),
-        (unsafe { get_iw() }, get_iw_map()),
         (unsafe { get_ja() }, get_ja_map()),
         (unsafe { get_jw() }, get_jw_map()),
         (unsafe { get_ka() }, get_ka_map()),
@@ -4180,7 +4145,6 @@ pub(crate) fn locale_hashmap() -> LocaleHashMap {
         (unsafe { get_te() }, get_te_map()),
         (unsafe { get_tg() }, get_tg_map()),
         (unsafe { get_th() }, get_th_map()),
-        (unsafe { get_tl() }, get_tl_map()),
         (unsafe { get_tr() }, get_tr_map()),
         (unsafe { get_ug() }, get_ug_map()),
         (unsafe { get_uk() }, get_uk_map()),
