@@ -1,4 +1,7 @@
-use crate::{assets::OnceCell, debug, map_loader::Map, LangID, MapLoader};
+use crate::{
+    assets::OnceCell, debug, l10n::get_static_lang, map_loader::Map, LangID,
+    MapLoader,
+};
 use std::hash::BuildHasher;
 
 impl<S: BuildHasher> MapLoader<S> {
@@ -16,7 +19,7 @@ impl<S: BuildHasher> MapLoader<S> {
     /// loader.show_chain();
     /// ```
     pub fn new(map: Map<S>) -> Self {
-        let mut cur = lang_id::sys_lang::current();
+        let mut cur = get_static_lang().to_owned();
 
         debug!("Current lang id: {}", cur);
 

@@ -1,3 +1,5 @@
+use lang_id::LangID;
+
 use crate::{
     assets::{localisation::locale_hashmap, OnceCell},
     MapLoader,
@@ -9,6 +11,13 @@ pub fn locales() -> &'static MapLoader {
     static RES: OnceCell<MapLoader> = OnceCell::new();
     // Retrieve the `MapLoader` instance from the `OnceCell`, or create a new one if it has not been initialised yet.
     RES.get_or_init(|| MapLoader::new(locale_hashmap()))
+}
+
+/// Gets the static value of system language.
+/// If it has not been initialised yet, initialise it by calling the `lang_id::sys_lang::current()`.
+pub fn get_static_lang() -> &'static LangID {
+    static LANG: OnceCell<LangID> = OnceCell::new();
+    LANG.get_or_init(lang_id::sys_lang::current)
 }
 
 #[cfg(test)]
