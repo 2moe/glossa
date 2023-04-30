@@ -584,7 +584,7 @@ markmap:
 
 map 指的是映射关系，也就是我们俗称的 “表”。
 
-由于它会将本地化文本转换成表，因此了解 highlight text 对应的 Map name 是至关重要的。
+由于它会将本地化文本转换成表，因此了解 highlighted text 对应的 Map name 是至关重要的。
 
 ![HighLightFmt_struct.svg](assets/img/zh/HighLightFmt_struct.svg)
 

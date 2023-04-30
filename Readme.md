@@ -476,7 +476,7 @@ First, let me explain what is meant by the term 'map name'.
 
 Map refers to a mapping relationship, which is commonly referred to as a 'table'.
 
-As it converts localised text into maps, understanding the map name corresponding to the highlight text is crucial.
+As it converts localised text into maps, understanding the map name corresponding to the highlighted text is crucial.
 
 <!--
 ```
