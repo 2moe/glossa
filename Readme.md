@@ -169,6 +169,7 @@ markmap:
 ## Generator
 
 ### l10n_path
+
 - The directory where localised resources are located
 - For example: <span style="color: magenta;">assets/l10n</span>
 
@@ -176,22 +177,23 @@ markmap:
 - Version information for localised resources
 
 ### highlight
-- Enables <span style="color: Gold;">syntax highlighting</span> for localised resources
+- Enables <b><span style="color: Orange;">syntax highlighting</span></b> for localised resources
 
 ## MapWriter
 
 ### rs_file
 - The Rust code file that will be generated
-- For example: <span style="color: Cyan;">src/assets/localisation.rs</span>
+- For example: <b><span style="color: DarkCyan;">src/assets/localisation.rs</span></b>
 
 ### visibility
 - The visibility of generated functions
-- Default is <span style="color: MediumSpringGreen;">"pub(crate)"</span>
+- Default is <b><span style="color: rgb(44, 160, 44);">pub(crate)</span></b>
 
 ### gen_doc
 - Whether to generate documentation automatically
-- Default is <span style="color: SkyBlue;">true</span>
-``` -->
+- Default is <b><span style="color: CornflowerBlue;">true</span></b>
+```
+-->
 
 ![generator.svg](assets/img/svg/generator.svg)
 
@@ -274,7 +276,7 @@ Don't worry, let's take it slowly. We'll introduce these features after we finis
 
 By the way, it may not be as perfect as you imagine.
 
-If we choose a `Monokai` theme during compilation, it will generate highlighted text with the `Monokai` theme.
+If we choose a `Monokai` theme before compilation, it will generate highlighted text with the `Monokai` theme.
 
 If we need themes like `One Dark` and `ayu-dark`, we can either generate them at runtime or generate highlighted text for each theme during compilation.
 
@@ -427,25 +429,25 @@ markmap:
   maxWidth: 150
 ---
 
-# HighlightRes (Syntax Highlighting Resources)
+# HighlightRes (Syntax Highlighting Resources)&ensp;
 
-## name
+## name&ensp;
 
-- The name of the theme.
-- Default is _Monokai Extended_.
+- The name of the theme&ensp;
+- Default is _Monokai Extended_&ensp;
 
-## background
+## theme_set&ensp;
 
-- Whether to enable the theme background.
-- Default is <span style="color: SkyBlue;">true</span>.
+- A collection of resources for themes&ensp;
 
-## theme_set
+## syntax_set&ensp;
 
-- A collection of resources for themes.
+- A collection of resources for syntaxes&ensp;
 
-## syntax_set
+## background&ensp;
 
-- A collection of resources for syntaxes.
+- Whether to enable the theme background&ensp;
+- Default is <b><span style="color: CornflowerBlue;">true</span></b>&ensp;
 ``` -->
 
 ![HighLightRes_struct.svg](assets/img/svg/HighLightRes_struct.svg)
@@ -482,20 +484,20 @@ As it converts localised text into maps, understanding the map name correspondin
 markmap:
   colorFreezeLevel: 2
 ---
-# HighLightFmt
-## Syntax
+# HighLightFmt&ensp;
+## Syntax&ensp;
 
-- Name of the syntax
-- Default is "markdown"
+- Name of the syntax&ensp;
+- Default is <b><span style="color: Orange;">markdown<span></b>&ensp;
 
-## Suffix
+## Suffix&ensp;
 
-- Suffix of the map name
-- Default is "_md"
+- Suffix of the map name&ensp;
+- Default is <b><span style="color: Orange;">_md<span></b>&ensp;
 
-## Extra
+## Extra&ensp;
 
-- Set extra themes.
+- Set extra themes&ensp;
 ``` -->
 
 ![HighLightFmt_struct.svg](assets/img/svg/HighLightFmt_struct.svg)

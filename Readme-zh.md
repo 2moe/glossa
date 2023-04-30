@@ -7,18 +7,18 @@ Glossa 是一个用于语言本地化（localisation）的库。
 按 functionality 来划分，可将其分为两类
 
 - const map: 通过常量数据来载入本地化数据，从而实现高效的本地化。
-  - 介绍：在编译时将配置文件转换为常量（const fn）rust 代码，在运行时读取常量数据。
+  - 介绍：在编译期将配置文件转换为常量（const fn）rust 代码，在运行期读取常量数据。
   - 优点：高效
   - 缺点：
     - 需要 `codegen`, 代码膨胀后会有一些冗余的东西
     - 目前仅支持简单的键值（K-V）对
 - fluent
-  - 介绍：在运行时管理 fluent 资源
+  - 介绍：在运行期管理 fluent 资源
   - 优点：fluent 的语法可能更适合本地化
   - 缺点：占用更多的资源
 
-注：fluent 同样支持在编译时加载本地化资源，但需要在运行时解析数据。  
-前者只是简单的 K-V 对，使用了 phf 的 const map 来存储数据。  
+注：fluent 同样支持在编译期加载本地化资源，但需要在运行期解析数据。  
+前者只是简单的 K-V 对，使用了 phf 来存储数据。  
 因为简单，所以高效。
 
 两类功能相互独立，对于后者，请参阅 [Fluent.md](Fluent.md)
@@ -40,7 +40,7 @@ glossa-codegen 有以下 features：
 除了最后一个外，其他功能对应不同类型的配置文件。  
 您可以启用全部的功能，也可以按需添加。
 
-默认根据文件名扩展名(extension, e.g. yml, yaml, toml, ron)来判断文件类型，根据文件名称来设置 Map Name(表的名称)，根据启用的功能来判断是否需要在编译时解析（反序列化）。
+默认根据文件名扩展名(extension, e.g. yml, yaml, toml, ron)来判断文件类型，根据文件名称来设置 Map Name(表的名称)，根据启用的功能来判断是否需要在编译期解析（反序列化）。
 
 <!-- ```
 # assets/l10n/zh
@@ -127,7 +127,7 @@ text-not-found: Nenhum texto localizado encontrado
 
 ### build script
 
-先添加编译时依赖
+先添加编译期依赖
 
 ```sh
 cargo add --build glossa-codegen
@@ -141,36 +141,46 @@ cargo add --build glossa-codegen
 
 简单的单项目结构
 
-<!-- # workspace
-- assets
-- <span style="color: purple;">build.rs</span>
-- Cargo.lock
-- Cargo.toml
-- src
-- target -->
+<!--
+# workspace&ensp;
+- assets&ensp;
+- <span style="color: orange;">build.rs</span>&ensp;
+- Cargo.lock&ensp;
+- Cargo.toml&ensp;
+- src&ensp;
+- target&ensp;
+-->
 
 ![build_rs in the single project structure.svg](assets/img/svg/build_rs%20in%20the%20single%20project%20structure.svg)
 
 稍微复杂一点的多项目结构
 
-<!-- ```
-# workspace
-- assets
-    - l10n
-- Cargo.lock
-- Cargo.toml
-- proj1
-    - <span style="color: orange;">build.rs</span>
-    - Cargo.toml
-    - src
-    - tests
-- proj2
-    - <span style="color: orange;">build.rs</span>
-    - Cargo.toml
-    - src
-- target
-- tests
-``` -->
+<!--
+```
+---
+markmap:
+  colorFreezeLevel: 3
+  maxWidth: 170
+---
+
+# workspace&ensp;
+- assets&ensp;
+    - l10n&ensp;
+- Cargo.lock&ensp;
+- Cargo.toml&ensp;
+- proj1&ensp;
+    - <span style="color: orange;">build.rs</span>&ensp;
+    - Cargo.toml&ensp;
+    - src&ensp;
+    - tests&ensp;
+- proj2&ensp;
+    - <span style="color: orange;">build.rs</span>&ensp;
+    - Cargo.toml&ensp;
+    - src&ensp;
+- target&ensp;
+- tests&ensp;
+```
+-->
 
 ![build_rs in the multi projects.svg](assets/img/svg/build_rs%20in%20the%20multi%20projects.svg)
 
@@ -185,37 +195,38 @@ cargo add --build glossa-codegen
 ---
 markmap:
   colorFreezeLevel: 3
-  maxWidth: 200
+  maxWidth: 150
 ---
 
-# generator.run(writer)
+# _gen.run(wtr)_&ensp;
 
-## Generator
+## *Generator*&ensp;
 
-### l10n_path
-- 本地化资源所在的目录
-- 例如 <span style="color: magenta;">assets/l10n</span>
+### l10n_path&ensp;
+- 本地化资源所在的目录&ensp;
+- 例如 <span style="color: magenta;"><b>assets/l10n</b></span>&ensp;
 
-### version
-- 本地化资源的版本信息
+### version&ensp;
+- 本地化资源的版本信息&ensp;
 
-### highlight
-- 让本地化资源支持<span style="color: Gold;">语法高亮</span>
+### highlight&ensp;
+- 让本地化资源支持<span style="color: Orange;"><b>语法高亮</b></span>&ensp;
 
-## MapWriter
+## *MapWriter*&ensp;
 
-### rs_file
-- 生成的 rust 代码的文件
-- 例如：<span style="color: Cyan;">src/assets/localisation.rs</span>
+### rs_file&ensp;
+- 生成的 rust 代码的文件&ensp;
+- 例如：<span style="color: rgb(23, 190, 207);"><b>src/assets/l10n.rs</b></span>&ensp;
 
-### visibility
-- 生成的函数的可见性
-- 默认为<span style="color: MediumSpringGreen;"> "pub(crate)"</span>
+### visibility&ensp;
+- 生成的函数的可见性&ensp;
+- 默认为 <span style="color: rgb(44, 160, 44);"><b>pub(crate)</b></span>&ensp;
 
-### gen_doc
-- 是否需要自动生成文档
-- 默认为 <span style="color: SkyBlue;">true</span>
-``` -->
+### gen_doc&ensp;
+- 是否需要自动生成文档&ensp;
+- 默认为 <span style="color: CornflowerBlue;"><b>true</b></span>&ensp;
+```
+-->
 
 ![generator](assets/img/zh/generator.svg)
 
@@ -285,9 +296,9 @@ let mut writer = MapWriter::new(file);
 ### 补充说明
 
 上面的内容是最基本的用法，实际上还有更高级的用法。  
-从 **0.0.1-alpha.4** 开始，支持在编译时将本地化文本存储为带有 **语法高亮** 的字符串。
+从 **0.0.1-alpha.4** 开始，支持在编译期将本地化文本存储为带有 **语法高亮** 的字符串。
 
-与在运行时缓存/解析 regex 不同，这是常量字符串，不需要昂贵的（expensive）运行时解析。
+与在运行期缓存/解析 regex 不同，这是常量字符串，不需要昂贵的（expensive）运行期解析。
 
 这是某个正在开发中的 cli 工具的帮助信息的截图，其中就用到了 glossa-codegen 的高级用法。
 
@@ -299,9 +310,9 @@ let mut writer = MapWriter::new(file);
 
 顺带一提，它可能并没有您想象中的那么完美。
 
-如果我们在编译时选择了像上面一样的 `Monokai` 主题，那么它会生成包含 `Monokai` 主题的高亮文本。
+如果我们在编译前选择了像上面一样的 `Monokai` 主题，那么它会生成包含 `Monokai` 主题的高亮文本。
 
-如果我们需要 `One Dark` 和 `ayu-dark` 等主题，要么在运行时生成，要么在编译时为不同的主题都生成一份高亮的文本。  
+如果我们需要 `One Dark` 和 `ayu-dark` 等主题，要么在运行期生成，要么在编译期为不同的主题都生成一份高亮的文本。  
 后者是一种用空间（二进制文件大小）来换时间的做法。
 
 ## Get Text
@@ -416,17 +427,27 @@ use std::{
 
 > 在创建 `generator` 之前，所需的准备工作请参阅上文。
 
-<!-- ```
-# HighLight
-## resource
+<!--
+```
+---
+markmap:
+  colorFreezeLevel: 3
+  maxWidth: 150
+---
 
-- HighLightRes
+# HighLight&ensp;
+## resource&ensp;
 
-## files
+- HighLightRes&ensp;
 
-- Key: OsStr(File Name)
-- Value: HighLightFmt
-``` -->
+## files(Map)&ensp;
+
+- Key
+  - <b><span style="color: CornflowerBlue;">OsStr(</span><span style="color: Orange;">File Name</span><span style="color: CornflowerBlue;">)</span></b>&ensp;
+- Value
+  - HighLightFmt&ensp;
+```
+-->
 
 ![highlight_struct.svg](assets/img/svg/highlight_struct.svg)
 
@@ -455,24 +476,27 @@ use std::{
 ---
 markmap:
   colorFreezeLevel: 2
+  maxWidth: 150
 ---
-# HighlightRes(高亮资源)
-## name
 
-- 主题名称
-- 默认为 _Monokai Extended_
+# HighlightRes(高亮资源)&ensp;
+## name&ensp;
 
-## background
+- 主题名称&ensp;
+- 默认为 _Monokai Extended_&ensp;
 
-- 是否启用主题背景
-- 默认为 <span style="color: SkyBlue;">true</span>
+## syntax_set&ensp;
+- 语法资源的合集&ensp;
 
-## theme_set
-- 主题资源的合集
+## theme_set&ensp;
+- 主题资源的合集&ensp;
 
-## syntax_set
-- 语法资源的合集
-``` -->
+## background&ensp;
+
+- 是否启用主题背景&ensp;
+- 默认为 <b><span style="color: CornflowerBlue;">true</span></b>&ensp;
+```
+-->
 
 ![HighLightRes_struct.svg](assets/img/zh/HighLightRes_struct.svg)
 
@@ -498,52 +522,60 @@ let mut res = HighLightRes::default();
 ```
 ---
 markmap:
-  colorFreezeLevel: 5
-  maxWidth: 180
+  colorFreezeLevel: 6
+  maxWidth: 190
 ---
 
-# opt.toml
+# opt.toml&ensp;
 
-## raw text
+## raw text&ensp;
 
-- map name
-  - opt
-- l10n map fn name
-  - get_zh_map_opt
-  - get_en_gb_map_opt
+- map name&ensp;
+  - <b><span style="color: rgb(23, 190, 207);">opt</span></b>&ensp;
+- l10n map fn name&ensp;
+  - get_zh_map_opt&ensp;
+  - get_en_gb_map_opt&ensp;
 
-## highlight text
-  - suffix: <span style="color: SkyBlue;">Some("_md")</span>
-    - map name
-        - opt_md
-    - l10n map fn name
-        - get_zh_map_opt_md
-        - get_en_gb_map_opt_md
-  - suffix: <span style="color: Orange;">None</span>
-    - map name
-        - opt
-        - Note: If suffix is None, then only highlight, not raw
-    - l10n map fn name
-        - get_zh_map_opt
-        - get_en_gb_map_opt
+## highlighted text&ensp;
+
+### suffix&ensp;
+
+- <b><span style="color: CornflowerBlue;">Some("_md")</span></b>&ensp;
+    - map name&ensp;
+        - <b><span style="color: rgb(23, 190, 207);">opt_md</span></b>&ensp;
+    - l10n map fn name&ensp;
+        - get_zh_map_opt_md&ensp;
+        - get_en_gb_map_opt_md&ensp;
+- <b><span style="color: Orange;">None</span></b>&ensp;
+    - map name&ensp;
+        - <b><span style="color: rgb(23, 190, 207);">opt</span></b>&ensp;
+        - Note: If suffix is None, then only highlight, not raw&ensp;
+    - l10n map fn name&ensp;
+        - get_zh_map_opt&ensp;
+        - get_en_gb_map_opt&ensp;
+```
+
+```
 ---
 markmap:
   colorFreezeLevel: 2
+  maxWidth: 150
 ---
-# HighLightFmt
-## syntax
 
-- 语法的名称
-- 默认为 "markdown"
+# HighLightFmt&ensp;
+## syntax&ensp;
 
-## suffix
+- 语法的名称&ensp;
+- 默认为 <b><span style="color: Orange;">markdown<span></b>&ensp;
 
-- map name 的后缀
-- 默认为 "_md"
+## suffix&ensp;
 
-## extra
+- map name 的后缀&ensp;
+- 默认为 <b><span style="color: Orange;">_md<span></b>&ensp;
 
-- 设置额外的主题
+## extra&ensp;
+
+- 设置额外的主题&ensp;
 
 ``` -->
 
@@ -686,7 +718,7 @@ let highlight_map = HashMap::from_iter([
 
 ![highlight_struct.svg](assets/img/svg/highlight_struct.svg)
 
-![HighLightRes_struct.svg](assets/img/svg/HighLightRes_struct.svg)
+![HighLightRes_struct.svg](assets/img/zh/HighLightRes_struct.svg)
 
 ![HighLightFmt_struct.svg](assets/img/zh/HighLightFmt_struct.svg)
 ![extra_theme_map.svg](assets/img/zh/extra_theme_map.svg)

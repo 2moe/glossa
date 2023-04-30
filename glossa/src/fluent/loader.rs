@@ -29,7 +29,6 @@ impl<'a> FluentLoader<'a> {
     pub(crate) fn get_locales(&self) -> Box<dyn Iterator<Item = &LangID> + '_> {
         trace!("Getting locales");
 
-        info!("hello");
         match self {
             // If the loader is a static loader, return an iterator over its locales.
             Self::Static(x) => x.locales(),
