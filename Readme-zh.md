@@ -18,8 +18,7 @@ Glossa 是一个用于语言本地化（localisation）的库。
   - 缺点：占用更多的资源
 
 注：fluent 同样支持在编译期加载本地化资源，但需要在运行期解析数据。  
-前者只是简单的 K-V 对，使用了 phf 来存储数据。  
-因为简单，所以高效。
+而前者只是简单的 K-V 对，使用了常量的 phf 来存储数据。因为简单，所以高效。
 
 两类功能相互独立，对于后者，请参阅 [Fluent.md](Fluent.md)
 
@@ -127,7 +126,7 @@ text-not-found: Nenhum texto localizado encontrado
 
 ### build script
 
-先添加编译期依赖
+先添加依赖
 
 ```sh
 cargo add --build glossa-codegen
