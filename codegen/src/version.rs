@@ -21,8 +21,10 @@ pub fn is_same_version<P: AsRef<Path>>(
 
             while let 1.. = file.read_line(&mut buf)? {
                 buf.make_ascii_lowercase();
-                if buf.contains("version:") {
-                    let mut iter = buf.trim().splitn(2, "version:");
+                let key = "version:";
+
+                if buf.contains(key) {
+                    let mut iter = buf.trim().splitn(2, key);
                     iter.next();
                     return Ok(matches!(iter.next(), Some(v) if v.trim() == ver));
                 }

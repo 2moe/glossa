@@ -1,4 +1,4 @@
-# Glossa
+# γλῶσσα
 
 [![glossa-version](https://img.shields.io/crates/v/glossa.svg)](https://crates.io/crates/glossa)
 

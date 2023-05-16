@@ -1,4 +1,4 @@
-# Glossa
+# γλῶσσα
 
 Glossa 是一个用于语言本地化（localisation）的库。
 
