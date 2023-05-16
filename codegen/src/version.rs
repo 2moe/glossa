@@ -26,6 +26,7 @@ pub fn is_same_version<P: AsRef<Path>>(
                     iter.next();
                     return Ok(matches!(iter.next(), Some(v) if v.trim() == ver));
                 }
+                buf.clear()
             }
             Ok(false)
         }
