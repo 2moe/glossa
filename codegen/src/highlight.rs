@@ -1,5 +1,5 @@
 use getset::{Getters, MutGetters};
-use hlight::HighLightRes;
+pub use hlight::HighLightRes;
 use std::{borrow::Cow, collections::HashMap, ffi::OsStr};
 
 #[derive(Getters, MutGetters, Debug)]

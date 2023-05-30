@@ -62,7 +62,11 @@ impl<'p, 'res, 'ver> Generator<'ver, 'p, 'res> {
         writer.build_locale_phf_map(locale_map)?;
         writer.build_lc_treemap(locale_treemap)?;
 
-        fs::rename(writer.get_tmp_path(), writer.get_rs_path())?;
+        // Note: Directly rename file may cause error, so copy first, then delete.
+        // fs::rename(writer.get_tmp_path(), writer.get_rs_path())?;
+        let tmp = writer.get_tmp_path();
+        fs::copy(tmp, writer.get_rs_path())?;
+        fs::remove_file(tmp)?;
         Ok(())
     }
 }

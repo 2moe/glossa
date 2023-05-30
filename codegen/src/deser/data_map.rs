@@ -2,7 +2,7 @@
 use crate::highlight::HighLight;
 
 #[cfg(feature = "highlight")]
-use hlight::get_syntax_highlight;
+use hlight::gen_syntax_highlight;
 
 #[cfg(feature = "highlight")]
 use once_cell::sync::OnceCell;
@@ -226,7 +226,7 @@ pub(crate) fn iterate_over_all_cfg_files(
                                 *tmp_style.get_name_mut() = Cow::from(*theme_name);
                                 *tmp_style.get_theme_mut() = OnceCell::new();
                             }
-                            get_syntax_highlight(
+                            gen_syntax_highlight(
                                 syntax.as_ref(),
                                 v,
                                 Some(&tmp_style),
@@ -280,7 +280,7 @@ pub(crate) fn iterate_over_all_cfg_files(
                 for v in cfg.0.values_mut() {
                     buf.clear();
 
-                    get_syntax_highlight(
+                    gen_syntax_highlight(
                         syntax.as_ref(),
                         v,
                         Some(style),
