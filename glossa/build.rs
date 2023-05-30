@@ -14,12 +14,17 @@ fn main() -> io::Result<()> {
 
     append_to_l10n_mod(&rs_path)?;
 
+    Ok(())
+    // new:
+    /*
     let tmp_path = get_shmem_path(&rs_path)?;
     let writer = MapWriter::new(&tmp_path, &rs_path);
+
 
     // The directory containing the localisation data
     let l10n_path = PathBuf::from_iter(parent_l10n_dir_arr());
 
     let generator = Generator::new(l10n_path).with_version(ver);
     generator.run(writer)
+    */
 }

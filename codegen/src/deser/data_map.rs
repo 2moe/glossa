@@ -1,5 +1,9 @@
 #[cfg(feature = "highlight")]
-use crate::highlight::{output::get_syntax_highlight, HighLight};
+use crate::highlight::HighLight;
+
+#[cfg(feature = "highlight")]
+use hlight::get_syntax_highlight;
+
 #[cfg(feature = "highlight")]
 use once_cell::sync::OnceCell;
 
@@ -196,7 +200,7 @@ pub(crate) fn iterate_over_all_cfg_files(
                 // Option<HashMap<&'f str, (&'f str, bool)>>
                 // key: suffix, value: (theme_name, background)
                 if let Some(map) = hl_fmt.get_extra() {
-                    let mut tmp_style = h.get_resource().clone();
+                    let mut tmp_style = h.get_resource().to_owned();
                     #[allow(unused_assignments)]
                     let mut tmp_org = org_key.clone();
                     #[allow(unused_assignments)]
@@ -217,6 +221,7 @@ pub(crate) fn iterate_over_all_cfg_files(
                         for v in tmp_cfg.0.values_mut() {
                             buf.clear();
                             *tmp_style.get_background_mut() = *bg;
+                            // *tmp_style.get_background_mut() = *bg;
                             if &tmp_style.get_name().as_ref() != theme_name {
                                 *tmp_style.get_name_mut() = Cow::from(*theme_name);
                                 *tmp_style.get_theme_mut() = OnceCell::new();
