@@ -8,13 +8,13 @@ use crate::{
 };
 use std::{
     collections::{BTreeMap, HashSet},
-    io::{self, Write},
+    fs, io,
     path::PathBuf,
 };
 
 impl<'p, 'res, 'ver> Generator<'ver, 'p, 'res> {
-    pub fn run<W: Write>(&self, mut writer: MapWriter<W>) -> io::Result<()> {
-        self.defind_rs_file_header(writer.get_rs_file_mut())?;
+    pub fn run(&self, mut writer: MapWriter) -> io::Result<()> {
+        self.defind_rs_file_header(writer.get_tmp_file_mut())?;
 
         let sub_locale_map = phf_codegen::Map::new();
         // Create a new, empty map for localisation data
@@ -62,6 +62,7 @@ impl<'p, 'res, 'ver> Generator<'ver, 'p, 'res> {
         writer.build_locale_phf_map(locale_map)?;
         writer.build_lc_treemap(locale_treemap)?;
 
+        fs::rename(writer.get_tmp_path(), writer.get_rs_path())?;
         Ok(())
     }
 }

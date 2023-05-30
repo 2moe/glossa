@@ -26,6 +26,8 @@ Glossa 是一个用于语言本地化（localisation）的库。
 
 使用代码生成器来生成代码。
 
+### Features
+
 glossa-codegen 有以下 features：
 
 - yaml
@@ -36,10 +38,15 @@ glossa-codegen 有以下 features：
 
 默认启用的是 `yaml`。
 
-除了最后一个外，其他功能对应不同类型的配置文件。  
+`yaml`、`ron`、`toml` 和 `json` 分别对应不同格式的配置文件。
+
+`highlight` 指的是语法高亮，用于在编译期生成带有语法高亮的本地化文本。
+
 您可以启用全部的功能，也可以按需添加。
 
-默认根据文件名扩展名(extension, e.g. yml, yaml, toml, ron)来判断文件类型，根据文件名称来设置 Map Name(表的名称)，根据启用的功能来判断是否需要在编译期解析（反序列化）。
+### File & Map Name
+
+默认根据文件名扩展名(extension, e.g. yml, yaml, toml, ron)来判断文件格式，根据文件名称来设置 Map Name(表的名称)，根据启用的功能来判断是否需要在编译期解析（反序列化）。
 
 <!-- ```
 # assets/l10n/zh
@@ -187,7 +194,7 @@ markmap:
 
 ---
 
-#### build.rs
+#### `build.rs`
 
 <!--
 ```
@@ -231,24 +238,18 @@ markmap:
 
 ```rust
 use glossa_codegen::{consts::*, prelude::*};
-use std::{
-    fs::File,
-    io::{self, BufWriter},
-    path::PathBuf,
-};
+use std::{io, path::PathBuf};
 
 fn main() -> io::Result<()> {
     // 指定版本号为当前软件包的版本, 避免相同版本反复编译
     let ver = get_pkg_version!();
 
     // 这是一个常量数组： ["src", "assets", "localisation.rs"]，它会转化为路径，用于存储自动生成的（与本地化相关的）rust 代码。
-    // 在 Windows 上，路径为 'src\assets\localisation.rs'
-    // 在 Unix 上, 路径为 "src/assets/localisation.rs"
-    // 注意：这是相对路径！
-    let mut path = PathBuf::from_iter(default_l10n_rs_file_arr());
+    // path: "src/assets/localisation.rs"
+    let rs_path = PathBuf::from_iter(default_l10n_rs_file_arr());
 
     // 如果已经是相同版本，那就退出。
-    if is_same_version(&path, Some(ver))? {
+    if is_same_version(&rs_path, Some(ver))? {
         // 在开发时，我们可以注释掉下面的 `return` 语句，这样子每次更改都会重新编译，不会提前退出。
         return Ok(());
     }
@@ -256,18 +257,21 @@ fn main() -> io::Result<()> {
     // 如果路径为 "src/assets/localisation.rs"，那么它会追加 `mod localisation;` 以及相关的 `use` 语句到 "src/assets/mod.rs"
     append_to_l10n_mod(&path)?;
 
-    // 这里会创建一个新的文件： "src/assets/localisation.rs"
-    // 与 append (追加) 不同，如果只是单纯的 create (创建) 的话，那么在写入时会清空文件。
-    let file = BufWriter::new(File::create(&path)?);
-    let writer = MapWriter::new(file);
+    // 此处将会创建一个新的文件：
+    //    - Linux(non android): "/dev/shm/localisation.tmp"
+    //    - Other："src/assets/localisation.tmp"
+    // 代码生成完成后，文件会自动重命名（移动）："/dev/shm/localisation.tmp" -> "src/assets/localisation.rs"。
+    // 注：若直接写入到 `rs_path`，并且 `cargo` 在构建时中断，则可能会导致生成的代码不完整，因此使用 `tmp_path` 作为临时的缓冲文件。
+    let tmp_path = get_shmem_path(&rs_path)?;
+    let writer = MapWriter::new(&tmp_path, &rs_path);
 
     // default_l10n_dir_arr() 也是一个常量数组： ["assets", "l10n"]
     // path: "assets/l10n"
     // 如果当前本地化资源的路径位于上一级的话，那么您可以使用 `path = PathBuf::from_iter([".."].into_iter().chain(default_l10n_dir_arr()));`
-    path = PathBuf::from_iter(default_l10n_dir_arr());
+    let l10n_path = PathBuf::from_iter(default_l10n_dir_arr());
 
-    let generator = Generator::new(path).with_version(ver);
-    // 此处调用生成器，生成代码并写入到 rs 文件
+    let generator = Generator::new(l10n_path).with_version(ver);
+    // 此处调用生成器，并自动生成代码
     generator.run(writer)
 }
 ```
@@ -279,8 +283,6 @@ fn main() -> io::Result<()> {
 现在让我们修改代码，把 writer 改成 `mut writer`，这样子就可以对其进行修改了。
 
 ```rust
-let mut writer = MapWriter::new(file);
-
 // 是否需要自动生成文档，默认为 true
 *writer.get_gen_doc_mut() = false;
 // 修改自动生成的函数的可见性，默认为 `pub(crate)`

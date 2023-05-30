@@ -2,24 +2,61 @@ use getset::{Getters, MutGetters};
 use lang_id::LangID;
 use std::{
     collections::{BTreeMap, HashMap, HashSet},
-    io::{self, Write},
+    fs::File,
+    io::{self, BufWriter, Write},
+    path::{Path, PathBuf},
 };
 
 pub(crate) type DataMap = phf_codegen::Map<String>;
 pub(crate) type TupStrMap<'a> = HashMap<(&'a str, String), (String, String)>;
 
-#[derive(Getters, MutGetters, Debug, Default, Clone, Copy)]
+#[derive(Getters, MutGetters, Debug)]
 #[getset(get = "pub with_prefix", get_mut = "pub with_prefix")]
-pub struct MapWriter<'v, W: Write> {
-    pub(crate) rs_file: W,
+pub struct MapWriter<'v> {
+    pub(crate) rs_path: &'v Path,
+    pub(crate) tmp_path: &'v Path,
+    tmp_file: BufWriter<File>,
     pub(crate) visibility: &'v str,
     pub(crate) gen_doc: bool,
 }
 
-impl<'v, W: Write> MapWriter<'v, W> {
-    pub fn new(rs_file: W) -> Self {
+pub fn get_shmem_path<P: AsRef<Path>>(rs_path: P) -> io::Result<PathBuf> {
+    let p = rs_path.as_ref();
+    let tmp = || p.with_extension("tmp");
+
+    #[cfg(target_os = "linux")]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        let shmem = Path::new("/dev/shm");
+        let path = match shmem
+            .metadata()?
+            .permissions()
+            .mode()
+            & 0o200
+        {
+            0 => tmp(),
+            _ if !shmem.is_dir() => tmp(),
+            _ => shmem.join(
+                p.file_name()
+                    .expect("l10n.rs.tmp"),
+            ),
+        };
+
+        Ok(path)
+    }
+
+    #[cfg(not(target_os = "linux"))]
+    Ok(tmp())
+}
+
+impl<'v> MapWriter<'v> {
+    pub fn new(tmp_path: &'v Path, rs_path: &'v Path) -> Self {
         Self {
-            rs_file,
+            rs_path,
+            tmp_path,
+            tmp_file: BufWriter::new(
+                File::create(tmp_path).expect("Failed to create tmp_file"),
+            ),
             visibility: "pub(crate)",
             gen_doc: true,
         }
@@ -31,7 +68,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
         map: &mut DataMap,
     ) -> io::Result<()> {
         writeln!(
-            self.rs_file,
+            self.tmp_file,
             "{} const fn {}() -> L10nMap {{\n    {}\n}}\n",
             self.visibility,
             fn_name,
@@ -46,23 +83,23 @@ impl<'v, W: Write> MapWriter<'v, W> {
     ) -> io::Result<()> {
         for ((loc, k1), (v1, v2)) in map.iter().take(1) {
             writeln!(
-                self.rs_file,
+                self.tmp_file,
                 "/// Language ID: {};\n/// Map name: {:?};",
                 loc, k1
             )?;
 
             if let Some(desc) = lang_id::map::description::desc_map().get(loc) {
-                writeln!(self.rs_file, "/// Description: {};", desc)?;
+                writeln!(self.tmp_file, "/// Description: {};", desc)?;
             }
 
             if lite_doc {
                 return Ok(());
             }
 
-            writeln!(self.rs_file, "///")?;
+            writeln!(self.tmp_file, "///")?;
 
             writeln!(
-                self.rs_file,
+                self.tmp_file,
                 r#"/// # Example
 ///
 /// ```no_run
@@ -72,7 +109,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
             )?;
 
             writeln!(
-                self.rs_file,
+                self.tmp_file,
                 r##"/// assert_eq!(msg, {:?});
 /// ```"##,
                 v2
@@ -85,13 +122,13 @@ impl<'v, W: Write> MapWriter<'v, W> {
     fn gen_sub_locale_doc(&mut self, locale: &str) -> io::Result<()> {
         match lang_id::map::description::desc_map().get(locale) {
             Some(desc) => {
-                writeln!(self.rs_file, r#"/// {}: {}"#, locale, desc)?;
+                writeln!(self.tmp_file, r#"/// {}: {}"#, locale, desc)?;
             }
             _ => {
                 if let Ok(mut s) = locale.parse::<LangID>() {
                     s.maximize();
                     if s != locale {
-                        writeln!(self.rs_file, r#"/// {}: {}"#, locale, s)?;
+                        writeln!(self.tmp_file, r#"/// {}: {}"#, locale, s)?;
                     }
                 }
             }
@@ -109,7 +146,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
             self.gen_sub_locale_doc(locale)?;
         }
         writeln!(
-            self.rs_file,
+            self.tmp_file,
             "{} const fn {}() -> SubLocaleMap {{\n    {}\n}}\n",
             self.visibility,
             lc_map_fn,
@@ -119,7 +156,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
 
     fn gen_locale_phf_doc(&mut self) -> io::Result<()> {
         writeln!(
-            self.rs_file,
+            self.tmp_file,
             r##"/// # Example
 ///
 /// ```no_run
@@ -143,7 +180,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
         }
 
         writeln!(
-            self.rs_file,
+            self.tmp_file,
             "{} const fn locale_map() -> LocaleMap {{\n    {}\n}}\n",
             self.visibility,
             map.build()
@@ -152,7 +189,7 @@ impl<'v, W: Write> MapWriter<'v, W> {
 
     fn gen_lc_doc(&mut self) -> io::Result<()> {
         writeln!(
-            self.rs_file,
+            self.tmp_file,
             r#"/// # Example
 ///
 /// ```no_run
@@ -171,9 +208,9 @@ impl<'v, W: Write> MapWriter<'v, W> {
         if self.gen_doc {
             self.gen_lc_doc()?;
         }
-        self.rs_file
+        self.tmp_file
             .write_all(self.visibility.as_bytes())?;
-        self.rs_file.write_all(
+        self.tmp_file.write_all(
             br#" fn locale_hashmap() -> LocaleHashMap {
     use lang_id_consts::*;
 
@@ -194,24 +231,27 @@ impl<'v, W: Write> MapWriter<'v, W> {
             match lang_id::get::get_fn_name(k.as_bytes()) {
                 n if n.is_empty() => {
                     write!(
-                        self.rs_file,
+                        self.tmp_file,
                         r#"
     {SPACES}(("{k}").parse::<LangID>().expect("Invalid Language ID"), {v}()),"#,
                     )?;
                 }
                 name => {
-                    write!(self.rs_file, "\n{SPACES}(unsafe {{ {name} }}, {v}()),",)?;
+                    write!(
+                        self.tmp_file,
+                        "\n{SPACES}(unsafe {{ {name} }}, {v}()),",
+                    )?;
                 }
             }
         }
 
-        self.rs_file.write_all(
+        self.tmp_file.write_all(
             b"
     ])
 }\n",
         )?;
 
-        self.rs_file.flush()
+        self.tmp_file.flush()
         // Ok(())
     }
 }

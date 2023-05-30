@@ -19,8 +19,7 @@ use std::{
     borrow::Cow,
     collections::{BTreeMap, HashMap, HashSet},
     ffi::OsStr,
-    fs,
-    io::{self, Write},
+    fs, io,
     path::{Path, PathBuf},
 };
 
@@ -87,9 +86,9 @@ impl<'s, 'p> CfgFiles<'s, 'p> {
 }
 
 /// For each cfg file in the directory, deserialise the data and add it to the map
-pub(crate) fn iterate_over_all_cfg_files<W: Write>(
+pub(crate) fn iterate_over_all_cfg_files(
     files: &mut CfgFiles,
-    writer: &mut MapWriter<W>,
+    writer: &mut MapWriter,
 ) -> Result<(), io::Error> {
     let CfgFiles {
         fpath,
@@ -306,7 +305,7 @@ pub(crate) fn iterate_over_all_cfg_files<W: Write>(
 }
 
 #[allow(clippy::too_many_arguments)]
-fn write_to_data_map<'a, W: Write>(
+fn write_to_data_map<'a>(
     cfg: &L10nData,
     data_doc_map: &mut TupStrMap<'a>,
     locale: &'a str,
@@ -314,7 +313,7 @@ fn write_to_data_map<'a, W: Write>(
     data_map: &mut phf_codegen::Map<String>,
     sub_locale_map: &mut phf_codegen::Map<String>,
     sub_map_fn: &str,
-    writer: &mut MapWriter<W>,
+    writer: &mut MapWriter,
     lite_doc: bool,
 ) -> Result<(), io::Error> {
     data_doc_map.clear();

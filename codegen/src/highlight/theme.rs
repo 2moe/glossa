@@ -37,3 +37,12 @@ impl<'name> HighLightRes<'name> {
         "ayu-dark"
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn get_theme_set() {
+        dbg!(HighLightRes::static_theme_set());
+    }
+}

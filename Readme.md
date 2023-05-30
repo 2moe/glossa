@@ -36,6 +36,8 @@ The two types of functionalities are independent of each other. For the latter, 
 
 Use a code generator to generate code.
 
+### Features
+
 `glossa-codegen` has the following features:
 
 - yaml
@@ -49,9 +51,11 @@ Use a code generator to generate code.
   - ext: "json"
 - highlight
 
-In addition to highlight, this corresponds to different types of configuration. You can enable all features or add them as needed.
+In addition to `highlight`, this corresponds to different formats of configuration. You can enable all features or add them as needed.
 
-By default, the file type is determined based on the file name extension, and the **map name** (table name) is set based on the file name. Whether deserialisation is needed at compile-time is determined by the enabled feature.
+### File & Map Name
+
+By default, the file format is determined based on the file name extension, and the **map name** (table name) is set based on the file name. Whether deserialisation is needed at compile-time is determined by the enabled feature.
 
 ![yaml map name](assets/img/svg/yaml%20map%20name.svg)
 
@@ -154,7 +158,7 @@ A slightly more complex multi-project structure:
 
 ---
 
-#### build.rs
+#### `build.rs`
 
 <!--
 ```
@@ -199,42 +203,39 @@ markmap:
 
 ```rust
 use glossa_codegen::{consts::*, prelude::*};
-use std::{
-    fs::File,
-    io::{self, BufWriter},
-    path::PathBuf,
-};
+use std::{io, path::PathBuf};
 
 fn main() -> io::Result<()> {
     // Specify the version as the current package version to avoid repetitive compilation for the same version.
     let ver = get_pkg_version!();
 
     // This is a constant array: ["src", "assets", "localisation.rs"], which is converted into a path for storing automatically generated Rust code related to localisation.
-    // On Windows, the path is 'src\assets\localisation.rs'.
-    // On Unix, the path is "src/assets/localisation.rs".
-    // Note: this is a relative path!
-    let mut path = PathBuf::from_iter(default_l10n_rs_file_arr());
+    // path: "src/assets/localisation.rs".
+    let rs_path = PathBuf::from_iter(default_l10n_rs_file_arr());
 
     // If it's the same version, then exit.
-    if is_same_version(&path, Some(ver))? {
-      // When developing, we can comment out the `return` statement below so that every change will be recompiled and won't exit prematurely.
+    if is_same_version(&rs_path, Some(ver))? {
+        // When developing, we can comment out the `return` statement below so that every change will be recompiled and won't exit prematurely.
         return Ok(());
     }
 
     // If the path is "src/assets/localisation.rs", then it will append `mod localisation;` and related `use` statements to "src/assets/mod.rs".
-    append_to_l10n_mod(&path)?;
+    append_to_l10n_mod(&rs_path)?;
 
-    // This creates a new file: "src/assets/localisation.rs".
-    // Unlike append, if only create is used, then the file will be cleared when it is written.
-    let mut file = BufWriter::new(File::create(&path)?);
-    let writer = MapWriter::new(file);
+    // A new file will be created here:
+    //    - Linux(non android): "/dev/shm/localisation.tmp"
+    //    - Other："src/assets/localisation.tmp"
+    // After the code generation is complete, rename(move) the file: "/dev/shm/localisation.tmp" -> "src/assets/localisation.rs".
+    // Note: If written directly to `rs_path` and `cargo` is interrupted during building, it may result in incomplete generated code. Therefore, `tmp_path` is used as a temporary buffer file.
+    let tmp_path = get_shmem_path(&rs_path)?;
+    let writer = MapWriter::new(&tmp_path, &rs_path);
 
     // default_l10n_dir_arr() is also a constant array: ["assets", "l10n"].
     // If the current localisation resource path is at the parent level, then you can use `path = PathBuf::from_iter([".."].into_iter().chain(default_l10n_dir_arr()));`.
-    path = PathBuf::from_iter(default_l10n_dir_arr());
+    let l10n_path = PathBuf::from_iter(default_l10n_dir_arr());
 
-    let generator = Generator::new(path).with_version(ver);
-    // Invoke the generator here to generate code and write it to the `rs` file.
+    let generator = Generator::new(l10n_path).with_version(ver);
+    // Invoke the generator here to generate code.
     generator.run(writer)
 }
 ```
@@ -246,8 +247,6 @@ We created a writer above.
 Now let's modify the code and change `writer` to `mut writer` so that it can be modified.
 
 ```rust
-let mut writer = MapWriter::new(file);
-
 // Whether to automatically generate documentation, defaults to true
 *writer.get_gen_doc_mut() = false;
 // Modify the visibility of the automatically generated function, defaults to `pub(crate)`

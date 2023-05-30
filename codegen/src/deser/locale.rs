@@ -9,7 +9,6 @@ use std::{
     borrow::Cow,
     collections::{BTreeMap, HashSet},
     fs, io,
-    io::Write,
     path::Path,
 };
 
@@ -50,14 +49,14 @@ pub(crate) fn get_locale_list(org_dir: &Path) -> io::Result<Vec<String>> {
     Ok(v)
 }
 
-pub(crate) fn iter_over_locale_list<'a, W: Write>(
+pub(crate) fn iter_over_locale_list<'a>(
     capacity: usize,
     locale_chunks: &'a [String],
     mut files: CfgFiles<'a, '_>,
     org_dir: &Path,
     locale_map: &mut phf_codegen::Map<&'a String>,
     locale_treemap: &mut BTreeMap<&'a str, String>,
-    writer: &mut MapWriter<W>,
+    writer: &mut MapWriter,
 ) -> io::Result<()> {
     let mut sets = HashSet::with_capacity(capacity);
     for locale in locale_chunks {
