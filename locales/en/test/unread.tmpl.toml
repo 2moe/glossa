@@ -1,0 +1,23 @@
+num-to-en = """
+$num ->
+  [0] zero
+  [1] one
+  [2] two
+  [3] three
+  *[other] {$num}
+"""
+
+unread = "unread message"
+
+# 0 => No unread messages.
+# 1 => You have one unread message.
+# 2 => You have two unread messages.
+# 100 => You have 100 unread messages.
+unread-count = """
+$num ->
+  [0] No {unread}s.
+  [1] You have { num-to-en } {unread}.
+  *[other] You have { num-to-en } {unread}s.
+"""
+
+show-unread-messages-count = "{unread-count}"

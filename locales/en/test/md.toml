@@ -1,0 +1,22 @@
+sh = """
+## Example Command
+
+To list all files in the current directory with detailed information, use the following command:
+
+```sh
+ls -l -a -h
+```
+"""
+
+pwsh = '''
+## Command to get the top 5 processes by memory usage
+
+```powershell
+Get-Process | Sort-Object -Property WorkingSet -Descending | Select-Object -First 5
+```
+
+**Explanation:**
+- `Get-Process`: Retrieves a list of all running processes on the system.
+- `Sort-Object -Property WorkingSet -Descending`: Sorts the processes by their memory usage (WorkingSet) in descending order.
+- `Select-Object -First 5`: Selects the top 5 processes from the sorted list.
+'''

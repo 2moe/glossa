@@ -1,0 +1,31 @@
+"🐱" = "喵 ฅ(°ω°ฅ)"
+
+"问候" = """
+$period ->
+  [morning] 早安{🐱}
+  [night] 晚安{🐱}
+  *[other] {$period}好
+"""
+
+"称谓" = """
+$gender ->
+  *[male] 先生
+  [female] 女士
+"""
+
+greeting = "{ 问候 }！{ $name }{ 称谓 }。"
+
+# ```rust
+# let text = res
+#  .get_with_context(
+#     "greeting",
+#     &[
+#       ("period", "morning"),
+#       ("name", "Young"),
+#       ("gender", "unknown"),
+#     ],
+#  )
+#  .expect(r#"Failed to get "greeting"! "#);
+#
+# assert_eq!(text, "早安喵 ฅ(°ω°ฅ)！Young先生。");
+# ```

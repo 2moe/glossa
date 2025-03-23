@@ -1,0 +1,50 @@
+[package]
+name = "glossa-shared"
+version.workspace = true
+authors.workspace = true
+categories.workspace = true
+# readme = "../../docs/Readme.md"
+keywords = ["i18n", "l10n"]
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+description = "Shared Data structures for glossa"
+
+[features]
+default = ["phf", "type-aliases"]
+std = [
+    "dep:ahash",
+    "dep:kstring",
+    "tmpl-resolver?/std",
+    "bincode?/std",
+    "serde?/std",
+]
+serde = [
+    "dep:serde",
+    "ahash?/serde",
+    "kstring?/serde",
+    "lang-id?/serde",
+    "tmpl-resolver?/serde",
+]
+type-aliases = ["dep:lang-id", "dep:tmpl-resolver"]
+phf = ["dep:phf"]
+bincode = ["serde", "type-aliases", "dep:bincode"]
+
+[dependencies]
+compact_str.workspace = true
+phf_shared.workspace = true
+tap.workspace = true
+phf = { workspace = true, optional = true }
+ahash = { workspace = true, optional = true }
+lang-id = { workspace = true, optional = true }
+kstring = { workspace = true, optional = true }
+tmpl-resolver = { workspace = true, optional = true }
+bincode = { workspace = true, optional = true, features = ["alloc", "serde"] }
+serde = { workspace = true, optional = true, features = ["alloc"] }
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lints]
+workspace = true

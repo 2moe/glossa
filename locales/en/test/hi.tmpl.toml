@@ -1,0 +1,31 @@
+g = "Good"
+
+time-greeting = """
+$period ->
+  [morning] {g} Morning
+  [evening] {g} Evening
+  *[other] {g} {$period}
+"""
+
+salutation = """
+$gender ->
+  [male] Mr.
+  *[female] Ms.
+"""
+
+greeting = "{ time-greeting }! { salutation }{ $name }"
+
+# ```rust
+# let text = res
+#  .get_with_context(
+#     "greeting",
+#     &[
+#       ("period", "night"),
+#       ("name", "Alice"),
+#       ("gender", "unknown"),
+#     ],
+#  )
+#  .expect(r#"Failed to get "greeting"! "#);
+#
+# assert_eq!(text, "Good night! Ms.Alice");
+# ```

@@ -1,0 +1,6 @@
+toml-example = '''
+[main]
+enabled = false
+"😎" = "🍥"
+float = nan
+'''
