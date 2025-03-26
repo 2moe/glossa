@@ -1,4 +1,3 @@
-/// `Box<[(Hightlight resources, Highlight Format)]>`
 #[cfg(feature = "highlight")]
 pub(crate) use crate::highlight::HighlightCfgMap;
 

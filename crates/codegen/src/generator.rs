@@ -20,8 +20,6 @@ use crate::{
 pub struct Generator<'i, 'h> {
   #[getset(skip)]
   #[getset(get = "pub")]
-  /// To change resources, please use [Self::with_resources()] instead of
-  /// `.get_resources_mut()`
   resources: Box<L10nResources<'i>>,
 
   #[getset(get_mut)]
@@ -59,22 +57,35 @@ impl Generator<'_, '_> {
 }
 
 impl<'i> Generator<'i, '_> {
+  /// Configures the generator with localization resources, resetting cached
+  /// mappings.
   ///
+  /// This method performs two primary actions:
   ///
-  /// ## Example
+  /// 1. Replaces the current [`L10nResources`] with the provided instance
+  /// 2. Resets the internal `lazy_maps` to their default empty state
   ///
+  /// # Side Effects
+  ///
+  /// The cache clearance ensures any existing lazy-loaded mappings won't
+  /// conflict with new resources. Subsequent operations will rebuild mappings
+  /// from the updated resources.
+  ///
+  /// # Example
   ///
   /// ```
   /// use glossa_codegen::{Generator, L10nResources};
   ///
+  /// // Initialize resources from a localization directory
   /// let resources = L10nResources::new("../../locales/");
   ///
+  /// // Create generator with configured resources
   /// let _generator = Generator::default()
   ///   .with_resources(resources);
   /// ```
   pub fn with_resources(mut self, resources: L10nResources<'i>) -> Self {
-    self.lazy_maps = Default::default();
     self.resources = resources.into();
+    self.lazy_maps = Default::default();
     self
   }
 }
@@ -165,7 +176,6 @@ impl Default for MapType {
 
 #[cfg(test)]
 pub(crate) mod dbg_generator {
-  use std::path::Path;
 
   use super::*;
   use crate::resources::dbg_shared;

@@ -67,7 +67,7 @@ impl<'h> Generator<'_, 'h> {
     non_tmpl
       .get_non_template_maps(self)?
       .iter()
-      .filter(|(_, data)| !data.is_empty())
+      // .filter(|(_, data)| !data.is_empty())
       .flat_map(|(lang, map_entry)| {
         map_entry
           .iter()
@@ -147,11 +147,8 @@ impl<'h> Generator<'_, 'h> {
     const_lang_id: bool,
   ) -> io::Result<String> {
     let raw_locales = match map_type.is_template() {
-      true => match self
-        .get_or_init_template_maps()
-        .as_ref()
-      {
-        [] => return Ok("// Error: Empty Template Map".into()),
+      true => match self.get_or_init_template_maps() {
+        x if x.is_empty() => return Ok("// Error: Empty Template Map".into()),
         data => data
           .iter()
           .map(|(id, _)| id.to_compact_string())
@@ -227,7 +224,7 @@ impl<'h> Generator<'_, 'h> {
     non_tmpl
       .get_non_template_maps(self)?
       .iter()
-      .filter(|(_, data)| !data.is_empty())
+      // .filter(|(_, data)| !data.is_empty())
       .map(|(lang, map_entry)| {
         let match_fn_string = map_entry
           .iter()

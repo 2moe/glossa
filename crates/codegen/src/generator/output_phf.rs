@@ -181,7 +181,7 @@ impl<'h> Generator<'_, 'h> {
         )
       })
 
-    // fn l10n_maps() -> Box<[(lang_id::LangID, PhfL10nOrderedMap<'static>)]> {
+    // fn l10n_maps() -> Box<[(lang_id::LangID, PhfL10nOrderedMap)]> {
     //  use lang_id::consts::*;
     //  vec![
     //    #[cfg(feature = "l10n_en")]
@@ -368,7 +368,7 @@ mod tests {
 
   #[ignore]
   #[test]
-  fn test_get_all_in_one_map() {
+  fn doc_test_get_all_in_one_map() {
     let map = all_in_one_map();
     let get_text =
       |language| map.get(&PhfTripleKey(language, "error", "text-not-found"));

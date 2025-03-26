@@ -3,19 +3,21 @@ use std::collections::BTreeMap;
 use ahash::{HashMap, HashMapExt};
 use kstring::KString;
 use lang_id::{LangID, matches};
-use tap::Tap;
 use tmpl_resolver::resolver::OrderedAST;
 
 use crate::{Generator, MiniStr};
 
 pub(crate) type L10nBTreeMap = BTreeMap<(KString, KString), MiniStr>;
+
 // [(lang, <(map_name, key), value>)]
-pub(crate) type L10nMaps = Box<[(LangID, L10nBTreeMap)]>;
+// pub(crate) type L10nMaps = Box<[(LangID, L10nBTreeMap)]>;
+pub(crate) type L10nMaps = BTreeMap<LangID, L10nBTreeMap>;
 
 pub(crate) type L10nTemplateBTreeMap = BTreeMap<KString, OrderedAST>;
 
 // [(lang, <map_name, map>)]
-pub(crate) type L10nTemplateMaps = Box<[(LangID, L10nTemplateBTreeMap)]>;
+// pub(crate) type L10nTemplateMaps = Box<[(LangID, L10nTemplateBTreeMap)]>;
+pub(crate) type L10nTemplateMaps = BTreeMap<LangID, L10nTemplateBTreeMap>;
 
 impl<'h> Generator<'_, 'h> {
   #[cfg(not(feature = "highlight"))]
@@ -36,17 +38,17 @@ impl<'h> Generator<'_, 'h> {
         .collect()
     };
 
-    self
+    let data = self
       .collect_highlight_maps()?
       .into_iter()
+      // .filter(|(_, data)| !data.is_empty())
       .map(|(lang, entries)| {
         let lang = parse_language_id(&lang);
         let map = flatten_entries(entries);
         (lang, map)
       })
-      .collect::<Box<_>>()
-      .tap_mut(|x| x.sort_unstable())
-      .into()
+      .collect();
+    Some(data)
   }
 
   /// See also: [Self::get_or_init_merged_maps()]
@@ -75,8 +77,7 @@ impl<'h> Generator<'_, 'h> {
         },
       )
       .into_iter()
-      .collect::<Box<_>>()
-      .tap_mut(|x| x.sort_unstable())
+      .collect()
   }
 }
 
@@ -85,6 +86,7 @@ impl Generator<'_, '_> {
     self
       .get_l10n_res_map()
       .iter()
+      // .filter(|(_, data)| !data.is_empty())
       .map(|(lang, entries)| {
         let map = entries
           .iter()
@@ -100,17 +102,17 @@ impl Generator<'_, '_> {
               .iter()
               .map(move |(k, v)| ((map_name.clone(), k.clone()), v.clone()))
           })
-          .collect();
+          .collect::<BTreeMap<_, _>>();
         (parse_language_id(lang), map)
       })
-      .collect::<Box<_>>()
-      .tap_mut(|x| x.sort_unstable())
+      .collect()
   }
 
   pub(crate) fn flatten_template_maps(&self) -> L10nTemplateMaps {
     self
       .get_l10n_res_map()
       .iter()
+      // .filter(|(_, data)| !data.is_empty())
       .map(|(lang, entries)| {
         let map = entries
           .iter()
@@ -125,8 +127,7 @@ impl Generator<'_, '_> {
           .collect();
         (parse_language_id(lang), map)
       })
-      .collect::<Box<_>>()
-      .tap_mut(|x| x.sort_unstable_by_key(|(id, _)| id.clone()))
+      .collect()
   }
 }
 
@@ -148,7 +149,7 @@ fn parse_language_id(lang: &str) -> LangID {
 mod tests {
   type L10nHashMap = ahash::HashMap<(KString, KString), MiniStr>;
 
-  use anyhow::Result as AnyResult;
+  use anyhow::{Result as AnyResult, bail};
   use testutils::dbg;
 
   use super::*;
@@ -159,7 +160,10 @@ mod tests {
   fn test_collect_tmpl_maps() -> AnyResult<()> {
     let all_maps = en_generator().flatten_template_maps();
 
-    let (_lang, map) = &all_maps[0];
+    let Some((_lang, map)) = all_maps.first_key_value() else {
+      bail!("Empty map")
+    };
+
     let toml = toml::to_string_pretty(&map)?;
     println!("{toml}");
     Ok(())
@@ -169,7 +173,9 @@ mod tests {
   #[test]
   fn test_flatten_l10n_maps() -> AnyResult<()> {
     let all_maps = en_generator().flatten_l10n_maps();
-    let (_lang, map) = &all_maps[0];
+    let Some((_lang, map)) = all_maps.first_key_value() else {
+      bail!("Empty map")
+    };
     dbg!(map);
 
     let cfg = bincode::config::standard();

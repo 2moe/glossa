@@ -229,7 +229,6 @@ impl L10nResources<'_> {
       list => list
         .iter()
         .any(|item| map_name.eq_ignore_ascii_case(item)),
-      // _ => true,
     }
   }
 
@@ -394,6 +393,17 @@ mod tests {
       .with_include_languages(&["zh", "en"])
       // .with_include_map_names(&["hi.tmpl"])
       .with_exclude(&["zh"]);
+    let map = res.get_or_init_data();
+    // println!("{map:?}")
+    dbg!(map);
+  }
+
+  #[ignore]
+  #[test]
+  fn test_only_includes_de_and_und() {
+    let res = new_resources()
+      .with_include_languages(&["de", "und", "es"])
+      .with_exclude(&["es"]);
     let map = res.get_or_init_data();
     // println!("{map:?}")
     dbg!(map);

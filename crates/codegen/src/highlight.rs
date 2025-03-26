@@ -97,9 +97,10 @@ impl<'h> Generator<'_, 'h> {
               .pipe(Some)
           })
           .flatten()
-          .collect();
-        (lang_id.clone(), map)
+          .collect::<HashMap<_, _>>();
+        (lang_id, map)
       })
+      .filter_map(|(id, map)| (!map.is_empty()).then_some((id.clone(), map)))
       .collect::<Box<_>>()
       .into()
   }

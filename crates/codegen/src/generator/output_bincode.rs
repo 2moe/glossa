@@ -61,11 +61,8 @@ impl<'h> Generator<'_, 'h> {
     let all = "all";
 
     if map_type.is_template() {
-      return match self
-        .get_or_init_template_maps()
-        .as_ref()
-      {
-        [] => Ok(()),
+      return match self.get_or_init_template_maps() {
+        x if x.is_empty() => Ok(()),
         data => self.encode_bincode(all, data),
       };
     }
@@ -146,14 +143,10 @@ impl<'h> Generator<'_, 'h> {
   /// ```
   pub fn output_bincode(&'h self, map_type: MapType) -> AnyResult<()> {
     if map_type.is_template() {
-      return match self
-        .get_or_init_template_maps()
-        .as_ref()
-      {
-        [] => Ok(()),
+      return match self.get_or_init_template_maps() {
+        x if x.is_empty() => Ok(()),
         iter => iter
           .par_iter()
-          .filter(|(_, data)| !data.is_empty())
           .try_for_each(|(lang, data)| self.encode_bincode(lang, data)),
       };
     }
@@ -161,7 +154,6 @@ impl<'h> Generator<'_, 'h> {
     map_type
       .get_non_template_maps(self)?
       .par_iter()
-      .filter(|(_, data)| !data.is_empty())
       .try_for_each(|(lang, data)| self.encode_bincode(lang, data))
   }
 
@@ -266,8 +258,21 @@ mod tests {
 
     dbg_generator::highlight_generator()
       .with_bincode_suffix(".highlight.bincode".into())
-      .output_bincode_all_in_one(MapType::Hightlight)?;
+      .output_bincode_all_in_one(MapType::Hightlight)
+  }
 
+  #[ignore]
+  #[test]
+  #[cfg(feature = "highlight")]
+  fn test_decode_highlight_aio() -> glossa_shared::decode::ResolverResult<()> {
+    use lang_id::consts::lang_id_de;
+
+    let data =
+      glossa_shared::decode::decode_file_to_maps("tmp/all.highlight.bincode")?;
+
+    let en_maps = data.get(&lang_id_de());
+
+    dbg!(en_maps);
     Ok(())
   }
 
