@@ -1,0 +1,20 @@
+[package]
+name = "glossa-l10n"
+authors.workspace = true
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+categories.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+description = "Glossa Localization Data"
+
+[dependencies]
+lang-id = { workspace = true }
+
+[package.metadata.docs.rs]
+all-features = true
+# rustdoc-args = ["--cfg", "__unstable_doc"]
+
+[lints]
+workspace = true

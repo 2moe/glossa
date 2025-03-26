@@ -13,28 +13,36 @@ description = "A language international (i18n) library"
 
 [features]
 default = ["std"]
-std = ["dep:ahash"]
+std = [
+    #
+    "testutils/std",
+    "lang-id/sys-locale",
+    "thiserror/std",
+    "dep:glossa-l10n",
+]
 
 [dependencies]
-# workspace = true,
 thiserror.workspace = true
-# getset.workspace = true
-# phf.workspace = true
-lang-id = { workspace = true, features = ["sys-locale"] }
-ahash = { workspace = true, optional = true }
+lang-id = { workspace = true, features = ["map", "match"] }
 log.workspace = true
+smallvec.workspace = true
+compact_str.workspace = true
+collect-with.workspace = true
+tap.workspace = true
+itertools.workspace = true
+testutils.workspace = true
+glossa-l10n = { workspace = true, optional = true }
 
 [dev-dependencies]
 anyhow.workspace = true
 env_logger.workspace = true
+itertools.workspace = true
 
 [build-dependencies]
 glossa-codegen.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true
-# targets = ["x86_64-unknown-linux-gnu"]
-# rustdoc-args = ["--cfg", "__glossa_doc"]
 rustdoc-args = ["--cfg", "__unstable_doc"]
 
 [lints]

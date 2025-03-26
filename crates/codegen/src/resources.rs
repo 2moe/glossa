@@ -26,22 +26,30 @@ use crate::{AnyResult, MiniStr, to_kstr};
 pub struct L10nResources<'i> {
   dir: PathBuf,
   tmpl_suffix: MiniStr,
-  include_languages: Option<&'i [&'i str]>,
-  include_map_names: Option<&'i [&'i str]>,
-  exclude: Option<&'i [&'i str]>,
+  include_languages: &'i [&'i str],
+  include_map_names: &'i [&'i str],
+  exclude: &'i [&'i str],
   #[getset(get)]
   /// get data: [Self::get_or_init_data]
   lazy_data: OnceLock<L10nResMap>,
 }
 
 impl Default for L10nResources<'_> {
+  /// Default:
+  ///
+  /// ```ignore
+  /// {
+  ///   tmpl_suffix: ".tmpl"
+  ///   ..Default::default()
+  /// }
+  /// ```
   fn default() -> Self {
     Self {
-      dir: Default::default(),
-      include_languages: None,
-      include_map_names: None,
-      exclude: None,
       tmpl_suffix: ".tmpl".into(),
+      dir: Default::default(),
+      include_languages: Default::default(),
+      include_map_names: Default::default(),
+      exclude: Default::default(),
       lazy_data: Default::default(),
     }
   }
@@ -81,6 +89,18 @@ fn dir_name_to_opt_lang(dir: &Path) -> Option<KString> {
 }
 
 impl L10nResources<'_> {
+  /// Constructs a new `L10nResources` instance with localization directory.
+  ///
+  /// The provided path should point to a directory containing
+  /// localization files.
+  ///
+  /// ## Example
+  ///
+  /// ```
+  /// use glossa_codegen::L10nResources;
+  ///
+  /// let _res = L10nResources::new("../../locales/");
+  /// ```
   pub fn new<P: Into<PathBuf>>(dir: P) -> Self {
     Self {
       dir: dir.into(),
@@ -205,35 +225,36 @@ impl L10nResources<'_> {
 
   fn filter_include_map_names(&self, map_name: &MiniStr) -> bool {
     match self.include_map_names {
-      Some(list) => list
+      [] => true,
+      list => list
         .iter()
         .any(|item| map_name.eq_ignore_ascii_case(item)),
-      _ => true,
+      // _ => true,
     }
   }
 
   fn filter_exclude_languages(&self, dir: &Path) -> bool {
     match self.exclude {
-      Some(list) => match dir.file_name() {
+      [] => true,
+      list => match dir.file_name() {
         Some(dirname) => !list
           .iter()
           .any(|item| dirname.eq_ignore_ascii_case(item)),
         _ => true,
       },
-      _ => true,
     }
   }
 
   fn filter_include_languages(&self, dir: &Path) -> bool {
     match self.include_languages {
-      Some(list) => dir
+      [] => true,
+      list => dir
         .file_name()
         .is_some_and(|dirname| {
           list
             .iter()
             .any(|item| dirname.eq_ignore_ascii_case(item))
         }),
-      _ => true,
     }
   }
 }
@@ -316,10 +337,9 @@ pub(crate) mod dbg_shared {
   pub(crate) const DIR: &str = "../../locales/";
 
   pub(crate) fn new_resources<'i>() -> L10nResources<'i> {
-    L10nResources::default()
-      .with_dir(DIR.into())
-      .with_tmpl_suffix(".tmpl".into())
-    // .get_or_init_data()
+    // L10nResources::default().with_dir(DIR.into())
+    L10nResources::new(DIR)
+    // .with_tmpl_suffix(".tmpl".into())
   }
 }
 
@@ -335,14 +355,14 @@ mod tests {
   #[ignore]
   #[test]
   fn test_read_dir() -> io::Result<()> {
-    for dir in dbg_shared::DIR
+    for (idx, path) in dbg_shared::DIR
       .pipe(fs::read_dir)?
       .filter_map(Result::ok)
       .map(|x| x.path())
       .filter(|e| e.is_dir())
       .enumerate()
     {
-      dbg!(dir.1.file_name(), dir.0);
+      dbg!(path.file_name(), idx);
     }
     Ok(())
   }
@@ -371,9 +391,9 @@ mod tests {
   #[test]
   fn test_only_includes_en() {
     let res = new_resources()
-      .with_include_languages(Some(&["zh", "en"]))
-      // .with_include_map_names(Some(&["hi.tmpl"]))
-      .with_exclude(Some(&["zh"]));
+      .with_include_languages(&["zh", "en"])
+      // .with_include_map_names(&["hi.tmpl"])
+      .with_exclude(&["zh"]);
     let map = res.get_or_init_data();
     // println!("{map:?}")
     dbg!(map);

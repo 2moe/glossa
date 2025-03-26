@@ -17,23 +17,67 @@ where
     .map_err(Into::into)
 }
 
-pub fn decode_slice_to_flatten_map(
+/// decodes single L10n data (e.g., read("en-GB.bincode") )
+///
+/// returns:
+///
+/// ```ignore
+/// Ok(
+///   HashMap<(map_name, key), value>,
+///   read_bytes_size
+/// )
+/// ```
+pub fn decode_single_data_to_map(
   slice: &[u8],
 ) -> ResolverResult<(L10nFlattenMap, usize)> {
   decode_slice(slice)
 }
 
-pub fn decode_slice_to_maps(slice: &[u8]) -> ResolverResult<(L10nMaps, usize)> {
+/// decodes **all_in_one** L10n data (e.g., read("all.bincode") )
+///
+///
+/// returns:
+///
+/// ```ignore
+/// // Array<T> = Box<[T]>
+/// Ok(
+///   Array< ( LangID, HashMap<(map_name, key), value> ) >,
+///   read_bytes_size
+/// )
+/// ```
+pub fn decode_to_maps(slice: &[u8]) -> ResolverResult<(L10nMaps, usize)> {
   decode_slice(slice)
 }
 
-pub fn decode_slice_to_tmpl_map(
+/// decodes single L10n Template data (e.g., read("en-GB.tmpl.bincode") )
+///
+/// returns:
+///
+/// ```ignore
+/// Ok(
+///   HashMap<map_name, TemplateResolver>,
+///   read_bytes_size
+/// )
+/// ```
+pub fn decode_single_data_to_template_map(
   slice: &[u8],
 ) -> ResolverResult<(L10nTemplateMap, usize)> {
   decode_slice(slice)
 }
 
-pub fn decode_slice_to_template_maps(
+/// decodes **all_in_one** Template L10n data (e.g., read("all.tmpl.bincode") )
+///
+///
+/// returns:
+///
+/// ```ignore
+/// // Array<T> = Box<[T]>
+/// Ok(
+///   Array< ( LangID, HashMap<map_name, TemplateResolver> ) >,
+///   read_bytes_size
+/// )
+/// ```
+pub fn decode_to_template_maps(
   slice: &[u8],
 ) -> ResolverResult<(TemplateMaps, usize)> {
   decode_slice(slice)
@@ -60,12 +104,32 @@ where
 }
 
 #[cfg(feature = "std")]
-pub fn decode_file_to_flatten_map<P: AsRef<std::path::Path>>(
+/// decodes single L10n file (e.g., en-GB.bincode)
+///
+/// returns:
+///
+/// ```ignore
+/// Ok(
+///   HashMap<(map_name, key), value>,
+/// )
+/// ```
+pub fn decode_single_file_to_flatten_map<P: AsRef<std::path::Path>>(
   src_file: P,
 ) -> ResolverResult<L10nFlattenMap> {
   decode_file(src_file)
 }
 
+/// decodes **all_in_one** L10n file (e.g., all.bincode)
+///
+///
+/// returns:
+///
+/// ```ignore
+/// // Array<T> = Box<[T]>
+/// Ok(
+///   Array< ( LangID, HashMap<(map_name, key), value> ) >,
+/// )
+/// ```
 #[cfg(feature = "std")]
 pub fn decode_file_to_maps<P: AsRef<std::path::Path>>(
   src_file: P,
@@ -74,13 +138,33 @@ pub fn decode_file_to_maps<P: AsRef<std::path::Path>>(
 }
 
 #[cfg(feature = "std")]
-pub fn decode_file_to_tmpl_map<P: AsRef<std::path::Path>>(
+/// decodes single L10n Template file (e.g., en-GB.tmpl.bincode)
+///
+/// returns:
+///
+/// ```ignore
+/// Ok(
+///   HashMap<map_name, TemplateResolver>,
+/// )
+/// ```
+pub fn decode_single_file_to_template_map<P: AsRef<std::path::Path>>(
   src_file: P,
 ) -> ResolverResult<L10nTemplateMap> {
   decode_file(src_file)
 }
 
 #[cfg(feature = "std")]
+/// decodes **all_in_one** Template L10n file (e.g., all.tmpl.bincode)
+///
+///
+/// returns:
+///
+/// ```ignore
+/// // Array<T> = Box<[T]>
+/// Ok(
+///   Array< ( LangID, HashMap<map_name, TemplateResolver> ) >,
+/// )
+/// ```
 pub fn decode_file_to_template_maps<P: AsRef<std::path::Path>>(
   src_file: P,
 ) -> ResolverResult<TemplateMaps> {

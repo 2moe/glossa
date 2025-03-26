@@ -1,5 +1,10 @@
 [workspace]
-members = ["crates/codegen", "crates/glossa", "crates/shared"]
+members = [
+    "crates/codegen", #
+    "crates/glossa",
+    "crates/shared",
+    "crates/l10n",
+]
 resolver = "3"
 
 [workspace.package]
@@ -29,7 +34,9 @@ itertools = { version = "0.14", default-features = false, features = [
     "use_alloc",
 ] }
 glossa-shared = { path = "./crates/shared" }
+glossa-l10n = { path = "./crates/l10n" }
 smallvec = "2.0.0-alpha.11"
+collect-with = "0.0.2"
 
 # codegen
 ron = "0.9"
@@ -45,6 +52,7 @@ compact_str = { version = "0.9", default-features = false }
 
 [workspace.dependencies.testutils]
 version = "0.0.5"
+default-features = false
 path = "../testutils"
 
 [workspace.dependencies.serde]
@@ -53,9 +61,9 @@ features = ["derive"]
 version = "1.0"
 
 [workspace.dependencies.lang-id]
-version = "0.0.4"
+version = "0.0.11"
 default-features = false
-# path = "../lang-id"
+path = "../lang-id"
 
 [workspace.dependencies.hlight]
 version = "0.0.10"
@@ -69,8 +77,8 @@ path = "crates/codegen"
 
 [workspace.dependencies.tmpl-resolver]
 default-features = false
-version = "0.0.10"
-# path = "../tmpl-resolver"
+version = "0.0.11"
+path = "../tmpl-resolver"
 
 [workspace.lints.rust.unexpected_cfgs]
 level = "warn"
@@ -84,14 +92,22 @@ edition.workspace = true
 bincode = { workspace = true, features = ["serde", "std"] }
 serde.workspace = true
 itertools.workspace = true
-testutils.workspace = true
+testutils = { workspace = true, features = ["os_cmd", "std"] }
 phf = { workspace = true, features = ["macros", "serde"] }
 ahash = { workspace = true, features = ["serde"] }
 ron.workspace = true
 anyhow.workspace = true
 serde_json.workspace = true
+compact_str = { workspace = true, features = ["serde"] }
+smallvec.workspace = true
+glossa-codegen.workspace = true
+env_logger.workspace = true
+glossa = { path = "crates/glossa" }
+log.workspace = true
+collect-with.workspace = true
 
 [dependencies]
-lang-id.workspace = true
+lang-id = { workspace = true }
+tap.workspace = true
 # thiserror = "2.0.11"
 # hlight = { path = "./crates/hlight" }

@@ -12,6 +12,7 @@ use tap::Pipe;
 use crate::{
   L10nResources, MiniStr, Visibility,
   generator::flattening::{L10nMaps, L10nTemplateMaps},
+  internal_aliases::HighlightCfgMap,
 };
 
 #[derive(Getters, WithSetters, MutGetters, Debug, Clone)]
@@ -19,22 +20,58 @@ use crate::{
 pub struct Generator<'i, 'h> {
   #[getset(skip)]
   #[getset(get = "pub")]
+  /// To change resources, please use [Self::with_resources()] instead of
+  /// `.get_resources_mut()`
   resources: Box<L10nResources<'i>>,
 
   #[getset(get_mut)]
   visibility: Visibility,
 
+  #[getset(skip)]
+  #[getset(get = "pub", get_mut = "pub")]
   outdir: Option<PathBuf>,
+
   bincode_suffix: MiniStr,
   mod_prefix: MiniStr,
-  highlight: Option<&'h crate::internal_aliases::HighlightCfgMap<'h>>,
+
+  #[getset(skip)]
+  #[getset(get = "pub", get_mut = "pub")]
+  highlight: Option<Box<HighlightCfgMap<'h>>>,
 
   #[getset(skip)]
   /// get: `Self::get_or_init_*maps`
   lazy_maps: Box<LazyMaps>,
 }
 
+#[cfg(feature = "highlight")]
+impl<'h> Generator<'_, 'h> {
+  pub fn with_highlight(mut self, highlight: HighlightCfgMap<'h>) -> Self {
+    self.highlight = Some(highlight.into());
+    self
+  }
+}
+
+impl Generator<'_, '_> {
+  pub fn with_outdir<P: Into<PathBuf>>(mut self, outdir: P) -> Self {
+    self.outdir = Some(outdir.into());
+    self
+  }
+}
+
 impl<'i> Generator<'i, '_> {
+  ///
+  ///
+  /// ## Example
+  ///
+  ///
+  /// ```
+  /// use glossa_codegen::{Generator, L10nResources};
+  ///
+  /// let resources = L10nResources::new("../../locales/");
+  ///
+  /// let _generator = Generator::default()
+  ///   .with_resources(resources);
+  /// ```
   pub fn with_resources(mut self, resources: L10nResources<'i>) -> Self {
     self.lazy_maps = Default::default();
     self.resources = resources.into();
@@ -58,9 +95,19 @@ struct LazyMaps {
 }
 
 impl Default for Generator<'_, '_> {
+  /// Default:
+  ///
+  /// ```ignore
+  /// {
+  ///   bincode_suffix: ".bincode",
+  ///   mod_prefix: "l10n_",
+  ///   visibility: Visibility::PubCrate,
+  ///   ..Default::default()
+  /// }
+  /// ```
   fn default() -> Self {
     Self {
-      bincode_suffix: Default::default(),
+      bincode_suffix: MiniStr::const_new(".bincode"),
       outdir: Default::default(),
       resources: Default::default(),
       // match_bound: 200,
@@ -123,24 +170,33 @@ pub(crate) mod dbg_generator {
   use super::*;
   use crate::resources::dbg_shared;
 
-  fn tmp_dir() -> Option<PathBuf> {
-    Path::new("tmp")
-      .to_owned()
-      .into()
-  }
-
   pub(crate) fn new_generator<'i, 'h>() -> Generator<'i, 'h> {
     let data = dbg_shared::new_resources();
     Generator::default()
       .with_resources(data)
-      .with_outdir(tmp_dir())
+      .with_outdir("tmp")
+  }
+
+  #[cfg(feature = "highlight")]
+  pub(crate) fn highlight_generator<'i, 'h>() -> Generator<'i, 'h> {
+    let hmap = crate::highlight::dbg_shared::new_highlight_map();
+    new_generator().with_highlight(hmap)
   }
 
   pub(crate) fn en_generator<'i, 'h>() -> Generator<'i, 'h> {
-    let data = dbg_shared::new_resources().with_include_languages(Some(&["en"]));
+    let data = dbg_shared::new_resources().with_include_languages(&["en"]);
+    new_generator().with_resources(data)
+  }
 
-    Generator::default()
-      .with_resources(data)
-      .with_outdir(tmp_dir())
+  pub(crate) fn en_gb_generator<'i, 'h>() -> Generator<'i, 'h> {
+    let data = dbg_shared::new_resources().with_include_languages(&["en-GB"]);
+    new_generator().with_resources(data)
+  }
+
+  pub(crate) fn de_en_es_pt_zh_generator<'i, 'h>() -> Generator<'i, 'h> {
+    let data = dbg_shared::new_resources()
+      .with_include_languages(&["de", "zh-pinyin", "zh", "pt", "es", "en", "en-GB"])
+      .with_include_map_names(&["error"]);
+    new_generator().with_resources(data)
   }
 }

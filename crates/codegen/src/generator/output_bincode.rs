@@ -16,12 +16,20 @@ use crate::{
 };
 
 impl<'h> Generator<'_, 'h> {
+  /// Retrieves the localization resource map containing all translation data
   pub(crate) fn get_l10n_res_map(&self) -> &L10nResMap {
     self
       .get_resources()
       .get_or_init_data()
   }
 
+  /// Serializes data to binary format (bincode) with parallel file operations
+  ///
+  /// # Errors
+  ///
+  /// Returns [`AnyResult`] with error details for:
+  /// - File creation failures
+  /// - Serialization errors
   fn encode_bincode<T, D>(&self, lang_id: D, data: T) -> AnyResult<()>
   where
     T: serde::Serialize,
@@ -35,13 +43,29 @@ impl<'h> Generator<'_, 'h> {
     Ok(())
   }
 
-  /// `>` "outdir()/all{bincode_suffix}.bincode"
-  pub fn output_all_in_one_bincode(&'h self, map_type: MapType) -> AnyResult<()> {
+  /// Generates consolidated binary file containing all localization data
+  ///
+  /// > `>` "outdir()/all{bincode_suffix}"
+  ///
+  /// # Behavior
+  /// - For template maps: Creates "all{bincode_suffix}" containing template
+  ///   data
+  /// - For regular maps: Creates "all{bincode_suffix}" containing all language
+  ///   data
+  ///
+  /// # Errors
+  /// Returns [`AnyResult`] with error details for:
+  /// - File I/O failures
+  /// - Serialization errors
+  pub fn output_bincode_all_in_one(&'h self, map_type: MapType) -> AnyResult<()> {
     let all = "all";
 
     if map_type.is_template() {
-      return match self.get_or_init_template_maps() {
-        x if x.is_empty() => Ok(()),
+      return match self
+        .get_or_init_template_maps()
+        .as_ref()
+      {
+        [] => Ok(()),
         data => self.encode_bincode(all, data),
       };
     }
@@ -50,11 +74,83 @@ impl<'h> Generator<'_, 'h> {
     self.encode_bincode(all, data)
   }
 
-  /// `>` "outdir()/{language}{bincode_suffix}.bincode"
+  /// Generates individual binary files per language
+  ///
+  /// > `>` "outdir()/{language}{bincode_suffix}"
+  ///
+  /// # Behavior
+  /// - For template maps: Creates separate files for each template
+  /// - For regular maps: Creates separate files for each language
+  /// - Skips empty datasets
+  ///
+  ///
+  /// ## Example
+  ///
+  /// "../../locales/en/unread.tmpl.toml":
+  ///
+  /// ```toml
+  /// num-to-en = """
+  /// $num ->
+  ///   [0] zero
+  ///   [1] one
+  ///   [2] two
+  ///   [3] three
+  ///   *[other] {$num}
+  /// """
+  ///
+  /// unread = "unread message"
+  ///
+  /// unread-count = """
+  /// $num ->
+  ///   [0] No {unread}s.
+  ///   [1] You have { num-to-en } {unread}.
+  ///   *[other] You have { num-to-en } {unread}s.
+  /// """
+  ///
+  /// show-unread-messages-count = "{unread-count}"
+  /// ```
+  ///
+  /// rs_code:
+  ///
+  /// ```no_run
+  /// use glossa_shared::TemplateResolver;
+  /// use glossa_codegen::{L10nResources, Generator, generator::MapType};
+  /// use std::path::Path;
+  ///
+  /// let resources = L10nResources::new("../../locales/");
+  ///
+  /// // Output to tmp/{language}.tmpl.bincode
+  /// Generator::default()
+  ///   .with_resources(resources)
+  ///   .with_outdir("tmp")
+  ///   .with_bincode_suffix(".tmpl.bincode".into())
+  ///   .output_bincode(MapType::Template)?;
+  ///
+  /// let file = Path::new("tmp").join("en.tmpl.bincode");
+  /// let tmpl_maps = glossa_shared::decode::decode_single_file_to_template_map(file)?;
+  /// let unread_tmpl = tmpl_maps
+  ///   .get("unread")
+  ///   .expect("Failed to get TemplateAST (map_name: unread)");
+  ///
+  /// let get_text = |num_str| {
+  ///   unread_tmpl.get_with_context("show-unread-messages-count", &[("num", num_str)])
+  /// };
+  ///
+  /// let one = get_text("1")?;
+  /// assert_eq!(one, "You have one unread message.");
+  ///
+  /// let zero = get_text("0")?;
+  /// assert_eq!(zero, "No unread messages.");
+  ///
+  /// # Ok::<(), anyhow::Error>(())
+  /// ```
   pub fn output_bincode(&'h self, map_type: MapType) -> AnyResult<()> {
     if map_type.is_template() {
-      return match self.get_or_init_template_maps() {
-        x if x.is_empty() => Ok(()),
+      return match self
+        .get_or_init_template_maps()
+        .as_ref()
+      {
+        [] => Ok(()),
         iter => iter
           .par_iter()
           .filter(|(_, data)| !data.is_empty())
@@ -69,18 +165,33 @@ impl<'h> Generator<'_, 'h> {
       .try_for_each(|(lang, data)| self.encode_bincode(lang, data))
   }
 
+  /// Creates buffered bincode file writer with standardized naming
+  ///
+  /// # File Naming
+  /// Follows format: `{language}{suffix}`
+  /// - `suffix` configured via [`Generator::get_bincode_suffix`]
+  ///
+  /// # Errors
+  /// Returns [`io::Result`] for file creation failures
   pub(crate) fn create_bincode_file<D: core::fmt::Display>(
     &self,
     language: D,
   ) -> io::Result<BufWriter<File>> {
     let suffix = self.get_bincode_suffix();
-    let bincode_name = format_compact!("{language}{suffix}.bincode");
+    let bincode_name = format_compact!("{language}{suffix}");
     let out_dir = self.get_outdir().as_deref();
 
     create_buf_writer(out_dir, bincode_name)
   }
 }
 
+/// Creates buffered file writer with error handling
+///
+/// # Errors
+/// Returns [`io::Result`] with error details for:
+///
+/// - Missing output directory
+/// - File creation failures
 pub(crate) fn create_buf_writer(
   out_dir: Option<&Path>,
   bincode_name: MiniStr,
@@ -95,49 +206,107 @@ pub(crate) fn create_buf_writer(
 
 #[cfg(test)]
 mod tests {
-  use std::io::BufReader;
-
   use testutils::simple_benchmark;
 
   use super::*;
-  use crate::generator::{dbg_generator::new_generator, flattening::L10nMaps};
+  use crate::generator::dbg_generator::new_generator;
 
   #[ignore]
   #[test]
-  fn test_output_tmpl_maps_to_bincode() -> AnyResult<()> {
+  fn test_output_tmpl_maps_to_bincode_files() -> AnyResult<()> {
     new_generator()
-      .with_bincode_suffix(".tmpl".into())
+      .with_bincode_suffix(".tmpl.bincode".into())
       .output_bincode(MapType::Template)
   }
 
   #[ignore]
   #[test]
-  fn test_single_bincode_file() -> AnyResult<()> {
-    new_generator()
-      .with_bincode_suffix("_all-in-one".into())
-      .output_all_in_one_bincode(MapType::Regular)
+  fn doc_test_encode_and_decode_tmpl_bincode() -> AnyResult<()> {
+    let resources = crate::L10nResources::new("../../locales/");
+
+    // Output to tmp/{language}.tmpl.bincode
+    Generator::default()
+      .with_resources(resources)
+      .with_outdir("tmp")
+      .with_bincode_suffix(".tmpl.bincode".into())
+      .output_bincode(MapType::Template)?;
+
+    let file = Path::new("tmp").join("en.tmpl.bincode");
+    let tmpl_maps = glossa_shared::decode::decode_single_file_to_template_map(file)?;
+    let unread_tmpl = tmpl_maps
+      .get("unread")
+      .expect("Failed to get TemplateAST (map_name: unread)");
+
+    let get_text = |num_str| {
+      unread_tmpl.get_with_context("show-unread-messages-count", &[("num", num_str)])
+    };
+
+    let one = get_text("1")?;
+    assert_eq!(one, "You have one unread message.");
+
+    let zero = get_text("0")?;
+    assert_eq!(zero, "No unread messages.");
+
+    Ok(())
   }
 
   #[ignore]
   #[test]
-  fn test_deser_bincode_file() -> AnyResult<()> {
-    let mut file = Path::new("tmp")
-      .join("und_all-in-one.bincode")
-      .pipe(File::open)?
-      .pipe(BufReader::new);
+  fn test_encode_regular_aio_bincode() -> AnyResult<()> {
+    new_generator()
+      .with_bincode_suffix("_regular.bincode".into())
+      .output_bincode_all_in_one(MapType::Regular)
+  }
 
-    let mut data = || {
-      bincode::serde::decode_from_std_read::<L10nMaps, _, _>(
-        &mut file,
-        bincode::config::standard(),
-      )
-    };
+  #[ignore]
+  #[test]
+  #[cfg(feature = "highlight")]
+  fn test_encode_highlight_aio_bincode() -> AnyResult<()> {
+    use crate::generator::dbg_generator;
 
+    dbg_generator::highlight_generator()
+      .with_bincode_suffix(".highlight.bincode".into())
+      .output_bincode_all_in_one(MapType::Hightlight)?;
+
+    Ok(())
+  }
+
+  // #[ignore]
+  // #[test]
+  // fn test_encode_tmpl_aio_bincode() -> AnyResult<()> {
+  //   new_generator()
+  //     .with_bincode_suffix("_regular.bincode".into())
+  //     .output_bincode_all_in_one(MapType::Template)
+  // }
+
+  /// Debug:
+  /// - decode from file
+  ///   - Time taken: 422.708µs
+  /// - decode from slice
+  ///   - Time taken: 335.333µs
+  ///
+  /// Release:
+  /// - decode from file
+  ///   - Time taken: 190.209µs
+  /// - decode from slice
+  ///   - Time taken: 63.25µs
+  #[ignore]
+  #[test]
+  fn bench_decode_regular_file() -> AnyResult<()> {
+    let file = Path::new("tmp").join("all_regular.bincode");
+
+    eprintln!("decode from file");
     simple_benchmark(|| {
-      let _ = data();
+      let _ = glossa_shared::decode::decode_file_to_maps(&file);
     });
 
-    // dbg!(data);
+    let bytes = std::fs::read(&file)?;
+    let decode_slice = || glossa_shared::decode::decode_to_maps(&bytes);
+
+    eprintln!("decode from slice");
+    simple_benchmark(|| {
+      let _ = decode_slice();
+    });
 
     Ok(())
   }

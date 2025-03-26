@@ -61,4 +61,5 @@ all-features = true
 workspace = true
 
 [dev-dependencies]
-testutils.workspace = true
+testutils = { workspace = true, features = ["std"] }
+glossa-shared = { workspace = true, features = ["bincode", "std"] }

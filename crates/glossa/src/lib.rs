@@ -5,6 +5,11 @@
 
 */
 
+pub use compact_str::CompactString as MiniStr;
+
+mod cldr_fallback;
+pub(crate) use cldr_fallback::cldr_fallback_mapping;
+
 pub mod error;
 
 /// The default error type is `GlossaError<'map>`
@@ -15,13 +20,7 @@ pub use lang_id::LangID;
 
 /// Contains the FallbackChain Trait implementation
 pub mod fallback;
+pub use fallback::{init_language_chain, init_language_chain_from_slice};
 
-/// Gets the static value of system language.
-/// If it has not been initialised yet, initialise it by calling the
-/// `lang_id::sys_lang::current()`.
-pub fn get_static_lang() -> &'static LangID {
-  use std::sync::OnceLock;
-
-  static LANG: OnceLock<LangID> = OnceLock::new();
-  LANG.get_or_init(lang_id::sys_locale::fetch_env_lang_or_sys_locale)
-}
+#[cfg(feature = "std")]
+pub mod lazy_values;

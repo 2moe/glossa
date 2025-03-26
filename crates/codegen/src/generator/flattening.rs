@@ -3,6 +3,7 @@ use std::collections::BTreeMap;
 use ahash::{HashMap, HashMapExt};
 use kstring::KString;
 use lang_id::{LangID, matches};
+use tap::Tap;
 use tmpl_resolver::resolver::OrderedAST;
 
 use crate::{Generator, MiniStr};
@@ -36,7 +37,7 @@ impl<'h> Generator<'_, 'h> {
     };
 
     self
-      .collect_highlighted_maps()?
+      .collect_highlight_maps()?
       .into_iter()
       .map(|(lang, entries)| {
         let lang = parse_language_id(&lang);
@@ -44,6 +45,7 @@ impl<'h> Generator<'_, 'h> {
         (lang, map)
       })
       .collect::<Box<_>>()
+      .tap_mut(|x| x.sort_unstable())
       .into()
   }
 
@@ -73,7 +75,8 @@ impl<'h> Generator<'_, 'h> {
         },
       )
       .into_iter()
-      .collect()
+      .collect::<Box<_>>()
+      .tap_mut(|x| x.sort_unstable())
   }
 }
 
@@ -100,7 +103,8 @@ impl Generator<'_, '_> {
           .collect();
         (parse_language_id(lang), map)
       })
-      .collect()
+      .collect::<Box<_>>()
+      .tap_mut(|x| x.sort_unstable())
   }
 
   pub(crate) fn flatten_template_maps(&self) -> L10nTemplateMaps {
@@ -122,6 +126,7 @@ impl Generator<'_, '_> {
         (parse_language_id(lang), map)
       })
       .collect::<Box<_>>()
+      .tap_mut(|x| x.sort_unstable_by_key(|(id, _)| id.clone()))
   }
 }
 

@@ -70,7 +70,7 @@ pub(crate) fn collect_derived_keys_to_map<'a>(
 }
 
 impl<'h> Generator<'_, 'h> {
-  pub(crate) fn collect_highlighted_maps(
+  pub(crate) fn collect_highlight_maps(
     &'h self,
   ) -> Option<Box<[(KString, HighlightedMaps)]>> {
     let highlight_cfg_map = self.get_highlight().as_ref()?;
@@ -91,7 +91,7 @@ impl<'h> Generator<'_, 'h> {
                 generate_derived_map(highlight_cfg_map, &base_map_name, suffix)
               })
               .map(|(key, config)| {
-                let new_map = generate_highlighted_map(map, config);
+                let new_map = generate_highlight_map(map, config);
                 (key.format(), new_map)
               })
               .pipe(Some)
@@ -105,7 +105,7 @@ impl<'h> Generator<'_, 'h> {
   }
 }
 
-fn generate_highlighted_map<'a>(
+fn generate_highlight_map<'a>(
   map: &'a KMap,
   config: &'a SyntaxHighlightConfig<'a>,
 ) -> KMap {
@@ -159,30 +159,10 @@ impl<'a> SyntaxHighlightConfig<'a> {
 }
 
 #[cfg(test)]
-mod tests {
-  use std::io;
-
-  use ahash::HashMapExt;
-  use testutils::dbg;
-
+pub(crate) mod dbg_shared {
   use super::*;
-  use crate::{
-    AnyResult,
-    generator::{MapType, dbg_generator::en_generator},
-  };
 
-  #[ignore]
-  #[test]
-  fn test_derived_map_key() {
-    let map_key = DerivedMapKey::default()
-      .with_base_name("island".into())
-      .with_suffix("_md".into());
-    let mut map = HashMap::new();
-    map.insert(map_key, "apple");
-    dbg!(map);
-  }
-
-  fn new_highlight_map<'a>() -> HighlightCfgMap<'a> {
+  pub(crate) fn new_highlight_map<'a>() -> HighlightCfgMap<'a> {
     let mut hmap = HighlightCfgMap::default();
     hmap.insert(
       DerivedMapKey::default()
@@ -211,6 +191,32 @@ mod tests {
       SyntaxHighlightConfig::default().with_syntax_name("toml".into()),
     );
     hmap
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  use std::io;
+
+  use ahash::HashMapExt;
+  use testutils::dbg;
+
+  use super::*;
+  use crate::{
+    AnyResult,
+    generator::{MapType, dbg_generator::en_generator},
+    highlight::dbg_shared::new_highlight_map,
+  };
+
+  #[ignore]
+  #[test]
+  fn test_derived_map_key() {
+    let map_key = DerivedMapKey::default()
+      .with_base_name("island".into())
+      .with_suffix("_md".into());
+    let mut map = HashMap::new();
+    map.insert(map_key, "apple");
+    dbg!(map);
   }
 
   #[ignore]
@@ -264,10 +270,10 @@ float = nan
   #[test]
   fn test_highlight() -> io::Result<()> {
     let hmap = new_highlight_map();
-    let generator = en_generator().with_highlight(Some(&hmap));
+    let generator = en_generator().with_highlight(hmap);
 
     let maps = generator
-      .collect_highlighted_maps()
+      .collect_highlight_maps()
       .unwrap();
 
     for (map_name, map) in maps
@@ -285,7 +291,7 @@ float = nan
   #[test]
   fn test_build_maps() -> AnyResult<()> {
     let hmap = new_highlight_map();
-    let generator = en_generator().with_highlight(Some(&hmap));
+    let generator = en_generator().with_highlight(hmap);
 
     if let Some(boxed) = generator.get_or_init_highlight_maps() {
       for (idx, (lang, map)) in boxed.iter().enumerate() {

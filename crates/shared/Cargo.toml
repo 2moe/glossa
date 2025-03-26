@@ -45,6 +45,7 @@ serde = { workspace = true, optional = true, features = ["alloc"] }
 
 [package.metadata.docs.rs]
 all-features = true
+rustdoc-args = ["--cfg", "__unstable_doc"]
 
 [lints]
 workspace = true

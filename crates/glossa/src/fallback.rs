@@ -1,214 +1,627 @@
-use std::io::Write;
+use collect_with::{CollectVector, TryCollectWith};
+use compact_str::{ToCompactString, format_compact};
+use itertools::Itertools;
+use lang_id::{
+  consts::lang_id_en, error::LangidResult, maps::MaxLangID,
+  matches::territory_containment_name::name_mapping,
+};
+use log::{debug, trace};
+use smallvec::SmallVec;
+use tap::{Pipe, Tap};
+use testutils::dbg_ref;
 
-use log::{debug, info, trace};
+use crate::{LangID, cldr_fallback_mapping};
+/// Type alias for a collection of language identifiers with smallvec
+/// optimization
+pub type LanguageChain = SmallVec<LangID, 4>;
 
-use crate::LangID;
+/// Initializes a language chain from string slices
+///
+/// ## Parameters
+///
+/// - `current` - Current locale identifier as string slice
+/// - `all_locales` - Available locale identifiers as string slices
+///
+/// ## Example
+///
+/// ```
+/// use glossa::init_language_chain_from_slice;
+/// use compact_str::ToCompactString;
+/// use collect_with::CollectVector;
+/// use lang_id::error::LangidError;
+///
+/// let chain = init_language_chain_from_slice(
+///   "gsw-LI",
+///   &[
+///      "en", "es", "pt", "zh", "gsw", "gsw-FR", "gsw-LI", "de", "de-AT", "de-BE", "de-CH", "de-IT",
+///     "de-LI", "de-LU",
+///   ],
+/// )?;
+/// // <(id, score)>:
+/// //  [("gsw-LI", 50), ("gsw", 36), ("gsw-FR", 36), ("de-LI", 26), ("de", 25),
+/// //   ("de-AT", 22), ("de-BE", 22), ("de-CH", 22), ("de-LU", 22), ("de-IT", 21)]
+///
+/// let v = chain
+///   .iter()
+///   .map(|x| x.to_compact_string())
+///   .collect_vec_with(|_| 10);
+///
+/// assert_eq!(
+///   v,
+///   [
+///     "gsw-LI", "gsw", "gsw-FR", "de-LI", "de", "de-AT", "de-BE", "de-CH",
+///     "de-LU", "de-IT",
+///   ]
+/// );
+///
+/// # Ok::<(), LangidError>(())
+/// ```
+pub fn init_language_chain_from_slice(
+  current: &str,
+  all_locales: &[&str],
+) -> LangidResult<LanguageChain> {
+  let current_language = current.parse()?;
+  let all_locales = all_locales
+    .iter()
+    .map(|x| x.parse::<LangID>())
+    .try_collect_vec_with(|_| 10)?;
 
-/// Define a type alias for the fallback chain
-pub type Chain = Vec<LangID>;
+  init_language_chain(&current_language, &all_locales)
+}
 
-pub trait FallbackChain {
-  /// Define the default language as English
-  const DEFAULT: LangID = lang_id::consts::lang_id_en();
-  // type OnceChain = OnceCell<Self::Chain>;
-
-  /// Gets the Language ID
-  fn get_language_id(&self) -> &LangID;
-
-  /// Creates a new fallback chain
-  fn new_chain(&self, custom: Option<Chain>) -> Chain {
-    trace!("Check if a custom fallback chain was provided");
-    if let Some(mut x) = custom {
-      info!("Custom FallBack Chain detected");
-      debug!("{:?}", &x);
-      Self::push_default_lang(&mut x); // If so, add the default language to the list (if it's not already present).
-      debug!("Return the custom fallback chain");
-      return x;
+/// Appends English locale to the chain if not present.
+///
+/// Returns `true` if English was added, `false` if already present.
+pub fn append_en(chain: &mut LanguageChain) -> bool {
+  match chain
+    .iter()
+    .any(|x| x == &lang_id_en())
+  {
+    true => false,
+    _ => {
+      chain.push(lang_id_en());
+      true
     }
+  }
+}
 
-    debug!("Getting fallback chain ...");
+/// Initializes language chain with scoring system
+///
+/// ## Score Calculation Rules
+///
+/// - exactly the same => 50
+/// - same language => +20
+/// - same script => +14
+/// - same region => +4
+/// - CLDR fallback exact match => +3
+/// - CLDR fallback lang+script match => +6
+/// - Nearby regions (e.g., assume current_region = FR; FR => (Western Europe)
+///   `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` if item_region ==
+///   "DE") => +2
+///   - Continent match (e.g., FR => (Europe) if item_region in Europe) => +1
+///
+/// See also: [init_language_chain_from_slice]
+pub fn init_language_chain(
+  current: &LangID,
+  all_locales: &[LangID],
+) -> LangidResult<LanguageChain> {
+  let max_current = MaxLangID::new(current);
+  let cur_language = max_current.get_language();
 
-    debug!("The fallback chain is being generated from the language resources ...");
+  debug!("---------");
+  dbg_ref!(
+    cur_language,
+    max_current.get_script(),
+    max_current.get_region()
+  );
+  {
+    trace!(
+      "all_locales: {:?}",
+      all_locales
+        .iter()
+        .map(|x| x.to_compact_string())
+        .collect::<SmallVec<_, 10>>()
+    )
+  }
 
-    debug!(
-      "Call `get_locale_list()` to generate a list of current similar languages"
+  let cldr_fallback_ids = try_collect_cldr_ids(&max_current)?;
+  {
+    trace!("cldr_fallback_ids: [");
+    trace!(
+      "// {}",
+      cldr_fallback_ids
+        .iter()
+        .map(|x| x.to_compact_string())
+        .map(|x| trace!("  {x}, "))
+        .count()
     );
-    let mut chain = self.get_locale_list();
-    debug!("Locale list: {:?}", chain); // Logging the created list of locales
-    debug!("About to sort the fallback chain");
-    self.sort_fallback_chain(&mut chain);
-
-    chain
+    trace!("]");
   }
 
-  /// Generates and returns the fallback chain.
-  /// The `custom` parameter is an optional custom fallback chain.
-  ///
-  /// A possible implementation:
-  ///
-  /// ```no_run
-  /// fn get_or_init_chain(&self, custom: Option<Chain>) -> &Chain {
-  ///     // Use the `get_or_init` method of the `OnceCell` to generate or retrieve the fallback chain.
-  ///     self.get_chain().get_or_init(|| self.new_chain(custom))
-  /// }
-  /// ```
-  fn get_or_init_chain(&self, custom: Option<Chain>) -> &Chain;
-
-  /// Prints the generated fallback chain for debugging purposes.
-  ///
-  /// The fallback_chain is only generated on the first initialisation.
-  ///
-  /// If you need a custom chain, call `get_or_init_chain()` manually first,
-  /// then call this function.
-  ///
-  /// # Example
-  ///
-  /// ```no_run
-  /// use crate::assets::localisation::locale_hashmap;
-  /// use glossa::{
-  ///     fallback::FallbackChain,
-  ///     MapLoader,
-  /// };
-  /// let loader = MapLoader::new(locale_hashmap());
-  /// loader.show_chain();
-  /// ```
-  fn show_chain(&self) {
-    const OUT_ERR_MSG: &str = "Could not output to stdout";
-
-    debug!("About to lock the standard output stream");
-    let mut out = std::io::stdout().lock();
-
-    trace!("current:  {} \nFallback:", self.get_language_id());
-    writeln!(out, "\ncurrent:  {}\nFallback:", self.get_language_id())
-      .expect(OUT_ERR_MSG);
-
-    for (lang, i) in self
-      .get_or_init_chain(None)
-      .iter()
-      .zip(1usize..)
-    {
-      debug!("Chain iteration {}: {}", i, lang);
-      writeln!(out, "{i}:\t{lang}").expect(OUT_ERR_MSG)
-    }
-
-    debug!("About to flush the standard output stream");
-    out
-      .flush()
-      .expect("Failed to flush stdout")
-  }
-
-  /// You can filter locales with the same language code, but with different
-  /// variants
-  ///
-  /// A possible implementation:
-  ///
-  /// ```no_run
-  /// fn get_locale_list(&self) -> Chain {
-  ///     iter.filter(|x| self.locale_list_filter(x))
-  ///     .cloned()
-  ///     .collect()
-  /// };
-  /// ```
-  fn get_locale_list(&self) -> Chain;
-
-  fn locale_list_filter(&self, id: &LangID) -> bool {
-    id.language == self.get_language_id().language && id != self.get_language_id()
-  }
-
-  /// Sorts the fallback chain by comparing the script and region of each
-  /// language ID.
-  ///
-  /// The primary sorting key is the script, followed by the region. If two
-  /// language IDs have the same script, the one with a matching region is
-  /// sorted first. Language IDs without a script or region are sorted last.
-  fn sort_fallback_chain(&self, chain: &mut Chain) {
-    let mut x = Self::DEFAULT;
-    trace!("Set a mutable variable with the value `{x}`");
-
-    let mut max = self
-      .get_language_id()
-      .to_owned();
-    max.maximize();
-
-    info!(
-      "current: {}, {:?}, {:?}",
-      max.language, max.script, max.region,
-    );
-
-    let en_gb_list = ["HK", "AU", "NZ", "ZA"];
-
-    chain.sort_unstable_by_key(|id| {
-      use std::cmp::Ordering::*;
-
-      trace!("Get a copy of the current LangID and maximise its subtags for comparison purposes.");
-      x = id.to_owned();
-
-      debug!("Maximising the x variable, org-x: {x}");
-      x.maximize();
-      debug!("maximised-x: {x}");
-
-      trace!("Compare the subtags of the current LangID to the subtags of the language resource.");
-
-      let s_ord =
-      match (
-        x.script,
-        max.script,
-      ) {
-          (Some(xs), Some(ys)) if xs == ys => {
-            debug!("x.script = self.script,\nxs:{xs}, self.script: {ys}");
-            Less
-          },
-          _=> Greater,
+  // let default_locales = [lang_id_en()];
+  // match all_locales {
+  //   [] => default_locales.iter(),
+  //   x => x.iter(),
+  // }
+  all_locales
+    .iter()
+    .filter(|id| {
+      id.language == cur_language
+        || cldr_fallback_ids
+          .iter()
+          .map(|x| x.get_language())
+          .any(|item| id.language == item)
+    })
+    .map(|id| {
+      let score = match id == current {
+        true => 50,
+        _ => calculate_locale_similarity(
+          &max_current,
+          &cldr_fallback_ids,
+          MaxLangID::new(id),
+        ),
       };
-
-      let r_ord= match (
-        x.region,
-        max.region,
-      ) {
-        (Some(xr), Some(yr)) if xr == yr => {
-          debug!("x.region = self.region,\nxr:{xr}, self.region: {yr}");
-          Less
-        },
-        _ => Greater,
-      };
-
-      let partial_r_ord = match (
-          x.region,
-          max.region,
-      ) {
-          (Some(xr), Some(yr))
-          => {
-            let self_region = yr.as_str();
-            match (xr.as_str(), self_region) {
-              ("HK", "MO") => Less,
-              ("GB", y) if en_gb_list.contains(&y) => Less,
-              _=> Equal,
-            }
-          }
-          _=> Equal,
-      };
-
-      (s_ord, r_ord, partial_r_ord)
-        });
-
-    trace!("Remove duplicate entries from the sorted fallback chain.");
-    chain.dedup();
-    Self::push_default_lang(chain);
-    // dbg!(&chain);
-    debug!("chain: {:?}", chain);
-  }
-
-  /// Adds the default language to the provided fallback chain if it is not
-  /// already present.
-  fn push_default_lang(x: &mut Chain) {
-    if !x.contains(&Self::DEFAULT) {
+      dbg_ref!(score);
+      (id, score)
+    })
+    .collect_vec_with(|_| 24)
+    .tap_mut(|v| v.sort_unstable_by_key(|&(_, score)| core::cmp::Reverse(score)))
+    .tap(|v| {
       debug!(
-        "Adding the default language:({}, {:?}, {:?}) to the provided fallback chain",
-        Self::DEFAULT.language,
-        Self::DEFAULT.script,
-        Self::DEFAULT.region
-      );
-      x.push(Self::DEFAULT)
+        "language chain<(id, score)>: {:?}",
+        v.iter()
+          .map(|(id, score)| (id.to_compact_string(), score))
+          .collect::<SmallVec<_, 10>>()
+      )
+    })
+    .into_iter()
+    .map(|(id, _score)| id.clone())
+    .collect::<LanguageChain>()
+    .pipe(Ok)
+}
+
+/// Gets hierarchy information for a region
+fn get_hierarchy(data: &str) -> Option<&&str> {
+  data
+    .as_bytes()
+    .pipe(name_mapping)
+    .first()
+}
+
+/// Calculates similarity score between locales
+fn calculate_locale_similarity(
+  max_current: &MaxLangID,
+  cldr_fallback_ids: &[MaxLangID],
+  max_item: MaxLangID,
+) -> u8 {
+  let (cur_language, cur_script, cur_region) = (
+    max_current.get_language(),
+    max_current.get_script(),
+    max_current.get_region(),
+  );
+
+  let (item_language, item_script, item_region) = (
+    max_item.get_language(),
+    max_item.get_script(),
+    max_item.get_region(),
+  );
+  debug!("---------");
+  dbg_ref!(item_language, item_script, item_region);
+
+  let base_score = calculate_base_score([
+    item_language == cur_language,
+    item_script == cur_script,
+    item_region == cur_region,
+  ]);
+
+  let region_score = {
+    let current_nearby = max_current
+      .get_region()
+      .pipe(get_hierarchy);
+    let item_nearby = max_item
+      .get_region()
+      .pipe(get_hierarchy);
+
+    calculate_region_score(item_region, current_nearby, item_nearby)
+  };
+
+  // CLDR fallback list scoring
+  let cldr_score = {
+    let same_language = |x: &MaxLangID| item_language == x.get_language();
+    let same_region = |x: &MaxLangID| item_region == x.get_region();
+    let same_script = |x: &MaxLangID| item_script == x.get_script();
+
+    let exactly_same = cldr_fallback_ids
+      .iter()
+      .any(|x| same_language(x) && same_region(x) && same_script(x));
+
+    let partially_same = cldr_fallback_ids
+      .iter()
+      .any(|x| same_language(x) && same_script(x));
+
+    calculate_cldr_score(exactly_same, partially_same)
+  };
+
+  base_score + region_score + cldr_score
+}
+
+/// Region hierarchy scoring
+fn calculate_region_score(
+  item_region: &str,
+  current_nearby: Option<&&str>,
+  item_nearby: Option<&&str>,
+) -> u8 {
+  match current_nearby {
+    None => 0,
+    Some(r)
+      if item_nearby
+        .map(|x| x == r)
+        .unwrap_or(false) =>
+    {
+      trace!("Nearby Region, score+2");
+      2
     }
+    Some(r)
+      if r
+        .as_bytes()
+        .pipe(name_mapping)
+        .contains(&item_region) =>
+    {
+      trace!("current continent contains item_region, score+1");
+      1
+    }
+    Some(r) => match get_hierarchy(r) {
+      Some(rr)
+        if item_nearby
+          .and_then(|x| get_hierarchy(x))
+          .map(|x| x == rr)
+          .unwrap_or(false) =>
+      {
+        trace!("Continent, score+1");
+        1
+      }
+      _ => 0,
+    },
+  }
+}
+
+/// Base score calculation for core components
+fn calculate_base_score(iter: [bool; 3]) -> u8 {
+  iter
+    .into_iter()
+    .zip([20, 14, 4])
+    .filter(|&(cond, _)| cond)
+    .map(|(_, score)| score)
+    .inspect(|score| match score {
+      n @ 20 => trace!("Same Language, score+{n}"),
+      n @ 14 => trace!("Same Script, score+{n}"),
+      n @ 4 => trace!("Same Region, score+{n}"),
+      _ => {}
+    })
+    .sum()
+}
+
+fn calculate_cldr_score(
+  cldr_id_exactly_same: bool,
+  cldr_partially_same: bool,
+) -> u8 {
+  [(cldr_id_exactly_same, 3), (cldr_partially_same, 6)]
+    .into_iter()
+    .filter(|&(cond, _)| cond)
+    .map(|(_, score)| score)
+    .inspect(|score| match score {
+      n @ 3 => trace!("cldr-fallback-id (exactly the same), score +{n}"),
+      n @ 6 => trace!("cldr-fallback-id, score +{n}"),
+      _ => {}
+    })
+    .sum()
+}
+
+/// Collects CLDR fallback IDs with priority fallback logic
+fn try_collect_cldr_ids(max_current: &MaxLangID) -> LangidResult<Vec<MaxLangID>> {
+  use collect_cldr_fallback_ids as collect;
+
+  let (cur_language, cur_script, cur_region) = (
+    max_current.get_language(),
+    max_current.get_script(),
+    max_current.get_region(),
+  );
+  // Generate fallback candidates
+  let lang_and_region = format_compact!("{cur_language}-{cur_region}");
+  let lang_and_script = format_compact!("{cur_language}-{cur_script}",);
+
+  // Priority-based fallback collection
+  match collect(&max_current.to_compact_string())? {
+    x if x.is_empty() => match collect(&lang_and_region)? {
+      r_list if r_list.is_empty() => match collect(&lang_and_script)? {
+        s_list if s_list.is_empty() => collect(cur_language),
+        s_list => s_list.pipe(Ok),
+      },
+      r_list => r_list.pipe(Ok),
+    },
+    x => x.pipe(Ok),
+  }
+}
+
+/// Collects CLDR fallback IDs from raw mapping data
+fn collect_cldr_fallback_ids(
+  current_language: &str,
+) -> LangidResult<Vec<MaxLangID>> {
+  cldr_fallback_mapping(current_language.as_bytes())
+    .tap(|x| trace!("language: {current_language}, raw_cldr_fallback_list: {x:?}"))
+    .iter()
+    .map(|x| x.parse::<LangID>())
+    .map_ok(|x| MaxLangID::new(&x))
+    .try_collect_vec_with(|_| 8)
+}
+
+#[cfg(test)]
+pub(crate) mod dbg_shared {
+  pub(crate) fn init_logger(trace: bool) {
+    let level = {
+      use log::LevelFilter::*;
+      match trace {
+        true => Trace,
+        _ => Debug,
+      }
+    };
+
+    env_logger::builder()
+      .filter_level(level)
+      .init()
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  pub use anyhow::Result as AnyResult;
+  use collect_with::TryCollectWith;
+  use compact_str::ToCompactString;
+  use itertools::Itertools;
+  use lang_id::{
+    maps::MaxLangID, matches::territory_containment_name::name_mapping,
+  };
+  use tap::{Pipe, Tap};
+
+  use super::*;
+  use crate::{cldr_fallback_mapping, fallback::dbg_shared::init_logger};
+
+  #[ignore]
+  #[test]
+  fn test_rev_sort_arr() {
+    init_logger(false);
+    let mut arr = [("en-US", 7), ("en", 4), ("en-001", 6)];
+    arr.sort_unstable_by_key(|&(_, n)| core::cmp::Reverse(n));
+    dbg_ref!(arr);
+  }
+
+  #[ignore]
+  #[test]
+  fn test_init_gsw_chain() -> AnyResult<()> {
+    init_logger(true);
+    let chain = init_language_chain_from_slice(
+      "gsw-LI",
+      &[
+        "de", "de-AT", "de-BE", "de-CH", "de-IT", "de-LI", "de-LU", "en", "es",
+        "pt", "gsw", "gsw-FR", "gsw-LI",
+      ],
+    )?;
+    // <(id, score)>:
+    //  [("gsw-LI", 50), ("gsw", 36), ("gsw-FR", 36), ("de-LI", 26), ("de", 25),
+    // ("de-AT", 22), ("de-BE", 22), ("de-CH", 22), ("de-LU", 22), ("de-IT", 21)]
+
+    let v = chain
+      .iter()
+      .map(|x| x.to_compact_string())
+      .collect_vec_with(|_| 10);
+
+    assert_eq!(
+      v,
+      [
+        "gsw-LI", "gsw", "gsw-FR", "de-LI", "de", "de-AT", "de-BE", "de-CH",
+        "de-LU", "de-IT",
+      ]
+    );
+
+    Ok(())
+  }
+
+  #[ignore]
+  #[test]
+  fn test_init_zh_mo_chain() -> AnyResult<()> {
+    init_logger(true);
+    let chain = init_language_chain_from_slice(
+      "zh-Hant-MO",
+      &[
+        "de",
+        "ru",
+        "zh-Latn",
+        "ar",
+        "en",
+        "es",
+        "pt",
+        "zh-SG",
+        "zh",
+        "zh-Hans",
+        "zh-Hant",
+        "zh-Hant-TW",
+        "zh-Hant-HK",
+        "zh-MO",
+      ],
+    )?;
+    // <(id, score)>:
+    //  [("zh-MO", 46), ("zh-Hant-HK", 45), ("zh-Hant", 42), ("zh-Hant-TW", 42),
+    // ("zh", 31), ("zh-Hans", 31), ("zh-SG", 27), ("zh-Latn", 22)]
+
+    let v = chain
+      .iter()
+      .map(|x| x.to_compact_string())
+      .collect_vec_with(|_| 10);
+
+    assert_eq!(
+      v,
+      [
+        "zh-MO",
+        "zh-Hant-HK",
+        "zh-Hant",
+        "zh-Hant-TW",
+        "zh",
+        "zh-Hans",
+        "zh-SG",
+        "zh-Latn",
+      ]
+    );
+
+    Ok(())
+  }
+
+  #[cfg(feature = "std")]
+  #[ignore]
+  #[test]
+  /// prototype implementation
+  fn test_collect_gsw_chain() -> AnyResult<()> {
+    let current: LangID = "gsw-LI".parse()?;
+    let max_current = MaxLangID::new(&current);
+
+    dbg!(
+      max_current.get_language(),
+      max_current.get_script(),
+      max_current.get_region()
+    );
+
+    let all_locales = [
+      "gsw", "gsw-FR", "gsw-LI", "de", "de-AT", "de-BE", "de-CH", "de-IT", "de-LI",
+      "de-LU", "en", "es", "pt",
+    ]
+    .into_iter()
+    .map(|x| x.parse::<LangID>())
+    .try_collect_vec_with(|_| 10)?;
+
+    // dbg!(all_locales);
+    let cldr_fallback_ids = cldr_fallback_mapping(
+      max_current
+        .get_language()
+        .as_bytes(),
+    )
+    .into_iter()
+    .map(|x| x.parse::<LangID>())
+    .map_ok(|x| MaxLangID::new(&x))
+    .try_collect_vec_with(|_| 8)?;
+
+    let available_languages = all_locales
+      .iter()
+      .filter(|id| {
+        id.language == current.language.as_str()
+          || cldr_fallback_ids
+            .iter()
+            .map(|x| x.get_language())
+            .any(|item| id.language == item)
+      })
+      .collect_vec();
+
+    let list = available_languages
+      .into_iter()
+      .map(|id| {
+        if id == &current {
+          return (id, 32);
+        }
+
+        let mut score = 0u8;
+        let max_item = MaxLangID::new(id);
+
+        if max_item.get_language() == max_current.get_language() {
+          score += 10
+        }
+        if max_item.get_script() == max_current.get_script() {
+          score += 6
+        }
+        if max_item.get_region() == max_current.get_region() {
+          score += 4
+        }
+
+        fn get_hierarchy(data: &str) -> Option<&&str> {
+          data
+            .as_bytes()
+            .pipe(name_mapping)
+            .first()
+        }
+
+        let current_nearby = max_current
+          .get_region()
+          .pipe(get_hierarchy);
+
+        let item_nearby = max_item
+          .get_region()
+          .pipe(get_hierarchy);
+
+        match current_nearby {
+          Some(r)
+            if item_nearby
+              .map(|x| x == r)
+              .unwrap_or(false) =>
+          {
+            score += 2
+          }
+          _ => match current_nearby.and_then(|x| get_hierarchy(x)) {
+            Some(rr)
+              if item_nearby
+                .and_then(|x| get_hierarchy(x))
+                .map(|x| x == rr)
+                .unwrap_or(false) =>
+            {
+              score += 1
+            }
+            _ => {}
+          },
+        }
+
+        let same_language =
+          |x: &MaxLangID| max_item.get_language() == x.get_language();
+        let same_region = |x: &MaxLangID| max_item.get_region() == x.get_region();
+        let same_script = |x: &MaxLangID| max_item.get_script() == x.get_script();
+
+        if cldr_fallback_ids
+          .iter()
+          .any(|x| same_language(x) && same_region(x) && same_script(x))
+        {
+          score += 3
+        }
+
+        if cldr_fallback_ids
+          .iter()
+          .any(|x| {
+            // let same_lang_and_region = same_language(x) && same_region(x);
+            let same_lang_and_script = same_language(x) && same_script(x);
+            same_lang_and_script
+          })
+        {
+          score += 1
+        }
+        (id, score)
+      })
+      .map(|(id, score)| (id.to_compact_string(), score))
+      .collect_vec()
+      .tap_mut(|v| v.sort_unstable_by_key(|&(_, score)| core::cmp::Reverse(score)));
+
+    println!("{list:?}");
+    assert_eq!(
+      list,
+      [
+        ("gsw-LI", 32),
+        ("gsw", 18),
+        ("gsw-FR", 18),
+        ("de-LI", 13),
+        ("de", 12),
+        ("de-AT", 9),
+        ("de-BE", 9),
+        ("de-CH", 9),
+        ("de-LU", 9),
+        ("de-IT", 8)
+      ]
+      .map(|(k, v)| (k.into(), v))
+    );
+    // dbg!(list);
+
+    Ok(())
   }
 }

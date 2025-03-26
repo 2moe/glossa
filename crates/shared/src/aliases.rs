@@ -1,10 +1,6 @@
-#![cfg(feature = "type-aliases")]
+// #![cfg(feature = "type-aliases")]
 
-pub use lang_id::LangID;
-#[allow(unused_imports)]
-pub use tmpl_resolver::resolver::{TemplateAST, TemplateResolver};
-
-use crate::MiniStr;
+use crate::{LangID, MiniStr, TemplateResolver};
 
 #[cfg(feature = "std")]
 pub mod type_aliases {
@@ -18,7 +14,7 @@ pub mod type_aliases {
   // // [(lang, <(map_name, key), value>)]
   pub type L10nMaps = Box<[(LangID, L10nFlattenMap)]>;
 
-  pub type L10nTemplateMap = HashMap<KString, TemplateAST>;
+  pub type L10nTemplateMap = HashMap<KString, TemplateResolver>;
 
   // // [(lang, <map_name, map>)]
   pub type TemplateMaps = Box<[(LangID, L10nTemplateMap)]>;
@@ -34,7 +30,7 @@ pub mod type_aliases {
 
   pub type L10nMaps = Box<[(LangID, L10nFlattenMap)]>;
 
-  pub type L10nTemplateMap = BTreeMap<MiniStr, TemplateAST>;
+  pub type L10nTemplateMap = BTreeMap<MiniStr, TemplateResolver>;
 
   pub type TemplateMaps = Box<[(LangID, L10nTemplateMap)]>;
 }
