@@ -38,7 +38,6 @@ toml = { workspace = true, optional = true }
 hlight = { workspace = true, optional = true }
 kstring = { workspace = true, features = ["serde"] }
 lang-id = { workspace = true, features = ["map", "match", "serde"] }
-compact_str = { workspace = true, features = ["serde", "std"] }
 thiserror = { workspace = true, features = ["std"] }
 rayon.workspace = true
 anyhow.workspace = true
@@ -49,7 +48,7 @@ bincode = { workspace = true, features = ["serde", "std"] }
 # phf_shared.workspace = true
 walkdir = "2.5"
 serde_json5 = { version = "0.2", optional = true }
-glossa-shared.workspace = true
+glossa-shared = { workspace = true, features = ["bincode", "std"] }
 tmpl-resolver = { workspace = true, features = ["all"] }
 smallvec.workspace = true
 
@@ -62,4 +61,4 @@ workspace = true
 
 [dev-dependencies]
 testutils = { workspace = true, features = ["std"] }
-glossa-shared = { workspace = true, features = ["bincode", "std"] }
+# glossa-shared = { workspace = true, features = ["bincode", "std"] }

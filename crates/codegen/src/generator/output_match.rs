@@ -1,6 +1,7 @@
 use std::io::{self, Write};
 
-use compact_str::{ToCompactString, format_compact};
+use glossa_shared::{ToCompactString, fmt_compact};
+// use compact_str::{ToCompactString, fmt_compact};
 use itertools::Itertools;
 use tap::{Pipe, Tap};
 
@@ -166,10 +167,10 @@ impl<'h> Generator<'_, 'h> {
       let ret_type = {
         let raw_locales_len = raw_locales.len();
         match const_lang_id {
-          true => format_compact!(
+          true => fmt_compact!(
             "[lang_id::LangID; {raw_locales_len}] {{\n  use lang_id::consts::*;\n  ["
           ),
-          _ => format_compact!("[&'static str; {raw_locales_len}] {{\n  "),
+          _ => fmt_compact!("[&'static str; {raw_locales_len}] {{\n  "),
         }
       };
 
@@ -262,7 +263,7 @@ impl<'h> Generator<'_, 'h> {
 
 /// Helper function to format keys as byte string literals
 fn key_as_bytes(key: &str) -> MiniStr {
-  use format_compact as fmt;
+  use fmt_compact as fmt;
 
   match key.is_ascii() {
     true => fmt!("b{key:?}"),

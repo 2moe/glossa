@@ -1,6 +1,6 @@
 use ahash::{HashMap, HashMapExt};
-use compact_str::format_compact;
 use getset::{Getters, WithSetters};
+use glossa_shared::fmt_compact;
 pub use hlight::HighlightResource;
 pub use kstring::KString;
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
@@ -46,7 +46,7 @@ pub struct DerivedMapKey {
 impl DerivedMapKey {
   fn format(&self) -> KString {
     let Self { base_name, suffix } = self;
-    format_compact!("{base_name}{suffix}").pipe(to_kstr)
+    fmt_compact!("{base_name}{suffix}").pipe(to_kstr)
   }
 }
 

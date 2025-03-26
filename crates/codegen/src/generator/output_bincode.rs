@@ -4,8 +4,7 @@ use std::{
   path::Path,
 };
 
-use compact_str::format_compact;
-use glossa_shared::MiniStr;
+use glossa_shared::{MiniStr, fmt_compact};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use tap::Pipe;
 
@@ -170,7 +169,7 @@ impl<'h> Generator<'_, 'h> {
     language: D,
   ) -> io::Result<BufWriter<File>> {
     let suffix = self.get_bincode_suffix();
-    let bincode_name = format_compact!("{language}{suffix}");
+    let bincode_name = fmt_compact!("{language}{suffix}");
     let out_dir = self.get_outdir().as_deref();
 
     create_buf_writer(out_dir, bincode_name)

@@ -9,9 +9,9 @@ pub type L10nResMap = HashMap<KString, Vec<L10nMapEntry>>;
 
 use ahash::HashMap;
 use anyhow::bail;
-use compact_str::ToCompactString;
 use dashmap::DashSet;
 use getset::{Getters, WithSetters};
+use glossa_shared::ToCompactString;
 use kstring::KString;
 use rayon::iter::{ParallelBridge, ParallelIterator};
 use serde::{Deserialize, Serialize};

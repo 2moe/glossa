@@ -427,7 +427,6 @@ dependencies = [
  "ahash",
  "anyhow",
  "bincode 2.0.1",
- "compact_str",
  "dashmap",
  "getset",
  "glossa-shared",

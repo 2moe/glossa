@@ -3,8 +3,9 @@ use std::{
   io::{self, BufWriter, Write},
 };
 
-use compact_str::{ToCompactString, format_compact};
-use glossa_shared::{PhfTupleKey, phf_triple_key::RawTripleKey};
+use glossa_shared::{
+  PhfTupleKey, ToCompactString, fmt_compact, phf_triple_key::RawTripleKey,
+};
 use phf_codegen::OrderedMap;
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use tap::{Pipe, Tap};
@@ -125,7 +126,7 @@ impl<'h> Generator<'_, 'h> {
           .map(|((name, k), v)| {
             let new_key =
               RawTripleKey(lang.to_compact_string(), name.as_str(), k.as_str());
-            let value = format_compact!(r##########"r#####"{v}"#####"##########);
+            let value = fmt_compact!(r##########"r#####"{v}"#####"##########);
             (new_key, value)
           })
       })
@@ -207,7 +208,7 @@ impl<'h> Generator<'_, 'h> {
   ) -> io::Result<BufWriter<File>> {
     let mod_prefix = self.get_mod_prefix();
     let rs_file_name =
-      format_compact!("{mod_prefix}{}.rs", to_lower_snake_case(language));
+      fmt_compact!("{mod_prefix}{}.rs", to_lower_snake_case(language));
 
     eprintln!(
       "#[cfg(feature = \"{mod_prefix}{language}\")]\n\
@@ -234,7 +235,7 @@ fn assemble_phf_map(map_entry: &L10nBTreeMap) -> OrderedMap<PhfTupleKey<'_>> {
     .iter()
     .map(|((name, k), v)| {
       let tuple_key = PhfTupleKey(name.as_str(), k.as_str());
-      let value = format_compact!(r##########"r#####"{v}"#####"##########);
+      let value = fmt_compact!(r##########"r#####"{v}"#####"##########);
       (tuple_key, value)
     })
     .fold(OrderedMap::new(), |mut acc, x| {
@@ -255,7 +256,7 @@ fn assemble_phf_map(map_entry: &L10nBTreeMap) -> OrderedMap<PhfTupleKey<'_>> {
 /// 1. Convert to ASCII lowercase
 /// 2. Replace hyphens/dots with underscores
 pub fn to_lower_snake_case<D: core::fmt::Display>(id: D) -> MiniStr {
-  format_compact!("{id}")
+  fmt_compact!("{id}")
     .tap_mut(|s| s.make_ascii_lowercase())
     .chars()
     .map(|c| match c {

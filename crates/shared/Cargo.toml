@@ -19,6 +19,7 @@ std = [
     "tmpl-resolver?/std",
     "bincode?/std",
     "serde?/std",
+    "compact_str/std",
 ]
 serde = [
     "dep:serde",
@@ -26,6 +27,7 @@ serde = [
     "kstring?/serde",
     "lang-id?/serde",
     "tmpl-resolver?/serde",
+    "compact_str/serde",
 ]
 type-aliases = ["dep:lang-id", "dep:tmpl-resolver"]
 phf = ["dep:phf"]
