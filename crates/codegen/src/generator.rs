@@ -6,8 +6,8 @@ pub(crate) mod output_phf;
 use std::{io, path::PathBuf, sync::OnceLock};
 
 use getset::{Getters, MutGetters, WithSetters};
+use glossa_shared::tap::Pipe;
 pub use output_phf::to_lower_snake_case;
-use tap::Pipe;
 
 use crate::{
   L10nResources, MiniStr, Visibility,

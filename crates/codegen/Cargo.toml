@@ -11,10 +11,8 @@ rust-version.workspace = true
 description = "Generate const language localisation map code at compile time"
 
 [features]
-# default = ["yaml", "ron", "toml", "json", "highlight"]
-# default = ["yaml", "highlight"]
 default = ["yaml", "toml"]
-all = ["yaml", "json", "json5", "ron", "toml", "highlight"]
+# all = ["yaml", "json", "json5", "ron", "toml", "highlight"]
 yaml = ["dep:serde_yml"]
 json = ["dep:serde_json"]
 json5 = ["dep:serde_json5"]
@@ -23,13 +21,11 @@ toml = ["dep:toml"]
 highlight = ["dep:hlight"]
 
 [dependencies]
-phf.workspace = true
+# phf.workspace = true
 phf_codegen.workspace = true
 getset.workspace = true
 log.workspace = true
 serde = { workspace = true, features = ["std"] }
-tap.workspace = true
-ahash.workspace = true
 nom.workspace = true
 ron = { workspace = true, optional = true }
 serde_json = { workspace = true, optional = true }
@@ -42,14 +38,12 @@ thiserror = { workspace = true, features = ["std"] }
 rayon.workspace = true
 anyhow.workspace = true
 itertools.workspace = true
-# dashmap = { version = "6.1", features = ["rayon"] }
 dashmap = "6.1"
 bincode = { workspace = true, features = ["serde", "std"] }
-# phf_shared.workspace = true
 walkdir = "2.5"
 serde_json5 = { version = "0.2", optional = true }
 glossa-shared = { workspace = true, features = ["bincode", "std"] }
-tmpl-resolver = { workspace = true, features = ["all"] }
+tmpl-resolver = { workspace = true, features = ["bincode", "std", "toml"] }
 smallvec.workspace = true
 
 [package.metadata.docs.rs]

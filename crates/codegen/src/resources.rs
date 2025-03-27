@@ -7,15 +7,17 @@ use std::{
 
 pub type L10nResMap = HashMap<KString, Vec<L10nMapEntry>>;
 
-use ahash::HashMap;
 use anyhow::bail;
 use dashmap::DashSet;
 use getset::{Getters, WithSetters};
-use glossa_shared::ToCompactString;
+use glossa_shared::{
+  ToCompactString,
+  tap::{Pipe, TapFallible, TryConv},
+  type_aliases::HashMap,
+};
 use kstring::KString;
 use rayon::iter::{ParallelBridge, ParallelIterator};
 use serde::{Deserialize, Serialize};
-use tap::{Pipe, TapFallible, TryConv};
 use tmpl_resolver::TemplateResolver;
 use walkdir::{DirEntry, WalkDir};
 

@@ -1,9 +1,11 @@
+use lang_id::error::LangidError;
 use thiserror::Error;
 
 use crate::MiniStr;
 
 /// A custom error type for Glossa
-#[derive(Error, Debug)]
+// #[derive(Error, Debug, PartialEq)]
+#[derive(Debug, Error, PartialEq)]
 pub enum GlossaError<'map> {
   /// (map_name, key)
   #[error("{msg} (map: '{0}', key: '{1}')", msg = text_not_found())]
@@ -12,18 +14,32 @@ pub enum GlossaError<'map> {
   #[error("{msg} (key: '{0}')", msg = text_not_found())]
   TextNotFound(MiniStr),
   #[error("LangID Error: {0}")]
-  LangIDError(#[from] lang_id::error::LangidError),
+  LangIDError(#[from] LangidError),
+}
+
+impl Default for GlossaError<'_> {
+  fn default() -> Self {
+    LangidError::Unknown.into()
+  }
 }
 
 impl<'map> GlossaError<'map> {
   /// Constructor function for TextNotFound error
-  pub fn text_not_found<S: Into<MiniStr>>(v: S) -> Self {
+  pub fn new_text_not_found<S: Into<MiniStr>>(v: S) -> Self {
     Self::TextNotFound(v.into())
   }
 
   /// Constructor function for MapTextNotFound error
-  pub fn map_text_not_found(map: &'map str, key: &'map str) -> Self {
+  pub fn new_map_text_not_found(map: &'map str, key: &'map str) -> Self {
     Self::MapTextNotFound(map, key)
+  }
+
+  /// Returns `true` if the glossa error is [`LangIDError`].
+  ///
+  /// [`LangIDError`]: GlossaError::LangIDError
+  #[must_use]
+  pub fn is_langid_error(&self) -> bool {
+    matches!(self, Self::LangIDError(..))
   }
 }
 
@@ -72,10 +88,10 @@ mod tests {
   #[ignore]
   #[test]
   fn test_err() {
-    let err = GlossaError::text_not_found("greeting");
+    let err = GlossaError::new_text_not_found("greeting");
     println!("{err}");
 
-    let err2 = GlossaError::map_text_not_found("abc.tmpl", "hello");
+    let err2 = GlossaError::new_map_text_not_found("abc.tmpl", "hello");
     println!("{err2}")
   }
 }

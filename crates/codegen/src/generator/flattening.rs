@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-use ahash::{HashMap, HashMapExt};
+use glossa_shared::type_aliases::{HashMap, HashMapExt};
 use kstring::KString;
 use lang_id::LangID;
 use tmpl_resolver::resolver::OrderedAST;
@@ -150,7 +150,8 @@ fn parse_language_id(language: &str) -> LangID {
 
 #[cfg(test)]
 mod tests {
-  type L10nHashMap = ahash::HashMap<(KString, KString), MiniStr>;
+  use glossa_shared::type_aliases::HashMap;
+  type L10nHashMap = HashMap<(KString, KString), MiniStr>;
 
   use anyhow::{Result as AnyResult, bail};
   use testutils::dbg;

@@ -13,7 +13,7 @@ use testutils::dbg_ref;
 use crate::{LangID, cldr_fallback_mapping};
 /// Type alias for a collection of language identifiers with smallvec
 /// optimization
-pub type LanguageChain = SmallVec<LangID, 4>;
+pub type LanguageChain = SmallVec<LangID, 5>;
 
 /// Initializes a language chain from string slices
 ///

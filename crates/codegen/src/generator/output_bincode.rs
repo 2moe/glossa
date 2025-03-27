@@ -4,9 +4,8 @@ use std::{
   path::Path,
 };
 
-use glossa_shared::{MiniStr, fmt_compact};
+use glossa_shared::{MiniStr, fmt_compact, tap::Pipe};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
-use tap::Pipe;
 
 use crate::{
   AnyResult,

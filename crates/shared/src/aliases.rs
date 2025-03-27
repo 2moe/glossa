@@ -1,23 +1,21 @@
 // #![cfg(feature = "type-aliases")]
 
-use crate::{MiniStr, MiniStr as Language, TemplateResolver};
+use crate::{
+  MiniStr as Key, MiniStr as Value, MiniStr as Language, MiniStr as MapName,
+  TemplateResolver,
+};
 
 #[cfg(feature = "std")]
 pub mod type_aliases {
-
-  use ahash::HashMap;
-  use kstring::KString;
+  pub use ahash::{HashMap, HashMapExt};
+  pub use kstring::KString;
 
   use super::*;
 
-  pub type L10nFlattenMap = HashMap<(KString, KString), MiniStr>;
-
-  // // [(lang, <(map_name, key), value>)]
+  pub type L10nFlattenMap = HashMap<(MapName, Key), Value>;
   pub type L10nMaps = HashMap<Language, L10nFlattenMap>;
 
-  pub type L10nTemplateMap = HashMap<KString, TemplateResolver>;
-
-  // // [(lang, <map_name, map>)]
+  pub type L10nTemplateMap = HashMap<MapName, TemplateResolver>;
   pub type TemplateMaps = HashMap<Language, L10nTemplateMap>;
 }
 
@@ -27,11 +25,11 @@ pub mod type_aliases {
 
   use super::*;
 
-  pub type L10nFlattenMap = BTreeMap<(MiniStr, MiniStr), MiniStr>;
+  pub type L10nFlattenMap = BTreeMap<(MapName, Key), Value>;
 
   pub type L10nMaps = BTreeMap<Language, L10nFlattenMap>;
 
-  pub type L10nTemplateMap = BTreeMap<MiniStr, TemplateResolver>;
+  pub type L10nTemplateMap = BTreeMap<MapName, TemplateResolver>;
 
   pub type TemplateMaps = BTreeMap<Language, L10nTemplateMap>;
 }

@@ -19,10 +19,12 @@ mod aliases;
 #[cfg(feature = "type-aliases")]
 pub use aliases::type_aliases;
 #[cfg(feature = "type-aliases")]
-pub use lang_id::{LangID, RawID};
+pub use lang_id;
 // -----
 #[cfg(feature = "phf")]
 pub use phf;
+#[cfg(feature = "type-aliases")]
+pub use tap;
 // -----
 #[cfg(feature = "type-aliases")]
 pub use tmpl_resolver::resolver::{TemplateAST, TemplateResolver};

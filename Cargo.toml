@@ -77,8 +77,8 @@ path = "crates/codegen"
 
 [workspace.dependencies.tmpl-resolver]
 default-features = false
-version = "0.0.11"
-path = "../tmpl-resolver"
+version = "0.0.14"
+# path = "../tmpl-resolver"
 
 [workspace.lints.rust.unexpected_cfgs]
 level = "warn"

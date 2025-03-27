@@ -424,7 +424,6 @@ dependencies = [
 name = "glossa-codegen"
 version = "0.0.1"
 dependencies = [
- "ahash",
  "anyhow",
  "bincode 2.0.1",
  "dashmap",
@@ -436,7 +435,6 @@ dependencies = [
  "lang-id",
  "log",
  "nom",
- "phf",
  "phf_codegen",
  "rayon",
  "ron",
@@ -445,7 +443,6 @@ dependencies = [
  "serde_json5",
  "serde_yml",
  "smallvec 2.0.0-alpha.11",
- "tap",
  "testutils",
  "thiserror 2.0.12",
  "tmpl-resolver",
@@ -1221,7 +1218,9 @@ dependencies = [
 
 [[package]]
 name = "tmpl-resolver"
-version = "0.0.11"
+version = "0.0.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f3ced9d690b83c262da829b782d846edad7864d14853e048363661ba85d9f9cb"
 dependencies = [
  "ahash",
  "bincode 2.0.1",
@@ -1232,6 +1231,7 @@ dependencies = [
  "tap",
  "thiserror 2.0.12",
  "tinyvec",
+ "toml",
 ]
 
 [[package]]

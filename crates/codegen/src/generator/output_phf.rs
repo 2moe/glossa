@@ -4,11 +4,12 @@ use std::{
 };
 
 use glossa_shared::{
-  PhfTupleKey, ToCompactString, fmt_compact, phf_triple_key::RawTripleKey,
+  PhfTupleKey, ToCompactString, fmt_compact,
+  phf_triple_key::RawTripleKey,
+  tap::{Pipe, Tap},
 };
 use phf_codegen::OrderedMap;
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
-use tap::{Pipe, Tap};
 
 use crate::{
   MiniStr,
@@ -309,6 +310,9 @@ mod tests {
 
   pub(crate) const fn en_gb_map() -> PhfL10nOrderedMap {
     use PhfTupleKey as Key;
+    // use glossa_shared::phf;
+    use lang_id::maps::phf;
+
     phf::OrderedMap {
       key: 12913932095322966823,
       disps: &[(0, 0)],
@@ -322,6 +326,8 @@ mod tests {
 
   pub(crate) const fn all_in_one_map() -> PhfL10nAllInOneMap {
     use PhfTripleKey as Key;
+    use lang_id::maps::phf;
+
     phf::OrderedMap {
       key: 12913932095322966823,
       disps: &[(2, 3), (2, 0)],

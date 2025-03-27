@@ -1,10 +1,12 @@
-use ahash::{HashMap, HashMapExt};
 use getset::{Getters, WithSetters};
-use glossa_shared::fmt_compact;
+use glossa_shared::{
+  fmt_compact,
+  tap::Pipe,
+  type_aliases::{HashMap, HashMapExt},
+};
 pub use hlight::HighlightResource;
 pub use kstring::KString;
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
-use tap::Pipe;
 
 use crate::{Generator, MiniStr, resources::L10nMapEntry, to_kstr};
 
@@ -199,7 +201,6 @@ pub(crate) mod dbg_shared {
 mod tests {
   use std::io;
 
-  use ahash::HashMapExt;
   use testutils::dbg;
 
   use super::*;

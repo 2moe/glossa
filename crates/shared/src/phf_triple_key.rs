@@ -4,7 +4,7 @@ use phf_shared::{FmtConst, PhfBorrow, PhfHash};
 
 use crate::MiniStr;
 
-#[derive(Default, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Clone, Copy)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Copy)]
 pub struct PhfTripleKey<'a>(pub &'a str, pub &'a str, pub &'a str);
 
 impl PhfHash for PhfTripleKey<'_> {
@@ -33,7 +33,7 @@ impl FmtConst for PhfTripleKey<'_> {
 
 // --------
 
-#[derive(Default, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Clone)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct RawTripleKey<'a>(pub MiniStr, pub &'a str, pub &'a str);
 impl PhfHash for RawTripleKey<'_> {
   fn phf_hash<H: Hasher>(&self, state: &mut H) {

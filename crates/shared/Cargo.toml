@@ -31,6 +31,7 @@ serde = [
 ]
 type-aliases = ["dep:lang-id", "dep:tmpl-resolver"]
 phf = ["dep:phf"]
+consts = ["lang-id?/consts"]
 bincode = ["serde", "type-aliases", "dep:bincode"]
 
 [dependencies]
@@ -39,7 +40,7 @@ phf_shared.workspace = true
 tap.workspace = true
 phf = { workspace = true, optional = true }
 ahash = { workspace = true, optional = true }
-lang-id = { workspace = true, optional = true }
+lang-id = { workspace = true, optional = true, features = ["compact_str"] }
 kstring = { workspace = true, optional = true }
 tmpl-resolver = { workspace = true, optional = true }
 bincode = { workspace = true, optional = true, features = ["alloc", "serde"] }

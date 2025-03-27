@@ -1,5 +1,5 @@
 pub(crate) use bincode::config::standard as bincode_std_cfg;
-pub use tmpl_resolver::ResolverResult;
+pub use tmpl_resolver::error::ResolverResult;
 
 use crate::type_aliases::{L10nFlattenMap, L10nMaps, L10nTemplateMap, TemplateMaps};
 
@@ -23,7 +23,7 @@ where
 ///
 /// ```ignore
 /// Ok(
-///   HashMap<(map_name, key), value>,
+///   Map<(map_name, key), value>,
 ///   read_bytes_size
 /// )
 /// ```
@@ -39,9 +39,8 @@ pub fn decode_single_data_to_map(
 /// returns:
 ///
 /// ```ignore
-/// // Array<T> = Box<[T]>
 /// Ok(
-///   Array< ( LangID, HashMap<(map_name, key), value> ) >,
+///   Map< LangID, Map<(map_name, key), value> >,
 ///   read_bytes_size
 /// )
 /// ```
@@ -55,7 +54,7 @@ pub fn decode_to_maps(slice: &[u8]) -> ResolverResult<(L10nMaps, usize)> {
 ///
 /// ```ignore
 /// Ok(
-///   HashMap<map_name, TemplateResolver>,
+///   Map<map_name, TemplateResolver>,
 ///   read_bytes_size
 /// )
 /// ```
@@ -71,9 +70,8 @@ pub fn decode_single_data_to_template_map(
 /// returns:
 ///
 /// ```ignore
-/// // Array<T> = Box<[T]>
 /// Ok(
-///   Array< ( LangID, HashMap<map_name, TemplateResolver> ) >,
+///   Map< LangID, Map<map_name, TemplateResolver> >,
 ///   read_bytes_size
 /// )
 /// ```
@@ -110,7 +108,7 @@ where
 ///
 /// ```ignore
 /// Ok(
-///   HashMap<(map_name, key), value>,
+///   Map<(map_name, key), value>,
 /// )
 /// ```
 pub fn decode_single_file_to_flatten_map<P: AsRef<std::path::Path>>(
@@ -125,9 +123,8 @@ pub fn decode_single_file_to_flatten_map<P: AsRef<std::path::Path>>(
 /// returns:
 ///
 /// ```ignore
-/// // Array<T> = Box<[T]>
 /// Ok(
-///   Array< ( LangID, HashMap<(map_name, key), value> ) >,
+///   Map< LangID, Map<(map_name, key), value> >,
 /// )
 /// ```
 #[cfg(feature = "std")]
@@ -144,7 +141,7 @@ pub fn decode_file_to_maps<P: AsRef<std::path::Path>>(
 ///
 /// ```ignore
 /// Ok(
-///   HashMap<map_name, TemplateResolver>,
+///   Map<map_name, TemplateResolver>,
 /// )
 /// ```
 pub fn decode_single_file_to_template_map<P: AsRef<std::path::Path>>(
@@ -160,9 +157,8 @@ pub fn decode_single_file_to_template_map<P: AsRef<std::path::Path>>(
 /// returns:
 ///
 /// ```ignore
-/// // Array<T> = Box<[T]>
 /// Ok(
-///   Array< ( LangID, HashMap<map_name, TemplateResolver> ) >,
+///   Map< LangID, Map<map_name, TemplateResolver> >,
 /// )
 /// ```
 pub fn decode_file_to_template_maps<P: AsRef<std::path::Path>>(

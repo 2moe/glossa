@@ -1,11 +1,13 @@
 use std::io::{self, Write};
 
 use anyhow::bail;
-use glossa_shared::{ToCompactString, fmt_compact};
+use glossa_shared::{
+  ToCompactString, fmt_compact,
+  tap::{Pipe, Tap},
+};
 // use compact_str::{ToCompactString, fmt_compact};
 use itertools::Itertools;
 use lang_id::{LangID, RawID};
-use tap::{Pipe, Tap};
 
 use crate::{
   AnyResult, MiniStr,
