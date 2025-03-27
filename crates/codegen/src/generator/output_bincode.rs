@@ -264,24 +264,40 @@ mod tests {
   #[test]
   #[cfg(feature = "highlight")]
   fn test_decode_highlight_aio() -> glossa_shared::decode::ResolverResult<()> {
-    use lang_id::consts::lang_id_de;
-
     let data =
       glossa_shared::decode::decode_file_to_maps("tmp/all.highlight.bincode")?;
 
-    let en_maps = data.get(&lang_id_de());
-
-    dbg!(en_maps);
+    let en_maps = data.get("en").unwrap();
+    let value = en_maps
+      .get(&("md_md".into(), "pwsh".into()))
+      .unwrap();
+    println!("{value}");
     Ok(())
   }
 
-  // #[ignore]
-  // #[test]
-  // fn test_encode_tmpl_aio_bincode() -> AnyResult<()> {
-  //   new_generator()
-  //     .with_bincode_suffix("_regular.bincode".into())
-  //     .output_bincode_all_in_one(MapType::Template)
-  // }
+  #[ignore]
+  #[test]
+  fn test_encode_tmpl_aio_bincode() -> AnyResult<()> {
+    new_generator()
+      .with_bincode_suffix("_tmpl.bincode".into())
+      .output_bincode_all_in_one(MapType::Template)
+  }
+
+  #[ignore]
+  #[test]
+  fn test_decode_tmpl_aio_bincode() -> AnyResult<()> {
+    let raw_map =
+      glossa_shared::decode::decode_file_to_template_maps("tmp/all_tmpl.bincode")?;
+
+    let zh_maps = raw_map.get("zh").unwrap();
+    let zh_unread_map = zh_maps.get("unread").unwrap();
+
+    let text = zh_unread_map
+      .get_with_context("show-unread-messages-count", &[("num", "2")])?;
+    dbg!(text);
+
+    Ok(())
+  }
 
   /// Debug:
   /// - decode from file

@@ -37,7 +37,7 @@ serde_yml = { workspace = true, optional = true }
 toml = { workspace = true, optional = true }
 hlight = { workspace = true, optional = true }
 kstring = { workspace = true, features = ["serde"] }
-lang-id = { workspace = true, features = ["map", "match", "serde"] }
+lang-id = { workspace = true, features = ["map", "match", "serde", "consts"] }
 thiserror = { workspace = true, features = ["std"] }
 rayon.workspace = true
 anyhow.workspace = true

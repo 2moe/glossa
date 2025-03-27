@@ -19,7 +19,7 @@ mod aliases;
 #[cfg(feature = "type-aliases")]
 pub use aliases::type_aliases;
 #[cfg(feature = "type-aliases")]
-pub use lang_id::LangID;
+pub use lang_id::{LangID, RawID};
 // -----
 #[cfg(feature = "phf")]
 pub use phf;

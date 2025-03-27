@@ -582,7 +582,7 @@ dependencies = [
 
 [[package]]
 name = "lang-id"
-version = "0.0.11"
+version = "0.0.13"
 dependencies = [
  "compact_str",
  "phf",

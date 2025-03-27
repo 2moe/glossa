@@ -1,12 +1,14 @@
 use std::io::{self, Write};
 
+use anyhow::bail;
 use glossa_shared::{ToCompactString, fmt_compact};
 // use compact_str::{ToCompactString, fmt_compact};
 use itertools::Itertools;
+use lang_id::{LangID, RawID};
 use tap::{Pipe, Tap};
 
 use crate::{
-  MiniStr,
+  AnyResult, MiniStr,
   generator::{Generator, MapType},
 };
 
@@ -146,37 +148,10 @@ impl<'h> Generator<'_, 'h> {
     &'h self,
     map_type: MapType,
     const_lang_id: bool,
-  ) -> io::Result<String> {
-    let raw_locales = match map_type.is_template() {
-      true => match self.get_or_init_template_maps() {
-        x if x.is_empty() => return Ok("// Error: Empty Template Map".into()),
-        data => data
-          .iter()
-          .map(|(id, _)| id.to_compact_string())
-          .collect_vec(),
-      },
-      _ => map_type
-        .get_non_template_maps(self)?
-        .iter()
-        .map(|(id, _)| id.to_compact_string())
-        .collect_vec(),
-    };
-
-    let new_header = || {
-      // Generate appropriate header based on const_lang_id flag
-      let ret_type = {
-        let raw_locales_len = raw_locales.len();
-        match const_lang_id {
-          true => fmt_compact!(
-            "[lang_id::LangID; {raw_locales_len}] {{\n  use lang_id::consts::*;\n  ["
-          ),
-          _ => fmt_compact!("[&'static str; {raw_locales_len}] {{\n  "),
-        }
-      };
-
-      let s_header = format!("const fn all_locales() -> {ret_type}",);
-      self.new_match_fn_header(&s_header)
-    };
+  ) -> AnyResult<String> {
+    let raw_locales = self.collect_raw_locales(map_type)?;
+    let locales_len = raw_locales.len();
+    let new_header = || self.new_locales_fn_header(&locales_len, &const_lang_id);
 
     if !const_lang_id {
       return new_header()
@@ -190,20 +165,57 @@ impl<'h> Generator<'_, 'h> {
     // Process constant lang IDs
     raw_locales
       .iter()
-      .filter_map(|id| match lang_id::matches::get_fn_name(id.as_bytes()) {
-        "" => {
-          eprintln!("[WARN] {id} cannot be matched as const LangID");
-          None
-        }
-        x => Some(x),
-      })
-      .fold(new_header(), |mut acc, fn_name| {
-        let push_str = |s| acc.push_str(s);
-        ["\n    ", fn_name, ","].map(push_str);
-        acc
-      })
+      .map(try_conv_const_id)
+      .try_fold(
+        new_header(), //
+        |mut acc, fn_name| {
+          let push_str = |s| acc.push_str(s);
+          ["\n    ", &fn_name?, ","].map(push_str);
+          Ok::<_, anyhow::Error>(acc)
+        },
+      )?
       .tap_mut(|buf| buf.push_str("  ]\n}"))
       .pipe(Ok)
+  }
+
+  fn collect_raw_locales(&'h self, map_type: MapType) -> io::Result<Vec<MiniStr>> {
+    match map_type.is_template() {
+      true => match self.get_or_init_template_maps() {
+        x if x.is_empty() => "// Error: Empty Template Map"
+          .pipe(io::Error::other)
+          .pipe(Err),
+        data => data
+          .iter()
+          .map(|(id, _)| id.to_compact_string())
+          .collect_vec()
+          .pipe(Ok),
+      },
+      _ => map_type
+        .get_non_template_maps(self)?
+        .iter()
+        .map(|(id, _)| id.to_compact_string())
+        .collect_vec()
+        .pipe(Ok),
+    }
+  }
+  fn new_locales_fn_header(
+    &'h self,
+    locales_len: &usize,
+    const_lang_id: &bool,
+    // this: &Generator<'_, 'h>,
+  ) -> String {
+    // Generate appropriate header based on const_lang_id flag
+    let ret_type = {
+      match *const_lang_id {
+        true => fmt_compact!(
+          "[lang_id::LangID; {locales_len}] {{\n  use lang_id::consts::*;\n  use lang_id::RawID;\n  ["
+        ),
+        _ => fmt_compact!("[&'static str; {locales_len}] {{\n  "),
+      }
+    };
+
+    let s_header = format!("const fn all_locales() -> {ret_type}",);
+    self.new_match_fn_header(&s_header)
   }
 
   /// Creates header for generated match functions
@@ -258,6 +270,40 @@ impl<'h> Generator<'_, 'h> {
           .create_rs_mod_file(lang)?
           .write_all(s.as_bytes())
       })
+  }
+}
+
+fn try_conv_const_id(id: &MiniStr) -> Result<MiniStr, anyhow::Error> {
+  use lang_id::matches::{get_fn_name, match_id};
+
+  match match_id(id.as_bytes())
+    .to_compact_string()
+    .as_str()
+  {
+    x if x == id => id
+      .as_bytes()
+      .pipe(get_fn_name)
+      .to_compact_string()
+      .pipe(Ok),
+    _ => {
+      let id = id.parse::<LangID>()?;
+      if id.variants().count() >= 1 {
+        bail!("This ID ({id}) contains variants and cannot be converted to const.")
+      }
+      RawID::try_from_str(
+        id.language.as_str(),
+        id.script
+          .map(|x| x.to_compact_string())
+          .unwrap_or_default()
+          .as_str(),
+        id.region
+          .map(|x| x.to_compact_string())
+          .unwrap_or_default()
+          .as_str(),
+      )?
+      .to_compact_string()
+      .pipe(Ok)
+    }
   }
 }
 

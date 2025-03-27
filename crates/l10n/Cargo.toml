@@ -10,7 +10,7 @@ rust-version.workspace = true
 description = "Glossa Localization Data"
 
 [dependencies]
-lang-id = { workspace = true }
+lang-id = { workspace = true, features = ["consts"] }
 
 [package.metadata.docs.rs]
 all-features = true

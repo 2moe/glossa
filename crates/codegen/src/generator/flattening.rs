@@ -2,7 +2,7 @@ use std::collections::BTreeMap;
 
 use ahash::{HashMap, HashMapExt};
 use kstring::KString;
-use lang_id::{LangID, matches};
+use lang_id::LangID;
 use tmpl_resolver::resolver::OrderedAST;
 
 use crate::{Generator, MiniStr};
@@ -77,6 +77,7 @@ impl<'h> Generator<'_, 'h> {
         },
       )
       .into_iter()
+      .filter(|(_, map)| !map.is_empty())
       .collect()
   }
 }
@@ -105,6 +106,7 @@ impl Generator<'_, '_> {
           .collect::<BTreeMap<_, _>>();
         (parse_language_id(lang), map)
       })
+      .filter(|(_, map)| !map.is_empty())
       .collect()
   }
 
@@ -124,24 +126,25 @@ impl Generator<'_, '_> {
               .as_ref()
               .map(|tmpl| (map_name, tmpl.to_owned().into_btree_map()))
           })
-          .collect();
+          .collect::<BTreeMap<_, _>>();
         (parse_language_id(lang), map)
       })
+      .filter(|(_, map)| !map.is_empty())
       .collect()
   }
 }
 
-fn parse_language_id(lang: &str) -> LangID {
-  const UND: LangID = lang_id::consts::lang_id_und();
-
-  match matches::match_id(lang.as_bytes()) {
-    UND => lang
+fn parse_language_id(language: &str) -> LangID {
+  use lang_id::consts;
+  match language {
+    "zh-pinyin" => consts::lang_id_zh_pinyin(),
+    "ja-romaji" => consts::lang_id_ja_romaji(),
+    _ => language
       .parse()
-      .unwrap_or_else(|e| {
-        eprintln!("[WARN] Invalid Language ID. {e}");
-        UND
+      .unwrap_or_else(|err| {
+        panic!("[WARN] Invalid Language ID({language}). {err}");
+        // consts::lang_id_und()
       }),
-    x => x,
   }
 }
 
