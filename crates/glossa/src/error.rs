@@ -45,7 +45,7 @@ impl<'map> GlossaError<'map> {
 
 #[cfg(feature = "std")]
 pub(crate) fn get_error_text<'a>(language: &[u8]) -> Option<&'a str> {
-  match glossa_l10n::error::matches::map(language, b"error", b"text-not-found") {
+  match glossa_l10n::error::matches::map(language) {
     "" => None,
     s => Some(s),
   }

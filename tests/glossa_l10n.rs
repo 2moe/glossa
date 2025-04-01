@@ -14,8 +14,7 @@ fn init_glossa_l10n_data() -> AnyResult<()> {
   ]
   .into_iter()
   .map(write_contents)
-  .try_for_each(|x| x)?;
-  Ok(())
+  .try_for_each(|x| x)
 }
 
 fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
@@ -41,14 +40,15 @@ fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
 
     dir
       .join("matches.rs")
-      .pipe(write_file)?;
+      .pipe(write_file)?
   }
+
   {
     let content = "pub mod locale_registry;\npub mod matches;\n";
     let write_file = |file| fs::write(file, content);
     dir
       .join("mod.rs")
-      .pipe(write_file)?;
+      .pipe(write_file)?
   }
 
   {
@@ -58,7 +58,7 @@ fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
 
     dir
       .join("locale_registry.rs")
-      .pipe(write_file)?;
+      .pipe(write_file)?
   }
   Ok(())
 }
