@@ -9,6 +9,10 @@ repository.workspace = true
 rust-version.workspace = true
 description = "Glossa Localization Data"
 
+[features]
+error = []
+yes_no = []
+
 [dependencies]
 lang-id = { workspace = true, features = ["consts"] }
 

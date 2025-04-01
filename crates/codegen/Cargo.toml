@@ -21,30 +21,29 @@ toml = ["dep:toml"]
 highlight = ["dep:hlight"]
 
 [dependencies]
-# phf.workspace = true
 phf_codegen.workspace = true
 getset.workspace = true
 log.workspace = true
-serde = { workspace = true, features = ["std"] }
 nom.workspace = true
-ron = { workspace = true, optional = true }
-serde_json = { workspace = true, optional = true }
-serde_yml = { workspace = true, optional = true }
-toml = { workspace = true, optional = true }
-hlight = { workspace = true, optional = true }
-kstring = { workspace = true, features = ["serde"] }
-lang-id = { workspace = true, features = ["map", "match", "serde", "consts"] }
-thiserror = { workspace = true, features = ["std"] }
 rayon.workspace = true
 anyhow.workspace = true
 itertools.workspace = true
-dashmap = "6.1"
+walkdir.workspace = true
+smallvec.workspace = true
+dashmap.workspace = true
+ron = { workspace = true, optional = true }
+serde_json = { workspace = true, optional = true }
+serde_json5 = { workspace = true, optional = true }
+serde_yml = { workspace = true, optional = true }
+toml = { workspace = true, optional = true }
+hlight = { workspace = true, optional = true }
+serde = { workspace = true, features = ["std"] }
+kstring = { workspace = true, features = ["serde"] }
+lang-id = { workspace = true, features = ["map", "match", "serde", "consts"] }
+thiserror = { workspace = true, features = ["std"] }
 bincode = { workspace = true, features = ["serde", "std"] }
-walkdir = "2.5"
-serde_json5 = { version = "0.2", optional = true }
 glossa-shared = { workspace = true, features = ["bincode", "std"] }
 tmpl-resolver = { workspace = true, features = ["bincode", "std", "toml"] }
-smallvec.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true

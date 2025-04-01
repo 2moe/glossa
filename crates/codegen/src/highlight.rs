@@ -2,7 +2,7 @@ use getset::{Getters, WithSetters};
 use glossa_shared::{
   fmt_compact,
   tap::Pipe,
-  type_aliases::{HashMap, HashMapExt},
+  type_aliases::ahash::{HashMap, HashMapExt},
 };
 pub use hlight::HighlightResource;
 pub use kstring::KString;

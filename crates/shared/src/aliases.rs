@@ -7,7 +7,8 @@ use crate::{
 
 #[cfg(feature = "std")]
 pub mod type_aliases {
-  pub use ahash::{HashMap, HashMapExt};
+  pub use ahash;
+  use ahash::HashMap;
   pub use kstring::KString;
 
   use super::*;

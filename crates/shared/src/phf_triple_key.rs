@@ -23,10 +23,10 @@ impl PhfBorrow<Self> for PhfTripleKey<'_> {
 
 impl FmtConst for PhfTripleKey<'_> {
   fn fmt_const(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    let Self(lang, map, key) = self;
     write!(
       f,
-      r#####"Key(r#"{}"#, r##"{}"##, r###"{}"###)"#####,
-      self.0, self.1, self.2
+      r#####"Key(r#"{lang}"#, r##"{map}"##, r###"{key}"###)"#####
     )
   }
 }
@@ -49,10 +49,10 @@ impl PhfBorrow<Self> for RawTripleKey<'_> {
 }
 impl FmtConst for RawTripleKey<'_> {
   fn fmt_const(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    let Self(lang, map, key) = self;
     write!(
       f,
-      r#####"Key(r#"{}"#, r##"{}"##, r###"{}"###)"#####,
-      self.0, self.1, self.2
+      r#####"Key(r#"{lang}"#, r##"{map}"##, r###"{key}"###)"#####
     )
   }
 }

@@ -579,7 +579,7 @@ dependencies = [
 
 [[package]]
 name = "lang-id"
-version = "0.0.13"
+version = "0.0.14"
 dependencies = [
  "compact_str",
  "phf",
@@ -1109,7 +1109,6 @@ dependencies = [
  "glossa",
  "glossa-codegen",
  "itertools",
- "lang-id",
  "log",
  "phf",
  "ron",
@@ -1118,6 +1117,7 @@ dependencies = [
  "smallvec 2.0.0-alpha.11",
  "tap",
  "testutils",
+ "toml",
 ]
 
 [[package]]

@@ -96,7 +96,10 @@ pub const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) -> &'static str {
       r#####"Nessun testo localizzato trovato"#####
     }
     (b"ja", b"error", b"text-not-found") => {
-      r#####"ローカライズされたテキストは見つかりません"#####
+      r#####"本地化文書未検出(ローカライズド・テキスト・ノット・ファウンド)"#####
+    }
+    (b"ja-Latn-JP", b"error", b"text-not-found") => {
+      r#####"Rōkarāizu sareta tekisuto wa mitsukarimasen"#####
     }
     (b"jw", b"error", b"text-not-found") => r#####"Ora ditemokake teks lokal"#####,
     (b"ka", b"error", b"text-not-found") => {
@@ -121,6 +124,7 @@ pub const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) -> &'static str {
     (b"lv", b"error", b"text-not-found") => {
       r#####"Nav atrasts lokalizēts teksts"#####
     }
+    (b"lzh", b"error", b"text-not-found") => r#####"方俗篇章闕如，宜補遺軼。"#####,
     (b"mg", b"error", b"text-not-found") => {
       r#####"Tsy nisy lahatsoratra hita teo an-toerana hita"#####
     }

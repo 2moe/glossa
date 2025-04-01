@@ -31,7 +31,7 @@ collect-with.workspace = true
 tap.workspace = true
 itertools.workspace = true
 testutils.workspace = true
-glossa-l10n = { workspace = true, optional = true }
+glossa-l10n = { workspace = true, optional = true, features = ["error"] }
 
 [dev-dependencies]
 anyhow.workspace = true

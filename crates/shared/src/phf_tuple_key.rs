@@ -25,6 +25,7 @@ impl PhfBorrow<Self> for PhfTupleKey<'_> {
 
 impl FmtConst for PhfTupleKey<'_> {
   fn fmt_const(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-    write!(f, r###"Key(r#"{}"#, r##"{}"##)"###, self.0, self.1)
+    let Self(map, key) = self;
+    write!(f, r###"Key(r#"{map}"#, r##"{key}"##)"###)
   }
 }

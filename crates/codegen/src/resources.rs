@@ -13,7 +13,7 @@ use getset::{Getters, WithSetters};
 use glossa_shared::{
   ToCompactString,
   tap::{Pipe, TapFallible, TryConv},
-  type_aliases::HashMap,
+  type_aliases::ahash::HashMap,
 };
 use kstring::KString;
 use rayon::iter::{ParallelBridge, ParallelIterator};

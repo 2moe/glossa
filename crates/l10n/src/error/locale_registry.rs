@@ -1,5 +1,6 @@
-pub const fn all_locales() -> [lang_id::LangID; 107] {
+pub const fn all_locales() -> [lang_id::LangID; 109] {
   use lang_id::consts::*;
+  // use lang_id::RawID;
   [
     lang_id_af(),
     lang_id_am(),
@@ -45,6 +46,7 @@ pub const fn all_locales() -> [lang_id::LangID; 107] {
     lang_id_is(),
     lang_id_it(),
     lang_id_ja(),
+    lang_id_ja_romaji(),
     lang_id_jw(),
     lang_id_ka(),
     lang_id_kk(),
@@ -58,6 +60,7 @@ pub const fn all_locales() -> [lang_id::LangID; 107] {
     lang_id_lo(),
     lang_id_lt(),
     lang_id_lv(),
+    lang_id_lzh(),
     lang_id_mg(),
     lang_id_mi(),
     lang_id_mk(),

@@ -1,0 +1,4 @@
+cancel = "torikeshi" # 「取消」とりけし
+ok = "ryōkai"        # 「了解」りょうかい
+no = "iie"           # 「いいえ」
+yes = "hai"          # 「はい」

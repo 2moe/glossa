@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-use glossa_shared::type_aliases::{HashMap, HashMapExt};
+use glossa_shared::type_aliases::ahash::{HashMap, HashMapExt};
 use kstring::KString;
 use lang_id::LangID;
 use tmpl_resolver::resolver::OrderedAST;
@@ -141,16 +141,13 @@ fn parse_language_id(language: &str) -> LangID {
     "ja-romaji" => consts::lang_id_ja_romaji(),
     _ => language
       .parse()
-      .unwrap_or_else(|err| {
-        panic!("[WARN] Invalid Language ID({language}). {err}");
-        // consts::lang_id_und()
-      }),
+      .unwrap_or_else(|err| panic!("[WARN] Invalid Language ID({language}). {err}")),
   }
 }
 
 #[cfg(test)]
 mod tests {
-  use glossa_shared::type_aliases::HashMap;
+  use glossa_shared::type_aliases::ahash::HashMap;
   type L10nHashMap = HashMap<(KString, KString), MiniStr>;
 
   use anyhow::{Result as AnyResult, bail};
