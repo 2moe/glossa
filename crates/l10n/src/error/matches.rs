@@ -61,7 +61,7 @@ pub const fn map(language: &[u8]) -> &'static str {
     b"lo" => r#####"ບໍ່ພົບຂໍ້ຄວາມທ້ອງຖິ່ນ"#####,
     b"lt" => r#####"Nerasta lokalizuoto teksto"#####,
     b"lv" => r#####"Nav atrasts lokalizēts teksts"#####,
-    b"lzh" => r#####"方俗篇章闕如，宜補遺軼。"#####,
+    b"lzh" => r#####"方俗篇章闕如、宜補遺軼。"#####,
     b"mg" => r#####"Tsy nisy lahatsoratra hita teo an-toerana hita"#####,
     b"mi" => r#####"Kaore i kitea he tuhinga kua kitea"#####,
     b"mk" => r#####"Не е пронајден локализиран текст"#####,

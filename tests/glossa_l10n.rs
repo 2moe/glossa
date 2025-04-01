@@ -43,13 +43,13 @@ fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
       .pipe(write_file)?
   }
 
-  {
-    let content = "pub mod locale_registry;\npub mod matches;\n";
-    let write_file = |file| fs::write(file, content);
-    dir
-      .join("mod.rs")
-      .pipe(write_file)?
-  }
+  // {
+  //   let content = "pub mod locale_registry;\npub mod matches;\n";
+  //   let write_file = |file| fs::write(file, content);
+  //   dir
+  //     .join("mod.rs")
+  //     .pipe(write_file)?
+  // }
 
   {
     let all_locales = generator.output_locales_fn(MapType::Regular, true)?;
