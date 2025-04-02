@@ -33,7 +33,7 @@ pub struct Generator<'i, 'h> {
   mod_prefix: MiniStr,
 
   #[getset(skip)]
-  #[getset(get = "pub", get_mut = "pub")]
+  #[getset(get = "pub")]
   highlight: Option<Box<HighlightCfgMap<'h>>>,
 
   #[getset(skip)]
@@ -43,9 +43,20 @@ pub struct Generator<'i, 'h> {
 
 #[cfg(feature = "highlight")]
 impl<'h> Generator<'_, 'h> {
+  fn clear_highlight_cache(&mut self) {
+    self.lazy_maps.highlight = Default::default();
+    self.lazy_maps.merged = Default::default();
+  }
+
   pub fn with_highlight(mut self, highlight: HighlightCfgMap<'h>) -> Self {
     self.highlight = Some(highlight.into());
+    self.clear_highlight_cache();
     self
+  }
+
+  pub fn set_highlight(&mut self, highlight: Option<HighlightCfgMap<'h>>) {
+    self.highlight = highlight.map(|data| data.into());
+    self.clear_highlight_cache();
   }
 }
 
@@ -137,7 +148,7 @@ impl Default for Generator<'_, '_> {
 #[derive(Debug, Clone, Copy)]
 pub enum MapType {
   Regular,
-  Hightlight,
+  Highlight,
   RegularAndHighlight,
   Template,
 }
@@ -150,7 +161,7 @@ impl MapType {
     use MapType::*;
     match self {
       Regular => generator.get_or_init_maps(),
-      Hightlight => generator
+      Highlight => generator
         .get_or_init_highlight_maps()
         .ok_or_else(|| io::Error::other("Failed to get highlight maps"))?,
       RegularAndHighlight => generator.get_or_init_merged_maps(),

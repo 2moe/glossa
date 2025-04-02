@@ -302,8 +302,8 @@ float = nan
       }
     }
 
-    generator.output_match_fn(MapType::Hightlight)?;
-    // generator.output_phf(MapType::Hightlight)?;
+    generator.output_match_fn(MapType::Highlight)?;
+    // generator.output_phf(MapType::Highlight)?;
 
     Ok(())
   }

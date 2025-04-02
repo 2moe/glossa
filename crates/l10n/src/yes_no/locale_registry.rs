@@ -1,5 +1,7 @@
-pub const fn all_locales() -> [lang_id::LangID; 75] {
-  use lang_id::{RawID, consts::*};
+pub const fn all_locales() -> [super::lang_id::LangID; 75] {
+  #[allow(unused_imports)]
+  use super::lang_id::RawID;
+  use super::lang_id::consts::*;
   [
     lang_id_ar(),
     lang_id_as(),

@@ -43,7 +43,7 @@ impl<'h> Generator<'_, 'h> {
   ///
   /// let function_data = Generator::default()
   ///   .with_resources(data)
-  ///   .output_match_fn_all_in_one(MapType::Regular)?;
+  ///   .output_phf_all_in_one(MapType::Regular)?;
   ///
   /// # Ok::<(), std::io::Error>(())
   /// ```

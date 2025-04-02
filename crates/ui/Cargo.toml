@@ -1,21 +1,16 @@
 [package]
-name = "glossa-l10n"
+name = "glossa-ui"
 authors.workspace = true
 edition.workspace = true
 version.workspace = true
 license.workspace = true
-categories.workspace = true
+keywords = ["i18n", "l10n", "TUI", "user-interface"]
+categories = ["internationalization", "command-line-interface"]
+# categories.workspace = true
 repository.workspace = true
 rust-version.workspace = true
-description = "Glossa Localization Data"
-
-[features]
-lang-id = ["dep:lang-id"]
-error = []
-yes_no = []
 
 [dependencies]
-lang-id = { workspace = true, optional = true, features = ["consts"] }
 
 [package.metadata.docs.rs]
 all-features = true

@@ -1,4 +1,3 @@
-/// key: text-not-found
 pub const fn map(language: &[u8]) -> &'static str {
   match language {
     b"af" => r#####"Geen gelokaliseerde teks gevind nie"#####,

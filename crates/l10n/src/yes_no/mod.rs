@@ -1,9 +1,3 @@
-#[cfg(feature = "yes_no")]
-pub mod locale_registry;
-
-#[cfg(feature = "yes_no")]
-pub mod matches;
-
 pub const fn default(key: &[u8]) -> &'static str {
   match key {
     b"cancel" => r#####"Cancel"#####,
@@ -13,3 +7,14 @@ pub const fn default(key: &[u8]) -> &'static str {
     _ => "",
   }
 }
+
+#[cfg(feature = "yes_no")]
+/// map_name: yes-no
+pub mod matches;
+
+#[cfg(feature = "yes_no")]
+#[cfg(feature = "lang-id")]
+pub mod locale_registry;
+
+#[cfg(feature = "lang-id")]
+use lang_id;

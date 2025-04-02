@@ -1,5 +1,1 @@
-#![no_std]
 #![cfg_attr(__unstable_doc, feature(doc_auto_cfg, doc_notable_trait))]
-
-pub mod error;
-pub mod yes_no;

@@ -1,5 +1,5 @@
-pub const fn map(lang: &[u8], key: &[u8]) -> &'static str {
-  match (lang, key) {
+pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
+  match (language, key) {
     (b"ar", b"cancel") => r#####"إلغاء"#####,
     (b"ar", b"no") => r#####"لا"#####,
     (b"ar", b"ok") => r#####"موافق"#####,

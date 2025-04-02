@@ -53,21 +53,24 @@ pub(crate) fn get_error_text<'a>(language: &[u8]) -> Option<&'a str> {
 
 #[cfg(feature = "std")]
 pub(crate) fn text_not_found<'a>() -> &'a str {
-  use glossa_l10n::error::locale_registry;
+  use glossa_l10n::error::default as default_err_msg;
+  use tap::Pipe;
 
-  crate::lazy_values::get_or_init_str_language_chain(Some(
-    &locale_registry::all_locales(),
-  ))
-  .iter()
-  .map(|id| id.as_bytes())
-  .find_map(get_error_text)
-  .unwrap_or_default()
+  use crate::lazy_values::get_or_init_str_language_chain;
+
+  glossa_l10n::error::locale_registry::all_locales()
+    .as_ref()
+    .pipe(Some)
+    .pipe(get_or_init_str_language_chain)
+    .iter()
+    .map(|id| id.as_bytes())
+    .find_map(get_error_text)
+    .unwrap_or_else(default_err_msg)
 }
 
 #[cfg(not(feature = "std"))]
 pub(crate) fn text_not_found<'a>() -> &'a str {
-  "No localized text found"
-  // get_error_text(b"en").unwrap_or_default()
+  glossa_l10n::error::default()
 }
 
 #[cfg(test)]

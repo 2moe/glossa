@@ -8,13 +8,10 @@ use tap::Pipe;
 #[ignore]
 #[test]
 fn init_glossa_l10n_data() -> AnyResult<()> {
-  [
-    ("error", None), //
-    ("yes-no", Some("yes_no")),
-  ]
-  .into_iter()
-  .map(write_contents)
-  .try_for_each(|x| x)
+  [("error", None), ("yes-no", Some("yes_no"))]
+    .into_iter()
+    .map(write_contents)
+    .try_for_each(|x| x)
 }
 
 fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
@@ -34,7 +31,15 @@ fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
   fs::create_dir_all(&dir)?;
 
   {
-    let content = generator.output_match_fn_all_in_one(MapType::Regular)?;
+    let content = match map_name {
+      "error" => {
+        generator.output_match_fn_all_in_one_by_language(MapType::Regular)?
+      }
+      "yes-no" => {
+        generator.output_match_fn_all_in_one_by_language_and_key(MapType::Regular)?
+      }
+      _ => unimplemented!(),
+    };
     println!("{content}");
     let write_file = |file| fs::write(file, content);
 

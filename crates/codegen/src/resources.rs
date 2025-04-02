@@ -30,7 +30,8 @@ pub struct L10nResources<'i> {
   tmpl_suffix: MiniStr,
   include_languages: &'i [&'i str],
   include_map_names: &'i [&'i str],
-  exclude: &'i [&'i str],
+  exclude_languages: &'i [&'i str],
+  exclude_map_names: &'i [&'i str],
   #[getset(get)]
   /// get data: [Self::get_or_init_data]
   lazy_data: OnceLock<L10nResMap>,
@@ -51,7 +52,8 @@ impl Default for L10nResources<'_> {
       dir: Default::default(),
       include_languages: Default::default(),
       include_map_names: Default::default(),
-      exclude: Default::default(),
+      exclude_languages: Default::default(),
+      exclude_map_names: Default::default(),
       lazy_data: Default::default(),
     }
   }
@@ -218,6 +220,7 @@ impl L10nResources<'_> {
       .par_bridge()
       .filter_map(annotate_entry_with_stem)
       .filter(|(_, map_name)| self.filter_include_map_names(map_name))
+      .filter(|(_, map_name)| self.filter_exclude_map_names(map_name))
       .filter_map(|(file, file_stem)| {
         self.process_file(file.path(), &file_stem, &stem_set)
       })
@@ -228,19 +231,22 @@ impl L10nResources<'_> {
   fn filter_include_map_names(&self, map_name: &MiniStr) -> bool {
     match self.include_map_names {
       [] => true,
-      list => list
-        .iter()
-        .any(|item| map_name.eq_ignore_ascii_case(item)),
+      list => contain_map_name(list, map_name),
+    }
+  }
+
+  fn filter_exclude_map_names(&self, map_name: &MiniStr) -> bool {
+    match self.exclude_map_names {
+      [] => true,
+      list => !contain_map_name(list, map_name),
     }
   }
 
   fn filter_exclude_languages(&self, dir: &Path) -> bool {
-    match self.exclude {
+    match self.exclude_languages {
       [] => true,
       list => match dir.file_name() {
-        Some(dirname) => !list
-          .iter()
-          .any(|item| dirname.eq_ignore_ascii_case(item)),
+        Some(dirname) => !contain_language(list, dirname),
         _ => true,
       },
     }
@@ -251,13 +257,21 @@ impl L10nResources<'_> {
       [] => true,
       list => dir
         .file_name()
-        .is_some_and(|dirname| {
-          list
-            .iter()
-            .any(|item| dirname.eq_ignore_ascii_case(item))
-        }),
+        .is_some_and(|dirname| contain_language(list, dirname)),
     }
   }
+}
+
+fn contain_language(list: &[&str], language: &OsStr) -> bool {
+  list
+    .iter()
+    .any(|item| language.eq_ignore_ascii_case(item))
+}
+
+fn contain_map_name(list: &[&str], map_name: &MiniStr) -> bool {
+  list
+    .iter()
+    .any(|item| map_name.eq_ignore_ascii_case(item))
 }
 
 fn annotate_entry_with_stem(p: DirEntry) -> Option<(DirEntry, MiniStr)> {
@@ -394,7 +408,8 @@ mod tests {
     let res = new_resources()
       .with_include_languages(&["zh", "en"])
       // .with_include_map_names(&["hi.tmpl"])
-      .with_exclude(&["zh"]);
+      .with_exclude_map_names(&["hi.tmpl", "test", "unread.tmpl"])
+      .with_exclude_languages(&["zh"]);
     let map = res.get_or_init_data();
     // println!("{map:?}")
     dbg!(map);
@@ -405,7 +420,7 @@ mod tests {
   fn test_only_includes_de_and_und() {
     let res = new_resources()
       .with_include_languages(&["de", "und", "es"])
-      .with_exclude(&["es"]);
+      .with_exclude_languages(&["es"]);
     let map = res.get_or_init_data();
     // println!("{map:?}")
     dbg!(map);

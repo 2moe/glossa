@@ -18,6 +18,15 @@ impl<'h> Generator<'_, 'h> {
   /// Generates a consolidated match function containing all localization
   /// mappings
   ///
+  /// Generates:
+  ///
+  /// ```ignore
+  /// const fn map(lang: &[u8], map_name: &[u8], key: &[u8])
+  ///   -> &'static str {
+  ///   match (lang, map_name, key) {...}
+  /// }
+  /// ```
+  ///
   /// ## Parameter
   ///
   /// - `non_tmpl`
@@ -61,8 +70,8 @@ impl<'h> Generator<'_, 'h> {
     &'h self,
     non_tmpl: MapType,
   ) -> io::Result<String> {
-    const S_HEADER: &str = r##"const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) ->
-  &'static str {
+    const S_HEADER: &str = r##"const fn map(lang: &[u8], map_name: &[u8], key: &[u8])
+    -> &'static str {
     match (lang, map_name, key) {
     "##;
 
@@ -95,7 +104,129 @@ impl<'h> Generator<'_, 'h> {
             "\"",
             value.as_str(),
             "\"",
-            r###########"#####,"###########,
+            "#####,",
+            "\n",
+          ]
+          .map(|s| acc.push_str(s));
+          acc
+        },
+      )
+      .tap_mut(|buf| buf.push_str("    _ => \"\",\n}}"))
+      .pipe(Ok)
+  }
+
+  /// Generates a function:
+  ///   `const fn map(language: &[u8]) -> &'static str { match language {...} }`
+  ///
+  /// Note: This function is for performance optimization.
+  /// **Only** invoke it to generate a new function when both `map_name` and
+  /// `key` are guaranteed to be unique.
+  /// Otherwise, use [`Self::output_match_fn_all_in_one`].
+  pub fn output_match_fn_all_in_one_by_language(
+    &'h self,
+    non_tmpl: MapType,
+  ) -> io::Result<String> {
+    const S_HEADER: &str = r##"const fn map(language: &[u8]) -> &'static str {
+    match language {
+    "##;
+
+    let new_header = || self.new_match_fn_header(S_HEADER);
+
+    non_tmpl
+      .get_non_template_maps(self)?
+      .iter()
+      .flat_map(|(lang, map_entry)| {
+        map_entry
+          .iter()
+          .map(move |(_ks, v)| (lang, v))
+      })
+      .fold(
+        new_header(), //
+        |mut acc, (lang, value)| {
+          [
+            "b\"",
+            lang
+              .to_compact_string()
+              .as_str(),
+            "\" => r#####",
+            "\"",
+            value.as_str(),
+            "\"",
+            "#####,",
+            "\n",
+          ]
+          .map(|s| acc.push_str(s));
+          acc
+        },
+      )
+      .tap_mut(|buf| buf.push_str("    _ => \"\",\n}}"))
+      .pipe(Ok)
+  }
+
+  /// Generates a function:
+  ///   `const fn map(language: &[u8], key: &[u8]) -> &'static str { match
+  /// (language, key) {...} }`
+  ///
+  /// # Note
+  ///
+  /// You can invoke this function to generate a new function **only** when
+  /// `map_name` is unique.
+  ///
+  /// **Example**:
+  ///
+  /// - `en/yes-no { yes: "Yes", no: "No"}`
+  /// - `de/yes-no { yes: "Ja", no: "Nein" }`
+  ///
+  /// Here, `map_name` is unique (per language), so it can be omitted:
+  ///
+  /// ```no_run
+  /// match (language, key) {
+  ///   (b"en", b"yes") => r#####"Yes"#####,
+  ///   (b"en", b"no") => r#####"No"#####,
+  ///   (b"de", b"yes") => r#####"Ja"#####,
+  ///   (b"de", b"no") => r#####"Nein"#####,
+  /// }
+  /// ```
+  ///
+  /// If `map_names` are not unique, use [`Self::output_match_fn_all_in_one`]
+  /// instead.
+  ///
+  /// For example, adding a new map: `en/yes-no2 { yes: "YES", no: "NO"}`
+  /// would create conflicting keys ("yes", "no") if `map_name` is omitted.
+  pub fn output_match_fn_all_in_one_by_language_and_key(
+    &'h self,
+    non_tmpl: MapType,
+  ) -> io::Result<String> {
+    const S_HEADER: &str = r##"const fn map(language: &[u8], key: &[u8])
+    -> &'static str {
+    match (language, key) {
+    "##;
+
+    let new_header = || self.new_match_fn_header(S_HEADER);
+
+    non_tmpl
+      .get_non_template_maps(self)?
+      .iter()
+      .flat_map(|(lang, map_entry)| {
+        map_entry
+          .iter()
+          .map(move |((_name, key), value)| (lang, key, value))
+      })
+      .fold(
+        new_header(), //
+        |mut acc, (lang, key, value)| {
+          [
+            "(b\"",
+            lang
+              .to_compact_string()
+              .as_str(),
+            "\", ",
+            key_as_bytes(key).as_str(),
+            ") => r#####",
+            "\"",
+            value.as_str(),
+            "\"",
+            "#####,",
             "\n",
           ]
           .map(|s| acc.push_str(s));
@@ -210,7 +341,11 @@ impl<'h> Generator<'_, 'h> {
     let ret_type = {
       match *const_lang_id {
         true => fmt_compact!(
-          "[lang_id::LangID; {locales_len}] {{\n  use lang_id::consts::*;\n  use lang_id::RawID;\n  ["
+          r#"[super::lang_id::LangID; {locales_len}] {{
+  #[allow(unused_imports)]
+  use super::lang_id::RawID;
+  use super::lang_id::consts::*;
+  ["#
         ),
         _ => fmt_compact!("[&'static str; {locales_len}] {{\n  "),
       }

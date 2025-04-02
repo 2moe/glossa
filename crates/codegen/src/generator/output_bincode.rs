@@ -256,7 +256,7 @@ mod tests {
 
     dbg_generator::highlight_generator()
       .with_bincode_suffix(".highlight.bincode".into())
-      .output_bincode_all_in_one(MapType::Hightlight)
+      .output_bincode_all_in_one(MapType::Highlight)
   }
 
   #[ignore]

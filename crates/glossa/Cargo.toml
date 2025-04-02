@@ -6,7 +6,7 @@ categories.workspace = true
 readme = "../../docs/Readme.md"
 edition.workspace = true
 license.workspace = true
-keywords = ["i18n", "l10n"]
+keywords.workspace = true
 repository.workspace = true
 rust-version.workspace = true
 description = "A language international (i18n) library"
@@ -18,7 +18,8 @@ std = [
     "testutils/std",
     "lang-id/sys-locale",
     "thiserror/std",
-    "dep:glossa-l10n",
+    "glossa-l10n/error",
+    "glossa-l10n/lang-id",
 ]
 
 [dependencies]
@@ -31,7 +32,7 @@ collect-with.workspace = true
 tap.workspace = true
 itertools.workspace = true
 testutils.workspace = true
-glossa-l10n = { workspace = true, optional = true, features = ["error"] }
+glossa-l10n.workspace = true
 
 [dev-dependencies]
 anyhow.workspace = true

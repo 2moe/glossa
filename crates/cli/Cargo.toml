@@ -1,0 +1,31 @@
+[package]
+name = "glossa-cli"
+authors.workspace = true
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+keywords = ["i18n", "l10n", "cli"]
+categories = ["internationalization", "command-line-interface"]
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+clap = { version = "4.5.35", features = ["color", "derive", "unicode"] }
+compact_str = { workspace = true, features = ["std"] }
+getset.workspace = true
+glossa-codegen = { workspace = true, features = [
+    "toml",
+    "yaml",
+    "highlight",
+    "json",
+    "json5",
+    "ron",
+] }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "__unstable_doc"]
+
+[lints]
+workspace = true

@@ -1,9 +1,11 @@
 [workspace]
 members = [
-    "crates/codegen", #
+    "crates/codegen",
     "crates/glossa",
     "crates/shared",
     "crates/l10n",
+    "crates/cli",
+    "crates/ui",
 ]
 resolver = "3"
 
@@ -12,6 +14,7 @@ authors = ["Moe <m@tmoe.me>"]
 edition = "2024"
 version = "0.0.1"
 license = "Apache-2.0"
+keywords = ["i18n", "l10n"]
 categories = ["internationalization", "localization"]
 repository = "https://github.com/2moe/glossa"
 rust-version = "1.85.0"
