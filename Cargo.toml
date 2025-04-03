@@ -54,6 +54,7 @@ bincode = { version = "2.0", default-features = false }
 compact_str = { version = "0.9", default-features = false }
 serde_json5 = { version = "0.2", default-features = false }
 dashmap = "6.1"
+derive_more = { version = "2.0.1", default-features = false }
 
 [workspace.dependencies.testutils]
 version = "0.0.5"
@@ -79,9 +80,9 @@ path = "../hlight/crates/hlight"
 # version = "0.0.1-alpha.5"
 path = "crates/codegen"
 
-[workspace.dependencies.tmpl-resolver]
+[workspace.dependencies.glossa-dsl]
 default-features = false
-version = "0.0.14"
+version = "0.0.15"
 # path = "../tmpl-resolver"
 
 [workspace.lints.rust.unexpected_cfgs]
@@ -111,5 +112,7 @@ log.workspace = true
 collect-with.workspace = true
 tap.workspace = true
 toml.workspace = true
+
+[dependencies]
 # thiserror = "2.0.11"
 # hlight = { path = "./crates/hlight" }

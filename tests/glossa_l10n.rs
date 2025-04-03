@@ -15,11 +15,8 @@ fn init_glossa_l10n_data() -> AnyResult<()> {
 }
 
 fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
-  let include_maps = [map_name];
   let generator = Generator::default()
-    .with_resources(
-      L10nResources::new("locales").with_include_map_names(&include_maps),
-    )
+    .with_resources(L10nResources::new("locales").with_include_map_names([map_name]))
     .with_visibility(Visibility::Pub);
 
   let dir: PathBuf = {

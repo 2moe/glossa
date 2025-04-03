@@ -1,19 +1,19 @@
 use crate::{
   Generator,
-  generator::flattening::{L10nMaps, L10nTemplateMaps},
+  generator::flattening::{L10nDSLMaps, L10nMaps},
 };
 
-impl Generator<'_, '_> {
-  /// Initializes and retrieves template-based localization maps
+impl Generator<'_> {
+  /// Initializes and retrieves DSL-based localization maps
   ///
   /// # Behavior
-  /// - Performs lazy initialization of template maps on first access
+  /// - Performs lazy initialization of DSL maps on first access
   /// - Subsequent calls return cached reference
-  pub fn get_or_init_template_maps(&self) -> &L10nTemplateMaps {
+  pub fn get_or_init_dsl_maps(&self) -> &L10nDSLMaps {
     self
       .lazy_maps
-      .template
-      .get_or_init(|| self.flatten_template_maps())
+      .dsl
+      .get_or_init(|| self.flatten_dsl_maps())
   }
 
   /// Initializes and retrieves primary localization maps
@@ -29,7 +29,7 @@ impl Generator<'_, '_> {
   }
 }
 
-impl<'h> Generator<'_, 'h> {
+impl<'h> Generator<'h> {
   /// Initializes and retrieves highlighted localization maps
   ///
   /// # Behavior

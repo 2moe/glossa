@@ -71,7 +71,7 @@ pub(crate) fn collect_derived_keys_to_map<'a>(
     })
 }
 
-impl<'h> Generator<'_, 'h> {
+impl<'h> Generator<'h> {
   pub(crate) fn collect_highlight_maps(
     &'h self,
   ) -> Option<Box<[(KString, HighlightedMaps)]>> {

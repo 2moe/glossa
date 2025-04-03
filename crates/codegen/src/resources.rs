@@ -10,45 +10,59 @@ pub type L10nResMap = HashMap<KString, Vec<L10nMapEntry>>;
 use anyhow::bail;
 use dashmap::DashSet;
 use getset::{Getters, WithSetters};
+use glossa_dsl::Resolver;
 use glossa_shared::{
   ToCompactString,
+  small_list::SmallList,
   tap::{Pipe, TapFallible, TryConv},
   type_aliases::ahash::HashMap,
 };
 use kstring::KString;
 use rayon::iter::{ParallelBridge, ParallelIterator};
 use serde::{Deserialize, Serialize};
-use tmpl_resolver::TemplateResolver;
 use walkdir::{DirEntry, WalkDir};
 
 use crate::{AnyResult, MiniStr, to_kstr};
 
 #[derive(Getters, WithSetters, Debug, Clone)]
 #[getset(get = "pub with_prefix", set_with = "pub")]
-pub struct L10nResources<'i> {
+pub struct L10nResources {
   dir: PathBuf,
-  tmpl_suffix: MiniStr,
-  include_languages: &'i [&'i str],
-  include_map_names: &'i [&'i str],
-  exclude_languages: &'i [&'i str],
-  exclude_map_names: &'i [&'i str],
+  dsl_suffix: MiniStr,
+
+  #[getset(skip)]
+  #[getset(get = "pub")]
+  include_languages: SmallList<3>,
+
+  #[getset(skip)]
+  #[getset(get = "pub")]
+  include_map_names: SmallList<2>,
+
+  #[getset(skip)]
+  #[getset(get = "pub")]
+  exclude_languages: SmallList<1>,
+
+  #[getset(skip)]
+  #[getset(get = "pub")]
+  exclude_map_names: SmallList<1>,
+
   #[getset(get)]
   /// get data: [Self::get_or_init_data]
   lazy_data: OnceLock<L10nResMap>,
 }
 
-impl Default for L10nResources<'_> {
+impl Default for L10nResources {
   /// Default:
   ///
   /// ```ignore
   /// {
-  ///   tmpl_suffix: ".tmpl"
+  ///   dsl_suffix: ".dsl"
   ///   ..Default::default()
   /// }
   /// ```
   fn default() -> Self {
     Self {
-      tmpl_suffix: ".tmpl".into(),
+      dsl_suffix: ".dsl".into(),
       dir: Default::default(),
       include_languages: Default::default(),
       include_map_names: Default::default(),
@@ -92,7 +106,7 @@ fn dir_name_to_opt_lang(dir: &Path) -> Option<KString> {
     .pipe(Some)
 }
 
-impl L10nResources<'_> {
+impl L10nResources {
   /// Constructs a new `L10nResources` instance with localization directory.
   ///
   /// The provided path should point to a directory containing
@@ -174,15 +188,10 @@ impl L10nResources<'_> {
       .insert(file_stem.clone())
       .then_some(())?;
 
-    let suffix = self.get_tmpl_suffix().as_str();
+    let suffix = self.get_dsl_suffix().as_str();
 
     let (tmpl_data, data) = match file_stem.ends_with(suffix) && !suffix.is_empty() {
-      true => (
-        data
-          .try_conv::<TemplateResolver>()
-          .ok(),
-        None,
-      ),
+      true => (data.try_conv::<Resolver>().ok(), None),
       _ => (None, Some(data)),
     };
 
@@ -229,21 +238,21 @@ impl L10nResources<'_> {
   }
 
   fn filter_include_map_names(&self, map_name: &MiniStr) -> bool {
-    match self.include_map_names {
+    match self.include_map_names.as_ref() {
       [] => true,
       list => contain_map_name(list, map_name),
     }
   }
 
   fn filter_exclude_map_names(&self, map_name: &MiniStr) -> bool {
-    match self.exclude_map_names {
+    match self.exclude_map_names.as_ref() {
       [] => true,
       list => !contain_map_name(list, map_name),
     }
   }
 
   fn filter_exclude_languages(&self, dir: &Path) -> bool {
-    match self.exclude_languages {
+    match self.exclude_languages.as_ref() {
       [] => true,
       list => match dir.file_name() {
         Some(dirname) => !contain_language(list, dirname),
@@ -253,22 +262,62 @@ impl L10nResources<'_> {
   }
 
   fn filter_include_languages(&self, dir: &Path) -> bool {
-    match self.include_languages {
+    match self.include_languages.as_ref() {
       [] => true,
       list => dir
         .file_name()
         .is_some_and(|dirname| contain_language(list, dirname)),
     }
   }
+
+  pub fn with_include_languages<S: Into<MiniStr>>(
+    mut self,
+    include_languages: impl IntoIterator<Item = S>,
+  ) -> Self {
+    self.include_languages = include_languages
+      .into_iter()
+      .collect();
+    self
+  }
+
+  pub fn with_include_map_names<S: Into<MiniStr>>(
+    mut self,
+    include_map_names: impl IntoIterator<Item = S>,
+  ) -> Self {
+    self.include_map_names = include_map_names
+      .into_iter()
+      .collect();
+    self
+  }
+
+  pub fn with_exclude_languages<S: Into<MiniStr>>(
+    mut self,
+    exclude_languages: impl IntoIterator<Item = S>,
+  ) -> Self {
+    self.exclude_languages = exclude_languages
+      .into_iter()
+      .collect();
+    self
+  }
+
+  pub fn with_exclude_map_names<S: Into<MiniStr>>(
+    mut self,
+    exclude_map_names: impl IntoIterator<Item = S>,
+  ) -> Self {
+    self.exclude_map_names = exclude_map_names
+      .into_iter()
+      .collect();
+    self
+  }
 }
 
-fn contain_language(list: &[&str], language: &OsStr) -> bool {
+fn contain_language(list: &[MiniStr], language: &OsStr) -> bool {
   list
     .iter()
     .any(|item| language.eq_ignore_ascii_case(item))
 }
 
-fn contain_map_name(list: &[&str], map_name: &MiniStr) -> bool {
+fn contain_map_name(list: &[MiniStr], map_name: &MiniStr) -> bool {
   list
     .iter()
     .any(|item| map_name.eq_ignore_ascii_case(item))
@@ -334,7 +383,7 @@ fn deser_config_file<P: AsRef<Path>>(
 pub struct L10nMapEntry {
   map_name: MiniStr,
   data: Option<HashMap<KString, MiniStr>>,
-  tmpl_data: Option<TemplateResolver>,
+  tmpl_data: Option<Resolver>,
 }
 
 impl L10nMapEntry {
@@ -351,10 +400,10 @@ pub(crate) mod dbg_shared {
 
   pub(crate) const DIR: &str = "../../locales/";
 
-  pub(crate) fn new_resources<'i>() -> L10nResources<'i> {
+  pub(crate) fn new_resources() -> L10nResources {
     // L10nResources::default().with_dir(DIR.into())
     L10nResources::new(DIR)
-    // .with_tmpl_suffix(".tmpl".into())
+    // .with_dsl_suffix(".dsl".into())
   }
 }
 
@@ -406,10 +455,10 @@ mod tests {
   #[test]
   fn test_only_includes_en() {
     let res = new_resources()
-      .with_include_languages(&["zh", "en"])
-      // .with_include_map_names(&["hi.tmpl"])
-      .with_exclude_map_names(&["hi.tmpl", "test", "unread.tmpl"])
-      .with_exclude_languages(&["zh"]);
+      .with_include_languages(["zh", "en"])
+      // .with_include_map_names(["hi.tmpl"])
+      .with_exclude_map_names(["hi.tmpl", "test", "unread.tmpl"])
+      .with_exclude_languages(["zh"]);
     let map = res.get_or_init_data();
     // println!("{map:?}")
     dbg!(map);
@@ -419,8 +468,10 @@ mod tests {
   #[test]
   fn test_only_includes_de_and_und() {
     let res = new_resources()
-      .with_include_languages(&["de", "und", "es"])
-      .with_exclude_languages(&["es"]);
+      .with_include_languages(
+        ["de", "und", "es"].into_iter(), // languages,
+      )
+      .with_exclude_languages(["es"]);
     let map = res.get_or_init_data();
     // println!("{map:?}")
     dbg!(map);

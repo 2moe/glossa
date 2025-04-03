@@ -16,35 +16,44 @@ default = ["phf", "type-aliases"]
 std = [
     "dep:ahash",
     "dep:kstring",
-    "tmpl-resolver?/std",
+    "glossa-dsl?/std",
     "bincode?/std",
     "serde?/std",
     "compact_str/std",
+    "smallvec?/std",
 ]
 serde = [
     "dep:serde",
     "ahash?/serde",
     "kstring?/serde",
     "lang-id?/serde",
-    "tmpl-resolver?/serde",
+    "glossa-dsl?/serde",
     "compact_str/serde",
+    "smallvec?/serde",
 ]
-type-aliases = ["dep:lang-id", "dep:tmpl-resolver"]
+type-aliases = ["dep:lang-id", "dep:glossa-dsl"]
 phf = ["dep:phf"]
 consts = ["lang-id?/consts"]
-bincode = ["serde", "type-aliases", "dep:bincode"]
+bincode = ["serde", "type-aliases", "dep:bincode", "glossa-dsl?/bincode"]
+smallvec = ["dep:smallvec", "dep:derive_more"]
 
 [dependencies]
+
 compact_str.workspace = true
 phf_shared.workspace = true
 tap.workspace = true
 phf = { workspace = true, optional = true }
 ahash = { workspace = true, optional = true }
+derive_more = { workspace = true, optional = true, features = [
+    "deref",
+    "deref_mut",
+] }
 lang-id = { workspace = true, optional = true, features = ["compact_str"] }
 kstring = { workspace = true, optional = true }
-tmpl-resolver = { workspace = true, optional = true }
+glossa-dsl = { workspace = true, optional = true }
 bincode = { workspace = true, optional = true, features = ["alloc", "serde"] }
 serde = { workspace = true, optional = true, features = ["alloc"] }
+smallvec = { workspace = true, optional = true }
 
 [package.metadata.docs.rs]
 all-features = true

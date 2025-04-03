@@ -2,7 +2,7 @@
 
 use crate::{
   MiniStr as Key, MiniStr as Value, MiniStr as Language, MiniStr as MapName,
-  TemplateResolver,
+  glossa_dsl::resolver::Resolver,
 };
 
 #[cfg(feature = "std")]
@@ -16,8 +16,8 @@ pub mod type_aliases {
   pub type L10nFlattenMap = HashMap<(MapName, Key), Value>;
   pub type L10nMaps = HashMap<Language, L10nFlattenMap>;
 
-  pub type L10nTemplateMap = HashMap<MapName, TemplateResolver>;
-  pub type TemplateMaps = HashMap<Language, L10nTemplateMap>;
+  pub type L10nDSLMap = HashMap<MapName, Resolver>;
+  pub type DSLMaps = HashMap<Language, L10nDSLMap>;
 }
 
 #[cfg(not(feature = "std"))]
@@ -30,7 +30,7 @@ pub mod type_aliases {
 
   pub type L10nMaps = BTreeMap<Language, L10nFlattenMap>;
 
-  pub type L10nTemplateMap = BTreeMap<MapName, TemplateResolver>;
+  pub type L10nDSLMap = BTreeMap<MapName, Resolver>;
 
-  pub type TemplateMaps = BTreeMap<Language, L10nTemplateMap>;
+  pub type DSLMaps = BTreeMap<Language, L10nDSLMap>;
 }

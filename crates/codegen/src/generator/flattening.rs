@@ -1,9 +1,9 @@
 use std::collections::BTreeMap;
 
+use glossa_dsl::resolver::OrderedAST;
 use glossa_shared::type_aliases::ahash::{HashMap, HashMapExt};
 use kstring::KString;
 use lang_id::LangID;
-use tmpl_resolver::resolver::OrderedAST;
 
 use crate::{Generator, MiniStr};
 
@@ -13,13 +13,12 @@ pub(crate) type L10nBTreeMap = BTreeMap<(KString, KString), MiniStr>;
 // pub(crate) type L10nMaps = Box<[(LangID, L10nBTreeMap)]>;
 pub(crate) type L10nMaps = BTreeMap<LangID, L10nBTreeMap>;
 
-pub(crate) type L10nTemplateBTreeMap = BTreeMap<KString, OrderedAST>;
+pub(crate) type L10nDSLBTreeMap = BTreeMap<KString, OrderedAST>;
 
-// [(lang, <map_name, map>)]
-// pub(crate) type L10nTemplateMaps = Box<[(LangID, L10nTemplateBTreeMap)]>;
-pub(crate) type L10nTemplateMaps = BTreeMap<LangID, L10nTemplateBTreeMap>;
+// <lang, <map_name, map>>
+pub(crate) type L10nDSLMaps = BTreeMap<LangID, L10nDSLBTreeMap>;
 
-impl<'h> Generator<'_, 'h> {
+impl<'h> Generator<'h> {
   #[cfg(not(feature = "highlight"))]
   pub(crate) fn flatten_highlight_maps(&'h self) -> Option<L10nMaps> {
     None
@@ -82,7 +81,7 @@ impl<'h> Generator<'_, 'h> {
   }
 }
 
-impl Generator<'_, '_> {
+impl Generator<'_> {
   pub(crate) fn flatten_l10n_maps(&self) -> L10nMaps {
     self
       .get_l10n_res_map()
@@ -110,7 +109,7 @@ impl Generator<'_, '_> {
       .collect()
   }
 
-  pub(crate) fn flatten_template_maps(&self) -> L10nTemplateMaps {
+  pub(crate) fn flatten_dsl_maps(&self) -> L10nDSLMaps {
     self
       .get_l10n_res_map()
       .iter()
@@ -159,7 +158,7 @@ mod tests {
   #[ignore]
   #[test]
   fn test_collect_tmpl_maps() -> AnyResult<()> {
-    let all_maps = en_generator().flatten_template_maps();
+    let all_maps = en_generator().flatten_dsl_maps();
 
     let Some((_lang, map)) = all_maps.first_key_value() else {
       bail!("Empty map")

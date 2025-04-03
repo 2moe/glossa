@@ -40,7 +40,7 @@ A:
   如果所有文件内容都是有效且不为空的 K-V String Pairs，那么靠运气！
   否则的话，第一个**有效**的“同 stem” 文件将成为真正的 map。
 
-> 注：a.toml => a 与 a.tmpl.toml => a.tmpl 不是同 stem 文件。
+> 注：a.toml => a 与 a.dsl.toml => a.dsl 不是同 stem 文件。
 >
 > en/a.toml => a 与 en/subdir/a.json => a 是同 stem 文件
 
@@ -87,13 +87,13 @@ hello = "你好"
 }
 ```
 
-#### 模版 DSL
+#### glossa-DSL
 
-[![tmpl-resolver.crate](https://img.shields.io/crates/v/tmpl-resolver.svg?logo=rust&logoColor=lightsalmon&label=tmpl-resolver)](https://github.com/2moe/tmpl-resolver)
+[![glossa-dsl.crate](https://img.shields.io/crates/v/glossa-dsl.svg?logo=rust&logoColor=lightsalmon&label=glossa-dsl)](https://github.com/2moe/glossa-dsl)
 
-模版 DSL 使用 tmpl-resolver 进行处理。
+> DSL: 领域特定语言
 
-我们可以在 5 分钟内，掌握其 5 种语法。
+我们可以在 5 分钟内，掌握 glossa-dsl 的 5 种语法。
 
 ##### 1. 最基本的 **key = "value"**
 
@@ -164,7 +164,7 @@ assert_eq!(text, "早安喵 ฅ(°ω°ฅ)，Moe！");
 
 ---
 
-###### 区别 `{ 🐱 }` 与 `{ $🐱 }`
+###### `{ 🐱 }` 与 `{ $🐱 }` 的区别
 
 重点是有没有加 `$`，加了 `$` 就依赖于外部参数，没加就是内部引用。
 
@@ -299,14 +299,16 @@ enum MapType {
   Regular,
   Highlight,
   RegularAndHighlight,
-  Template,
+  DSL,
 }
 ```
 
 - Regular：K-V pairs
 - Highlight：带有语法高亮的 K-V pairs
 - RegularAndHighlight： 融合了 Regular 和 Highlight。
-- Template：模版 DSL 的AST
+- DSL：glossa-DSL 的AST
+
+> AST：抽象语法树
 
 从本质上来上说，Regular 与 Highlight 使用相同的数据结构。
 之所以将它们分开，是为了更“细粒度”的控制。
@@ -314,38 +316,44 @@ enum MapType {
 ## L10nResources (本地化资源)
 
 ```rust
-pub struct L10nResources<'i> {
+pub struct SmallList<const N: usize>(pub SmallVec<MiniStr, N>);
+
+pub struct L10nResources {
   dir: PathBuf,
-  tmpl_suffix: MiniStr,
-  include_languages: &'i [&'i str],
-  include_map_names: &'i [&'i str],
-  exclude_languages: &'i [&'i str],
-  exclude_map_names: &'i [&'i str],
+  dsl_suffix: MiniStr,
+
+  include_languages: SmallList<3>,
+  include_map_names: SmallList<2>,
+
+  exclude_languages: SmallList<1>,
+  exclude_map_names: SmallList<1>,
+
   /// get data: [Self::get_or_init_data]
   lazy_data: OnceLock<L10nResMap>,
 }
 ```
 
 - dir： 本地化资源所在的目录，例如 "./locales"
-- tmpl_suffix
-  - 模版DSL 文件的后缀，默认为 ".tmpl"
-    - 当后缀为 ".tmpl" 时
-      - "a.tmpl.toml" 会被识别为 **模版DSL** 文件
-      - "a.toml" 则为常规文件
+- dsl_suffix
+  - glossa-DSL 文件的后缀，默认为 ".dsl"
+    - 当其值为 ".dsl" 时
+      - "a.dsl.toml" 会被识别为 **glossa-DSL** 文件
+      - "b.dsl.json" 也会被识别为 **glossa-DSL** 文件
+      - "a.toml" 为常规文件
 - include_languages
   - 白名单模式，当其不为空时，只有位于列表中的语言 id 才会被初始化
     - 假设所有语言 id 为: "de", "en", "es", "pt", "ru", "zh"
-    - `.with_include_language(&["en", "zh"])` => 只有 "en" 和 "zh" 的本地化资源才会被初始化
+    - `.with_include_language(["en", "zh"])` => 只有 "en" 和 "zh" 的本地化资源才会被初始化
 - include_map_names
   - 当其不为空时，只有位于列表中的 map_names 才会被初始化。
     - 假设存在: "en/a.toml", "en/b.json", "zh/a.json", "zh/b.ron"
     - 不难看出，所有 map_names 为 `["a", "b"]`
-    - `.with_include_map_names(&["a"])` => 只有 "en/a.toml" 和 "zh/a.json" 会被初始化
+    - `.with_include_map_names(["a"])` => 只有 "en/a.toml" 和 "zh/a.json" 会被初始化
 - exclude_languages
   - 黑名单模式。位于黑名单中的语言 id 不会被初始化
     - 假设存在: "de", "en", "es", "pt", "ru", "zh"
-      - `.with_exclude_languages(&["en", "es", "ru"])` => `["de", "pt", "zh"]`
-      - `.with_include_languages(&["en", "es"]).with_exclude_languages(&["en"])` => `["es"]`
+      - `.with_exclude_languages(["en", "es", "ru"])` => `["de", "pt", "zh"]`
+      - `.with_include_languages(["en", "es"]).with_exclude_languages(["en"])` => `["es"]`
 - exclude_map_names
   - 位于列表中的 map_names 不会被初始化
   - 假设存在:
@@ -354,9 +362,9 @@ pub struct L10nResources<'i> {
     - "zh/a.json"
     - "zh/b.ron"
     - "zh/c.toml"
-  - `.with_exclude_map_names(&["a"])` => "en/b.json", "zh/b.ron", "zh/c.toml"
-  - `.with_include_map_names(&["b", "c"]).with_exclude_map_names(&["b"])` => "zh/c.toml"
-  - `.with_include_language(&["en"]).with_exclude_map_names(&["a"])` => "en/b.json"
+  - `.with_exclude_map_names(["a"])` => "en/b.json", "zh/b.ron", "zh/c.toml"
+  - `.with_include_map_names(["b", "c"]).with_exclude_map_names(["b"])` => "zh/c.toml"
+  - `.with_include_language(["en"]).with_exclude_map_names(["a"])` => "en/b.json"
 - lazy_data
   - 在运行期间**延迟**初始化的数据
   - 通过 `.get_or_init_data()` 来获取数据，相当于缓存
@@ -365,12 +373,12 @@ pub struct L10nResources<'i> {
 | ---------------------------------- | ------------------------------------------------ |
 | `.get_dir()`                       | 获取 dir                                         |
 | `.with_dir("/path/to/new_dir")`    | 设置 dir                                         |
-| `.get_tmpl_suffix()`               | 获取 tmpl_suffix                                 |
-| `.with_tmpl_suffix(".new_suffix")` | 设置 tmpl_suffix                                 |
-| `.with_include_languages(&[])`     | 设置 include_languages                           |
-| `.with_include_map_names(&[])`     | 设置 include_map_names                           |
-| `.with_exclude_languages(&[])`     | 设置 exclude_languages                           |
-| `.with_exclude_map_names(&[])`     | 设置 exclude_map_names                           |
+| `.get_dsl_suffix()`                | 获取 dsl_suffix                                  |
+| `.with_dsl_suffix(".new_suffix")`  | 设置 dsl_suffix                                  |
+| `.with_include_languages([])`      | 设置 include_languages                           |
+| `.with_include_map_names([])`      | 设置 include_map_names                           |
+| `.with_exclude_languages([])`      | 设置 exclude_languages                           |
+| `.with_exclude_map_names([])`      | 设置 exclude_map_names                           |
 | `.get_or_init_data()`              | 获取 `&HashMap<KString, Vec<L10nMapEntry>>`      |
 | `.with_lazy_data(OnceLock::new())` | 设置 lazy_data，可以将OnceLock重置为未初始化状态 |
 
@@ -389,8 +397,8 @@ let _res = L10nResources::new("locales");
 ## Generator (生成器)
 
 ```rust
-pub struct Generator<'i, 'h> {
-  resources: Box<L10nResources<'i>>,
+pub struct Generator<'h> {
+  resources: Box<L10nResources>,
 
   visibility: Visibility,
 
@@ -424,13 +432,15 @@ pub struct Generator<'i, 'h> {
     - `.get_or_init_maps()`  // Regular
     - `.get_or_init_highlight_maps()` // Highlight
     - `.get_or_init_merged_maps()` // RegularAndHighlight
-    - `.get_or_init_template_maps()` // Template
+    - `.get_or_init_dsl_maps()` // Template
 
 ### 构造 Generator
 
 ```rust
 use glossa_codegen::{Generator, L10nResources};
+
 let resources = L10nResources::new("locales");
+
 let generator = Generator::default()
   .with_resources(resources)
   .with_outdir("tmp");
@@ -438,6 +448,331 @@ let generator = Generator::default()
 
 ### 输出
 
-- match 函数
-- phf 函数
+- 内部是 match 表达式的 const 函数
+  - 调用 Generator 的 `.output_match_fn(MapType::Regular)` 会生成 rust 代码
+    - `const fn map(map_name: &[u8], key: &[u8]) -> &'static str { match (map_name, key) {...} }`
+- phf map 函数
+  - 调用 Generator 的 `.output_phf(MapType::Regular)` 会生成 rust 代码
+    - `const fn map() -> super::PhfL10nOrderedMap { ... }`
 - bincode
+  - 调用 Generator 的 `.output_bincode(MapType::Regular)` 会生成 bincode 二进制文件
+
+MapType::DSL 只能输出为 bincode，而其他 MapType 支持所有的输出类型。
+
+#### 生成代码: 包含 match-expr 的 const 函数
+
+相关方法有：
+
+- `.output_match_fn()`
+  - 为不同的语言生成独立的 rust 代码文件
+    - 比如
+      - en => tmp/l10n_en.rs
+      - en-GB => tmp/l10n_en_gb.rs
+- `.output_match_fn_all_in_one()`
+  - 将所有语言的本地化资源都收集为一个字符串
+    - 其内容为 `const fn map(lang: &[u8], map_name:&[u8], key:&[u8]) -> &'static str {...}`
+- `.output_match_fn_all_in_one_by_language()`
+  - 将所有语言的本地化资源都收集为一个字符串
+    - 其内容为 `const fn map(language: &[u8]) -> &'static str {...}`
+    - 只有当 map_name 和 key 都只有唯一一个时，你才能生成这种函数，否则 map_name 和 key 会出现冲突。
+- `.output_match_fn_all_in_one_by_language_and_key()`
+  - 将所有语言的本地化资源都收集为一个字符串
+    - 其内容为 `const fn map(language: &[u8], key: &[u8]) -> &'static str {...}`
+    - 只有当 map_name 只有唯一一个时，你才能生成这种函数，否则 key 会出现冲突。
+
+##### **output_match_fn()**
+
+假设存在如下两个文件：
+
+l10n/en-GB/error.toml
+
+```toml
+text-not-found = "No localised text found"
+```
+
+l10n/de/error.yml
+
+```yaml
+text-not-found: Kein lokalisierter Text gefunden
+```
+
+我们可以调用 `.output_match_fn(Regular)` 来生成常规类型的 Map 的代码。
+
+```rust
+use glossa_codegen::{generator::MapType, Generator, L10nResources};
+
+let resources = L10nResources::new("locales");
+
+Generator::default()
+  .with_resources(resources)
+  .with_outdir("tmp")
+  .output_match_fn(MapType::Regular)?;
+```
+
+输出结果:
+
+tmp/l10n_en_gb.rs
+
+```rust
+pub(crate) const fn map(map_name: &[u8], key: &[u8]) -> &'static str {
+  match (map_name, key) {
+    (b"error", b"text-not-found") => r#####"No localised text found"#####,
+    _ => "",
+  }
+}
+```
+
+tmp/l10n_de.rs
+
+```rust
+pub(crate) const fn map(map_name: &[u8], key: &[u8]) -> &'static str {
+  match (map_name, key) {
+    (b"error", b"text-not-found") => r#####"Kein lokalisierter Text gefunden"#####,
+    _ => "",
+  }
+}
+```
+
+##### **output_match_fn_all_in_one()**
+
+Q: 我们如果使用 `output_match_fn_all_in_one()` ，那么会得到什么呢？
+A: 会得到一个包含函数数据的 String。
+
+> 所有语言的本地化资源都在同一个函数中
+
+```rust
+let function_data = generator.output_match_fn_all_in_one(MapType::Regular)?;
+```
+
+function_data:
+
+```rust
+pub(crate) const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) -> &'static str {
+  match (lang, map_name, key) {
+    (b"en-GB", b"error", b"text-not-found") => r#####"Kein lokalisierter Text gefunden"#####,
+    (b"de", b"error", b"text-not-found") => r#####"Kein lokalisierter Text gefunden"#####,
+    _ => "",
+  }
+}
+```
+
+##### **output_match_fn_all_in_one_by_language_and_key()**
+
+当 map_name 只有唯一一个时，我们可以省略它，以此来达到性能优化的目的。
+
+```rust
+match (lang, key) { ... }
+```
+
+```rust
+match (lang, map_name, key) { ... }
+```
+
+将两段 match 表达式进行对比：由于前者少匹配了一个项，所以从理论上来说，前者会更快。
+
+`output_match_fn_all_in_one_by_language_and_key()` 会生成类似于前者的代码。
+
+您如果不关心纳秒级别的性能优化，那么完全不用在意这一小节的内容。
+
+---
+
+举个例子：
+
+- `en/yes-no { yes: "Yes", no: "No"}`
+- `de/yes-no { yes: "Ja", no: "Nein" }`
+
+在本例中，唯一的 map_name 是 yes-no，因此我们可以省略它。
+
+调用 `.output_match_fn_all_in_one_by_language_and_key(Regular)?` 会生成如下代码：
+
+```rust
+pub(crate) const fn map(language: &[u8], key: &[u8]) -> &'static str {
+  match (language, key) {
+    (b"en", b"yes") => r#####"Yes"#####,
+    (b"en", b"no") => r#####"No"#####,
+    (b"de", b"yes") => r#####"Ja"#####,
+    (b"de", b"no") => r#####"Nein"#####,
+    _ => "",
+  }
+}
+```
+
+当 map_name 不是唯一时，比如: 新增一个 `en/yes-no2 { yes: "YES", no: "NO", ok: "OK"}`。
+
+此时不同的 map_names 有相同的 keys ("yes", "no")，这会产生冲突，我们就不能省略 map_name 了。
+在这种情况下，我们应该用 `output_match_fn_all_in_one()`。
+
+#### 生成代码: 包含 phf map 的 const 函数
+
+- `.output_phf()`
+  - 为不同的语言生成独立的 rust 代码文件
+- `.output_phf_all_in_one()`
+  - 将所有语言的本地化资源都收集为一个包含 phf map 的函数数据的字符串
+
+##### **output_phf()**
+
+```rust
+use glossa_codegen::{generator::MapType, Generator, L10nResources};
+
+pub(crate) fn es_generator<'i, 'h>() -> Generator<'i, 'h> {
+  let data = L10nResources::new("locales").with_include_languages(["es", "es-419"]);
+  Generator::default().with_resources(data).with_outdir("tmp")
+}
+
+es_generator().output_phf(MapType::Regular)?;
+```
+
+tmp/l10n_es.rs
+
+```rust
+pub(crate) const fn map() -> super::PhfL10nOrderedMap {
+  use super::PhfTupleKey as Key;
+  super::phf::OrderedMap {
+    key: 12913932095322966823,
+    disps: &[(0, 0)],
+    idxs: &[1, 3, 2, 4, 0],
+    entries: &[
+      (
+        Key(r#"error"#, r##"text-not-found"##),
+        r#####"No se encontró texto localizado"#####,
+      ),
+      (Key(r#"yes-no"#, r##"cancel"##), r#####"Cancelar"#####),
+      (Key(r#"yes-no"#, r##"no"##), r#####"No"#####),
+      (Key(r#"yes-no"#, r##"ok"##), r#####"Aceptar"#####),
+      (Key(r#"yes-no"#, r##"yes"##), r#####"Sí"#####),
+    ],
+  }
+}
+```
+
+Q：等等，PhfL10nOrderedMap 和 PhfTupleKey 都是哪来的？
+
+A: `glossa-shared` 里包含了相关的数据类型。
+
+##### **output_phf_all_in_one()**
+
+```rust
+let data = L10nResources::new("locales")
+   .with_include_languages(["de", "en", "fr", "pt", "zh"])
+   .with_include_map_names(["yes-no"]);
+let function_data = Generator::default().with_resources(data).output_phf_all_in_one(MapType::Regular)?;
+```
+
+function_data:
+
+```rust
+pub(crate) const fn map() -> super::PhfL10nAllInOneMap {
+  use super::PhfTripleKey as Key;
+  super::phf::OrderedMap {
+    key: 6767243246500575252,
+    disps: &[(0, 0), (0, 2), (4, 12), (15, 9)],
+    idxs: &[
+      4, 7, 13, 19, 9, 14, 3, 17, 10, 18, 5, 12, 16, 1, 8, 6, 2, 15, 0, 11,
+    ],
+    entries: &[
+      (
+        Key(r#"de"#, r##"yes-no"##, r###"cancel"###),
+        r#####"Abbrechen"#####,
+      ),
+      (Key(r#"de"#, r##"yes-no"##, r###"no"###), r#####"Nein"#####),
+      (Key(r#"de"#, r##"yes-no"##, r###"ok"###), r#####"OK"#####),
+      (Key(r#"de"#, r##"yes-no"##, r###"yes"###), r#####"Ja"#####),
+      (
+        Key(r#"en"#, r##"yes-no"##, r###"cancel"###),
+        r#####"Cancel"#####,
+      ),
+      (Key(r#"en"#, r##"yes-no"##, r###"no"###), r#####"No"#####),
+      (Key(r#"en"#, r##"yes-no"##, r###"ok"###), r#####"OK"#####),
+      (Key(r#"en"#, r##"yes-no"##, r###"yes"###), r#####"Yes"#####),
+      (
+        Key(r#"fr"#, r##"yes-no"##, r###"cancel"###),
+        r#####"Annuler"#####,
+      ),
+      (Key(r#"fr"#, r##"yes-no"##, r###"no"###), r#####"Non"#####),
+      (Key(r#"fr"#, r##"yes-no"##, r###"ok"###), r#####"OK"#####),
+      (Key(r#"fr"#, r##"yes-no"##, r###"yes"###), r#####"Oui"#####),
+      (
+        Key(r#"pt"#, r##"yes-no"##, r###"cancel"###),
+        r#####"Cancelar"#####,
+      ),
+      (Key(r#"pt"#, r##"yes-no"##, r###"no"###), r#####"Não"#####),
+      (Key(r#"pt"#, r##"yes-no"##, r###"ok"###), r#####"OK"#####),
+      (Key(r#"pt"#, r##"yes-no"##, r###"yes"###), r#####"Sim"#####),
+      (
+        Key(r#"zh"#, r##"yes-no"##, r###"cancel"###),
+        r#####"取消"#####,
+      ),
+      (Key(r#"zh"#, r##"yes-no"##, r###"no"###), r#####"否"#####),
+      (Key(r#"zh"#, r##"yes-no"##, r###"ok"###), r#####"确定"#####),
+      (Key(r#"zh"#, r##"yes-no"##, r###"yes"###), r#####"是"#####),
+    ],
+  }
+}
+```
+
+#### bincode
+
+- `output_bincode()`
+- `output_bincode_all_in_one()`
+
+##### **output_bincode()**
+
+**../../locales/en/unread.dsl.toml**:
+
+```toml
+num-to-en = """
+$num ->
+  [0] zero
+  [1] one
+  [2] two
+  [3] three
+  *[other] {$num}
+"""
+
+unread = "unread message"
+
+unread-count = """
+$num ->
+  [0] No {unread}s.
+  [1] You have { num-to-en } {unread}.
+  *[other] You have { num-to-en } {unread}s.
+"""
+
+show-unread-messages-count = "{unread-count}"
+```
+
+rust:
+
+```rust
+    use glossa_codegen::{L10nResources, Generator, generator::MapType};
+    use glossa_shared::decode::decode_single_file_to_dsl_map;
+    use std::path::Path;
+
+    let resources = crate::L10nResources::new("../../locales/");
+    // Output to tmp/{language}_dsl.bincode
+    Generator::default()
+      .with_resources(resources)
+      .with_outdir("tmp")
+      .with_bincode_suffix("_dsl.bincode".into())
+      .output_bincode(MapType::DSL)?;
+
+    let file = Path::new("tmp").join("en_dsl.bincode");
+    let dsl_maps = decode_single_file_to_dsl_map(file)?;
+
+    let unread_resolver = dsl_maps
+      .get("unread")
+      .expect("Failed to get AST (map_name: unread)");
+
+    let get_text = |num_str| {
+      unread_resolver
+        .get_with_context("show-unread-messages-count", &[("num", num_str)])
+    };
+
+    let one = get_text("1")?;
+    assert_eq!(one, "You have one unread message.");
+
+    let zero = get_text("0")?;
+    assert_eq!(zero, "No unread messages.");
+
+    Ok(())
+```

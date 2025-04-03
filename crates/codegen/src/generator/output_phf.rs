@@ -18,7 +18,7 @@ use crate::{
   },
 };
 
-impl<'h> Generator<'_, 'h> {
+impl<'h> Generator<'h> {
   /// Collect all localized resources into a **`const phf::OrderedMap`**
   /// function, i.e., a single table can accommodate different `language`,
   /// `map_name`, and `map_key`.
@@ -28,10 +28,11 @@ impl<'h> Generator<'_, 'h> {
   ///
   /// ```no_run
   /// use glossa_codegen::{L10nResources, Generator, generator::MapType};
+  /// use glossa_shared::tap::Pipe;
   ///
   /// let data = L10nResources::new("../../locales/")
-  ///   .with_include_map_names(&["error"])
-  ///   .with_include_languages(&[
+  ///   .with_include_map_names(["error"])
+  ///   .with_include_languages([
   ///     "de",
   ///     "zh-pinyin",
   ///     "zh",
@@ -114,11 +115,11 @@ impl<'h> Generator<'_, 'h> {
   ///     assert_eq!(text, Some(&"Kein lokalisierter Text gefunden"));
   /// }
   /// ```
-  pub fn output_phf_all_in_one(&'h self, non_tmpl: MapType) -> io::Result<String> {
+  pub fn output_phf_all_in_one(&'h self, non_dsl: MapType) -> io::Result<String> {
     let vis_fn = self.get_visibility().as_str();
 
-    non_tmpl
-      .get_non_template_maps(self)?
+    non_dsl
+      .get_non_dsl_maps(self)?
       .iter()
       .filter(|(_, data)| !data.is_empty())
       .flat_map(|(lang, map_entry)| {
@@ -152,7 +153,7 @@ impl<'h> Generator<'_, 'h> {
   ///
   /// # Behavior
   ///
-  /// - Processes non-template maps in parallel
+  /// - Processes non-DSL maps in parallel
   /// - Filters out empty localization datasets
   /// - Generates PHF maps preserving insertion order
   /// - Creates individual Rust module files per language
@@ -160,11 +161,11 @@ impl<'h> Generator<'_, 'h> {
   /// # Errors
   ///
   /// Returns [`io::Result`] for file I/O operations failures
-  pub fn output_phf(&'h self, non_tmpl: MapType) -> io::Result<()> {
+  pub fn output_phf(&'h self, non_dsl: MapType) -> io::Result<()> {
     let vis_fn = self.get_visibility().as_str();
 
-    non_tmpl
-      .get_non_template_maps(self)?
+    non_dsl
+      .get_non_dsl_maps(self)?
       .par_iter()
       .filter(|(_, data)| !data.is_empty())
       .map(|(lang, map_entry)| {
@@ -274,13 +275,20 @@ mod tests {
 
   use super::*;
   use crate::generator::dbg_generator::{
-    de_en_es_pt_zh_generator, en_gb_generator, new_generator,
+    de_en_fr_pt_zh_generator, en_gb_generator, es_generator, new_generator,
   };
 
   #[ignore]
   #[test]
   fn test_build_en_gb_phf() -> AnyResult<()> {
     en_gb_generator().output_phf(MapType::Regular)?;
+    Ok(())
+  }
+
+  #[ignore]
+  #[test]
+  fn test_build_es_phf() -> AnyResult<()> {
+    es_generator().output_phf(MapType::Regular)?;
     Ok(())
   }
 
@@ -301,9 +309,9 @@ mod tests {
 
   #[ignore]
   #[test]
-  fn test_build_de_zh_es_pt_phf_all_in_one() -> AnyResult<()> {
+  fn test_build_de_zh_fr_pt_phf_all_in_one() -> AnyResult<()> {
     let function_data =
-      de_en_es_pt_zh_generator().output_phf_all_in_one(MapType::Regular)?;
+      de_en_fr_pt_zh_generator().output_phf_all_in_one(MapType::Regular)?;
     println!("{function_data}");
     Ok(())
   }

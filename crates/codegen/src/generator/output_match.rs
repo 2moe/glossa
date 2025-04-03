@@ -14,7 +14,7 @@ use crate::{
   generator::{Generator, MapType},
 };
 
-impl<'h> Generator<'_, 'h> {
+impl<'h> Generator<'h> {
   /// Generates a consolidated match function containing all localization
   /// mappings
   ///
@@ -29,9 +29,9 @@ impl<'h> Generator<'_, 'h> {
   ///
   /// ## Parameter
   ///
-  /// - `non_tmpl`
+  /// - `non_dsl`
   ///   - Specifies the type of mapping to process.
-  ///   - Note: Does not support Template MapType
+  ///   - Note: Does not support DSL MapType
   ///
   /// ## Example
   ///
@@ -41,8 +41,8 @@ impl<'h> Generator<'_, 'h> {
   /// const L10N_DIR: &str = "../../locales/";
   ///
   /// let data = L10nResources::new(L10N_DIR)
-  ///   .with_include_languages(&["en-GB", "de", "es", "pt",
-  /// "zh-pinyin"]);
+  ///   .with_include_languages(["en-GB", "de", "es", "pt",
+  /// "zh-pinyin"].into_iter().collect());
   ///
   /// let function_data = Generator::default()
   ///   .with_resources(data)
@@ -68,7 +68,7 @@ impl<'h> Generator<'_, 'h> {
   /// ```
   pub fn output_match_fn_all_in_one(
     &'h self,
-    non_tmpl: MapType,
+    non_dsl: MapType,
   ) -> io::Result<String> {
     const S_HEADER: &str = r##"const fn map(lang: &[u8], map_name: &[u8], key: &[u8])
     -> &'static str {
@@ -77,9 +77,8 @@ impl<'h> Generator<'_, 'h> {
 
     let new_header = || self.new_match_fn_header(S_HEADER);
 
-    // Process non-template maps only (Template MapType not supported)
-    non_tmpl
-      .get_non_template_maps(self)?
+    non_dsl
+      .get_non_dsl_maps(self)?
       .iter()
       // .filter(|(_, data)| !data.is_empty())
       .flat_map(|(lang, map_entry)| {
@@ -124,7 +123,7 @@ impl<'h> Generator<'_, 'h> {
   /// Otherwise, use [`Self::output_match_fn_all_in_one`].
   pub fn output_match_fn_all_in_one_by_language(
     &'h self,
-    non_tmpl: MapType,
+    non_dsl: MapType,
   ) -> io::Result<String> {
     const S_HEADER: &str = r##"const fn map(language: &[u8]) -> &'static str {
     match language {
@@ -132,8 +131,8 @@ impl<'h> Generator<'_, 'h> {
 
     let new_header = || self.new_match_fn_header(S_HEADER);
 
-    non_tmpl
-      .get_non_template_maps(self)?
+    non_dsl
+      .get_non_dsl_maps(self)?
       .iter()
       .flat_map(|(lang, map_entry)| {
         map_entry
@@ -179,7 +178,7 @@ impl<'h> Generator<'_, 'h> {
   ///
   /// Here, `map_name` is unique (per language), so it can be omitted:
   ///
-  /// ```no_run
+  /// ```ignore
   /// match (language, key) {
   ///   (b"en", b"yes") => r#####"Yes"#####,
   ///   (b"en", b"no") => r#####"No"#####,
@@ -195,7 +194,7 @@ impl<'h> Generator<'_, 'h> {
   /// would create conflicting keys ("yes", "no") if `map_name` is omitted.
   pub fn output_match_fn_all_in_one_by_language_and_key(
     &'h self,
-    non_tmpl: MapType,
+    non_dsl: MapType,
   ) -> io::Result<String> {
     const S_HEADER: &str = r##"const fn map(language: &[u8], key: &[u8])
     -> &'static str {
@@ -204,8 +203,8 @@ impl<'h> Generator<'_, 'h> {
 
     let new_header = || self.new_match_fn_header(S_HEADER);
 
-    non_tmpl
-      .get_non_template_maps(self)?
+    non_dsl
+      .get_non_dsl_maps(self)?
       .iter()
       .flat_map(|(lang, map_entry)| {
         map_entry
@@ -312,9 +311,9 @@ impl<'h> Generator<'_, 'h> {
   }
 
   fn collect_raw_locales(&'h self, map_type: MapType) -> io::Result<Vec<MiniStr>> {
-    match map_type.is_template() {
-      true => match self.get_or_init_template_maps() {
-        x if x.is_empty() => "// Error: Empty Template Map"
+    match map_type.is_dsl() {
+      true => match self.get_or_init_dsl_maps() {
+        x if x.is_empty() => "// Error: Empty DSL Map"
           .pipe(io::Error::other)
           .pipe(Err),
         data => data
@@ -324,7 +323,7 @@ impl<'h> Generator<'_, 'h> {
           .pipe(Ok),
       },
       _ => map_type
-        .get_non_template_maps(self)?
+        .get_non_dsl_maps(self)?
         .iter()
         .map(|(id, _)| id.to_compact_string())
         .collect_vec()
@@ -364,15 +363,15 @@ impl<'h> Generator<'_, 'h> {
   }
 
   /// Generates individual match functions per locale
-  pub fn output_match_fn(&'h self, non_tmpl: MapType) -> io::Result<()> {
+  pub fn output_match_fn(&'h self, non_dsl: MapType) -> io::Result<()> {
     const HEADER: &str = r##"const fn map(map_name: &[u8], key: &[u8]) -> &'static str {
     match (map_name, key) {
     "##;
     let new_header = || self.new_match_fn_header(HEADER);
 
-    // Process non-template maps only (Template MapType not supported)
-    non_tmpl
-      .get_non_template_maps(self)?
+    // Process non-DSL maps only (DSL MapType not supported)
+    non_dsl
+      .get_non_dsl_maps(self)?
       .iter()
       // .filter(|(_, data)| !data.is_empty())
       .map(|(lang, map_entry)| {
@@ -528,7 +527,7 @@ mod tests {
     use crate::L10nResources;
     const L10N_DIR: &str = "../../locales/";
 
-    let data = L10nResources::new(L10N_DIR).with_include_languages(&[
+    let data = L10nResources::new(L10N_DIR).with_include_languages([
       "en-GB",
       "de",
       "es",

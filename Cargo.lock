@@ -330,6 +330,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "derive_more"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "093242cf7570c207c83073cf82f79706fe7b8317e98620a47d5be7c3d8497678"
+dependencies = [
+ "derive_more-impl",
+]
+
+[[package]]
+name = "derive_more-impl"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bda628edc44c4bb645fbe0f758797143e4e07926f7ebf4e9bdfbd3d2ce621df3"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "digest"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -481,6 +501,7 @@ dependencies = [
  "bincode 2.0.1",
  "dashmap",
  "getset",
+ "glossa-dsl",
  "glossa-shared",
  "hlight",
  "itertools",
@@ -498,9 +519,26 @@ dependencies = [
  "smallvec 2.0.0-alpha.11",
  "testutils",
  "thiserror 2.0.12",
- "tmpl-resolver",
  "toml",
  "walkdir",
+]
+
+[[package]]
+name = "glossa-dsl"
+version = "0.0.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "01c2d07d5b61bdf3cfd96b9c42252c66cadba12a73bd9b056b192fbe45f6d488"
+dependencies = [
+ "ahash",
+ "bincode 2.0.1",
+ "compact_str",
+ "kstring",
+ "nom",
+ "serde",
+ "tap",
+ "thiserror 2.0.12",
+ "tinyvec",
+ "toml",
 ]
 
 [[package]]
@@ -517,13 +555,15 @@ dependencies = [
  "ahash",
  "bincode 2.0.1",
  "compact_str",
+ "derive_more",
+ "glossa-dsl",
  "kstring",
  "lang-id",
  "phf",
  "phf_shared",
  "serde",
+ "smallvec 2.0.0-alpha.11",
  "tap",
- "tmpl-resolver",
 ]
 
 [[package]]
@@ -1103,6 +1143,9 @@ name = "smallvec"
 version = "2.0.0-alpha.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "87b96efa4bd6bdd2ff0c6615cc36fc4970cbae63cfd46ddff5cee35a1b4df570"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "static_assertions"
@@ -1283,24 +1326,6 @@ checksum = "be28110ab94064f103a2a24597ed8f556f831d7334751ab991967de16c12d18f"
 dependencies = [
  "tinyvec",
  "tinyvec_macros",
-]
-
-[[package]]
-name = "tmpl-resolver"
-version = "0.0.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f3ced9d690b83c262da829b782d846edad7864d14853e048363661ba85d9f9cb"
-dependencies = [
- "ahash",
- "bincode 2.0.1",
- "compact_str",
- "kstring",
- "nom",
- "serde",
- "tap",
- "thiserror 2.0.12",
- "tinyvec",
- "toml",
 ]
 
 [[package]]

@@ -1,7 +1,7 @@
 pub(crate) use bincode::config::standard as bincode_std_cfg;
-pub use tmpl_resolver::error::ResolverResult;
+pub use glossa_dsl::error::ResolverResult;
 
-use crate::type_aliases::{L10nFlattenMap, L10nMaps, L10nTemplateMap, TemplateMaps};
+use crate::type_aliases::{DSLMaps, L10nDSLMap, L10nFlattenMap, L10nMaps};
 
 // macro_rules! decode_slice {
 //   ($slice:expr) => {
@@ -48,36 +48,34 @@ pub fn decode_to_maps(slice: &[u8]) -> ResolverResult<(L10nMaps, usize)> {
   decode_slice(slice)
 }
 
-/// decodes single L10n Template data (e.g., read("en-GB.tmpl.bincode") )
+/// decodes single L10n DSL data (e.g., read("en-GB.tmpl.bincode") )
 ///
 /// returns:
 ///
 /// ```ignore
 /// Ok(
-///   Map<map_name, TemplateResolver>,
+///   Map<map_name, Resolver>,
 ///   read_bytes_size
 /// )
 /// ```
-pub fn decode_single_data_to_template_map(
+pub fn decode_single_data_to_dsl_map(
   slice: &[u8],
-) -> ResolverResult<(L10nTemplateMap, usize)> {
+) -> ResolverResult<(L10nDSLMap, usize)> {
   decode_slice(slice)
 }
 
-/// decodes **all_in_one** Template L10n data (e.g., read("all.tmpl.bincode") )
+/// decodes **all_in_one** DSL L10n data (e.g., read("all.tmpl.bincode") )
 ///
 ///
 /// returns:
 ///
 /// ```ignore
 /// Ok(
-///   Map< LangID, Map<map_name, TemplateResolver> >,
+///   Map< LangID, Map<map_name, Resolver> >,
 ///   read_bytes_size
 /// )
 /// ```
-pub fn decode_to_template_maps(
-  slice: &[u8],
-) -> ResolverResult<(TemplateMaps, usize)> {
+pub fn decode_to_dsl_maps(slice: &[u8]) -> ResolverResult<(DSLMaps, usize)> {
   decode_slice(slice)
 }
 // ----------------
@@ -135,34 +133,34 @@ pub fn decode_file_to_maps<P: AsRef<std::path::Path>>(
 }
 
 #[cfg(feature = "std")]
-/// decodes single L10n Template file (e.g., en-GB.tmpl.bincode)
+/// decodes single L10n DSL file (e.g., en-GB.tmpl.bincode)
 ///
 /// returns:
 ///
 /// ```ignore
 /// Ok(
-///   Map<map_name, TemplateResolver>,
+///   Map<map_name, Resolver>,
 /// )
 /// ```
-pub fn decode_single_file_to_template_map<P: AsRef<std::path::Path>>(
+pub fn decode_single_file_to_dsl_map<P: AsRef<std::path::Path>>(
   src_file: P,
-) -> ResolverResult<L10nTemplateMap> {
+) -> ResolverResult<L10nDSLMap> {
   decode_file(src_file)
 }
 
 #[cfg(feature = "std")]
-/// decodes **all_in_one** Template L10n file (e.g., all.tmpl.bincode)
+/// decodes **all_in_one** DSL L10n file (e.g., all.tmpl.bincode)
 ///
 ///
 /// returns:
 ///
 /// ```ignore
 /// Ok(
-///   Map< LangID, Map<map_name, TemplateResolver> >,
+///   Map< LangID, Map<map_name, Resolver> >,
 /// )
 /// ```
-pub fn decode_file_to_template_maps<P: AsRef<std::path::Path>>(
+pub fn decode_file_to_dsl_maps<P: AsRef<std::path::Path>>(
   src_file: P,
-) -> ResolverResult<TemplateMaps> {
+) -> ResolverResult<DSLMaps> {
   decode_file(src_file)
 }

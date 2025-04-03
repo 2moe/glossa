@@ -13,11 +13,17 @@ pub use phf_tuple_key::PhfTupleKey;
 pub mod phf_triple_key;
 pub use phf_triple_key::PhfTripleKey;
 
+#[cfg(feature = "smallvec")]
+pub mod small_list;
+
 // -----
 mod aliases;
 
 #[cfg(feature = "type-aliases")]
 pub use aliases::type_aliases;
+// -----
+#[cfg(feature = "type-aliases")]
+pub use glossa_dsl;
 #[cfg(feature = "type-aliases")]
 pub use lang_id;
 // -----
@@ -25,9 +31,6 @@ pub use lang_id;
 pub use phf;
 #[cfg(feature = "type-aliases")]
 pub use tap;
-// -----
-#[cfg(feature = "type-aliases")]
-pub use tmpl_resolver::resolver::{TemplateAST, TemplateResolver};
 
 // -----
 

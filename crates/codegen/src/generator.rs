@@ -11,16 +11,16 @@ pub use output_phf::to_lower_snake_case;
 
 use crate::{
   L10nResources, MiniStr, Visibility,
-  generator::flattening::{L10nMaps, L10nTemplateMaps},
+  generator::flattening::{L10nDSLMaps, L10nMaps},
   internal_aliases::HighlightCfgMap,
 };
 
 #[derive(Getters, WithSetters, MutGetters, Debug, Clone)]
 #[getset(get = "pub with_prefix", set_with = "pub", get_mut = "pub with_prefix")]
-pub struct Generator<'i, 'h> {
+pub struct Generator<'h> {
   #[getset(skip)]
   #[getset(get = "pub")]
-  resources: Box<L10nResources<'i>>,
+  resources: Box<L10nResources>,
 
   #[getset(get_mut)]
   visibility: Visibility,
@@ -42,7 +42,7 @@ pub struct Generator<'i, 'h> {
 }
 
 #[cfg(feature = "highlight")]
-impl<'h> Generator<'_, 'h> {
+impl<'h> Generator<'h> {
   fn clear_highlight_cache(&mut self) {
     self.lazy_maps.highlight = Default::default();
     self.lazy_maps.merged = Default::default();
@@ -60,14 +60,14 @@ impl<'h> Generator<'_, 'h> {
   }
 }
 
-impl Generator<'_, '_> {
+impl Generator<'_> {
   pub fn with_outdir<P: Into<PathBuf>>(mut self, outdir: P) -> Self {
     self.outdir = Some(outdir.into());
     self
   }
 }
 
-impl<'i> Generator<'i, '_> {
+impl Generator<'_> {
   /// Configures the generator with localization resources, resetting cached
   /// mappings.
   ///
@@ -94,7 +94,7 @@ impl<'i> Generator<'i, '_> {
   /// let _generator = Generator::default()
   ///   .with_resources(resources);
   /// ```
-  pub fn with_resources(mut self, resources: L10nResources<'i>) -> Self {
+  pub fn with_resources(mut self, resources: L10nResources) -> Self {
     self.resources = resources.into();
     self.lazy_maps = Default::default();
     self
@@ -109,14 +109,14 @@ struct LazyMaps {
   /// get: [Generator::get_or_init_highlight_maps]
   highlight: OnceLock<Option<L10nMaps>>,
 
-  /// get: [Generator::get_or_init_template_maps]
-  template: OnceLock<L10nTemplateMaps>,
+  /// get: [Generator::get_or_init_dsl_maps]
+  dsl: OnceLock<L10nDSLMaps>,
 
   /// get: [Generator::get_or_init_merged_maps]
   merged: OnceLock<L10nMaps>,
 }
 
-impl Default for Generator<'_, '_> {
+impl Default for Generator<'_> {
   /// Default:
   ///
   /// ```ignore
@@ -150,13 +150,13 @@ pub enum MapType {
   Regular,
   Highlight,
   RegularAndHighlight,
-  Template,
+  DSL,
 }
 
 impl MapType {
-  fn get_non_template_maps<'a>(
+  fn get_non_dsl_maps<'a>(
     &self,
-    generator: &'a Generator<'_, 'a>,
+    generator: &'a Generator<'a>,
   ) -> io::Result<&'a L10nMaps> {
     use MapType::*;
     match self {
@@ -165,23 +165,23 @@ impl MapType {
         .get_or_init_highlight_maps()
         .ok_or_else(|| io::Error::other("Failed to get highlight maps"))?,
       RegularAndHighlight => generator.get_or_init_merged_maps(),
-      _ => return io::Error::other("Template Maps are not supported.").pipe(Err),
+      _ => return io::Error::other("DSL Maps are not supported.").pipe(Err),
     }
     .pipe(Ok)
   }
 
-  /// Returns `true` if the map type is [`Template`].
+  /// Returns `true` if the map type is [`DSL`].
   ///
-  /// [`Template`]: MapType::Template
+  /// [`DSL`]: MapType::DSL
   #[must_use]
-  pub fn is_template(&self) -> bool {
-    matches!(self, Self::Template)
+  pub fn is_dsl(&self) -> bool {
+    matches!(self, Self::DSL)
   }
 }
 
 impl Default for MapType {
   fn default() -> Self {
-    Self::Template
+    Self::DSL
   }
 }
 
@@ -191,7 +191,7 @@ pub(crate) mod dbg_generator {
   use super::*;
   use crate::resources::dbg_shared;
 
-  pub(crate) fn new_generator<'i, 'h>() -> Generator<'i, 'h> {
+  pub(crate) fn new_generator<'h>() -> Generator<'h> {
     let data = dbg_shared::new_resources();
     Generator::default()
       .with_resources(data)
@@ -199,25 +199,34 @@ pub(crate) mod dbg_generator {
   }
 
   #[cfg(feature = "highlight")]
-  pub(crate) fn highlight_generator<'i, 'h>() -> Generator<'i, 'h> {
+  pub(crate) fn highlight_generator<'h>() -> Generator<'h> {
     let hmap = crate::highlight::dbg_shared::new_highlight_map();
     new_generator().with_highlight(hmap)
   }
 
-  pub(crate) fn en_generator<'i, 'h>() -> Generator<'i, 'h> {
-    let data = dbg_shared::new_resources().with_include_languages(&["en"]);
+  pub(crate) fn en_generator<'h>() -> Generator<'h> {
+    let data = dbg_shared::new_resources().with_include_languages(["en"]);
     new_generator().with_resources(data)
   }
 
-  pub(crate) fn en_gb_generator<'i, 'h>() -> Generator<'i, 'h> {
-    let data = dbg_shared::new_resources().with_include_languages(&["en-GB"]);
+  pub(crate) fn en_gb_generator<'h>() -> Generator<'h> {
+    let data = dbg_shared::new_resources().with_include_languages(["en-GB"]);
     new_generator().with_resources(data)
   }
 
-  pub(crate) fn de_en_es_pt_zh_generator<'i, 'h>() -> Generator<'i, 'h> {
+  pub(crate) fn es_generator<'h>() -> Generator<'h> {
+    // let es = ["es"].into_iter().collect();
+    let data = dbg_shared::new_resources().with_include_languages(["es"]);
+    new_generator().with_resources(data)
+  }
+
+  pub(crate) fn de_en_fr_pt_zh_generator<'h>() -> Generator<'h> {
     let data = dbg_shared::new_resources()
-      .with_include_languages(&["de", "zh-pinyin", "zh", "pt", "es", "en", "en-GB"])
-      .with_include_map_names(&["error"]);
+      .with_include_languages([
+        "de", // "zh-pinyin",
+        "zh", "pt", "fr", "en", "en-GB",
+      ])
+      .with_include_map_names(["yes-no"]);
     new_generator().with_resources(data)
   }
 }

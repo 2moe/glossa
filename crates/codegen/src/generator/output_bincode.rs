@@ -13,7 +13,7 @@ use crate::{
   resources::L10nResMap,
 };
 
-impl<'h> Generator<'_, 'h> {
+impl<'h> Generator<'h> {
   /// Retrieves the localization resource map containing all translation data
   pub(crate) fn get_l10n_res_map(&self) -> &L10nResMap {
     self
@@ -46,8 +46,7 @@ impl<'h> Generator<'_, 'h> {
   /// > `>` "outdir()/all{bincode_suffix}"
   ///
   /// # Behavior
-  /// - For template maps: Creates "all{bincode_suffix}" containing template
-  ///   data
+  /// - For DSL maps: Creates "all{bincode_suffix}" containing DSL data
   /// - For regular maps: Creates "all{bincode_suffix}" containing all language
   ///   data
   ///
@@ -58,14 +57,14 @@ impl<'h> Generator<'_, 'h> {
   pub fn output_bincode_all_in_one(&'h self, map_type: MapType) -> AnyResult<()> {
     let all = "all";
 
-    if map_type.is_template() {
-      return match self.get_or_init_template_maps() {
+    if map_type.is_dsl() {
+      return match self.get_or_init_dsl_maps() {
         x if x.is_empty() => Ok(()),
         data => self.encode_bincode(all, data),
       };
     }
 
-    let data = map_type.get_non_template_maps(self)?;
+    let data = map_type.get_non_dsl_maps(self)?;
     self.encode_bincode(all, data)
   }
 
@@ -74,14 +73,14 @@ impl<'h> Generator<'_, 'h> {
   /// > `>` "outdir()/{language}{bincode_suffix}"
   ///
   /// # Behavior
-  /// - For template maps: Creates separate files for each template
+  /// - For DSL maps: Creates separate files for each glossa-DSL content
   /// - For regular maps: Creates separate files for each language
   /// - Skips empty datasets
   ///
   ///
   /// ## Example
   ///
-  /// "../../locales/en/unread.tmpl.toml":
+  /// "../../locales/en/unread.dsl.toml":
   ///
   /// ```toml
   /// num-to-en = """
@@ -108,7 +107,6 @@ impl<'h> Generator<'_, 'h> {
   /// rs_code:
   ///
   /// ```no_run
-  /// use glossa_shared::TemplateResolver;
   /// use glossa_codegen::{L10nResources, Generator, generator::MapType};
   /// use std::path::Path;
   ///
@@ -119,13 +117,13 @@ impl<'h> Generator<'_, 'h> {
   ///   .with_resources(resources)
   ///   .with_outdir("tmp")
   ///   .with_bincode_suffix(".tmpl.bincode".into())
-  ///   .output_bincode(MapType::Template)?;
+  ///   .output_bincode(MapType::DSL)?;
   ///
   /// let file = Path::new("tmp").join("en.tmpl.bincode");
-  /// let tmpl_maps = glossa_shared::decode::decode_single_file_to_template_map(file)?;
+  /// let tmpl_maps = glossa_shared::decode::decode_single_file_to_dsl_map(file)?;
   /// let unread_tmpl = tmpl_maps
   ///   .get("unread")
-  ///   .expect("Failed to get TemplateAST (map_name: unread)");
+  ///   .expect("Failed to get DSL-AST (map_name: unread)");
   ///
   /// let get_text = |num_str| {
   ///   unread_tmpl.get_with_context("show-unread-messages-count", &[("num", num_str)])
@@ -140,8 +138,8 @@ impl<'h> Generator<'_, 'h> {
   /// # Ok::<(), anyhow::Error>(())
   /// ```
   pub fn output_bincode(&'h self, map_type: MapType) -> AnyResult<()> {
-    if map_type.is_template() {
-      return match self.get_or_init_template_maps() {
+    if map_type.is_dsl() {
+      return match self.get_or_init_dsl_maps() {
         x if x.is_empty() => Ok(()),
         iter => iter
           .par_iter()
@@ -150,7 +148,7 @@ impl<'h> Generator<'_, 'h> {
     }
 
     map_type
-      .get_non_template_maps(self)?
+      .get_non_dsl_maps(self)?
       .par_iter()
       .try_for_each(|(lang, data)| self.encode_bincode(lang, data))
   }
@@ -206,7 +204,7 @@ mod tests {
   fn test_output_tmpl_maps_to_bincode_files() -> AnyResult<()> {
     new_generator()
       .with_bincode_suffix(".tmpl.bincode".into())
-      .output_bincode(MapType::Template)
+      .output_bincode(MapType::DSL)
   }
 
   #[ignore]
@@ -214,21 +212,23 @@ mod tests {
   fn doc_test_encode_and_decode_tmpl_bincode() -> AnyResult<()> {
     let resources = crate::L10nResources::new("../../locales/");
 
-    // Output to tmp/{language}.tmpl.bincode
+    // Output to tmp/{language}_dsl.bincode
     Generator::default()
       .with_resources(resources)
       .with_outdir("tmp")
-      .with_bincode_suffix(".tmpl.bincode".into())
-      .output_bincode(MapType::Template)?;
+      .with_bincode_suffix("_dsl.bincode".into())
+      .output_bincode(MapType::DSL)?;
 
-    let file = Path::new("tmp").join("en.tmpl.bincode");
-    let tmpl_maps = glossa_shared::decode::decode_single_file_to_template_map(file)?;
-    let unread_tmpl = tmpl_maps
+    let file = Path::new("tmp").join("en_dsl.bincode");
+    let dsl_maps = glossa_shared::decode::decode_single_file_to_dsl_map(file)?;
+
+    let unread_resolver = dsl_maps
       .get("unread")
-      .expect("Failed to get TemplateAST (map_name: unread)");
+      .expect("Failed to get DSL-AST (map_name: unread)");
 
     let get_text = |num_str| {
-      unread_tmpl.get_with_context("show-unread-messages-count", &[("num", num_str)])
+      unread_resolver
+        .get_with_context("show-unread-messages-count", &[("num", num_str)])
     };
 
     let one = get_text("1")?;
@@ -279,14 +279,14 @@ mod tests {
   fn test_encode_tmpl_aio_bincode() -> AnyResult<()> {
     new_generator()
       .with_bincode_suffix("_tmpl.bincode".into())
-      .output_bincode_all_in_one(MapType::Template)
+      .output_bincode_all_in_one(MapType::DSL)
   }
 
   #[ignore]
   #[test]
   fn test_decode_tmpl_aio_bincode() -> AnyResult<()> {
     let raw_map =
-      glossa_shared::decode::decode_file_to_template_maps("tmp/all_tmpl.bincode")?;
+      glossa_shared::decode::decode_file_to_dsl_maps("tmp/all_tmpl.bincode")?;
 
     let zh_maps = raw_map.get("zh").unwrap();
     let zh_unread_map = zh_maps.get("unread").unwrap();
