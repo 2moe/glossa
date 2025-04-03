@@ -155,6 +155,7 @@ mod tests {
   use super::*;
   use crate::generator::dbg_generator::en_generator;
 
+  #[cfg(feature = "toml")]
   #[ignore]
   #[test]
   fn test_collect_tmpl_maps() -> AnyResult<()> {

@@ -1,8 +1,10 @@
+use alloc::{boxed::Box, vec::Vec};
+
 use collect_with::{CollectVector, TryCollectWith};
 use compact_str::{ToCompactString, format_compact};
 use itertools::Itertools;
 use lang_id::{
-  consts::lang_id_en, error::LangidResult, maps::MaxLangID,
+  error::LangidResult, maps::MaxLangID,
   matches::territory_containment_name::name_mapping,
 };
 use log::{debug, trace};
@@ -10,10 +12,33 @@ use smallvec::SmallVec;
 use tap::{Pipe, Tap};
 use testutils::dbg_ref;
 
-use crate::{LangID, cldr_fallback_mapping};
+use crate::{LangID, MiniStr, cldr_fallback_mapping};
 /// Type alias for a collection of language identifiers with smallvec
 /// optimization
 pub type LanguageChain = SmallVec<LangID, 5>;
+
+/// Converts language chain (`&[LangID]`) to `Box<[MiniStr]>`
+///
+/// # Example
+///
+/// ```
+/// use glossa::{LangID, RawID};
+/// use glossa::fallback::conv_language_chain_to_str_chain;
+/// use tap::Pipe;
+///
+/// const EN: LangID = RawID::new(28261, None, None).into_lang_id();
+/// const DE: LangID = RawID::new(25956, None, None).into_lang_id();
+///
+/// let str_chain = [EN, DE].as_ref().pipe(conv_language_chain_to_str_chain);
+///
+/// assert_eq!(str_chain.into_vec(), ["en", "de"]);
+/// ```
+pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
+  chain
+    .iter()
+    .map(|x| x.to_compact_string())
+    .collect()
+}
 
 /// Initializes a language chain from string slices
 ///
@@ -26,6 +51,7 @@ pub type LanguageChain = SmallVec<LangID, 5>;
 ///
 /// ```
 /// use glossa::init_language_chain_from_slice;
+/// use glossa::fallback::conv_language_chain_to_str_chain;
 /// use compact_str::ToCompactString;
 /// use collect_with::CollectVector;
 /// use lang_id::error::LangidError;
@@ -41,10 +67,7 @@ pub type LanguageChain = SmallVec<LangID, 5>;
 /// //  [("gsw-LI", 50), ("gsw", 36), ("gsw-FR", 36), ("de-LI", 26), ("de", 25),
 /// //   ("de-AT", 22), ("de-BE", 22), ("de-CH", 22), ("de-LU", 22), ("de-IT", 21)]
 ///
-/// let v = chain
-///   .iter()
-///   .map(|x| x.to_compact_string())
-///   .collect_vec_with(|_| 10);
+/// let v = conv_language_chain_to_str_chain(&chain).into_vec();
 ///
 /// assert_eq!(
 ///   v,
@@ -73,13 +96,13 @@ pub fn init_language_chain_from_slice(
 ///
 /// Returns `true` if English was added, `false` if already present.
 pub fn append_en(chain: &mut LanguageChain) -> bool {
-  match chain
-    .iter()
-    .any(|x| x == &lang_id_en())
-  {
+  const EN: LangID = lang_id::RawID::new(28261, None, None).into_lang_id();
+  // lang_id::consts::lang_id_en();
+
+  match chain.iter().any(|x| x == &EN) {
     true => false,
     _ => {
-      chain.push(lang_id_en());
+      chain.push(EN);
       true
     }
   }
@@ -453,10 +476,7 @@ mod tests {
     //  [("zh-MO", 46), ("zh-Hant-HK", 45), ("zh-Hant", 42), ("zh-Hant-TW", 42),
     // ("zh", 31), ("zh-Hans", 31), ("zh-SG", 27), ("zh-Latn", 22)]
 
-    let v = chain
-      .iter()
-      .map(|x| x.to_compact_string())
-      .collect_vec_with(|_| 10);
+    let v = conv_language_chain_to_str_chain(&chain).into_vec();
 
     assert_eq!(
       v,
@@ -624,4 +644,13 @@ mod tests {
 
     Ok(())
   }
+
+  // #[ignore]
+  // #[test]
+  // // #[cfg(not(feature = "std"))]
+  // fn test_lang_id_en() {
+  //   extern crate std;
+  //   const EN: LangID = lang_id::consts::lang_id_en();
+  //   std::dbg!(EN);
+  // }
 }

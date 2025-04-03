@@ -1,13 +1,14 @@
-use compact_str::ToCompactString;
 use lang_id::{LangID, sys_locale};
-use tap::Tap;
+use tap::{Pipe, Tap};
 use testutils::new_once_lock;
 
-use crate::{MiniStr, fallback::append_en, init_language_chain};
+use crate::{
+  MiniStr,
+  fallback::{append_en, conv_language_chain_to_str_chain},
+  init_language_chain,
+};
 
 /// Gets the static value of system language.
-/// If it has not been initialised yet, initialise it by calling the
-/// `lang_id::sys_lang::current()`.
 pub fn get_static_lang() -> &'static LangID {
   testutils::new_once_lock!(LANG: LangID);
 
@@ -41,9 +42,7 @@ pub fn get_or_init_str_language_chain(
 
   CHAIN.get_or_init(|| {
     get_or_init_sys_language_chain(all_locales)
-      .iter()
-      .map(|x| x.to_compact_string())
-      .collect()
+      .pipe(conv_language_chain_to_str_chain)
   })
 }
 

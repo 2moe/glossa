@@ -74,6 +74,7 @@ pub(crate) fn text_not_found<'a>() -> &'a str {
 }
 
 #[cfg(test)]
+#[cfg(feature = "std")]
 mod tests {
   use testutils::simple_benchmark;
 

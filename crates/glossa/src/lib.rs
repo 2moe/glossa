@@ -5,6 +5,7 @@
 # glossa
 
 */
+extern crate alloc;
 
 pub use compact_str::CompactString as MiniStr;
 
@@ -17,7 +18,7 @@ pub mod error;
 pub type Result<'map, T> = ::core::result::Result<T, error::GlossaError<'map>>;
 
 /// Language Identifier
-pub use lang_id::LangID;
+pub use lang_id::{LangID, RawID};
 
 /// Contains the FallbackChain Trait implementation
 pub mod fallback;

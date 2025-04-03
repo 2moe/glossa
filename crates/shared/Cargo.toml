@@ -38,7 +38,6 @@ bincode = ["serde", "type-aliases", "dep:bincode", "glossa-dsl?/bincode"]
 smallvec = ["dep:smallvec", "dep:derive_more"]
 
 [dependencies]
-
 compact_str.workspace = true
 phf_shared.workspace = true
 tap.workspace = true

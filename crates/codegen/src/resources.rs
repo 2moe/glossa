@@ -468,9 +468,7 @@ mod tests {
   #[test]
   fn test_only_includes_de_and_und() {
     let res = new_resources()
-      .with_include_languages(
-        ["de", "und", "es"].into_iter(), // languages,
-      )
+      .with_include_languages(["de", "und", "es"])
       .with_exclude_languages(["es"]);
     let map = res.get_or_init_data();
     // println!("{map:?}")

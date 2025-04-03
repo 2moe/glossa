@@ -16,5 +16,6 @@ pub mod matches;
 #[cfg(feature = "lang-id")]
 pub mod locale_registry;
 
+#[allow(unused_imports)]
 #[cfg(feature = "lang-id")]
 use lang_id;

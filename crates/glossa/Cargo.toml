@@ -14,7 +14,6 @@ description = "A language international (i18n) library"
 [features]
 default = ["std"]
 std = [
-    #
     "testutils/std",
     "lang-id/sys-locale",
     "thiserror/std",
@@ -24,7 +23,7 @@ std = [
 
 [dependencies]
 thiserror.workspace = true
-lang-id = { workspace = true, features = ["map", "match"] }
+lang-id = { workspace = true, features = ["map", "match", "compact_str"] }
 log.workspace = true
 smallvec.workspace = true
 compact_str.workspace = true

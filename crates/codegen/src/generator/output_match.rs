@@ -42,7 +42,7 @@ impl<'h> Generator<'h> {
   ///
   /// let data = L10nResources::new(L10N_DIR)
   ///   .with_include_languages(["en-GB", "de", "es", "pt",
-  /// "zh-pinyin"].into_iter().collect());
+  /// "zh-pinyin"]);
   ///
   /// let function_data = Generator::default()
   ///   .with_resources(data)

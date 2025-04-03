@@ -1,5 +1,6 @@
 [alias]
-ta = ["test", "--all-features", "--all"]
+ta = ["test", "--all-features", "--workspace"]
+tn = ["test", "--no-default-features", "--workspace"]
 open-doc = [
     "test",
     "--package",

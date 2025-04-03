@@ -1,8 +1,8 @@
 // #![cfg(feature = "type-aliases")]
+use glossa_dsl::resolver::Resolver;
 
 use crate::{
   MiniStr as Key, MiniStr as Value, MiniStr as Language, MiniStr as MapName,
-  glossa_dsl::resolver::Resolver,
 };
 
 #[cfg(feature = "std")]

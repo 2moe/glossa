@@ -2,6 +2,14 @@
 
 glossa-codegen 能够用来生成 (包含本地化文本的) rust 代码，以及 bincode。
 
+> 注：尽管 glossa-codegen 需要 std，但是 glossa 和 glossa-shared 都支持 no-std 环境。
+>
+> - glossa-codegen 用于生成**正式**代码。
+> - glossa 用于生成 fallback chain。
+> - glossa-shared 提供**正式**代码所需的各种数据类型。
+>
+> 您只需要在 `#[test]` 测试代码或 `build.rs` 中引入 glossa-codegen，而不需要在正式代码中引入。
+
 ## 基本概念
 
 ### 语言 id 与 map_name
@@ -306,7 +314,7 @@ enum MapType {
 - Regular：K-V pairs
 - Highlight：带有语法高亮的 K-V pairs
 - RegularAndHighlight： 融合了 Regular 和 Highlight。
-- DSL：glossa-DSL 的AST
+- DSL：glossa-DSL。由于 MapType 一般配合 `.output_*` 使用，因此当 MapType 为 DSL 时，输出的Map为 glossa-DSL 的 AST，而不是 Raw glossa-DSL。
 
 > AST：抽象语法树
 
@@ -459,12 +467,19 @@ let generator = Generator::default()
 
 MapType::DSL 只能输出为 bincode，而其他 MapType 支持所有的输出类型。
 
+> 您可以将 DSL 指定为 Regular Map（可能需要修改 L10nResources 的 dsl_suffix），不过这样做并不会带来性能优势。因为解析 DSL 的 AST 要比解析 Raw DSL 更快。
+>
+> 当将 DSL 指定为 Regular 时，生成的代码是 Raw K-V pairs。在运行期间需要先将其解析为 AST，再进行处理。
+>
+> 而若将 MapType::DSL 直接输出为 bincode，那输出的结果就是 DSL 的 AST 的 bincode，而不是 Raw K-V pairs。
+
 #### 生成代码: 包含 match-expr 的 const 函数
 
 相关方法有：
 
 - `.output_match_fn()`
   - 为不同的语言生成独立的 rust 代码文件
+  - => `{outdir}/{mod_prefix}{snake_case_language}.rs`
     - 比如
       - en => tmp/l10n_en.rs
       - en-GB => tmp/l10n_en_gb.rs
@@ -474,11 +489,11 @@ MapType::DSL 只能输出为 bincode，而其他 MapType 支持所有的输出�
 - `.output_match_fn_all_in_one_by_language()`
   - 将所有语言的本地化资源都收集为一个字符串
     - 其内容为 `const fn map(language: &[u8]) -> &'static str {...}`
-    - 只有当 map_name 和 key 都只有唯一一个时，你才能生成这种函数，否则 map_name 和 key 会出现冲突。
+    - 只有当 map_name 和 key 都只有唯一一个时，你才能使用此函数，否则 map_name 和 key 会出现冲突。
 - `.output_match_fn_all_in_one_by_language_and_key()`
   - 将所有语言的本地化资源都收集为一个字符串
     - 其内容为 `const fn map(language: &[u8], key: &[u8]) -> &'static str {...}`
-    - 只有当 map_name 只有唯一一个时，你才能生成这种函数，否则 key 会出现冲突。
+    - 只有当 map_name 只有唯一一个时，你才能使用此函数，否则 key 会出现冲突。
 
 ##### **output_match_fn()**
 
@@ -501,7 +516,7 @@ text-not-found: Kein lokalisierter Text gefunden
 ```rust
 use glossa_codegen::{generator::MapType, Generator, L10nResources};
 
-let resources = L10nResources::new("locales");
+let resources = L10nResources::new("l10n");
 
 Generator::default()
   .with_resources(resources)
@@ -614,7 +629,7 @@ pub(crate) const fn map(language: &[u8], key: &[u8]) -> &'static str {
 ```rust
 use glossa_codegen::{generator::MapType, Generator, L10nResources};
 
-pub(crate) fn es_generator<'i, 'h>() -> Generator<'i, 'h> {
+pub(crate) fn es_generator<'h>() -> Generator<'h> {
   let data = L10nResources::new("locales").with_include_languages(["es", "es-419"]);
   Generator::default().with_resources(data).with_outdir("tmp")
 }
@@ -713,7 +728,13 @@ pub(crate) const fn map() -> super::PhfL10nAllInOneMap {
 #### bincode
 
 - `output_bincode()`
+  - => `{outdir}/{language}{bincode_suffix}`
+    - en => tmp/en{bincode_suffix} => tmp/en.bincode
+    - en-GB => tmp/en-GB{bincode_suffix} => tmp/en-GB.bincode
 - `output_bincode_all_in_one()`
+  - 所有语言的 L10n 资源
+  - => `{outdir}/all{bincode_suffix}`
+    - => tmp/all{bincode_suffix} => tmp/all.bincode
 
 ##### **output_bincode()**
 
@@ -748,6 +769,9 @@ rust:
     use glossa_shared::decode::decode_single_file_to_dsl_map;
     use std::path::Path;
 
+    // -------------------
+    // Encode
+
     let resources = crate::L10nResources::new("../../locales/");
     // Output to tmp/{language}_dsl.bincode
     Generator::default()
@@ -755,6 +779,9 @@ rust:
       .with_outdir("tmp")
       .with_bincode_suffix("_dsl.bincode".into())
       .output_bincode(MapType::DSL)?;
+
+    // ------------------
+    // Decode
 
     let file = Path::new("tmp").join("en_dsl.bincode");
     let dsl_maps = decode_single_file_to_dsl_map(file)?;
