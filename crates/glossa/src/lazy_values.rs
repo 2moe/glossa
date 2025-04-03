@@ -5,10 +5,15 @@ use testutils::new_once_lock;
 use crate::{
   MiniStr,
   fallback::{append_en, conv_language_chain_to_str_chain},
-  init_language_chain,
+  try_init_chain,
 };
 
-/// Gets the static value of system language.
+/// Retrieves the system's primary language identifier with thread-safe
+/// initialization
+///
+/// Implements platform-specific detection strategies:
+/// - macOS: Prioritizes environment variables before system settings
+/// - Other OS: Uses system locale APIs with environment fallback
 pub fn get_static_lang() -> &'static LangID {
   testutils::new_once_lock!(LANG: LangID);
 
@@ -20,28 +25,45 @@ pub fn get_static_lang() -> &'static LangID {
   })
 }
 
-pub fn get_or_init_sys_language_chain(
+/// Builds a prioritized language chain with resilient fallback handling
+///
+/// # Fallback Strategy
+/// 1. Attempt chain creation with detected locales
+/// 2. Append English (en) as final fallback
+/// 3. Return default EN-only chain on failure
+pub fn init_sys_language_chain(all_locales: Option<&[LangID]>) -> Box<[LangID]> {
+  let en_slice = || [lang_id::common::lang_id_en()].into();
+
+  let Some(locales) = all_locales else {
+    return en_slice();
+  };
+
+  match try_init_chain(get_static_lang(), locales) {
+    Ok(v) => v
+      .tap_mut(|x| {
+        append_en(x);
+      })
+      .into_boxed_slice(),
+    Err(_) => en_slice(),
+  }
+}
+
+pub(crate) fn get_or_init_sys_language_chain(
   all_locales: Option<&[LangID]>,
 ) -> &'static [LangID] {
   new_once_lock!(CHAIN: Box<[LangID]>);
 
-  CHAIN.get_or_init(|| {
-    init_language_chain(get_static_lang(), all_locales.unwrap_or_default())
-      .expect("Failed to init language chain")
-      .tap_mut(|x| {
-        append_en(x);
-      })
-      .into_boxed_slice()
-  })
+  CHAIN.get_or_init(|| init_sys_language_chain(all_locales))
 }
 
-pub fn get_or_init_str_language_chain(
+pub(crate) fn get_or_init_str_language_chain(
   all_locales: Option<&[LangID]>,
 ) -> &'static [MiniStr] {
   new_once_lock!(CHAIN: Box<[MiniStr]>);
 
   CHAIN.get_or_init(|| {
-    get_or_init_sys_language_chain(all_locales)
+    all_locales
+      .pipe(get_or_init_sys_language_chain)
       .pipe(conv_language_chain_to_str_chain)
   })
 }

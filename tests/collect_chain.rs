@@ -1,7 +1,7 @@
 use anyhow::Result as AnyResult;
 use collect_with::CollectVector;
 use compact_str::ToCompactString;
-use glossa::init_language_chain_from_slice;
+use glossa::try_init_chain_from_slice;
 
 pub(crate) fn init_logger(trace: bool) {
   let level = {
@@ -18,7 +18,7 @@ pub(crate) fn init_logger(trace: bool) {
 fn test_init_zh_hk_chain() -> AnyResult<()> {
   // init_logger(true);
 
-  let chain = init_language_chain_from_slice(
+  let chain = try_init_chain_from_slice(
     "zh-HK",
     &[
       "de",
@@ -110,7 +110,7 @@ fn language_list<'a>() -> Vec<&'a str> {
 fn test_init_en_ca_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice("en-CA", &language_list())?;
+  let chain = try_init_chain_from_slice("en-CA", &language_list())?;
   // <(id, score)>:
   // [("en-CA", 50), ("en", 45), ("en-US", 45), ("en-PR", 44), ("en-VI", 44),
   // ("en-AS", 43), ("en-GU", 43), ("en-MH", 43), ("en-MP", 43), ("en-PH", 43),
@@ -134,7 +134,7 @@ fn test_init_en_ca_chain() -> AnyResult<()> {
 fn test_init_en_au_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice("en-AU", &language_list())?;
+  let chain = try_init_chain_from_slice("en-AU", &language_list())?;
   // <(id, score)>:
   //  [("en-AU", 50), ("en-GB", 43), ("en-CC", 42), ("en-CX", 42), ("en-NF", 42),
   // ("en-NZ", 42), ("en-UM", 41), ("en-CK", 41), ("en-DG", 41), ("en-FJ", 41),
@@ -157,7 +157,7 @@ fn test_init_en_au_chain() -> AnyResult<()> {
 fn test_init_en_de_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice("en-DE", &language_list())?;
+  let chain = try_init_chain_from_slice("en-DE", &language_list())?;
   // <(id, score)>:
   //  [("en-DE", 50), ("en-GB", 44), ("en-AT", 42), ("en-BE", 42), ("en-CH", 42),
   // ("en-NL", 42), ("en-150", 41), ("en-DK", 41), ("en-FI", 41), ("en-GG", 41),
@@ -178,7 +178,7 @@ fn test_init_en_de_chain() -> AnyResult<()> {
 fn test_init_zh_cn_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice(
+  let chain = try_init_chain_from_slice(
     "zh-CN",
     &[
       "de",
@@ -240,7 +240,7 @@ fn test_init_zh_cn_chain() -> AnyResult<()> {
 fn test_init_zh_hant_cn_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice(
+  let chain = try_init_chain_from_slice(
     "zh-Hant-CN",
     &[
       "de",
@@ -287,7 +287,7 @@ fn test_init_zh_hant_cn_chain() -> AnyResult<()> {
 fn test_init_zh_pinyin_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice(
+  let chain = try_init_chain_from_slice(
     "zh-pinyin",
     &[
       "de",
@@ -332,7 +332,7 @@ fn test_init_zh_pinyin_chain() -> AnyResult<()> {
 fn test_init_zh_tw_chain() -> AnyResult<()> {
   // init_logger(true);
 
-  let chain = init_language_chain_from_slice(
+  let chain = try_init_chain_from_slice(
     "zh-TW",
     &[
       "de",
@@ -406,7 +406,7 @@ const fn es_list() -> [&'static str; 28] {
 fn test_init_es_ar_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice("es-Latn-AR", &es_list())?;
+  let chain = try_init_chain_from_slice("es-Latn-AR", &es_list())?;
   // <(id, score)>:
   // ("es-AR", 40), ("es-BO", 36), ("es-BR", 36), ("es-CL", 36), ("es-CO", 36),
   // ("es-EC", 36), ("es-PE", 36), ("es-PY", 36), ("es-UY", 36), ("es-VE", 36),
@@ -429,7 +429,7 @@ fn test_init_es_ar_chain() -> AnyResult<()> {
 fn test_init_es_mx_chain() -> AnyResult<()> {
   init_logger(true);
 
-  let chain = init_language_chain_from_slice("es-Latn-MX", &es_list())?;
+  let chain = try_init_chain_from_slice("es-Latn-MX", &es_list())?;
   // <(id, score)>:
   //  ("es-MX", 40), ("es-BZ", 36), ("es-CR", 36), ("es-GT", 36), ("es-HN", 36),
   // ("es-NI", 36), ("es-PA", 36), ("es-SV", 36), ("es-419", 35), ("es-CU", 35),

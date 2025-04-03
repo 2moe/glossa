@@ -22,16 +22,17 @@ pub type LanguageChain = SmallVec<LangID, 5>;
 /// # Example
 ///
 /// ```
-/// use glossa::{LangID, RawID};
+/// use lang_id::RawID;
+/// use glossa::LangID;
 /// use glossa::fallback::conv_language_chain_to_str_chain;
 /// use tap::Pipe;
 ///
-/// const EN: LangID = RawID::new(28261, None, None).into_lang_id();
+/// const EN: LangID = lang_id::common::lang_id_en();
 /// const DE: LangID = RawID::new(25956, None, None).into_lang_id();
 ///
 /// let str_chain = [EN, DE].as_ref().pipe(conv_language_chain_to_str_chain);
 ///
-/// assert_eq!(str_chain.into_vec(), ["en", "de"]);
+/// assert_eq!(str_chain.as_ref(), ["en", "de"]);
 /// ```
 pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
   chain
@@ -50,13 +51,14 @@ pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
 /// ## Example
 ///
 /// ```
-/// use glossa::init_language_chain_from_slice;
-/// use glossa::fallback::conv_language_chain_to_str_chain;
+/// use glossa::{
+///   error::GlossaError, fallback::conv_language_chain_to_str_chain,
+///   try_init_chain_from_slice,
+/// };
 /// use compact_str::ToCompactString;
 /// use collect_with::CollectVector;
-/// use lang_id::error::LangidError;
 ///
-/// let chain = init_language_chain_from_slice(
+/// let chain = try_init_chain_from_slice(
 ///   "gsw-LI",
 ///   &[
 ///      "en", "es", "pt", "zh", "gsw", "gsw-FR", "gsw-LI", "de", "de-AT", "de-BE", "de-CH", "de-IT",
@@ -67,19 +69,19 @@ pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
 /// //  [("gsw-LI", 50), ("gsw", 36), ("gsw-FR", 36), ("de-LI", 26), ("de", 25),
 /// //   ("de-AT", 22), ("de-BE", 22), ("de-CH", 22), ("de-LU", 22), ("de-IT", 21)]
 ///
-/// let v = conv_language_chain_to_str_chain(&chain).into_vec();
+/// let v = conv_language_chain_to_str_chain(&chain);
 ///
 /// assert_eq!(
-///   v,
+///   v.as_ref(),
 ///   [
 ///     "gsw-LI", "gsw", "gsw-FR", "de-LI", "de", "de-AT", "de-BE", "de-CH",
 ///     "de-LU", "de-IT",
 ///   ]
 /// );
 ///
-/// # Ok::<(), LangidError>(())
+/// # Ok::<(), GlossaError>(())
 /// ```
-pub fn init_language_chain_from_slice(
+pub fn try_init_chain_from_slice(
   current: &str,
   all_locales: &[&str],
 ) -> LangidResult<LanguageChain> {
@@ -89,23 +91,7 @@ pub fn init_language_chain_from_slice(
     .map(|x| x.parse::<LangID>())
     .try_collect_vec_with(|_| 10)?;
 
-  init_language_chain(&current_language, &all_locales)
-}
-
-/// Appends English locale to the chain if not present.
-///
-/// Returns `true` if English was added, `false` if already present.
-pub fn append_en(chain: &mut LanguageChain) -> bool {
-  const EN: LangID = lang_id::RawID::new(28261, None, None).into_lang_id();
-  // lang_id::consts::lang_id_en();
-
-  match chain.iter().any(|x| x == &EN) {
-    true => false,
-    _ => {
-      chain.push(EN);
-      true
-    }
-  }
+  try_init_chain(&current_language, &all_locales)
 }
 
 /// Initializes language chain with scoring system
@@ -123,8 +109,8 @@ pub fn append_en(chain: &mut LanguageChain) -> bool {
 ///   "DE") => +2
 ///   - Continent match (e.g., FR => (Europe) if item_region in Europe) => +1
 ///
-/// See also: [init_language_chain_from_slice]
-pub fn init_language_chain(
+/// See also: [try_init_chain_from_slice]
+pub fn try_init_chain(
   current: &LangID,
   all_locales: &[LangID],
 ) -> LangidResult<LanguageChain> {
@@ -201,6 +187,21 @@ pub fn init_language_chain(
     .map(|(id, _score)| id.clone())
     .collect::<LanguageChain>()
     .pipe(Ok)
+}
+
+/// Appends English locale to the chain if not present.
+///
+/// Returns `true` if English was added, `false` if already present.
+pub fn append_en(chain: &mut LanguageChain) -> bool {
+  const EN: LangID = lang_id::common::lang_id_en();
+
+  match chain.iter().any(|x| x == &EN) {
+    true => false,
+    _ => {
+      chain.push(EN);
+      true
+    }
+  }
 }
 
 /// Gets hierarchy information for a region
@@ -422,7 +423,7 @@ mod tests {
   #[test]
   fn test_init_gsw_chain() -> AnyResult<()> {
     init_logger(true);
-    let chain = init_language_chain_from_slice(
+    let chain = try_init_chain_from_slice(
       "gsw-LI",
       &[
         "de", "de-AT", "de-BE", "de-CH", "de-IT", "de-LI", "de-LU", "en", "es",
@@ -453,7 +454,7 @@ mod tests {
   #[test]
   fn test_init_zh_mo_chain() -> AnyResult<()> {
     init_logger(true);
-    let chain = init_language_chain_from_slice(
+    let chain = try_init_chain_from_slice(
       "zh-Hant-MO",
       &[
         "de",
@@ -476,10 +477,10 @@ mod tests {
     //  [("zh-MO", 46), ("zh-Hant-HK", 45), ("zh-Hant", 42), ("zh-Hant-TW", 42),
     // ("zh", 31), ("zh-Hans", 31), ("zh-SG", 27), ("zh-Latn", 22)]
 
-    let v = conv_language_chain_to_str_chain(&chain).into_vec();
+    let v = conv_language_chain_to_str_chain(&chain);
 
     assert_eq!(
-      v,
+      v.as_ref(),
       [
         "zh-MO",
         "zh-Hant-HK",

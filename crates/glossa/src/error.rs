@@ -1,37 +1,43 @@
 use lang_id::error::LangidError;
 use thiserror::Error;
 
-use crate::MiniStr;
+use crate::{MiniStr as Key, MiniStr as MapName};
 
-/// A custom error type for Glossa
-// #[derive(Error, Debug, PartialEq)]
+/// `Ok(T)` || `Err(GlossaError)`
+pub type GlossaResult<T> = ::core::result::Result<T, GlossaError>;
+
 #[derive(Debug, Error, PartialEq)]
-pub enum GlossaError<'map> {
-  /// (map_name, key)
+pub enum GlossaError {
   #[error("{msg} (map: '{0}', key: '{1}')", msg = text_not_found())]
-  MapTextNotFound(&'map str, &'map str),
-  /// (key)
+  MapTextNotFound(MapName, Key),
   #[error("{msg} (key: '{0}')", msg = text_not_found())]
-  TextNotFound(MiniStr),
+  TextNotFound(Key),
+
   #[error("LangID Error: {0}")]
   LangIDError(#[from] LangidError),
+
+  #[error("Failed to parse TinyStr: {0}")]
+  ParseTinyStr(#[from] lang_id::error::ParseStrError),
 }
 
-impl Default for GlossaError<'_> {
+impl Default for GlossaError {
   fn default() -> Self {
     LangidError::Unknown.into()
   }
 }
 
-impl<'map> GlossaError<'map> {
+impl GlossaError {
   /// Constructor function for TextNotFound error
-  pub fn new_text_not_found<S: Into<MiniStr>>(v: S) -> Self {
+  pub fn new_text_not_found<S: Into<Key>>(v: S) -> Self {
     Self::TextNotFound(v.into())
   }
 
   /// Constructor function for MapTextNotFound error
-  pub fn new_map_text_not_found(map: &'map str, key: &'map str) -> Self {
-    Self::MapTextNotFound(map, key)
+  pub fn new_map_text_not_found<M: Into<MapName>, K: Into<Key>>(
+    map: M,
+    key: K,
+  ) -> Self {
+    Self::MapTextNotFound(map.into(), key.into())
   }
 
   /// Returns `true` if the glossa error is [`LangIDError`].
@@ -53,7 +59,7 @@ pub(crate) fn get_error_text<'a>(language: &[u8]) -> Option<&'a str> {
 
 #[cfg(feature = "std")]
 pub(crate) fn text_not_found<'a>() -> &'a str {
-  use glossa_l10n::error::default as default_err_msg;
+  use glossa_l10n::error::default as default_text;
   use tap::Pipe;
 
   use crate::lazy_values::get_or_init_str_language_chain;
@@ -65,7 +71,7 @@ pub(crate) fn text_not_found<'a>() -> &'a str {
     .iter()
     .map(|id| id.as_bytes())
     .find_map(get_error_text)
-    .unwrap_or_else(default_err_msg)
+    .unwrap_or_else(default_text)
 }
 
 #[cfg(not(feature = "std"))]
@@ -82,6 +88,8 @@ mod tests {
 
   #[ignore]
   #[test]
+  /// - release: 250ns
+  /// - debug: 2.833µs
   fn bench_get_err_text() {
     let _ = text_not_found();
     simple_benchmark(|| {
