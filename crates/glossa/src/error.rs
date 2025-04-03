@@ -28,8 +28,8 @@ impl Default for GlossaError {
 
 impl GlossaError {
   /// Constructor function for TextNotFound error
-  pub fn new_text_not_found<S: Into<Key>>(v: S) -> Self {
-    Self::TextNotFound(v.into())
+  pub fn new_text_not_found<K: Into<Key>>(key: K) -> Self {
+    Self::TextNotFound(key.into())
   }
 
   /// Constructor function for MapTextNotFound error
@@ -62,7 +62,7 @@ pub(crate) fn text_not_found<'a>() -> &'a str {
   use glossa_l10n::error::default as default_text;
   use tap::Pipe;
 
-  use crate::lazy_values::get_or_init_str_language_chain;
+  use crate::sys::get_or_init_str_language_chain;
 
   glossa_l10n::error::locale_registry::all_locales()
     .as_ref()
