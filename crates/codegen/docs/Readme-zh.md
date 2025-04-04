@@ -1,18 +1,27 @@
 # glossa-codegen
 
-glossa-codegen 能够用来生成 (包含本地化文本的) rust 代码，以及 bincode。
+[![glossa-codegen.crate](https://img.shields.io/crates/v/glossa-codegen.svg?logo=rust&logoColor=lightsalmon&label=glossa-codegen)](https://crates.io/crates/glossa-codegen)
 
-> 注：尽管 glossa-codegen 需要 std，但是 glossa 和 glossa-shared 都支持 no-std 环境。
->
-> - glossa-codegen 用于生成**正式**代码。
-> - glossa 用于生成 fallback chain。
-> - glossa-shared 提供**正式**代码所需的各种数据类型。
->
-> 您只需要在 `#[test]` 测试代码或 `build.rs` 中引入 glossa-codegen，而不需要在正式代码中引入。
+[![Documentation](https://docs.rs/glossa-codegen/badge.svg)](https://docs.rs/glossa-codegen)
+[![Apache-2 licensed](https://img.shields.io/crates/l/glossa-codegen.svg?logo=apache)](./License)
+
+<!-- https://img.shields.io/badge/Language/%E8%AA%9E%E8%A8%80-7D4698?logo=googletranslate&logoColor=white -->
 
 <details>
 <summary>
-目录
+<img alt="Language/语言" src="./svg/language.svg" />
+</summary>
+
+- [繁體中文](Readme-zh-Hant.md)
+- [English](Readme.md)
+- [简体中文](Readme-zh.md)
+
+</details>
+
+<!-- https://img.shields.io/badge/目录-2CA5E0.svg?logo=readme&logoColor=white -->
+<details>
+<summary>
+<img alt="目录" src="./svg/toc/目录.svg"/>
 </summary>
 
 - [基本概念](#基本概念)
@@ -51,6 +60,17 @@ glossa-codegen 能够用来生成 (包含本地化文本的) rust 代码，以�
 
 </details>
 
+---
+
+glossa-codegen 能够用来生成 (包含本地化文本的) rust 代码，以及 bincode。
+
+> 注：尽管 glossa-codegen 需要 std，但是 glossa 和 glossa-shared 都支持 no-std 环境。
+>
+> - glossa-codegen 用于生成**正式**代码。
+> - glossa 用于生成 fallback chain。
+> - glossa-shared 提供**正式**代码所需的各种数据类型。
+>
+> 您只需要在 `#[test]` 测试代码或 `build.rs` 中引入 glossa-codegen，并不需要在正式代码中引入。
 
 ## 基本概念
 
@@ -808,7 +828,7 @@ rust:
 
 ```rust
     use glossa_codegen::{L10nResources, Generator, generator::MapType};
-    use glossa_shared::decode::decode_single_file_to_dsl_map;
+    use glossa_shared::decode::file::decode_single_file_to_dsl_map;
     use std::path::Path;
 
     // -------------------

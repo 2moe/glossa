@@ -41,7 +41,7 @@ kstring = { workspace = true, features = ["serde"] }
 lang-id = { workspace = true, features = ["map", "match", "serde", "consts"] }
 thiserror = { workspace = true, features = ["std"] }
 bincode = { workspace = true, features = ["serde", "std"] }
-glossa-shared = { workspace = true, features = ["bincode", "std", "smallvec"] }
+glossa-shared = { workspace = true, features = ["decode", "std", "smallvec"] }
 glossa-dsl = { workspace = true, features = ["bincode", "std", "toml"] }
 
 [package.metadata.docs.rs]

@@ -1,25 +1,24 @@
 # glossa-codegen
 
-[![glossa-codegen-version](https://img.shields.io/crates/v/glossa-codegen.svg?logo=rust&logoColor=lightsalmon&label=glossa-codegen%28lib%29)](https://crates.io/crates/glossa-codegen)
+[![glossa-codegen.crate](https://img.shields.io/crates/v/glossa-codegen.svg?logo=rust&logoColor=lightsalmon&label=glossa-codegen)](https://crates.io/crates/glossa-codegen)
 
 [![Documentation](https://docs.rs/glossa-codegen/badge.svg)](https://docs.rs/glossa-codegen)
 [![Apache-2 licensed](https://img.shields.io/crates/l/glossa-codegen.svg?logo=apache)](./License)
 
-[中文](Readme-zh.md)
-
-glossa-codegen is used to generate Rust code (with localized texts) and bincode files.
-
-> Note: Although glossa-codegen requires std, both glossa and glossa-shared support no-std environments.
->
-> - glossa-codegen is used to generate **production** code.
-> - glossa is used to build fallback chains.
-> - glossa-shared provides data types required by **production** code.
->
-> You only need to include glossa-codegen in `#[test]` tests or `build.rs`, not in production code.
-
 <details>
 <summary>
-Table of Contents
+<img alt="Language/语言" src="./svg/language.svg" />
+</summary>
+
+- English
+- [中文](Readme-zh.md)
+
+</details>
+
+<!-- https://img.shields.io/badge/Table%20of%20Contents-2CA5E0.svg?logo=readme&logoColor=white -->
+<details>
+<summary>
+<img alt="Table of Contents" src="./svg/toc/toc.svg" />
 </summary>
 
 - [Core Concepts](#core-concepts)
@@ -56,6 +55,18 @@ Table of Contents
     - [Example](#example)
 
 </details>
+
+---
+
+glossa-codegen is used to generate Rust code (with localized texts) and bincode files.
+
+> Note: Although glossa-codegen requires std, both glossa and glossa-shared support no-std environments.
+>
+> - glossa-codegen is used to generate **production** code.
+> - glossa is used to build fallback chains.
+> - glossa-shared provides data types required by **production** code.
+>
+> You only need to include glossa-codegen in `#[test]` tests or `build.rs`, not in production code.
 
 ## Core Concepts
 
@@ -806,7 +817,7 @@ rust:
 
 ```rust
     use glossa_codegen::{L10nResources, Generator, generator::MapType};
-    use glossa_shared::decode::decode_single_file_to_dsl_map;
+    use glossa_shared::decode::file::decode_single_file_to_dsl_map;
     use std::path::Path;
 
     // -------------------

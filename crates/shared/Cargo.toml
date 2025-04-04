@@ -3,13 +3,13 @@ name = "glossa-shared"
 version.workspace = true
 authors.workspace = true
 categories.workspace = true
-# readme = "../../docs/Readme.md"
+readme = "docs/Readme.md"
 keywords.workspace = true
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
 rust-version.workspace = true
-description = "Shared Data structures for glossa"
+description = "Shared Data structures for glossa-codegen"
 
 [features]
 default = ["phf", "type-aliases"]
@@ -34,7 +34,7 @@ serde = [
 type-aliases = ["dep:lang-id", "dep:glossa-dsl"]
 phf = ["dep:phf"]
 consts = ["lang-id?/consts"]
-bincode = ["serde", "type-aliases", "dep:bincode", "glossa-dsl?/bincode"]
+decode = ["serde", "type-aliases", "dep:bincode", "glossa-dsl?/bincode"]
 smallvec = ["dep:smallvec", "dep:derive_more"]
 
 [dependencies]

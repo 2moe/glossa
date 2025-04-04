@@ -41,5 +41,5 @@ pub type PhfL10nOrderedMap = phf::OrderedMap<PhfTupleKey<'static>, &'static str>
 pub type PhfL10nAllInOneMap = phf::OrderedMap<PhfTripleKey<'static>, &'static str>;
 // -----
 
-#[cfg(feature = "bincode")]
+#[cfg(feature = "decode")]
 pub mod decode;

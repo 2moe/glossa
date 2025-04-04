@@ -1,18 +1,27 @@
 # glossa-codegen
 
-glossa-codegen 能夠用來生成 (包含本地化文字的) rust 程式碼，以及 bincode。
+[![glossa-codegen.crate](https://img.shields.io/crates/v/glossa-codegen.svg?logo=rust&logoColor=lightsalmon&label=glossa-codegen)](https://crates.io/crates/glossa-codegen)
 
-> 注：儘管 glossa-codegen 需要 std，但是 glossa 和 glossa-shared 都支援 no-std 環境。
->
-> - glossa-codegen 用於生成**正式**程式碼。
-> - glossa 用於生成 fallback chain。
-> - glossa-shared 提供**正式**程式碼所需的各種資料型別。
->
-> 您只需要在 `#[test]` 測試程式碼或 `build.rs` 中引入 glossa-codegen，而不需要在正式程式碼中引入。
+[![Documentation](https://docs.rs/glossa-codegen/badge.svg)](https://docs.rs/glossa-codegen)
+[![Apache-2 licensed](https://img.shields.io/crates/l/glossa-codegen.svg?logo=apache)](./License)
+
+<!-- https://img.shields.io/badge/Language/%E8%AA%9E%E8%A8%80-7D4698?logo=googletranslate&logoColor=white -->
 
 <details>
 <summary>
-目錄
+<img alt="Language/語言" src="./svg/language.svg" />
+</summary>
+
+- [繁體中文](Readme-zh-Hant.md)
+- [English](Readme.md)
+- [簡體中文](Readme-zh.md)
+
+</details>
+
+<!-- https://img.shields.io/badge/目錄-2CA5E0.svg?logo=readme&logoColor=white -->
+<details>
+<summary>
+<img alt="目錄" src="./svg/toc/目錄.svg"/>
 </summary>
 
 - [基本概念](#基本概念)
@@ -51,6 +60,17 @@ glossa-codegen 能夠用來生成 (包含本地化文字的) rust 程式碼，�
 
 </details>
 
+---
+
+glossa-codegen 能夠用來生成 (包含本地化文字的) rust 程式碼，以及 bincode。
+
+> 注：儘管 glossa-codegen 需要 std，但是 glossa 和 glossa-shared 都支援 no-std 環境。
+>
+> - glossa-codegen 用於生成**正式**程式碼。
+> - glossa 用於生成 fallback chain。
+> - glossa-shared 提供**正式**程式碼所需的各種資料型別。
+>
+> 您只需要在 `#[test]` 測試程式碼或 `build.rs` 中引入 glossa-codegen，並不需要在正式程式碼中引入。
 
 ## 基本概念
 
@@ -104,11 +124,11 @@ A:
 
 ### L10n 資料
 
-| L10n 型別          | 描述                                   |
-| ------------------ | -------------------------------------- |
-| Raw 文字檔案       | 未經處理的原始檔案，比如 en/hello.toml |
+| L10n 型別            | 描述                                   |
+| -------------------- | -------------------------------------- |
+| Raw 文字檔案         | 未經處理的原始檔案，比如 en/hello.toml |
 | 轉換出來的rust程式碼 | 支援 const fn，直接硬編碼到程式中      |
-| bincode            | 支援高效反序列化的二進位制檔案           |
+| bincode              | 支援高效反序列化的二進位制檔案         |
 
 我們可以簡單將 Raw 檔案理解為原始碼，其他東西都是用 Raw 檔案編譯出來的。
 
@@ -808,7 +828,7 @@ rust:
 
 ```rust
     use glossa_codegen::{L10nResources, Generator, generator::MapType};
-    use glossa_shared::decode::decode_single_file_to_dsl_map;
+    use glossa_shared::decode::file::decode_single_file_to_dsl_map;
     use std::path::Path;
 
     // -------------------

@@ -120,7 +120,7 @@ impl<'h> Generator<'h> {
   ///   .output_bincode(MapType::DSL)?;
   ///
   /// let file = Path::new("tmp").join("en.tmpl.bincode");
-  /// let tmpl_maps = glossa_shared::decode::decode_single_file_to_dsl_map(file)?;
+  /// let tmpl_maps = glossa_shared::decode::file::decode_single_file_to_dsl_map(file)?;
   /// let unread_tmpl = tmpl_maps
   ///   .get("unread")
   ///   .expect("Failed to get DSL-AST (map_name: unread)");
@@ -220,7 +220,7 @@ mod tests {
       .output_bincode(MapType::DSL)?;
 
     let file = Path::new("tmp").join("en_dsl.bincode");
-    let dsl_maps = glossa_shared::decode::decode_single_file_to_dsl_map(file)?;
+    let dsl_maps = glossa_shared::decode::file::decode_single_file_to_dsl_map(file)?;
 
     let unread_resolver = dsl_maps
       .get("unread")
@@ -272,7 +272,7 @@ mod tests {
   #[cfg(feature = "highlight")]
   fn test_decode_highlight_aio() -> glossa_shared::decode::ResolverResult<()> {
     let data =
-      glossa_shared::decode::decode_file_to_maps("tmp/all.highlight.bincode")?;
+      glossa_shared::decode::file::decode_file_to_maps("tmp/all.highlight.bincode")?;
 
     let en_maps = data.get("en").unwrap();
     let value = en_maps
@@ -294,7 +294,7 @@ mod tests {
   #[test]
   fn test_decode_tmpl_aio_bincode() -> AnyResult<()> {
     let raw_map =
-      glossa_shared::decode::decode_file_to_dsl_maps("tmp/all_tmpl.bincode")?;
+      glossa_shared::decode::file::decode_file_to_dsl_maps("tmp/all_tmpl.bincode")?;
 
     let zh_maps = raw_map.get("zh").unwrap();
     let zh_unread_map = zh_maps.get("unread").unwrap();
@@ -324,11 +324,11 @@ mod tests {
 
     eprintln!("decode from file");
     simple_benchmark(|| {
-      let _ = glossa_shared::decode::decode_file_to_maps(&file);
+      let _ = glossa_shared::decode::file::decode_file_to_maps(&file);
     });
 
     let bytes = std::fs::read(&file)?;
-    let decode_slice = || glossa_shared::decode::decode_to_maps(&bytes);
+    let decode_slice = || glossa_shared::decode::slice::decode_to_maps(&bytes);
 
     eprintln!("decode from slice");
     simple_benchmark(|| {
