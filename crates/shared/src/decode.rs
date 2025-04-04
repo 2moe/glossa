@@ -115,6 +115,7 @@ pub fn decode_single_file_to_flatten_map<P: AsRef<std::path::Path>>(
   decode_file(src_file)
 }
 
+#[cfg(feature = "std")]
 /// decodes **all_in_one** L10n file (e.g., all.bincode)
 ///
 ///
@@ -125,7 +126,6 @@ pub fn decode_single_file_to_flatten_map<P: AsRef<std::path::Path>>(
 ///   Map< LangID, Map<(map_name, key), value> >,
 /// )
 /// ```
-#[cfg(feature = "std")]
 pub fn decode_file_to_maps<P: AsRef<std::path::Path>>(
   src_file: P,
 ) -> ResolverResult<L10nMaps> {

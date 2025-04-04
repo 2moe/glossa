@@ -189,7 +189,8 @@ pub fn try_init_chain(
     .pipe(Ok)
 }
 
-/// Appends English locale to the chain if not present.
+/// Appends [English locale](lang_id::common::lang_id_en()) to the chain if not
+/// present.
 ///
 /// Returns `true` if English was added, `false` if already present.
 pub fn append_en(chain: &mut LanguageChain) -> bool {

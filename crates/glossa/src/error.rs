@@ -3,7 +3,7 @@ use thiserror::Error;
 
 use crate::{MiniStr as Key, MiniStr as MapName};
 
-/// `Ok(T)` || `Err(GlossaError)`
+/// `Ok(T)` | `Err(GlossaError)`
 pub type GlossaResult<T> = ::core::result::Result<T, GlossaError>;
 
 #[derive(Debug, Error, PartialEq)]

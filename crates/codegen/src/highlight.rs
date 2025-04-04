@@ -1,6 +1,6 @@
 use getset::{Getters, WithSetters};
 use glossa_shared::{
-  fmt_compact,
+  ToCompactString,
   tap::Pipe,
   type_aliases::ahash::{HashMap, HashMapExt},
 };
@@ -39,16 +39,24 @@ impl Default for SyntaxHighlightConfig<'_> {
 )]
 #[getset(get = "pub with_prefix", set_with = "pub")]
 pub struct DerivedMapKey {
-  // map_name
+  /// map_name
   base_name: KString,
-  // map_suffix
+  /// map_suffix
   suffix: KString,
+}
+
+impl core::fmt::Display for DerivedMapKey {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let Self { base_name, suffix } = self;
+    write!(f, "{base_name}{suffix}")
+  }
 }
 
 impl DerivedMapKey {
   fn format(&self) -> KString {
-    let Self { base_name, suffix } = self;
-    fmt_compact!("{base_name}{suffix}").pipe(to_kstr)
+    self
+      .to_compact_string()
+      .pipe(to_kstr)
   }
 }
 

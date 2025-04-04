@@ -197,7 +197,7 @@ mod tests {
   use testutils::simple_benchmark;
 
   use super::*;
-  use crate::generator::dbg_generator::new_generator;
+  use crate::generator::dbg_generator::{en_gb_generator, new_generator};
 
   #[ignore]
   #[test]
@@ -246,6 +246,14 @@ mod tests {
     new_generator()
       .with_bincode_suffix("_regular.bincode".into())
       .output_bincode_all_in_one(MapType::Regular)
+  }
+
+  #[ignore]
+  #[test]
+  fn test_encode_regular_en_gb_bincode() -> AnyResult<()> {
+    en_gb_generator()
+      .with_bincode_suffix(".regular.bincode".into())
+      .output_bincode(MapType::Regular)
   }
 
   #[ignore]

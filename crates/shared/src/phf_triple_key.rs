@@ -30,7 +30,6 @@ impl FmtConst for PhfTripleKey<'_> {
     )
   }
 }
-
 // --------
 
 #[derive(Default, Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]

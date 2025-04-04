@@ -43,11 +43,6 @@ pub struct Generator<'h> {
 
 #[cfg(feature = "highlight")]
 impl<'h> Generator<'h> {
-  fn clear_highlight_cache(&mut self) {
-    self.lazy_maps.highlight = Default::default();
-    self.lazy_maps.merged = Default::default();
-  }
-
   pub fn with_highlight(mut self, highlight: HighlightCfgMap<'h>) -> Self {
     self.highlight = Some(highlight.into());
     self.clear_highlight_cache();
@@ -61,6 +56,11 @@ impl<'h> Generator<'h> {
 }
 
 impl Generator<'_> {
+  fn clear_highlight_cache(&mut self) {
+    self.lazy_maps.highlight = Default::default();
+    self.lazy_maps.merged = Default::default();
+  }
+
   pub fn with_outdir<P: Into<PathBuf>>(mut self, outdir: P) -> Self {
     self.outdir = Some(outdir.into());
     self

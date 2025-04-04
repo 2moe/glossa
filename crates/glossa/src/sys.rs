@@ -27,33 +27,42 @@ pub fn get_static_lang() -> &'static LangID {
 
 /// Builds a prioritized language chain with resilient fallback handling
 ///
-/// # Fallback Strategy
-/// 1. Attempt chain creation with detected locales
-/// 2. Append English (en) as final fallback
-/// 3. Return default EN-only chain on failure
+/// # Stages:
+///
+/// 1. current = [get_static_lang()]
+/// 2. Language chain [initialization](crate::fallback::try_init_chain)
+/// 3. [crate::fallback::append_en()]
+/// 4. Return EN-only chain on failure
 pub fn init_sys_language_chain(all_locales: Option<&[LangID]>) -> Box<[LangID]> {
-  let en_slice = || [lang_id::common::lang_id_en()].into();
+  let try_init = |locales| try_init_chain(get_static_lang(), locales).ok();
 
-  let Some(locales) = all_locales else {
-    return en_slice();
-  };
-
-  match try_init_chain(get_static_lang(), locales) {
-    Ok(v) => v
+  match all_locales.and_then(try_init) {
+    Some(v) => v
       .tap_mut(|x| {
         append_en(x);
       })
       .into_boxed_slice(),
-    Err(_) => en_slice(),
+    _ => [lang_id::common::lang_id_en()].into(),
   }
 }
 
-pub(crate) fn get_or_init_sys_language_chain(
-  all_locales: Option<&[LangID]>,
-) -> &'static [LangID] {
-  new_once_lock!(CHAIN: Box<[LangID]>);
-
-  CHAIN.get_or_init(|| init_sys_language_chain(all_locales))
+/// Constructs an optimized string-based language priority chain
+///
+/// Transforms language identifiers into space-efficient string representations
+/// while preserving ordering.
+///
+/// # Stages:
+///
+/// 1. current = [get_static_lang()]
+/// 2. Language chain initialization:
+///   - [try_init_chain(current, _)](crate::fallback::try_init_chain)
+/// 3. [crate::fallback::append_en()]
+/// 4. Compact string [conversion](conv_language_chain_to_str_chain)
+pub fn init_str_chain(all_locales: Option<&[LangID]>) -> Box<[MiniStr]> {
+  all_locales
+    .pipe(init_sys_language_chain)
+    .as_ref()
+    .pipe(conv_language_chain_to_str_chain)
 }
 
 pub(crate) fn get_or_init_str_language_chain(
@@ -61,11 +70,7 @@ pub(crate) fn get_or_init_str_language_chain(
 ) -> &'static [MiniStr] {
   new_once_lock!(CHAIN: Box<[MiniStr]>);
 
-  CHAIN.get_or_init(|| {
-    all_locales
-      .pipe(get_or_init_sys_language_chain)
-      .pipe(conv_language_chain_to_str_chain)
-  })
+  CHAIN.get_or_init(|| all_locales.pipe(init_str_chain))
 }
 
 #[cfg(test)]
@@ -79,11 +84,10 @@ mod tests {
   #[test]
   fn test_get_or_init_posix_language_chain() {
     init_logger(true);
-    unsafe {
-      std::env::set_var("LANG", "POSIX.UTF-8");
-    };
+    // unsafe {
+    //   std::env::set_var("LANG", "POSIX.UTF-8");
+    // };
     dbg_ref!(get_static_lang());
-    // dbg_ref!("".parse::<LangID>());
 
     let all_locales = {
       use lang_id::consts::*;
@@ -97,7 +101,7 @@ mod tests {
       ]
     };
 
-    let chain = get_or_init_sys_language_chain(Some(&all_locales));
+    let chain = init_str_chain(Some(&all_locales));
 
     dbg!(chain);
   }

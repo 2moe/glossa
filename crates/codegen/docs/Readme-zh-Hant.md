@@ -1,49 +1,49 @@
 # glossa-codegen
 
-glossa-codegen 能够用来生成 (包含本地化文本的) rust 代码，以及 bincode。
+glossa-codegen 能夠用來生成 (包含本地化文字的) rust 程式碼，以及 bincode。
 
-> 注：尽管 glossa-codegen 需要 std，但是 glossa 和 glossa-shared 都支持 no-std 环境。
+> 注：儘管 glossa-codegen 需要 std，但是 glossa 和 glossa-shared 都支援 no-std 環境。
 >
-> - glossa-codegen 用于生成**正式**代码。
-> - glossa 用于生成 fallback chain。
-> - glossa-shared 提供**正式**代码所需的各种数据类型。
+> - glossa-codegen 用於生成**正式**程式碼。
+> - glossa 用於生成 fallback chain。
+> - glossa-shared 提供**正式**程式碼所需的各種資料型別。
 >
-> 您只需要在 `#[test]` 测试代码或 `build.rs` 中引入 glossa-codegen，而不需要在正式代码中引入。
+> 您只需要在 `#[test]` 測試程式碼或 `build.rs` 中引入 glossa-codegen，而不需要在正式程式碼中引入。
 
 <details>
 <summary>
-目录
+目錄
 </summary>
 
 - [基本概念](#基本概念)
-  - [语言 id 与 map\_name](#语言-id-与-map_name)
-  - [L10n 数据](#l10n-数据)
-  - [Raw L10n 文本语法](#raw-l10n-文本语法)
-    - [常规 K-V pairs](#常规-k-v-pairs)
+  - [語言 id 與 map\_name](#語言-id-與-map_name)
+  - [L10n 資料](#l10n-資料)
+  - [Raw L10n 文字語法](#raw-l10n-文字語法)
+    - [常規 K-V pairs](#常規-k-v-pairs)
     - [glossa-DSL](#glossa-dsl)
       - [1. 最基本的 **key = "value"**](#1-最基本的-key--value)
       - [2. 引用](#2-引用)
-      - [3. 外部传入的参数](#3-外部传入的参数)
-        - [`{ 🐱 }` 与 `{ $🐱 }` 的区别](#---与----的区别)
-      - [4. 选择器（条件控制语法）](#4-选择器条件控制语法)
-      - [5. 转义语法](#5-转义语法)
+      - [3. 外部傳入的引數](#3-外部傳入的引數)
+        - [`{ 🐱 }` 與 `{ $🐱 }` 的區別](#---與----的區別)
+      - [4. 選擇器（條件控制語法）](#4-選擇器條件控制語法)
+      - [5. 轉義語法](#5-轉義語法)
   - [MapType](#maptype)
-- [L10nResources (本地化资源)](#l10nresources-本地化资源)
+- [L10nResources (本地化資源)](#l10nresources-本地化資源)
 - [Generator (生成器)](#generator-生成器)
-  - [构造 Generator](#构造-generator)
-  - [输出](#输出)
-    - [生成代码: 包含 match-expr 的 const 函数](#生成代码-包含-match-expr-的-const-函数)
+  - [構造 Generator](#構造-generator)
+  - [輸出](#輸出)
+    - [生成程式碼: 包含 match-expr 的 const 函式](#生成程式碼-包含-match-expr-的-const-函式)
       - [**output\_match\_fn()**](#output_match_fn)
       - [**output\_match\_fn\_all\_in\_one()**](#output_match_fn_all_in_one)
       - [**output\_match\_fn\_all\_in\_one\_by\_language\_and\_key()**](#output_match_fn_all_in_one_by_language_and_key)
-    - [生成代码: 包含 phf map 的 const 函数](#生成代码-包含-phf-map-的-const-函数)
+    - [生成程式碼: 包含 phf map 的 const 函式](#生成程式碼-包含-phf-map-的-const-函式)
       - [**output\_phf()**](#output_phf)
       - [**output\_phf\_all\_in\_one()**](#output_phf_all_in_one)
     - [bincode](#bincode)
       - [**output\_bincode()**](#output_bincode)
-- [高级用法](#高级用法)
-  - [语法高亮](#语法高亮)
-    - [数据结构](#数据结构)
+- [高階用法](#高階用法)
+  - [語法高亮](#語法高亮)
+    - [資料結構](#資料結構)
     - [剖析](#剖析)
       - [Key](#key)
       - [Value](#value)
@@ -54,9 +54,9 @@ glossa-codegen 能够用来生成 (包含本地化文本的) rust 代码，以�
 
 ## 基本概念
 
-### 语言 id 与 map_name
+### 語言 id 與 map_name
 
-假设存在 locales 目录，其结构如下所示。
+假設存在 locales 目錄，其結構如下所示。
 
 ```plaintext
 locales
@@ -76,64 +76,64 @@ locales
       └── yes-no.toml
 ```
 
-其中， `"ar", "en", "es", "fr", "ru", "zh"` 为 **语言 ID**。
+其中， `"ar", "en", "es", "fr", "ru", "zh"` 為 **語言 ID**。
 
-"error" 和 "yes-no" 为 map 名称。
+"error" 和 "yes-no" 為 map 名稱。
 
-> 不同 file_stem (e.g., a.toml, b.json) 对应不同的 map 名称。
+> 不同 file_stem (e.g., a.toml, b.json) 對應不同的 map 名稱。
 >
-> 那么相同的呢？(e.g., a.toml, a.json)
+> 那麼相同的呢？(e.g., a.toml, a.json)
 
-Q：假设同时存在 "error.yaml"、 "error.yml"、 "error.toml"、 "error.json5"、 "error.json"、 "error.ron"，那么哪一个才是真正的 "error" map 呢？
+Q：假設同時存在 "error.yaml"、 "error.yml"、 "error.toml"、 "error.json5"、 "error.json"、 "error.ron"，那麼哪一個才是真正的 "error" map 呢？
 
 A:
-  如果所有文件内容都是有效且不为空的 K-V String Pairs，那么靠运气！
-  否则的话，第一个**有效**的“同 stem” 文件将成为真正的 map。
+  如果所有檔案內容都是有效且不為空的 K-V String Pairs，那麼靠運氣！
+  否則的話，第一個**有效**的“同 stem” 檔案將成為真正的 map。
 
-> 注：a.toml => a 与 a.dsl.toml => a.dsl 不是同 stem 文件。
+> 注：a.toml => a 與 a.dsl.toml => a.dsl 不是同 stem 檔案。
 >
-> en/a.toml => a 与 en/subdir/a.json => a 是同 stem 文件
+> en/a.toml => a 與 en/subdir/a.json => a 是同 stem 檔案
 
 🍀🍀🍀
 
-Q：为什么要靠运气呢？
+Q：為什麼要靠運氣呢？
 
 A:
-  因为在初始化本地化资源的时候，会调用 rayon 来进行多线程反序列化（多个文件多个线程同时读取并解析）。
-  其中的顺序并不是有序的。
+  因為在初始化本地化資源的時候，會呼叫 rayon 來進行多執行緒反序列化（多個檔案多個執行緒同時讀取並解析）。
+  其中的順序並不是有序的。
 
-### L10n 数据
+### L10n 資料
 
-| L10n 类型          | 描述                                   |
+| L10n 型別          | 描述                                   |
 | ------------------ | -------------------------------------- |
-| Raw 文本文件       | 未经处理的原始文件，比如 en/hello.toml |
-| 转换出来的rust代码 | 支持 const fn，直接硬编码到程序中      |
-| bincode            | 支持高效反序列化的二进制文件           |
+| Raw 文字檔案       | 未經處理的原始檔案，比如 en/hello.toml |
+| 轉換出來的rust程式碼 | 支援 const fn，直接硬編碼到程式中      |
+| bincode            | 支援高效反序列化的二進位制檔案           |
 
-我们可以简单将 Raw 文件理解为源代码，其他东西都是用 Raw 文件编译出来的。
+我們可以簡單將 Raw 檔案理解為原始碼，其他東西都是用 Raw 檔案編譯出來的。
 
-### Raw L10n 文本语法
+### Raw L10n 文字語法
 
-#### 常规 K-V pairs
+#### 常規 K-V pairs
 
-这是最基本的类型。
+這是最基本的型別。
 
-以 toml 为例：
+以 toml 為例：
 
-`key = "value"`，其中 key 和 value 都为字符串。
+`key = "value"`，其中 key 和 value 都為字串。
 
 ```toml
 hello = "你好"
 "🐱" = "喵 ฅ(°ω°ฅ)"
 ```
 
-以 json5 为例：
+以 json5 為例：
 
 ```json
 {
-  // json5 可以用注释
+  // json5 可以用註釋
   "hello": "你好",
-  "🐱": "喵 ฅ(°ω°ฅ)", /* 可以尾随逗号 "," */
+  "🐱": "喵 ฅ(°ω°ฅ)", /* 可以尾隨逗號 "," */
 }
 ```
 
@@ -141,9 +141,9 @@ hello = "你好"
 
 [![glossa-dsl.crate](https://img.shields.io/crates/v/glossa-dsl.svg?logo=rust&logoColor=lightsalmon&label=glossa-dsl)](https://github.com/2moe/glossa-dsl)
 
-> DSL: 领域特定语言
+> DSL: 領域特定語言
 
-我们可以在 5 分钟内，掌握 glossa-dsl 的 5 种语法。
+我們可以在 5 分鐘內，掌握 glossa-dsl 的 5 種語法。
 
 ##### 1. 最基本的 **key = "value"**
 
@@ -159,8 +159,8 @@ name = "Tom"
 hello = "Hello { name }"
 ```
 
-①. hello 引用了 `{ name }` （注：`{ name }` 与 `{name}` 本质上是一样的）
-②. 展开 hello
+①. hello 引用了 `{ name }` （注：`{ name }` 與 `{name}` 本質上是一樣的）
+②. 展開 hello
 ③. `"Hello {name}"` =>  `"Hello Tom"`
 
 rust:
@@ -182,7 +182,7 @@ json5:
 ```
 
 ①. `hello` 引用了 `{🐱}`
-②. 展开 `hello`
+②. 展開 `hello`
 ③. 得到了 `"Hello ฅ(°ω°ฅ)"`.
 
 rust:
@@ -192,7 +192,7 @@ let text = res.try_get("hello")?;
 assert_eq!(text, "Hello ฅ(°ω°ฅ)");
 ```
 
-##### 3. 外部传入的参数
+##### 3. 外部傳入的引數
 
 toml:
 
@@ -201,7 +201,7 @@ toml:
 greeting = "{ 打招呼 }，{ $name }！"
 ```
 
-> `{ $🐱 }` 和 `{ $name }` 依赖外部传入的参数
+> `{ $🐱 }` 和 `{ $name }` 依賴外部傳入的引數
 
 rust:
 
@@ -214,29 +214,29 @@ assert_eq!(text, "早安喵 ฅ(°ω°ฅ)，Moe！");
 
 ---
 
-###### `{ 🐱 }` 与 `{ $🐱 }` 的区别
+###### `{ 🐱 }` 與 `{ $🐱 }` 的區別
 
-重点是有没有加 `$`，加了 `$` 就依赖于外部参数，没加就是内部引用。
+重點是有沒有加 `$`，加了 `$` 就依賴於外部引數，沒加就是內部引用。
 
-内部引用：
+內部引用：
 
 ```toml
 "🐱" = "ฅ(°ω°ฅ)"
 meow = "{ 🐱 }"
 ```
 
-依赖外部传入参数:
+依賴外部傳入引數:
 
 ```toml
 meow = "{ $🐱 }"
 ```
 
-##### 4. 选择器（条件控制语法）
+##### 4. 選擇器（條件控制語法）
 
 zh/unread.toml:
 
 ```toml
-"阿拉伯数字转汉字" = """
+"阿拉伯數字轉漢字" = """
   $num ->
     [0] 〇
     [1] 一
@@ -246,16 +246,16 @@ zh/unread.toml:
     *[其他] {$num}
 """
 
-"未读msg" = "未读消息"
+"未讀msg" = "未讀訊息"
 
-"显示未读消息数量" = """
+"顯示未讀訊息數量" = """
   $num ->
-      [0] 没有{ 未读msg }
-      [2] 您有两条{ 未读msg }
-     *[其他] 您有{ 阿拉伯数字转汉字 }条{ 未读msg }
+      [0] 沒有{ 未讀msg }
+      [2] 您有兩條{ 未讀msg }
+     *[其他] 您有{ 阿拉伯數字轉漢字 }條{ 未讀msg }
 """
 
-show-unread-messages-count = "{显示未读消息数量}。"
+show-unread-messages-count = "{顯示未讀訊息數量}。"
 ```
 
 rust:
@@ -263,23 +263,23 @@ rust:
 ```rust
 let get_text = |num_str| res.get_with_context("show-unread-messages-count", &[("num", num_str)]);
 
-assert_eq!(get_text("0")?, "没有未读消息。");
-assert_eq!(get_text("1")?, "您有一条未读消息。");
-assert_eq!(get_text("2")?, "您有两条未读消息。");
-assert_eq!(get_text("10")?, "您有十条未读消息。");
-assert_eq!(get_text("100")?, "您有100条未读消息。");
+assert_eq!(get_text("0")?, "沒有未讀訊息。");
+assert_eq!(get_text("1")?, "您有一條未讀訊息。");
+assert_eq!(get_text("2")?, "您有兩條未讀訊息。");
+assert_eq!(get_text("10")?, "您有十條未讀訊息。");
+assert_eq!(get_text("100")?, "您有100條未讀訊息。");
 ```
 
-我们可以将 "显示未读消息数量" 理解为一个函数， `$num` 理解为函数的参数。
+我們可以將 "顯示未讀訊息數量" 理解為一個函式， `$num` 理解為函式的引數。
 
-若将上文的 toml 文本理解为 rust 代码，则其会是如此：
+若將上文的 toml 文字理解為 rust 程式碼，則其會是如此：
 
 ```rust
-let 未读msg = "未读消息";
-let 显示未读消息数量 = |num| match num {
-  "0" => fmt!("没有{未读msg}"),
-  "2" => fmt!("您有两条{未读msg}"),
-  _ => fmt!("您有{n}条{未读msg}", n = 阿拉伯数字转汉字(num)),
+let 未讀msg = "未讀訊息";
+let 顯示未讀訊息數量 = |num| match num {
+  "0" => fmt!("沒有{未讀msg}"),
+  "2" => fmt!("您有兩條{未讀msg}"),
+  _ => fmt!("您有{n}條{未讀msg}", n = 阿拉伯數字轉漢字(num)),
 };
 ```
 
@@ -320,16 +320,16 @@ assert_eq!(get_text("2")?, "You have two unread messages.");
 assert_eq!(get_text("100")?, "You have 100 unread messages.");
 ```
 
-##### 5. 转义语法
+##### 5. 轉義語法
 
-在上文中，我们了解到 `{ a }` 就是内部引用，而 `{ $a }` 依赖于外部传入的 `a` 参数。
+在上文中，我們瞭解到 `{ a }` 就是內部引用，而 `{ $a }` 依賴於外部傳入的 `a` 引數。
 
-Q：如果需要得到使用原始的 `{a  }`，避免其自动解析，那该怎么办呢？
+Q：如果需要得到使用原始的 `{a  }`，避免其自動解析，那該怎麼辦呢？
 
-A：使用转义语法。
+A：使用轉義語法。
 
-- 如果需要得到原始的 `{a  }`，那么外部至少需要包裹两层 `{}`, 也就是 `{{  {a  }   }}`。
-- 如果需要得到原始的 `{{a  }`，那么外部至少需要包裹三层 `{}`, 也就是 `{{{  {{a  }     }}}`。
+- 如果需要得到原始的 `{a  }`，那麼外部至少需要包裹兩層 `{}`, 也就是 `{{  {a  }   }}`。
+- 如果需要得到原始的 `{{a  }`，那麼外部至少需要包裹三層 `{}`, 也就是 `{{{  {{a  }     }}}`。
 
 ---
 
@@ -354,16 +354,16 @@ enum MapType {
 ```
 
 - Regular：K-V pairs
-- Highlight：带有语法高亮的 K-V pairs
+- Highlight：帶有語法高亮的 K-V pairs
 - RegularAndHighlight： 融合了 Regular 和 Highlight。
-- DSL：glossa-DSL。由于 MapType 一般配合 `.output_*` 使用，因此当 MapType 为 DSL 时，输出的Map为 glossa-DSL 的 AST，而不是 Raw glossa-DSL。
+- DSL：glossa-DSL。由於 MapType 一般配合 `.output_*` 使用，因此當 MapType 為 DSL 時，輸出的Map為 glossa-DSL 的 AST，而不是 Raw glossa-DSL。
 
-> AST：抽象语法树
+> AST：抽象語法樹
 
-从本质上来上说，Regular 与 Highlight 使用相同的数据结构。
-之所以将它们分开，是为了更“细粒度”的控制。
+從本質上來上說，Regular 與 Highlight 使用相同的資料結構。
+之所以將它們分開，是為了更“細粒度”的控制。
 
-## L10nResources (本地化资源)
+## L10nResources (本地化資源)
 
 ```rust
 pub struct SmallList<const N: usize>(pub SmallVec<MiniStr, N>);
@@ -383,30 +383,30 @@ pub struct L10nResources {
 }
 ```
 
-- dir： 本地化资源所在的目录，例如 "./locales"
+- dir： 本地化資源所在的目錄，例如 "./locales"
 - dsl_suffix
-  - glossa-DSL 文件的后缀，默认为 ".dsl"
-    - 当其值为 ".dsl" 时
-      - "a.dsl.toml" 会被识别为 **glossa-DSL** 文件
-      - "b.dsl.json" 也会被识别为 **glossa-DSL** 文件
-      - "a.toml" 为常规文件
+  - glossa-DSL 檔案的字尾，預設為 ".dsl"
+    - 當其值為 ".dsl" 時
+      - "a.dsl.toml" 會被識別為 **glossa-DSL** 檔案
+      - "b.dsl.json" 也會被識別為 **glossa-DSL** 檔案
+      - "a.toml" 為常規檔案
 - include_languages
-  - 白名单模式，当其不为空时，只有位于列表中的语言 id 才会被初始化
-    - 假设所有语言 id 为: "de", "en", "es", "pt", "ru", "zh"
-    - `.with_include_language(["en", "zh"])` => 只有 "en" 和 "zh" 的本地化资源才会被初始化
+  - 白名單模式，當其不為空時，只有位於列表中的語言 id 才會被初始化
+    - 假設所有語言 id 為: "de", "en", "es", "pt", "ru", "zh"
+    - `.with_include_language(["en", "zh"])` => 只有 "en" 和 "zh" 的本地化資源才會被初始化
 - include_map_names
-  - 当其不为空时，只有位于列表中的 map_names 才会被初始化。
-    - 假设存在: "en/a.toml", "en/b.json", "zh/a.json", "zh/b.ron"
-    - 不难看出，所有 map_names 为 `["a", "b"]`
-    - `.with_include_map_names(["a"])` => 只有 "en/a.toml" 和 "zh/a.json" 会被初始化
+  - 當其不為空時，只有位於列表中的 map_names 才會被初始化。
+    - 假設存在: "en/a.toml", "en/b.json", "zh/a.json", "zh/b.ron"
+    - 不難看出，所有 map_names 為 `["a", "b"]`
+    - `.with_include_map_names(["a"])` => 只有 "en/a.toml" 和 "zh/a.json" 會被初始化
 - exclude_languages
-  - 黑名单模式。位于黑名单中的语言 id 不会被初始化
-    - 假设存在: "de", "en", "es", "pt", "ru", "zh"
+  - 黑名單模式。位於黑名單中的語言 id 不會被初始化
+    - 假設存在: "de", "en", "es", "pt", "ru", "zh"
       - `.with_exclude_languages(["en", "es", "ru"])` => `["de", "pt", "zh"]`
       - `.with_include_languages(["en", "es"]).with_exclude_languages(["en"])` => `["es"]`
 - exclude_map_names
-  - 位于列表中的 map_names 不会被初始化
-  - 假设存在:
+  - 位於列表中的 map_names 不會被初始化
+  - 假設存在:
     - "en/a.toml"
     - "en/b.json"
     - "zh/a.json"
@@ -416,33 +416,33 @@ pub struct L10nResources {
   - `.with_include_map_names(["b", "c"]).with_exclude_map_names(["b"])` => "zh/c.toml"
   - `.with_include_language(["en"]).with_exclude_map_names(["a"])` => "en/b.json"
 - lazy_data
-  - 在运行期间**延迟**初始化的数据
-  - 通过 `.get_or_init_data()` 来获取数据，相当于缓存
+  - 在執行期間**延遲**初始化的資料
+  - 透過 `.get_or_init_data()` 來獲取資料，相當於快取
 
 | 方法                                     | 描述                                             |
 | ---------------------------------------- | ------------------------------------------------ |
-| `.get_dir()`                             | 获取 dir                                         |
-| `.with_dir("/path/to/new_dir".into())`   | 设置 dir                                         |
-| `.get_dsl_suffix()`                      | 获取 dsl_suffix                                  |
-| `.with_dsl_suffix(".new_suffix".into())` | 设置 dsl_suffix                                  |
-| `.with_include_languages([])`            | 设置 include_languages                           |
-| `.with_include_map_names([])`            | 设置 include_map_names                           |
-| `.with_exclude_languages([])`            | 设置 exclude_languages                           |
-| `.with_exclude_map_names([])`            | 设置 exclude_map_names                           |
-| `.get_or_init_data()`                    | 获取 `&HashMap<KString, Vec<L10nMapEntry>>`      |
-| `.with_lazy_data(OnceLock::new())`       | 设置 lazy_data，可以将OnceLock重置为未初始化状态 |
+| `.get_dir()`                             | 獲取 dir                                         |
+| `.with_dir("/path/to/new_dir".into())`   | 設定 dir                                         |
+| `.get_dsl_suffix()`                      | 獲取 dsl_suffix                                  |
+| `.with_dsl_suffix(".new_suffix".into())` | 設定 dsl_suffix                                  |
+| `.with_include_languages([])`            | 設定 include_languages                           |
+| `.with_include_map_names([])`            | 設定 include_map_names                           |
+| `.with_exclude_languages([])`            | 設定 exclude_languages                           |
+| `.with_exclude_map_names([])`            | 設定 exclude_map_names                           |
+| `.get_or_init_data()`                    | 獲取 `&HashMap<KString, Vec<L10nMapEntry>>`      |
+| `.with_lazy_data(OnceLock::new())`       | 設定 lazy_data，可以將OnceLock重置為未初始化狀態 |
 
-Q: 如何构造一个新的 L10nResources 结构体呢？
+Q: 如何構造一個新的 L10nResources 結構體呢？
 
 A：
 
 ```rust
 use glossa_codegen::L10nResources;
 let _res = L10nResources::new("locales");
-// 相当于 L10nResources::default().with_dir("locales".into())
+// 相當於 L10nResources::default().with_dir("locales".into())
 ```
 
-"locales" 可以改成其他目录，比如 "../../l10n/"
+"locales" 可以改成其他目錄，比如 "../../l10n/"
 
 ## Generator (生成器)
 
@@ -464,27 +464,27 @@ pub struct Generator<'h> {
 }
 ```
 
-- resources: 本地化资源
+- resources: 本地化資源
 - visibility
-  - 生成的 rust 代码的可见性, 默认为 PubCrate
+  - 生成的 rust 程式碼的可見性, 預設為 PubCrate
     - > `glossa_codegen::Visibility { Private, PubCrate, Pub, PubSuper }`
   - `.with_visibility(Visibility::Pub)` => `pub const fn xxx`
   - `.with_visibility(Visibility::PubCrate)` => `pub(crate) const fn xxx`
 - outdir
-  - 输出 rust 代码以及 bincode 的目录
-- bincode_suffix: bincode文件后缀，默认为 ".bincode"
+  - 輸出 rust 程式碼以及 bincode 的目錄
+- bincode_suffix: bincode檔案字尾，預設為 ".bincode"
 - mod_prefix
-  - 生成的 rust 代码的模块前缀，默认为 "l10n_"
-- highlight: 语法高亮的配置，这个稍微有点复杂，我们将会在高级用法中提到。
+  - 生成的 rust 程式碼的模組字首，預設為 "l10n_"
+- highlight: 語法高亮的配置，這個稍微有點複雜，我們將會在高階用法中提到。
 - lazy_maps
-  - 延迟初始化的maps
-  - 相关方法：
+  - 延遲初始化的maps
+  - 相關方法：
     - `.get_or_init_maps()`  // Regular
     - `.get_or_init_highlight_maps()` // Highlight
     - `.get_or_init_merged_maps()` // RegularAndHighlight
     - `.get_or_init_dsl_maps()` // Template
 
-### 构造 Generator
+### 構造 Generator
 
 ```rust
 use glossa_codegen::{Generator, L10nResources};
@@ -496,50 +496,50 @@ let generator = Generator::default()
   .with_outdir("tmp");
 ```
 
-### 输出
+### 輸出
 
-- 内部是 match 表达式的 const 函数
-  - 调用 Generator 的 `.output_match_fn(MapType::Regular)` 会生成 rust 代码
+- 內部是 match 表示式的 const 函式
+  - 呼叫 Generator 的 `.output_match_fn(MapType::Regular)` 會生成 rust 程式碼
     - `const fn map(map_name: &[u8], key: &[u8]) -> &'static str { match (map_name, key) {...} }`
-- phf map 函数
-  - 调用 Generator 的 `.output_phf(MapType::Regular)` 会生成 rust 代码
+- phf map 函式
+  - 呼叫 Generator 的 `.output_phf(MapType::Regular)` 會生成 rust 程式碼
     - `const fn map() -> super::PhfL10nOrderedMap { ... }`
 - bincode
-  - 调用 Generator 的 `.output_bincode(MapType::Regular)` 会生成 bincode 二进制文件
+  - 呼叫 Generator 的 `.output_bincode(MapType::Regular)` 會生成 bincode 二進位制檔案
 
-MapType::DSL 只能输出为 bincode，而其他 MapType 支持所有的输出类型。
+MapType::DSL 只能輸出為 bincode，而其他 MapType 支援所有的輸出型別。
 
-> 您可以将 DSL 指定为 Regular Map（可能需要修改 L10nResources 的 dsl_suffix），不过这样做并不会带来性能优势。因为解析 DSL 的 AST 要比解析 Raw DSL 更快。
+> 您可以將 DSL 指定為 Regular Map（可能需要修改 L10nResources 的 dsl_suffix），不過這樣做並不會帶來效能優勢。因為解析 DSL 的 AST 要比解析 Raw DSL 更快。
 >
-> 当将 DSL 指定为 Regular 时，生成的代码是 Raw K-V pairs。在运行期间需要先将其解析为 AST，再进行处理。
+> 當將 DSL 指定為 Regular 時，生成的程式碼是 Raw K-V pairs。在執行期間需要先將其解析為 AST，再進行處理。
 >
-> 而若将 MapType::DSL 直接输出为 bincode，那输出的结果就是 DSL 的 AST 的 bincode，而不是 Raw K-V pairs。
+> 而若將 MapType::DSL 直接輸出為 bincode，那輸出的結果就是 DSL 的 AST 的 bincode，而不是 Raw K-V pairs。
 
-#### 生成代码: 包含 match-expr 的 const 函数
+#### 生成程式碼: 包含 match-expr 的 const 函式
 
-相关方法有：
+相關方法有：
 
 - `.output_match_fn()`
-  - 为不同的语言生成独立的 rust 代码文件
+  - 為不同的語言生成獨立的 rust 程式碼檔案
   - => `{outdir}/{mod_prefix}{snake_case_language}.rs`
     - 比如
       - en => tmp/l10n_en.rs
       - en-GB => tmp/l10n_en_gb.rs
 - `.output_match_fn_all_in_one()`
-  - 将所有语言的本地化资源都收集为一个字符串
-    - 其内容为 `const fn map(lang: &[u8], map_name:&[u8], key:&[u8]) -> &'static str {...}`
+  - 將所有語言的本地化資源都收集為一個字串
+    - 其內容為 `const fn map(lang: &[u8], map_name:&[u8], key:&[u8]) -> &'static str {...}`
 - `.output_match_fn_all_in_one_by_language()`
-  - 将所有语言的本地化资源都收集为一个字符串
-    - 其内容为 `const fn map(language: &[u8]) -> &'static str {...}`
-    - 只有当 map_name 和 key 都只有唯一一个时，您才能使用此函数，否则 map_name 和 key 会出现冲突。
+  - 將所有語言的本地化資源都收集為一個字串
+    - 其內容為 `const fn map(language: &[u8]) -> &'static str {...}`
+    - 只有當 map_name 和 key 都只有唯一一個時，您才能使用此函式，否則 map_name 和 key 會出現衝突。
 - `.output_match_fn_all_in_one_by_language_and_key()`
-  - 将所有语言的本地化资源都收集为一个字符串
-    - 其内容为 `const fn map(language: &[u8], key: &[u8]) -> &'static str {...}`
-    - 只有当 map_name 只有唯一一个时，您才能使用此函数，否则 key 会出现冲突。
+  - 將所有語言的本地化資源都收集為一個字串
+    - 其內容為 `const fn map(language: &[u8], key: &[u8]) -> &'static str {...}`
+    - 只有當 map_name 只有唯一一個時，您才能使用此函式，否則 key 會出現衝突。
 
 ##### **output_match_fn()**
 
-假设存在如下两个文件：
+假設存在如下兩個檔案：
 
 l10n/en-GB/error.toml
 
@@ -553,7 +553,7 @@ l10n/de/error.yml
 text-not-found: Kein lokalisierter Text gefunden
 ```
 
-我们可以调用 `.output_match_fn(Regular)` 来生成常规类型的 Map 的代码。
+我們可以呼叫 `.output_match_fn(Regular)` 來生成常規型別的 Map 的程式碼。
 
 ```rust
 use glossa_codegen::{generator::MapType, Generator, L10nResources};
@@ -566,7 +566,7 @@ Generator::default()
   .output_match_fn(MapType::Regular)?;
 ```
 
-输出结果:
+輸出結果:
 
 tmp/l10n_en_gb.rs
 
@@ -592,10 +592,10 @@ pub(crate) const fn map(map_name: &[u8], key: &[u8]) -> &'static str {
 
 ##### **output_match_fn_all_in_one()**
 
-Q: 我们如果使用 `output_match_fn_all_in_one()` ，那么会得到什么呢？
-A: 会得到一个包含函数数据的 String。
+Q: 我們如果使用 `output_match_fn_all_in_one()` ，那麼會得到什麼呢？
+A: 會得到一個包含函式資料的 String。
 
-> 所有语言的本地化资源都在同一个函数中
+> 所有語言的本地化資源都在同一個函式中
 
 ```rust
 let function_data = generator.output_match_fn_all_in_one(MapType::Regular)?;
@@ -615,7 +615,7 @@ pub(crate) const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) -> &'static st
 
 ##### **output_match_fn_all_in_one_by_language_and_key()**
 
-当 map_name 只有唯一一个时，我们可以省略它，以此来达到性能优化的目的。
+當 map_name 只有唯一一個時，我們可以省略它，以此來達到效能最佳化的目的。
 
 ```rust
 match (lang, key) { ... }
@@ -625,22 +625,22 @@ match (lang, key) { ... }
 match (lang, map_name, key) { ... }
 ```
 
-将两段 match 表达式进行对比：由于前者少匹配了一个项，所以从理论上来说，前者会更快。
+將兩段 match 表示式進行對比：由於前者少匹配了一個項，所以從理論上來說，前者會更快。
 
-`output_match_fn_all_in_one_by_language_and_key()` 会生成类似于前者的代码。
+`output_match_fn_all_in_one_by_language_and_key()` 會生成類似於前者的程式碼。
 
-您如果不关心纳秒级别的性能优化，那么完全不用在意这一小节的内容。
+您如果不關心納秒級別的效能最佳化，那麼完全不用在意這一小節的內容。
 
 ---
 
-举个例子：
+舉個例子：
 
 - `en/yes-no { yes: "Yes", no: "No"}`
 - `de/yes-no { yes: "Ja", no: "Nein" }`
 
-在本例中，唯一的 map_name 是 yes-no，因此我们可以省略它。
+在本例中，唯一的 map_name 是 yes-no，因此我們可以省略它。
 
-调用 `.output_match_fn_all_in_one_by_language_and_key(Regular)?` 会生成如下代码：
+呼叫 `.output_match_fn_all_in_one_by_language_and_key(Regular)?` 會生成如下程式碼：
 
 ```rust
 pub(crate) const fn map(language: &[u8], key: &[u8]) -> &'static str {
@@ -654,17 +654,17 @@ pub(crate) const fn map(language: &[u8], key: &[u8]) -> &'static str {
 }
 ```
 
-当 map_name 不是唯一时，比如: 新增一个 `en/yes-no2 { yes: "YES", no: "NO", ok: "OK"}`。
+當 map_name 不是唯一時，比如: 新增一個 `en/yes-no2 { yes: "YES", no: "NO", ok: "OK"}`。
 
-此时不同的 map_names 有相同的 keys ("yes", "no")，这会产生冲突，我们就不能省略 map_name 了。
-在这种情况下，我们应该用 `output_match_fn_all_in_one()`。
+此時不同的 map_names 有相同的 keys ("yes", "no")，這會產生衝突，我們就不能省略 map_name 了。
+在這種情況下，我們應該用 `output_match_fn_all_in_one()`。
 
-#### 生成代码: 包含 phf map 的 const 函数
+#### 生成程式碼: 包含 phf map 的 const 函式
 
 - `.output_phf()`
-  - 为不同的语言生成独立的 rust 代码文件
+  - 為不同的語言生成獨立的 rust 程式碼檔案
 - `.output_phf_all_in_one()`
-  - 将所有语言的本地化资源都收集为一个包含 phf map 的函数数据的字符串
+  - 將所有語言的本地化資源都收集為一個包含 phf map 的函式資料的字串
 
 ##### **output_phf()**
 
@@ -702,9 +702,9 @@ pub(crate) const fn map() -> super::PhfL10nOrderedMap {
 }
 ```
 
-Q：等等，PhfL10nOrderedMap 和 PhfTupleKey 都是哪来的？
+Q：等等，PhfL10nOrderedMap 和 PhfTupleKey 都是哪來的？
 
-A: [![glossa-shared.crate](https://img.shields.io/crates/v/glossa-shared.svg?logo=rust&logoColor=lightsalmon&label=glossa-shared)](https://crates.io/crates/glossa-shared) 里包含了相关的数据类型。
+A: [![glossa-shared.crate](https://img.shields.io/crates/v/glossa-shared.svg?logo=rust&logoColor=lightsalmon&label=glossa-shared)](https://crates.io/crates/glossa-shared) 裡包含了相關的資料型別。
 
 ##### **output_phf_all_in_one()**
 
@@ -760,7 +760,7 @@ pub(crate) const fn map() -> super::PhfL10nAllInOneMap {
         r#####"取消"#####,
       ),
       (Key(r#"zh"#, r##"yes-no"##, r###"no"###), r#####"否"#####),
-      (Key(r#"zh"#, r##"yes-no"##, r###"ok"###), r#####"确定"#####),
+      (Key(r#"zh"#, r##"yes-no"##, r###"ok"###), r#####"確定"#####),
       (Key(r#"zh"#, r##"yes-no"##, r###"yes"###), r#####"是"#####),
     ],
   }
@@ -774,7 +774,7 @@ pub(crate) const fn map() -> super::PhfL10nAllInOneMap {
     - en => tmp/en{bincode_suffix} => tmp/en.bincode
     - en-GB => tmp/en-GB{bincode_suffix} => tmp/en-GB.bincode
 - `output_bincode_all_in_one()`
-  - 所有语言的 L10n 资源
+  - 所有語言的 L10n 資源
   - => `{outdir}/all{bincode_suffix}`
     - => tmp/all{bincode_suffix} => tmp/all.bincode
 
@@ -846,29 +846,29 @@ rust:
     Ok(())
 ```
 
-## 高级用法
+## 高階用法
 
-### 语法高亮
+### 語法高亮
 
 [![hlight.crate](https://img.shields.io/crates/v/hlight.svg?logo=rust&logoColor=lightsalmon&label=hlight)](https://crates.io/crates/hlight)
 
 ---
 
-glossa-codegen 支持将本地化文本渲染成包含语言高亮的内容，并转换为 rust 代码和 bincode。
+glossa-codegen 支援將本地化文字渲染成包含語言高亮的內容，並轉換為 rust 程式碼和 bincode。
 
-Q: 为什么需要预先渲染呢？
+Q: 為什麼需要預先渲染呢？
 
-A: 为了性能优化。
-直接输出常量的 `&'static str` 会比在运行期间使用正则表达式进行语法高亮渲染快很多倍。
+A: 為了效能最佳化。
+直接輸出常量的 `&'static str` 會比在執行期間使用正則表示式進行語法高亮渲染快很多倍。
 
-Q: 常量的语法高亮字符串有何用武之地？
+Q: 常量的語法高亮字串有何用武之地？
 
-A: 我们在开发 CLI 应用时，帮助信息可以使用常量的语法高亮字符串。
-既保证了性能，又兼顾了可读性。
+A: 我們在開發 CLI 應用時，幫助資訊可以使用常量的語法高亮字串。
+既保證了效能，又兼顧了可讀性。
 
 ![highlight_sample](../../../assets/img/zh/highlight_help.png)
 
-#### 数据结构
+#### 資料結構
 
 ```rust
 pub type HighlightCfgMap<'h> = HashMap<DerivedMapKey, SyntaxHighlightConfig<'h>>;
@@ -906,17 +906,17 @@ generator.with_highlight(
 ).output_bincode(MapType::Highlight)
 ```
 
-> 因为我们还没有配置一个有效的 HighlightCfgMap，所以此代码无法正常运行！
+> 因為我們還沒有配置一個有效的 HighlightCfgMap，所以此程式碼無法正常執行！
 >
-> 别担心，只要将 `HighlightCfgMap::default()` 改成有效的数据，这段代码就能跑起来。
+> 別擔心，只要將 `HighlightCfgMap::default()` 改成有效的資料，這段程式碼就能跑起來。
 
 ---
 
 **核心概念:**
 
-HighlightCfgMap 的作用是为多个 maps 应用不同的语法高亮配置。
+HighlightCfgMap 的作用是為多個 maps 應用不同的語法高亮配置。
 
-**目录结构示例:**
+**目錄結構示例:**
 
 ```plaintext
 en/
@@ -924,7 +924,7 @@ en/
  └── a-zsh.toml           // Base map: a-zsh
 ```
 
-**配置示例（伪代码）：**
+**配置示例（虛擬碼）：**
 
 ```rust
 <
@@ -985,10 +985,10 @@ DerivedMapKey {
 }
 ```
 
-base-name 会引用一个真实存在的常规 map，所以不能乱改名。
-在上面的例子中，codegen 会在 "help-markdown" 的基础上应用语法高亮，然后生成一个新的 Map（map_name: "help-markdown_monokai"）。
+base-name 會引用一個真實存在的常規 map，所以不能亂改名。
+在上面的例子中，codegen 會在 "help-markdown" 的基礎上應用語法高亮，然後生成一個新的 Map（map_name: "help-markdown_monokai"）。
 
-我们可以自定义 suffix，但需要避免 `format!("{base_name}{suffix}")` 与 regular map 的名称冲突。
+我們可以自定義 suffix，但需要避免 `format!("{base_name}{suffix}")` 與 regular map 的名稱衝突。
 
 ##### Value
 
@@ -1001,16 +1001,16 @@ struct SyntaxHighlightConfig<'r> {
 ```
 
 - resource
-  - 我们可以自定义主题名称，主题集，语法集，配置是否启用背景
-  - 详见 [hlight 的文档](https://docs.rs/hlight)
+  - 我們可以自定義主題名稱，主題集，語法集，配置是否啟用背景
+  - 詳見 [hlight 的文件](https://docs.rs/hlight)
 - syntax_name
-  - 语法名称
-  - 如果不支持相关语法的话，那么您需要配置 HighlightResource，载入自定义的语法集 (SyntaxSet)。
+  - 語法名稱
+  - 如果不支援相關語法的話，那麼您需要配置 HighlightResource，載入自定義的語法集 (SyntaxSet)。
 - true_color
-  - 若其值为 true，则启用真彩色，否则使用古早的 256-color。
-  - 开启与否主要看您的终端是否支持真彩色。
-    - 在支持的终端上，开启 true_color 会让色彩更准确。
-    - 在不支持的终端上，比如 macOS 15.3 的 Terminal.app(v2.14)，开启 true_color 会让色彩变得很奇怪。
+  - 若其值為 true，則啟用真彩色，否則使用古早的 256-color。
+  - 開啟與否主要看您的終端是否支援真彩色。
+    - 在支援的終端上，開啟 true_color 會讓色彩更準確。
+    - 在不支援的終端上，比如 macOS 15.3 的 Terminal.app(v2.14)，開啟 true_color 會讓色彩變得很奇怪。
 
 #### Example
 

@@ -24,3 +24,6 @@ pub use fallback::{try_init_chain, try_init_chain_from_slice};
 
 #[cfg(feature = "std")]
 pub mod sys; // old_name: lazy_values
+
+#[cfg(feature = "std")]
+pub use sys::init_str_chain;
