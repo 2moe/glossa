@@ -53,14 +53,13 @@ impl<'h> Generator<'h> {
     self.highlight = highlight.map(|data| data.into());
     self.clear_highlight_cache();
   }
-}
-
-impl Generator<'_> {
   fn clear_highlight_cache(&mut self) {
     self.lazy_maps.highlight = Default::default();
     self.lazy_maps.merged = Default::default();
   }
+}
 
+impl Generator<'_> {
   pub fn with_outdir<P: Into<PathBuf>>(mut self, outdir: P) -> Self {
     self.outdir = Some(outdir.into());
     self

@@ -9,10 +9,10 @@ fn cargo_publish() -> AnyResult<()> {
   let workdir = env!("CARGO_MANIFEST_DIR").pipe(Path::new);
 
   [
-    // "crates/codegen",
+    "crates/codegen",
     // "crates/glossa",
     // "crates/shared",
-    "crates/l10n",
+    // "crates/l10n",
     // "crates/cli",
     // "crates/ui",
   ]
