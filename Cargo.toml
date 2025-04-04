@@ -36,8 +36,6 @@ env_logger = { version = "0.11", default-features = false, features = [
 itertools = { version = "0.14", default-features = false, features = [
     "use_alloc",
 ] }
-glossa-shared = { path = "./crates/shared" }
-glossa-l10n = { path = "./crates/l10n" }
 smallvec = "2.0.0-alpha.11"
 collect-with = "0.0.2"
 
@@ -55,6 +53,14 @@ compact_str = { version = "0.9", default-features = false }
 serde_json5 = { version = "0.2", default-features = false }
 dashmap = "6.1"
 derive_more = { version = "2.0.1", default-features = false }
+
+[workspace.dependencies.glossa-shared]
+path = "./crates/shared"
+version = "0.0.1"
+
+[workspace.dependencies.glossa-l10n]
+path = "./crates/l10n"
+# version = "0.0.1"
 
 [workspace.dependencies.testutils]
 version = "0.0.5"
