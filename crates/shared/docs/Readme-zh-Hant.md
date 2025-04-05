@@ -5,7 +5,7 @@
 [![Documentation](https://docs.rs/glossa-shared/badge.svg)](https://docs.rs/glossa-shared)
 [![Apache-2 licensed](https://img.shields.io/crates/l/glossa-shared.svg?logo=apache)](./License)
 
-<details>
+<details open>
 <summary>
 <img alt="Language/語言" src="./svg/language.svg
 "/>
@@ -18,7 +18,7 @@
 </details>
 
 <!--  -->
-<details>
+<details open>
 <summary>
 <img alt="目錄" src="./svg/toc/目錄.svg"/>
 </summary>

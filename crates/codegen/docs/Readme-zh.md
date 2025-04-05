@@ -7,7 +7,7 @@
 
 <!-- https://img.shields.io/badge/Language/%E8%AA%9E%E8%A8%80-7D4698?logo=googletranslate&logoColor=white -->
 
-<details>
+<details open>
 <summary>
 <img alt="Language/语言" src="./svg/language.svg" />
 </summary>
@@ -19,7 +19,7 @@
 </details>
 
 <!-- https://img.shields.io/badge/目录-2CA5E0.svg?logo=readme&logoColor=white -->
-<details>
+<details open>
 <summary>
 <img alt="目录" src="./svg/toc/目录.svg"/>
 </summary>

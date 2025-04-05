@@ -7,7 +7,9 @@
 
 <details>
 <summary>
-<img alt="Language/语言" src="./svg/language.svg" />
+<a href="Readme-zh.md">
+<img alt="Language/语言" src="./svg/language.svg"/>
+</a>
 </summary>
 
 - English
@@ -16,7 +18,7 @@
 </details>
 
 <!-- https://img.shields.io/badge/Table%20of%20Contents-2CA5E0.svg?logo=readme&logoColor=white -->
-<details>
+<details open>
 <summary>
 <img alt="Table of Contents" src="./svg/toc/toc.svg" />
 </summary>

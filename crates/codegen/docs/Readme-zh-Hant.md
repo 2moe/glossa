@@ -7,7 +7,7 @@
 
 <!-- https://img.shields.io/badge/Language/%E8%AA%9E%E8%A8%80-7D4698?logo=googletranslate&logoColor=white -->
 
-<details>
+<details open>
 <summary>
 <img alt="Language/語言" src="./svg/language.svg" />
 </summary>
@@ -19,7 +19,7 @@
 </details>
 
 <!-- https://img.shields.io/badge/目錄-2CA5E0.svg?logo=readme&logoColor=white -->
-<details>
+<details open>
 <summary>
 <img alt="目錄" src="./svg/toc/目錄.svg"/>
 </summary>
@@ -124,11 +124,11 @@ A:
 
 ### L10n 資料
 
-| L10n 型別            | 描述                                   |
-| -------------------- | -------------------------------------- |
-| Raw 文字檔案         | 未經處理的原始檔案，比如 en/hello.toml |
+| L10n 型別          | 描述                                   |
+| ------------------ | -------------------------------------- |
+| Raw 文字檔案       | 未經處理的原始檔案，比如 en/hello.toml |
 | 轉換出來的rust程式碼 | 支援 const fn，直接硬編碼到程式中      |
-| bincode              | 支援高效反序列化的二進位制檔案         |
+| bincode            | 支援高效反序列化的二進位制檔案           |
 
 我們可以簡單將 Raw 檔案理解為原始碼，其他東西都是用 Raw 檔案編譯出來的。
 
