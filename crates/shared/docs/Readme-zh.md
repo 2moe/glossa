@@ -7,8 +7,7 @@
 
 <details open>
 <summary>
-<img alt="Language/语言" src="./svg/language.svg
-"/>
+<img alt="Language/语言" src="./svg/language.svg"/>
 </summary>
 
 - [繁體中文](Readme-zh-Hant.md)
