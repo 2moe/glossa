@@ -294,7 +294,7 @@ show-unread-messages-count = "{unread-count}"
 
 rust:
 
-```toml
+```rust
 let get_text = |num_str| res.get_with_context("show-unread-messages-count", &[("num", num_str)]);
 
 assert_eq!(get_text("0")?, "No unread messages.");
