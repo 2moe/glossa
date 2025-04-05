@@ -60,7 +60,7 @@ version = "0.0.1"
 
 [workspace.dependencies.glossa-l10n]
 path = "./crates/l10n"
-# version = "0.0.1"
+version = "0.0.1"
 
 [workspace.dependencies.testutils]
 version = "0.0.5"
