@@ -40,7 +40,7 @@ smallvec = "2.0.0-alpha.11"
 collect-with = "0.0.2"
 
 # codegen
-ron = "0.9"
+ron = "0.10.1"
 serde_json = "1.0"
 serde_yml = "0.0.12"
 toml = "0.8"
@@ -83,7 +83,7 @@ path = "../hlight/crates/hlight"
 # path = "../hlight"
 
 [workspace.dependencies.glossa-codegen]
-# version = "0.0.1-alpha.5"
+version = "0.0.2-alpha.0"
 path = "crates/codegen"
 
 [workspace.dependencies.glossa-dsl]
