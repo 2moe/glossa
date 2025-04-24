@@ -509,6 +509,8 @@ pub const fn cldr_fallback_mapping(language: &[u8]) -> &[&str] {
     b"za-Latn" => &["zh-Hans"],
     b"zh-Hani" => &["zh-Hans", "zh-Hant"],
     b"zh-Hans-CN" => &["zh-Hant-HK", "zh-Hant-MO"],
+    b"zh-Hans-HK" => &["zh-Hant-HK", "zh-Hant-MO"],
+    b"zh-Hans-MO" => &["zh-Hant-HK", "zh-Hant-MO"],
     b"zh-Hant-CN" => &["zh-Hans", "lzh"],
     b"zh-Hant-HK" => &["zh-Hant-MO", "zh-Hans"],
     b"zh-Hant-MO" => &["zh-Hant-HK", "zh-Hans"],

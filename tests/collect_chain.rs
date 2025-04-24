@@ -2,29 +2,19 @@ use anyhow::Result as AnyResult;
 use collect_with::CollectVector;
 use compact_str::ToCompactString;
 use glossa::try_init_chain_from_slice;
-
-pub(crate) fn init_logger(trace: bool) {
-  let level = {
-    use log::LevelFilter::*;
-    if trace { Trace } else { Debug }
-  };
-
-  env_logger::builder()
-    .filter_level(level)
-    .init()
-}
+mod cli_logger;
+use cli_logger::init_logger;
 
 #[test]
-fn test_init_zh_hk_chain() -> AnyResult<()> {
-  // init_logger(true);
+fn test_init_zh_hans_hk_chain() -> AnyResult<()> {
+  init_logger(true);
 
   let chain = try_init_chain_from_slice(
-    "zh-HK",
+    "zh-Hans-HK",
     &[
       "de",
       "ru",
-      "zh-Latn", // "zh-Latn-CN-pinyin"
-      "zh-Hans-HK",
+      "zh-Latn", // => "zh-Latn-CN-pinyin"
       "zh-Latn-HK",
       "ar",
       "en",
@@ -34,15 +24,14 @@ fn test_init_zh_hk_chain() -> AnyResult<()> {
       "zh-Hans",
       "zh-SG",
       "zh-Hant",
+      "zh-HK", // => zh-Hant-HK
       "zh-Hant-TW",
-      "zh-Hant-HK",
       "zh-MO",
     ],
   )?;
   // <(id, score)>:
-  // [("zh-Hant-HK", 46), ("zh-MO", 45), ("zh-Hant", 42), ("zh-Hant-TW", 42),
-  // ("zh-Hans-HK", 32), ("zh", 31), ("zh-Hans", 31), ("zh-SG", 27),
-  // ("zh-Latn-HK", 26), ("zh-Latn", 22)]
+  // [("zh", 37), ("zh-Hans", 37), ("zh-SG", 36), ("zh-HK", 35), ("zh-MO", 31),
+  // ("zh-Hant", 28), ("zh-Hant-TW", 28), ("zh-Latn-HK", 26), ("zh-Latn", 22)]
 
   let v = chain
     .iter()
@@ -53,16 +42,15 @@ fn test_init_zh_hk_chain() -> AnyResult<()> {
   assert_eq!(
     v,
     [
-      "zh-Hant-HK",
-      "zh-MO",
-      "zh-Hant",
-      "zh-Hant-TW",
-      "zh-Hans-HK",
       "zh",
       "zh-Hans",
       "zh-SG",
+      "zh-HK",
+      "zh-MO",
+      "zh-Hant",
+      "zh-Hant-TW",
       "zh-Latn-HK",
-      "zh-Latn",
+      "zh-Latn"
     ]
   );
 
@@ -136,12 +124,12 @@ fn test_init_en_au_chain() -> AnyResult<()> {
 
   let chain = try_init_chain_from_slice("en-AU", &language_list())?;
   // <(id, score)>:
-  //  [("en-AU", 50), ("en-GB", 43), ("en-CC", 42), ("en-CX", 42), ("en-NF", 42),
-  // ("en-NZ", 42), ("en-UM", 41), ("en-CK", 41), ("en-DG", 41), ("en-FJ", 41),
-  // ("en-FM", 41), ("en-KI", 41), ("en-NR", 41), ("en-NU", 41), ("en-PG", 41),
-  // ("en-PN", 41), ("en-PW", 41), ("en-SB", 41), ("en-TK", 41), ("en-TO", 41),
-  // ("en-TV", 41), ("en-VU", 41), ("en-WS", 41), ("en-AS", 41), ("en-GU", 41),
-  // ("en-MH", 41), ("en-MP", 41), ("en-US", 22), ...
+  // [("en-AU", 50), ("en-GB", 44), ("en-CC", 43), ("en-CX", 43), ("en-NF", 43),
+  // ("en-NZ", 43), ("en-UM", 42), ("en-CK", 42), ("en-DG", 42), ("en-FJ", 42),
+  // ("en-FM", 42), ("en-KI", 42), ("en-NR", 42), ("en-NU", 42), ("en-PG", 42),
+  // ("en-PN", 42), ("en-PW", 42), ("en-SB", 42), ("en-TK", 42), ("en-TO", 42),
+  // ("en-TV", 42), ("en-VU", 42), ("en-WS", 42), ("en-AS", 42), ("en-GU", 42),
+  // ("en-MH", 42), ("en-MP", 42), ("en-US", 22), ...
 
   let v = chain
     .iter()

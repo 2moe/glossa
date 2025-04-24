@@ -3,16 +3,16 @@
 [![glossa-shared.crate](https://img.shields.io/crates/v/glossa-shared.svg?logo=rust&logoColor=lightsalmon&label=glossa-shared)](https://crates.io/crates/glossa-shared)
 
 [![Documentation](https://docs.rs/glossa-shared/badge.svg)](https://docs.rs/glossa-shared)
-[![Apache-2 licensed](https://img.shields.io/crates/l/glossa-shared.svg?logo=apache)](./License)
+[![Apache-2 licensed](https://img.shields.io/crates/l/glossa-shared.svg?logo=apache)](../License)
 
 <details open>
 <summary>
 <img alt="Language/语言" src="./svg/language.svg"/>
 </summary>
 
-- [繁體中文](Readme-zh-Hant.md)
-- [English](Readme.md)
-- [简体中文](Readme-zh.md)
+- [zh-Hant: 繁體中文](Readme-zh-Hant.md)
+- [en: English](Readme.md)
+- [zh: 简体中文](Readme-zh.md)
 
 </details>
 

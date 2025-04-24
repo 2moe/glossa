@@ -3,13 +3,13 @@ name = "glossa"
 version.workspace = true
 authors.workspace = true
 categories.workspace = true
-readme = "../../docs/Readme.md"
+readme = "./docs/Readme.md"
 edition.workspace = true
 license.workspace = true
 keywords.workspace = true
 repository.workspace = true
 rust-version.workspace = true
-description = "A language international (i18n) library"
+description = "Generates an array based on the similarity between the current locale and all available locales."
 
 [features]
 default = ["std"]
@@ -32,6 +32,7 @@ tap.workspace = true
 itertools.workspace = true
 testutils.workspace = true
 glossa-l10n.workspace = true
+getset.workspace = true
 
 [dev-dependencies]
 anyhow.workspace = true

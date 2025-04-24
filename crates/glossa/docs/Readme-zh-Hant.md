@@ -3,111 +3,110 @@
 [![glossa.crate](https://img.shields.io/crates/v/glossa.svg?logo=rust&logoColor=lightsalmon&label=glossa)](https://crates.io/crates/glossa)
 
 [![Documentation](https://docs.rs/glossa/badge.svg)](https://docs.rs/glossa)
-[![Apache-2 licensed](https://img.shields.io/crates/l/glossa.svg?logo=apache)](./License)
+[![Apache-2 licensed](https://img.shields.io/crates/l/glossa.svg?logo=apache)](../License)
 
 <!-- Language -->
-<details>
+<details open>
 <summary>
-<a href="Readme-zh.md">
-<img alt="Language/语言" src="./svg/language.svg"/>
-</a>
+<img alt="Language/語言" src="./svg/language.svg" />
 </summary>
 
-- en: English
-- [zh: 中文](Readme-zh.md)
 - [zh-Hant: 繁體中文](Readme-zh-Hant.md)
+- [en: English](Readme.md)
+- [zh: 簡體中文](Readme-zh.md)
 
 </details>
 
 <!-- TOC -->
 <details open>
 <summary>
-<img alt="Table of Contents" src="./svg/toc/toc.svg" />
+<img alt="目錄" src="./svg/toc/目錄.svg"/>
 </summary>
 
-- [Locale Fallback Chain](#locale-fallback-chain)
-  - [Example: zh-Hans-HK](#example-zh-hans-hk)
-  - [Example: en-AU](#example-en-au)
-  - [Example: gsw-LI](#example-gsw-li)
-- [Practical Usage](#practical-usage)
-  - [Code Generation](#code-generation)
+- [Locale Fallback 鏈](#locale-fallback-鏈)
+  - [案例：zh-Hans-HK](#案例zh-hans-hk)
+  - [案例：en-AU](#案例en-au)
+  - [例子: gsw-LI](#例子-gsw-li)
+- [實戰](#實戰)
+  - [codegen](#codegen)
   - [LocaleContext](#localecontext)
-  - [Complete Code Example](#complete-code-example)
+  - [完整程式碼](#完整程式碼)
 
 </details>
 
 <!--  -->
+## Locale Fallback 鏈
 
-## Locale Fallback Chain
+glossa crate 的核心功能：
 
-The core functionality of the glossa crate:
+- 根據當前語言與所有語言的**相似性**，生成一個數組。
+  - （理論上）與當前語言的相似性越高，排名越前。
 
-- Generates an array based on the **similarity** between the current locale and all available locales.
-  - (Theoretically) Higher similarity locales are prioritized.
-
-Q: Why is fallback necessary?
+Q: 為什麼需要 fallback?
 
 A:
-When localized text for the current locale is missing, falling back to a more familiar language (e.g., another variant of the current language) ensures a better user experience.
+因為當 current locale 的本地化文字缺失時，fallback 到您更為熟悉的語言（e.g., 當前語言的其他變體）可以確保良好的使用者體驗。
 
-> A person may master multiple languages (or different variants of the same language).
+> 一個人可以掌握不同的語言（或者是同一門語言的不同變體）
 
-Assume the current locale is `pt-PT` (Português, Portugal), and the available locales are `pt-PT`, `pt` (Português, Brasil), `es-419` (Español, Latinoamérica), and `en`.
+假設當前 locale 為 pt-PT(português, Portugal), 所有本地化資源的 locales 為 pt-PT, pt(português, Brasil), es-419(español, Latinoamérica), en。
 
-In this case, the i18n library should retrieve localized text in the order `[pt-PT, pt, en]`, not `[pt-PT, en]`.
+此時 i18n 庫應根據 `[pt-PT, pt, en]` 的順序來獲取本地化文字，而非 `[pt-PT, en]`。
 
-Ignoring language similarity and directly falling back to `en` not only reduces localization (L10n) coverage but may also increase cognitive load for users.
+若忽略了語言的相似性，直接 fallback 到 en，則不僅降低了本地化(L10n)覆蓋率，還可能會增加使用者的認知負擔。
 
-### Example: zh-Hans-HK
+### 案例：zh-Hans-HK
 
-Assume the current locale is `zh-Hans-HK`, and the available locales are `zh-Hant-MO`, `zh-SG`, `ru`, `zh-Hant`, `fr`, `zh`, `ar`, `zh-HK`, `en-001`, `lzh`.
+假設當前 locale 為 zh-Hans-HK, 所有本地化資源的 locales 為 zh-Hant-MO, zh-SG, ru, zh-Hant, fr, zh, ar, zh-HK, en-001, lzh。
 
-After calling `try_init_chain()`, the generated locale chain is: `["zh", "zh-SG", "zh-HK", "zh-Hant-MO", "zh-Hant"]`.
+呼叫 `try_init_chain()` 後，自動生成的 locale 鏈為: `["zh", "zh-SG", "zh-HK", "zh-Hant-MO", "zh-Hant"]`
 
-When the log level is `debug` or `trace`, you can see `[... DEBUG glossa::fallback] ...<(id, score)>`:
+當 log level 為 debug 或 trace 時，我們能看到 `[... DEBUG glossa::fallback] ...<(id, score)>`:
 
 ```rust
 [
-  ("zh", 37),       // zh-Hans-CN
-  ("zh-SG", 36),    // zh-Hans-SG
-  ("zh-HK", 35),    // zh-Hant-HK
-  ("zh-Hant-MO", 31),
-  ("zh-Hant", 28)   // zh-Hant-TW
+  ("zh", 37), // zh-Hans-CN
+  ("zh-SG", 36), // zh-Hans-SG
+  ("zh-HK", 35), // zh-Hant-HK
+  ("zh-Hant-MO", 31)
+  ("zh-Hant", 28) // zh-Hant-TW
 ]
 ```
 
-> Higher scores indicate higher priority.
+> 分數越高，優先順序越高
 
-- Exact match: full score (50 points).
-- Partial matches:
-  - Same language: +20 points.
-    - Since the current language is `zh` (Chinese), and no other languages are included in the built-in rules, only `zh` variants appear in the chain.
-    - Theoretically, `lzh` (Classical Chinese) shares some similarity with modern Chinese, but it is not included in the built-in fallback rules for `zh-Hans-HK`.
-  - Same script: +15 points.
-    - The current script is `Hans` (Simplified). `Hans` scores higher than `Hant`.
-      - `zh-HK` is essentially `zh-Hant-HK`.
-        - Since `Hans` scores higher than `Hant`, and `zh-Hans` resources exist, `zh-HK` does not have the highest score.
-  - Matches built-in fallback rules:
-    - Full match: +9 points.
-    - Partial match (language + script): +6 points.
-  - Same region: +4 points.
-    - Comparing `zh-Hant` (zh-Hant-TW), `zh-Hant-MO`, and `zh-HK` (zh-Hant-HK):
-      - `zh-HK` shares the same region (HK) as the current locale, earning +4 points.
-      - `zh-Hant` and `zh-Hant-MO` do not share the HK region, so no bonus.
-  - Proximity bonus:
-    - Same sub-region (e.g., East Asia): +2 points.
-    - Same continent (e.g., Asia): +1 point.
-    - Comparing `zh` (zh-Hans-CN) and `zh-SG` (zh-Hans-SG):
-      - HK (HongKong SAR, China) and CN (Mainland China) are both in East Asia (+2).
-      - SG (Singapore) is in Southeast Asia, sharing the same continent (Asia) with HK (+1).
+- 完全相同，得滿分（50分）
+- 部分相同
+  - 相同語言：+20分
+    - 由於當前語言為 zh (中文)，且內建規則不包含其他語言，因此語言鏈裡只有 ^zh。
+    - 從理論上來說， lzh（文言）與現代漢語之間也有一定的相似性，只不過內建的 zh-Hans-HK 的 fallback 規則不包含 lzh。
+  - 相同 script：+15分
+    - 當前 script 為 Hans (簡體)，Hans 的分數比 Hant 更高
+      - zh-HK 本質上是 zh-Hant-HK。
+        - 由於 Hans 的分數高於 Hant，且當前存在 ^zh-Hans 的本地化資源，因此 zh-HK 的分數並不是最高的。
+  - 符合內建 fallback 規則的語言，享受加分
+    - 完全符合：+3+6 => +9分
+    - 只符合 lang+script：+6分
+  - 相同region：+4分
+    - 將 zh-Hant (zh-Hant-TW), zh-Hant-MO, zh-HK (zh-Hant-HK) 進行對比
+      - zh-HK 與當前 locale (zh-Hans-HK) 是相同的區域(HK)。
+        - zh-HK: +4分
+      - 由於 zh-Hant 與 zh-Hant-MO 的區域與當前區域（HK） 不同，故無法享受 +4 分的優待。
+  - 相近地域，享受加分
+    - 共同位於同一大洲的子區域（比如同時位於東亞地區）: +2分
+    - 共同位於同一大洲 (比如同時位於亞洲): +1分
+    - 將 zh(zh-Hans-CN) 與 zh-SG (zh-Hans-SG) 進行對比。
+      - 當前 locale (zh-Hans-HK) 的區域為 HK, HK(中國香港)作為中國的一部分，與CN(中國內地)共同位於東亞地區；而 SG(新加坡) 位於東南亞，與 HK 共同位於亞洲。
+        - zh: +2分
+        - zh-SG: +1分
 
-### Example: en-AU
+### 案例：en-AU
 
-Assume the current locale is `en-AU`, with extensive localization resources for various regions (including sparsely populated islands).
+假設當前 locale 為 en-AU，不同地區的本地化資源非常齊全（包括幾乎無人的小島嶼）。
 
-From a linguistic similarity perspective, `en-NZ` (New Zealand English) is closer to `en-AU` (Australian English) than `en-GB` (British English).
+從語言相似性的角度來說，en-NZ (New Zealand English) 與 en-AU (Australian English) 的關係，會比 en-GB(British English) 更為密切。
 
-However, the chain generated by glossa may not guarantee 100% accuracy.
+遺憾的是， glossa 生成的 chain 不能保證 100% 的準確度。
 
 ```rust
 // <(id, score)>:
@@ -121,9 +120,9 @@ However, the chain generated by glossa may not guarantee 100% accuracy.
 ]
 ```
 
-### Example: gsw-LI
+### 例子: gsw-LI
 
-> `gsw` is Swiss German (Schwiizertüütsch), while `de` is Standard German (Deutsch).
+> gsw 是瑞士德語(Schwiizertüütsch)，de 是德國德語(Deutsch)。
 
 ```rust
 use glossa::{
@@ -156,11 +155,11 @@ assert_eq!(
 );
 ```
 
-## Practical Usage
+## 實戰
 
-> Implement corresponding logic based on the **localization resource (L10n Map)** types generated by `glossa-codegen`.
+> 我們需要根據 glossa-codegen 生成的**本地化資源(L10n Map)**的型別，來實現相應的邏輯。
 
-### Code Generation
+### codegen
 
 ```rust
 use glossa_codegen::{Generator, L10nResources, Visibility, generator::MapType};
@@ -170,8 +169,8 @@ let generator = Generator::default()
   .with_visibility(Visibility::Pub);
 ```
 
-The `Generator` supports outputting various types.
-If you invoke `generator.output_match_fn_all_in_one_by_language_and_key(MapType::Regular)?`, the generated code will resemble:
+Generator 支援輸出多種不同的型別。
+若我們呼叫了 `generator.output_match_fn_all_in_one_by_language_and_key(MapType::Regular)?`，則其輸出的內容如下所示。
 
 ```rust
 pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
@@ -194,7 +193,7 @@ pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
     (b"fr", b"yes") => r#####"Oui"#####,
     (b"ja", b"cancel") => r#####"取消"#####,
     (b"ja", b"no") => r#####"いいえ"#####,
-    (b"ja", b"ok") => r#####"了解"#####,
+    (b"ja", b"ok") => r#####"瞭解"#####,
     (b"ja", b"yes") => r#####"はい"#####,
     (b"ko", b"cancel") => r#####"취소"#####,
     (b"ko", b"no") => r#####"아니오"#####,
@@ -215,7 +214,7 @@ pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
 }
 ```
 
-Invoking `generator.output_locales_fn(MapType::Regular, true)?` generates:
+呼叫 `generator.output_locales_fn(MapType::Regular, true)?` 後, 我們將得到如下函式。
 
 ```rust
 // super: use glossa_shared::lang_id;
@@ -242,10 +241,12 @@ pub const fn all_locales() -> [super::lang_id::LangID; 11] {
 
 ### LocaleContext
 
-Next, implement logic to lookup localized texts based on the types generated by codegen.
-As shown above, codegen produces a `match_fn`.
+接下來，我們需要根據 codegen 生成的程式碼/資料的型別，來實現查詢本地化文字的邏輯。
+由上文可知，codegen 生成了 `match_fn`。
 
-Given the function definition: `const fn map(language: &[u8], key: &[u8]) -> &'static str`, the lookup logic is:
+根據函式的定義： `const fn map(language: &[u8], key: &[u8]) -> &'static str`
+
+我們編寫了如下的查詢邏輯:
 
 ```rust
 let lookup = |(language, key)| match map(language, key) {
@@ -254,7 +255,9 @@ let lookup = |(language, key)| match map(language, key) {
 };
 ```
 
-If the generated function uses `map(language, map_name, key)`, adjust the lookup accordingly:
+如果 codegen 生成的函式的定義為： `const fn map(language: &[u8], map_name: &[u8], key: &[u8]) -> &'static str`，則查詢邏輯也不一樣。
+
+我們可以這樣子寫：
 
 ```rust
 let lookup = |(language, map_name, key)| match map(language, map_name, key) {
@@ -263,8 +266,9 @@ let lookup = |(language, map_name, key)| match map(language, map_name, key) {
 };
 ```
 
-For binary serialized data (e.g., bincode), deserialize it into a `HashMap` or `BTreeMap`.
-And we can use `.get()` to lookup.
+若 codegen 生成了 bincode file，則將其反序列化後，會得到普通的 HashMap 或 BTreeMap。
+
+我們可以使用 `map.get(&language)?.get(&(map_name, key))` 進行查詢。
 
 ```rust
 let map = glossa_shared::decode::file::decode_file_to_maps(path)?;
@@ -275,7 +279,7 @@ let lookup = |language, tuple_key| {
 };
 ```
 
-### Complete Code Example
+### 完整程式碼
 
 ```rust
 use glossa::sys::{ChainProvider, LocaleContext};
@@ -313,11 +317,9 @@ pub(crate) fn print_l10n_text() {
   };
 
   {
-    // set_env_lang("gsw_CH.UTF-8");
-    let ctx = new_ctx()
-      .with_current_locale(Some(glossa_shared::lang_id::consts::lang_id_gsw()));
+    set_env_lang("gsw_CH.UTF-8");
+    let ctx = new_ctx();
     // [("de", 26)]
-
     for key in ["yes", "no", "ok", "cancel"] {
       display(&ctx, key)
     }

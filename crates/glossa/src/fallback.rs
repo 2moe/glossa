@@ -10,38 +10,39 @@ use lang_id::{
 use log::{debug, trace};
 use smallvec::SmallVec;
 use tap::{Pipe, Tap};
-use testutils::dbg_ref;
+pub use testutils::dbg_ref;
 
 use crate::{LangID, MiniStr, cldr_fallback_mapping};
 /// Type alias for a collection of language identifiers with smallvec
 /// optimization
-pub type LanguageChain = SmallVec<LangID, 5>;
+pub type LocaleChain = SmallVec<LangID, 5>;
+pub type LocaleStrChain = Box<[MiniStr]>;
 
-/// Converts language chain (`&[LangID]`) to `Box<[MiniStr]>`
+/// Converts locale chain (`&[LangID]`) to `Box<[MiniStr]>`
 ///
 /// # Example
 ///
 /// ```
 /// use lang_id::RawID;
 /// use glossa::LangID;
-/// use glossa::fallback::conv_language_chain_to_str_chain;
+/// use glossa::fallback::conv_to_str_chain;
 /// use tap::Pipe;
 ///
 /// const EN: LangID = lang_id::common::lang_id_en();
 /// const DE: LangID = RawID::new(25956, None, None).into_lang_id();
 ///
-/// let str_chain = [EN, DE].as_ref().pipe(conv_language_chain_to_str_chain);
+/// let str_chain = [EN, DE].as_ref().pipe(conv_to_str_chain);
 ///
 /// assert_eq!(str_chain.as_ref(), ["en", "de"]);
 /// ```
-pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
+pub fn conv_to_str_chain(chain: &[LangID]) -> LocaleStrChain {
   chain
     .iter()
     .map(|x| x.to_compact_string())
     .collect()
 }
 
-/// Initializes a language chain from string slices
+/// Initializes a locale chain from string slices
 ///
 /// ## Parameters
 ///
@@ -52,11 +53,9 @@ pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
 ///
 /// ```
 /// use glossa::{
-///   error::GlossaError, fallback::conv_language_chain_to_str_chain,
+///   error::GlossaError, fallback::conv_to_str_chain,
 ///   try_init_chain_from_slice,
 /// };
-/// use compact_str::ToCompactString;
-/// use collect_with::CollectVector;
 ///
 /// let chain = try_init_chain_from_slice(
 ///   "gsw-LI",
@@ -66,10 +65,10 @@ pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
 ///   ],
 /// )?;
 /// // <(id, score)>:
-/// //  [("gsw-LI", 50), ("gsw", 36), ("gsw-FR", 36), ("de-LI", 26), ("de", 25),
-/// //   ("de-AT", 22), ("de-BE", 22), ("de-CH", 22), ("de-LU", 22), ("de-IT", 21)]
+/// // [("gsw-LI", 50), ("gsw", 37), ("gsw-FR", 37), ("de-LI", 27), ("de", 26),
+///  // ("de-AT", 23), ("de-BE", 23), ("de-CH", 23), ("de-LU", 23), ("de-IT", 22)]
 ///
-/// let v = conv_language_chain_to_str_chain(&chain);
+/// let v = conv_to_str_chain(&chain);
 ///
 /// assert_eq!(
 ///   v.as_ref(),
@@ -84,7 +83,7 @@ pub fn conv_language_chain_to_str_chain(chain: &[LangID]) -> Box<[MiniStr]> {
 pub fn try_init_chain_from_slice(
   current: &str,
   all_locales: &[&str],
-) -> LangidResult<LanguageChain> {
+) -> LangidResult<LocaleChain> {
   let current_language = current.parse()?;
   let all_locales = all_locales
     .iter()
@@ -94,13 +93,33 @@ pub fn try_init_chain_from_slice(
   try_init_chain(&current_language, &all_locales)
 }
 
-/// Initializes language chain with scoring system
+/// Constructs an optimized string-based locale priority chain
+///
+/// # Stages:
+///
+/// 1. Locale chain [initialization](try_init_chain)
+/// 2. [append_en()]
+/// 3. Compact string [conversion](conv_to_str_chain)
+/// 4. Return EN-only chain on failure
+pub fn init_str_chain(current: &LangID, all_locales: &[LangID]) -> LocaleStrChain {
+  match try_init_chain(current, all_locales) {
+    Ok(mut v) => {
+      append_en(&mut v);
+      conv_to_str_chain(&v)
+    }
+    _ => [lang_id::common::lang_id_en()]
+      .as_ref()
+      .pipe(conv_to_str_chain),
+  }
+}
+
+/// Initializes locale chain with scoring system
 ///
 /// ## Score Calculation Rules
 ///
 /// - exactly the same => 50
 /// - same language => +20
-/// - same script => +14
+/// - same script => +15
 /// - same region => +4
 /// - CLDR fallback exact match => +3
 /// - CLDR fallback lang+script match => +6
@@ -113,7 +132,7 @@ pub fn try_init_chain_from_slice(
 pub fn try_init_chain(
   current: &LangID,
   all_locales: &[LangID],
-) -> LangidResult<LanguageChain> {
+) -> LangidResult<LocaleChain> {
   let max_current = MaxLangID::new(current);
   let cur_language = max_current.get_language();
 
@@ -177,7 +196,7 @@ pub fn try_init_chain(
     .tap_mut(|v| v.sort_unstable_by_key(|&(_, score)| core::cmp::Reverse(score)))
     .tap(|v| {
       debug!(
-        "language chain<(id, score)>: {:?}",
+        "locale chain<(id, score)>: {:?}",
         v.iter()
           .map(|(id, score)| (id.to_compact_string(), score))
           .collect::<SmallVec<_, 10>>()
@@ -185,7 +204,7 @@ pub fn try_init_chain(
     })
     .into_iter()
     .map(|(id, _score)| id.clone())
-    .collect::<LanguageChain>()
+    .collect::<LocaleChain>()
     .pipe(Ok)
 }
 
@@ -193,7 +212,7 @@ pub fn try_init_chain(
 /// present.
 ///
 /// Returns `true` if English was added, `false` if already present.
-pub fn append_en(chain: &mut LanguageChain) -> bool {
+pub fn append_en(chain: &mut LocaleChain) -> bool {
   const EN: LangID = lang_id::common::lang_id_en();
 
   match chain.iter().any(|x| x == &EN) {
@@ -314,12 +333,12 @@ fn calculate_region_score(
 fn calculate_base_score(iter: [bool; 3]) -> u8 {
   iter
     .into_iter()
-    .zip([20, 14, 4])
+    .zip([20, 15, 4])
     .filter(|&(cond, _)| cond)
     .map(|(_, score)| score)
     .inspect(|score| match score {
       n @ 20 => trace!("Same Language, score+{n}"),
-      n @ 14 => trace!("Same Script, score+{n}"),
+      n @ 15 => trace!("Same Script, score+{n}"),
       n @ 4 => trace!("Same Region, score+{n}"),
       _ => {}
     })
@@ -432,8 +451,8 @@ mod tests {
       ],
     )?;
     // <(id, score)>:
-    //  [("gsw-LI", 50), ("gsw", 36), ("gsw-FR", 36), ("de-LI", 26), ("de", 25),
-    // ("de-AT", 22), ("de-BE", 22), ("de-CH", 22), ("de-LU", 22), ("de-IT", 21)]
+    // [("gsw-LI", 50), ("gsw", 37), ("gsw-FR", 37), ("de-LI", 27), ("de", 26),
+    // ("de-AT", 23), ("de-BE", 23), ("de-CH", 23), ("de-LU", 23), ("de-IT", 22)]
 
     let v = chain
       .iter()
@@ -478,7 +497,7 @@ mod tests {
     //  [("zh-MO", 46), ("zh-Hant-HK", 45), ("zh-Hant", 42), ("zh-Hant-TW", 42),
     // ("zh", 31), ("zh-Hans", 31), ("zh-SG", 27), ("zh-Latn", 22)]
 
-    let v = conv_language_chain_to_str_chain(&chain);
+    let v = conv_to_str_chain(&chain);
 
     assert_eq!(
       v.as_ref(),
@@ -647,12 +666,12 @@ mod tests {
     Ok(())
   }
 
-  // #[ignore]
-  // #[test]
-  // // #[cfg(not(feature = "std"))]
-  // fn test_lang_id_en() {
-  //   extern crate std;
-  //   const EN: LangID = lang_id::consts::lang_id_en();
-  //   std::dbg!(EN);
-  // }
+  #[ignore]
+  #[test]
+  // #[cfg(not(feature = "std"))]
+  fn test_lang_id_en() {
+    extern crate std;
+    const EN: LangID = lang_id::common::lang_id_en();
+    std::dbg!(EN);
+  }
 }

@@ -54,8 +54,8 @@ impl<'h> Generator<'h> {
     self.clear_highlight_cache();
   }
   fn clear_highlight_cache(&mut self) {
-    self.lazy_maps.highlight = Default::default();
-    self.lazy_maps.merged = Default::default();
+    self.lazy_maps.highlight.take();
+    self.lazy_maps.merged.take();
   }
 }
 

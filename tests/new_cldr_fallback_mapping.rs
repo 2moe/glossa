@@ -2322,11 +2322,16 @@ fn zh_hant_list() -> Box<[(MiniStr, FallbackList)]> {
   ]
   .pipe(into_slice);
 
+  let hans_hk_list: SmallVec<_, 6> = ["zh-Hant-HK", "zh-Hant-MO"].pipe(into_slice);
+  let hans_mo_list = hans_hk_list.clone();
+
   vec![
     ("zh-Hant-HK".into(), hk_list),
     ("zh-Hant-MO".into(), mo_list),
     ("zh-Hant-TW".into(), tw_list),
     ("zh-Hans-CN".into(), hans_cn_list),
+    ("zh-Hans-HK".into(), hans_hk_list),
+    ("zh-Hans-MO".into(), hans_mo_list),
     ("zh-Hant-CN".into(), hant_cn_list),
   ]
   .into_boxed_slice()

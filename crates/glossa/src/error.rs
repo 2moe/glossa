@@ -60,18 +60,21 @@ pub(crate) fn get_error_text<'a>(language: &[u8]) -> Option<&'a str> {
 #[cfg(feature = "std")]
 pub(crate) fn text_not_found<'a>() -> &'a str {
   use glossa_l10n::error::default as default_text;
-  use tap::Pipe;
 
-  use crate::sys::get_or_init_str_language_chain;
+  use crate::sys::LocaleContext;
+  let all_locales = glossa_l10n::error::locale_registry::all_locales();
 
-  glossa_l10n::error::locale_registry::all_locales()
-    .as_ref()
-    .pipe(Some)
-    .pipe(get_or_init_str_language_chain)
-    .iter()
-    .map(|id| id.as_bytes())
-    .find_map(get_error_text)
-    .unwrap_or_else(default_text)
+  match LocaleContext::default()
+    .with_all_locales(all_locales)
+    .get_or_try_init_chain()
+  {
+    Some(x) => x
+      .iter()
+      .map(|id| id.as_bytes())
+      .find_map(get_error_text)
+      .unwrap_or_else(default_text),
+    _ => default_text(),
+  }
 }
 
 #[cfg(not(feature = "std"))]

@@ -1,76 +1,137 @@
+use std::sync::OnceLock;
+
+use getset::Getters;
 use lang_id::{LangID, sys_locale};
-use tap::{Pipe, Tap};
-use testutils::new_once_lock;
+use log::warn;
+use tap::Pipe;
+pub use testutils::new_once_lock;
 
-use crate::{
-  MiniStr,
-  fallback::{append_en, conv_language_chain_to_str_chain},
-  try_init_chain,
-};
+use crate::{MiniStr, fallback::LocaleStrChain};
 
-/// Retrieves the system's primary language identifier with thread-safe
+pub trait ChainProvider {
+  fn provide_chain(&self) -> Option<&[MiniStr]>;
+}
+
+impl ChainProvider for LocaleContext {
+  fn provide_chain(&self) -> Option<&[MiniStr]> {
+    self.get_or_try_init_chain()
+  }
+}
+
+/// A context holder for locale-related information and fallback chains.
+/// Manages current locale, supported locales, and cached fallback chains.
+#[derive(Default, Debug, Getters, Clone)]
+#[getset(get = "pub with_prefix")]
+pub struct LocaleContext {
+  /// Current active locale (initialized lazily)
+  current_locale: OnceLock<LangID>,
+
+  /// Cached locale fallback chain (e.g., ["en-NZ", "en-GB" "en"])
+  #[getset(skip)]
+  chain: OnceLock<LocaleStrChain>,
+
+  /// All available locales in the application
+  all_locales: Option<Box<[LangID]>>,
+}
+
+impl LocaleContext {
+  /// Configures all supported locales and resets cached chain
+  pub fn with_all_locales<I: Into<Box<[LangID]>>>(mut self, locales: I) -> Self {
+    self.chain.take();
+    self.init_static_locale_if_uninitialized();
+    self.all_locales = Some(locales.into());
+    self
+  }
+
+  /// Initializes static locale if not already set
+  fn init_static_locale_if_uninitialized(&self) {
+    if self.is_current_locale_initialized() {
+      return;
+    }
+
+    self
+      .current_locale
+      .get_or_init(|| get_static_locale().clone());
+  }
+
+  /// Checks if current locale has been initialized
+  fn is_current_locale_initialized(&self) -> bool {
+    self
+      .current_locale
+      .get()
+      .is_some()
+  }
+
+  /// Checks if locale chain has been computed
+  pub fn is_chain_initialized(&self) -> bool {
+    self.chain.get().is_some()
+  }
+
+  /// Updates current locale and resets cached chain
+  pub fn with_current_locale(mut self, current: Option<LangID>) -> Self {
+    self.current_locale.take();
+    self
+      .current_locale
+      .get_or_init(|| match current {
+        Some(x) => x,
+        _ => get_locale(),
+      });
+    self.chain.take();
+    self
+  }
+
+  /// Gets cached chain or initializes it
+  pub fn get_or_try_init_chain(&self) -> Option<&[MiniStr]> {
+    let all_locales = match self.is_chain_initialized() {
+      true => Default::default(),
+      _ => match self
+        .get_all_locales()
+        .as_deref()
+        .filter(|x| !x.is_empty())
+      {
+        Some(x) => x,
+        _ => {
+          warn!("all_locales is empty");
+          None?
+        }
+      },
+    };
+
+    self
+      .chain
+      .get_or_init(|| {
+        self.init_static_locale_if_uninitialized();
+        let current = self
+          .current_locale
+          .get()
+          .expect("current_locale: Empty");
+
+        crate::fallback::init_str_chain(current, all_locales)
+      })
+      .as_ref()
+      .pipe(Some)
+  }
+}
+
+/// Retrieves system locale with platform-specific implementations
+fn get_locale() -> LangID {
+  match () {
+    #[cfg(not(target_os = "macos"))]
+    () => sys_locale::fetch_sys_or_env_lang(),
+    #[cfg(target_os = "macos")]
+    () => sys_locale::fetch_env_lang_or_sys_locale(),
+  }
+}
+
+/// Retrieves the system's primary locale(language identifier) with thread-safe
 /// initialization
 ///
 /// Implements platform-specific detection strategies:
 /// - macOS: Prioritizes environment variables before system settings
 /// - Other OS: Uses system locale APIs with environment fallback
-pub fn get_static_lang() -> &'static LangID {
+pub fn get_static_locale() -> &'static LangID {
   testutils::new_once_lock!(LANG: LangID);
-
-  LANG.get_or_init(|| match () {
-    #[cfg(not(target_os = "macos"))]
-    () => sys_locale::fetch_sys_or_env_lang(),
-    #[cfg(target_os = "macos")]
-    () => sys_locale::fetch_env_lang_or_sys_locale(),
-  })
-}
-
-/// Builds a prioritized language chain with resilient fallback handling
-///
-/// # Stages:
-///
-/// 1. current = [get_static_lang()]
-/// 2. Language chain [initialization](crate::fallback::try_init_chain)
-/// 3. [crate::fallback::append_en()]
-/// 4. Return EN-only chain on failure
-pub fn init_sys_language_chain(all_locales: Option<&[LangID]>) -> Box<[LangID]> {
-  let try_init = |locales| try_init_chain(get_static_lang(), locales).ok();
-
-  match all_locales.and_then(try_init) {
-    Some(v) => v
-      .tap_mut(|x| {
-        append_en(x);
-      })
-      .into_boxed_slice(),
-    _ => [lang_id::common::lang_id_en()].into(),
-  }
-}
-
-/// Constructs an optimized string-based language priority chain
-///
-/// Transforms language identifiers into space-efficient string representations
-/// while preserving ordering.
-///
-/// # Stages:
-///
-/// 1. current = [get_static_lang()]
-/// 2. Language chain initialization:
-///   - [try_init_chain(current, _)](crate::fallback::try_init_chain)
-/// 3. [crate::fallback::append_en()]
-/// 4. Compact string [conversion](conv_language_chain_to_str_chain)
-pub fn init_str_chain(all_locales: Option<&[LangID]>) -> Box<[MiniStr]> {
-  all_locales
-    .pipe(init_sys_language_chain)
-    .as_ref()
-    .pipe(conv_language_chain_to_str_chain)
-}
-
-pub(crate) fn get_or_init_str_language_chain(
-  all_locales: Option<&[LangID]>,
-) -> &'static [MiniStr] {
-  new_once_lock!(CHAIN: Box<[MiniStr]>);
-
-  CHAIN.get_or_init(|| all_locales.pipe(init_str_chain))
+  LANG.get_or_init(get_locale)
 }
 
 #[cfg(test)]
@@ -87,7 +148,7 @@ mod tests {
     // unsafe {
     //   std::env::set_var("LANG", "POSIX.UTF-8");
     // };
-    dbg_ref!(get_static_lang());
+    dbg_ref!(get_static_locale());
 
     let all_locales = {
       use lang_id::consts::*;
@@ -101,7 +162,9 @@ mod tests {
       ]
     };
 
-    let chain = init_str_chain(Some(&all_locales));
+    let ctx = LocaleContext::default().with_all_locales(all_locales);
+
+    let chain = ctx.get_or_try_init_chain();
 
     dbg!(chain);
   }

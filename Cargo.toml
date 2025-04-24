@@ -118,6 +118,7 @@ log.workspace = true
 collect-with.workspace = true
 tap.workspace = true
 toml.workspace = true
+glossa-shared = { workspace = true, features = ["consts"] }
 
 [dependencies]
 # thiserror = "2.0.11"

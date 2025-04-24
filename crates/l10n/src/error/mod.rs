@@ -1,5 +1,5 @@
 pub const fn default() -> &'static str {
-  r#####"No localized text found"#####
+  r#####"No localised text found"#####
 }
 
 #[cfg(feature = "error")]

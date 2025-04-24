@@ -3,7 +3,7 @@
 [![glossa-codegen.crate](https://img.shields.io/crates/v/glossa-codegen.svg?logo=rust&logoColor=lightsalmon&label=glossa-codegen)](https://crates.io/crates/glossa-codegen)
 
 [![Documentation](https://docs.rs/glossa-codegen/badge.svg)](https://docs.rs/glossa-codegen)
-[![Apache-2 licensed](https://img.shields.io/crates/l/glossa-codegen.svg?logo=apache)](./License)
+[![Apache-2 licensed](https://img.shields.io/crates/l/glossa-codegen.svg?logo=apache)](../License)
 
 <!-- https://img.shields.io/badge/Language/%E8%AA%9E%E8%A8%80-7D4698?logo=googletranslate&logoColor=white -->
 
@@ -12,9 +12,9 @@
 <img alt="Language/语言" src="./svg/language.svg" />
 </summary>
 
-- [繁體中文](Readme-zh-Hant.md)
-- [English](Readme.md)
-- [简体中文](Readme-zh.md)
+- [zh-Hant: 繁體中文](Readme-zh-Hant.md)
+- [en: English](Readme.md)
+- [zh: 简体中文](Readme-zh.md)
 
 </details>
 
