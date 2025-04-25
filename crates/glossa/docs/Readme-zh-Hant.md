@@ -30,7 +30,8 @@
 - [實戰](#實戰)
   - [codegen](#codegen)
   - [LocaleContext](#localecontext)
-  - [完整程式碼](#完整程式碼)
+  - [Trait 例子](#trait-例子)
+  - [雙語](#雙語)
 
 </details>
 
@@ -219,7 +220,7 @@ pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
 ```rust
 // super: use glossa_shared::lang_id;
 
-pub const fn all_locales() -> [super::lang_id::LangID; 11] {
+pub const fn all_locales() -> [super::lang_id::LangID; 10] {
   #[allow(unused_imports)]
   use super::lang_id::RawID;
   use super::lang_id::consts::*;
@@ -232,7 +233,6 @@ pub const fn all_locales() -> [super::lang_id::LangID; 11] {
     lang_id_ja(),
     lang_id_ko(),
     lang_id_ru(),
-    lang_id_zh(),
     lang_id_zh_hant(),
     lang_id_zh_pinyin(),
   ]
@@ -279,7 +279,7 @@ let lookup = |language, tuple_key| {
 };
 ```
 
-### 完整程式碼
+### Trait 例子
 
 ```rust
 use glossa::sys::{ChainProvider, LocaleContext};
@@ -303,7 +303,6 @@ impl GetL10nText for LocaleContext {}
 
 #[test]
 pub(crate) fn print_l10n_text() {
-  init_logger(false);
   let new_ctx = || LocaleContext::default().with_all_locales(all_locales());
 
   // #[cfg(any(target_os = "macos", target_os = "linux"))]
@@ -317,9 +316,13 @@ pub(crate) fn print_l10n_text() {
   };
 
   {
-    set_env_lang("gsw_CH.UTF-8");
-    let ctx = new_ctx();
+    // set_env_lang("gsw_CH.UTF-8");
+    //
+
+    let ctx = new_ctx()
+      .with_current_locale(Some(glossa_shared::lang_id::consts::lang_id_gsw()));
     // [("de", 26)]
+
     for key in ["yes", "no", "ok", "cancel"] {
       display(&ctx, key)
     }
@@ -332,9 +335,13 @@ pub(crate) fn print_l10n_text() {
 
   {
     set_env_lang("zh_MO.UTF-8");
-    log::debug!("\n---\n--- current locale => zh-MO");
-    // [("zh-Hant", 43), ("zh", 31), ("zh-Latn-CN", 22)]
+    // new_ctx();                           // current_locale =>  get_static_sys_locale()
+    // new_ctx().with_current_locale(None)  // current_locale => get_sys_locale()
     let ctx = new_ctx().with_current_locale(None);
+
+    log::debug!("\n---\n--- current locale => zh-MO");
+    // [("zh-Hant", 43), ("zh-Latn-CN", 22)]
+
     for key in ["yes", "no", "ok", "cancel", "confirm"] {
       display(&ctx, key)
     }
@@ -345,5 +352,82 @@ pub(crate) fn print_l10n_text() {
   //   ok: 確定
   //   cancel: 取消
   //   confirm: Confirm
+}
+```
+
+### 雙語
+
+**場景1**：
+
+在某些資源受限環境中，漢字可能無法正常顯示。
+這時候，我們可以將本地化語言切換為漢語拼音。
+
+由於 漢語-普通話 中存在多音字，因此在只能用拼音不能用漢字的情況下，可能會產生歧義。
+此時，就是“雙語功能”閃亮登場✨的時刻了！
+
+> 我們需要手動實現 “雙語功能”。
+
+**場景2**：
+
+有個名叫 Banana 的男孩出生在美國, 他的母語是英語，並且不熟悉其他的語言。直到有一天，他遇到了一位講西班牙語的漂亮女孩 Catalina。
+
+~~為了展現自己的色批本質，~~ 為了向 Catalina 表達自己的愛意，他決定編寫一份西班牙語的賽博情書💌（表白程式）。
+可是他對翻譯軟體的結果沒有信心，於是他編寫了 “英語-西班牙語” 雙語表白程式。
+
+第二天，在透過各種渠道得知了 Catalina 的 email 後，他興高采烈地將“賽博情書”傳送給女孩。
+Catalina 拿著 iOS 手機，盯著郵件中的 `.exe` 附件陷入了短暫的思考，然後毫不遲疑地刪掉了整封郵件。
+
+與此同時，忐忑不安的 Banana 等了許久都沒有得到回覆，一顆灼熱的心漸漸冷卻了下來。
+
+直到第三天，Banana 遇到了一位講法語的漂亮的女孩 Sophie。
+於是，他打算故技重施，編寫 “英語-法語” 雙語展示的賽博情書。
+
+這次他學聰明瞭，將“雙語賽博情書”編譯成 wasm，然後做成網頁，在平板電腦中開啟，最後當面展示在 Sophie 面前。
+
+Sophie 起初有點吃驚，隨即又談談一笑：“很抱歉，我只喜歡女孩子。不過我有個朋友只會說德語，你要不要試試？”
+
+（拍桌！下次能不能不要編那麼俗套的故事啊！喂！）
+
+---
+
+```rust
+#[ignore]
+#[test]
+// en-GB, zh-pinyin
+fn test_bilingual() {
+  use glossa_shared::lang_id::consts::{lang_id_en_gb, lang_id_zh_pinyin};
+
+  let new_ctx = |id| {
+    LocaleContext::default()
+      .with_current_locale(Some(id))
+      .with_all_locales(all_locales())
+  };
+  let zh_pinyin_ctx = new_ctx(lang_id_zh_pinyin());
+  let en_gb_ctx = new_ctx(lang_id_en_gb());
+
+  fn get_text<'a>(ctx: &LocaleContext, key: &str) -> Option<&'a str> {
+    let lookup = |(language, key): (_, &str)| match map(language, key.as_bytes()) {
+      "" => None,
+      x => Some(x),
+    };
+
+    ctx
+      .get_or_try_init_chain()?
+      .iter()
+      .map(|id| (id.as_bytes(), key))
+      .find_map(lookup)
+  }
+
+  let get_cancel_text = |ctx| get_text(ctx, "cancel").unwrap_or_default();
+
+  let zh_pinyin_text = get_cancel_text(&zh_pinyin_ctx);
+  let en_gb_text = get_cancel_text(&en_gb_ctx);
+
+  let text = match zh_pinyin_text == en_gb_text {
+    true => zh_pinyin_text.into(),
+    _ => glossa_shared::fmt_compact!("{en_gb_text}. {zh_pinyin_text}"),
+  };
+
+  assert_eq!(text, "Cancel. QuXiao")
 }
 ```

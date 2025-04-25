@@ -30,7 +30,8 @@
 - [实战](#实战)
   - [codegen](#codegen)
   - [LocaleContext](#localecontext)
-  - [完整代码](#完整代码)
+  - [Trait 例子](#trait-例子)
+  - [双语](#双语)
 
 </details>
 
@@ -219,7 +220,7 @@ pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
 ```rust
 // super: use glossa_shared::lang_id;
 
-pub const fn all_locales() -> [super::lang_id::LangID; 11] {
+pub const fn all_locales() -> [super::lang_id::LangID; 10] {
   #[allow(unused_imports)]
   use super::lang_id::RawID;
   use super::lang_id::consts::*;
@@ -232,7 +233,6 @@ pub const fn all_locales() -> [super::lang_id::LangID; 11] {
     lang_id_ja(),
     lang_id_ko(),
     lang_id_ru(),
-    lang_id_zh(),
     lang_id_zh_hant(),
     lang_id_zh_pinyin(),
   ]
@@ -279,7 +279,7 @@ let lookup = |language, tuple_key| {
 };
 ```
 
-### 完整代码
+### Trait 例子
 
 ```rust
 use glossa::sys::{ChainProvider, LocaleContext};
@@ -303,7 +303,6 @@ impl GetL10nText for LocaleContext {}
 
 #[test]
 pub(crate) fn print_l10n_text() {
-  init_logger(false);
   let new_ctx = || LocaleContext::default().with_all_locales(all_locales());
 
   // #[cfg(any(target_os = "macos", target_os = "linux"))]
@@ -318,6 +317,7 @@ pub(crate) fn print_l10n_text() {
 
   {
     // set_env_lang("gsw_CH.UTF-8");
+    //
 
     let ctx = new_ctx()
       .with_current_locale(Some(glossa_shared::lang_id::consts::lang_id_gsw()));
@@ -335,9 +335,13 @@ pub(crate) fn print_l10n_text() {
 
   {
     set_env_lang("zh_MO.UTF-8");
-    log::debug!("\n---\n--- current locale => zh-MO");
-    // [("zh-Hant", 43), ("zh", 31), ("zh-Latn-CN", 22)]
+    // new_ctx();                           // current_locale =>  get_static_sys_locale()
+    // new_ctx().with_current_locale(None)  // current_locale => get_sys_locale()
     let ctx = new_ctx().with_current_locale(None);
+
+    log::debug!("\n---\n--- current locale => zh-MO");
+    // [("zh-Hant", 43), ("zh-Latn-CN", 22)]
+
     for key in ["yes", "no", "ok", "cancel", "confirm"] {
       display(&ctx, key)
     }
@@ -348,5 +352,82 @@ pub(crate) fn print_l10n_text() {
   //   ok: 確定
   //   cancel: 取消
   //   confirm: Confirm
+}
+```
+
+### 双语
+
+**场景1**：
+
+在某些资源受限环境中，汉字可能无法正常显示。
+这时候，我们可以将本地化语言切换为汉语拼音。
+
+由于 汉语-普通话 中存在多音字，因此在只能用拼音不能用汉字的情况下，可能会产生歧义。
+此时，就是“双语功能”闪亮登场✨的时刻了！
+
+> 我们需要手动实现 “双语功能”。
+
+**场景2**：
+
+有个名叫 Banana 的男孩出生在美国, 他的母语是英语，并且不熟悉其他的语言。直到有一天，他遇到了一位讲西班牙语的漂亮女孩 Catalina。
+
+~~为了展现自己的色批本质，~~ 为了向 Catalina 表达自己的爱意，他决定编写一份西班牙语的赛博情书💌（表白程序）。
+可是他对翻译软件的结果没有信心，于是他编写了 “英语-西班牙语” 双语表白程序。
+
+第二天，在通过各种渠道得知了 Catalina 的 email 后，他兴高采烈地将“赛博情书”发送给女孩。
+Catalina 拿着 iOS 手机，盯着邮件中的 `.exe` 附件陷入了短暂的思考，然后毫不迟疑地删掉了整封邮件。
+
+与此同时，忐忑不安的 Banana 等了许久都没有得到回复，一颗灼热的心渐渐冷却了下来。
+
+直到第三天，Banana 遇到了一位讲法语的漂亮的女孩 Sophie。
+于是，他打算故技重施，编写 “英语-法语” 双语展示的赛博情书。
+
+这次他学聪明了，将“双语赛博情书”编译成 wasm，然后做成网页，在平板电脑中打开，最后当面展示在 Sophie 面前。
+
+Sophie 起初有点吃惊，随即又谈谈一笑：“很抱歉，我只喜欢女孩子。不过我有个朋友只会说德语，你要不要试试？”
+
+（拍桌！下次能不能不要编那么俗套的故事啊！喂！）
+
+---
+
+```rust
+#[ignore]
+#[test]
+// en-GB, zh-pinyin
+fn test_bilingual() {
+  use glossa_shared::lang_id::consts::{lang_id_en_gb, lang_id_zh_pinyin};
+
+  let new_ctx = |id| {
+    LocaleContext::default()
+      .with_current_locale(Some(id))
+      .with_all_locales(all_locales())
+  };
+  let zh_pinyin_ctx = new_ctx(lang_id_zh_pinyin());
+  let en_gb_ctx = new_ctx(lang_id_en_gb());
+
+  fn get_text<'a>(ctx: &LocaleContext, key: &str) -> Option<&'a str> {
+    let lookup = |(language, key): (_, &str)| match map(language, key.as_bytes()) {
+      "" => None,
+      x => Some(x),
+    };
+
+    ctx
+      .get_or_try_init_chain()?
+      .iter()
+      .map(|id| (id.as_bytes(), key))
+      .find_map(lookup)
+  }
+
+  let get_cancel_text = |ctx| get_text(ctx, "cancel").unwrap_or_default();
+
+  let zh_pinyin_text = get_cancel_text(&zh_pinyin_ctx);
+  let en_gb_text = get_cancel_text(&en_gb_ctx);
+
+  let text = match zh_pinyin_text == en_gb_text {
+    true => zh_pinyin_text.into(),
+    _ => glossa_shared::fmt_compact!("{en_gb_text}. {zh_pinyin_text}"),
+  };
+
+  assert_eq!(text, "Cancel. QuXiao")
 }
 ```

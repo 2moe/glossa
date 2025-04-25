@@ -32,7 +32,8 @@
 - [Practical Usage](#practical-usage)
   - [Code Generation](#code-generation)
   - [LocaleContext](#localecontext)
-  - [Complete Code Example](#complete-code-example)
+  - [Trait Example](#trait-example)
+  - [Bilingual Example](#bilingual-example)
 
 </details>
 
@@ -220,7 +221,7 @@ Invoking `generator.output_locales_fn(MapType::Regular, true)?` generates:
 ```rust
 // super: use glossa_shared::lang_id;
 
-pub const fn all_locales() -> [super::lang_id::LangID; 11] {
+pub const fn all_locales() -> [super::lang_id::LangID; 10] {
   #[allow(unused_imports)]
   use super::lang_id::RawID;
   use super::lang_id::consts::*;
@@ -233,7 +234,6 @@ pub const fn all_locales() -> [super::lang_id::LangID; 11] {
     lang_id_ja(),
     lang_id_ko(),
     lang_id_ru(),
-    lang_id_zh(),
     lang_id_zh_hant(),
     lang_id_zh_pinyin(),
   ]
@@ -275,7 +275,7 @@ let lookup = |language, tuple_key| {
 };
 ```
 
-### Complete Code Example
+### Trait Example
 
 ```rust
 use glossa::sys::{ChainProvider, LocaleContext};
@@ -299,7 +299,6 @@ impl GetL10nText for LocaleContext {}
 
 #[test]
 pub(crate) fn print_l10n_text() {
-  init_logger(false);
   let new_ctx = || LocaleContext::default().with_all_locales(all_locales());
 
   // #[cfg(any(target_os = "macos", target_os = "linux"))]
@@ -314,6 +313,7 @@ pub(crate) fn print_l10n_text() {
 
   {
     // set_env_lang("gsw_CH.UTF-8");
+    //
     let ctx = new_ctx()
       .with_current_locale(Some(glossa_shared::lang_id::consts::lang_id_gsw()));
     // [("de", 26)]
@@ -330,9 +330,13 @@ pub(crate) fn print_l10n_text() {
 
   {
     set_env_lang("zh_MO.UTF-8");
-    log::debug!("\n---\n--- current locale => zh-MO");
-    // [("zh-Hant", 43), ("zh", 31), ("zh-Latn-CN", 22)]
+    // new_ctx();                           // current_locale =>  get_static_sys_locale()
+    // new_ctx().with_current_locale(None)  // current_locale => get_sys_locale()
     let ctx = new_ctx().with_current_locale(None);
+
+    log::debug!("\n---\n--- current locale => zh-MO");
+
+    // [("zh-Hant", 43), ("zh-Latn-CN", 22)]
     for key in ["yes", "no", "ok", "cancel", "confirm"] {
       display(&ctx, key)
     }
@@ -343,5 +347,80 @@ pub(crate) fn print_l10n_text() {
   //   ok: 確定
   //   cancel: 取消
   //   confirm: Confirm
+}
+```
+
+### Bilingual Example
+
+**Scenario 1**:
+
+In resource-constrained environments, Chinese characters may fail to display properly.
+In such cases, we can switch the localization language to **zh-pinyin** (Chinese romanization).
+
+However, due to **polyphonic characters** in Mandarin Chinese, ambiguities may arise in certain contexts.(can only use Pinyin, not Chinese characters.)
+
+This is precisely where the **bilingual functionality** shines brightly ✨!
+
+> The "bilingual functionality" must be **manually implemented**.
+
+**Scenario 2**:
+
+There was a boy named Banana who was born in the United States. His native language was English, and he knew no other languages——until one day, he met a beautiful Spanish-speaking girl named Catalina.
+
+~~To reveal his inner horndog nature,~~ To express his love for Catalina, he decided to code a bilingual "cyber love letter" 💌 (a confession program) in Spanish. However, distrusting translation apps, he crafted an "English-Spanish" bilingual confession program instead.
+
+The next day, after obtaining Catalina’s email through various channels, he eagerly sent the "cyber love letter" as an attachment. Catalina, holding her iOS phone, stared at the `.exe` file in the email, paused briefly, and promptly deleted it.
+
+Meanwhile, Banana waited nervously for a reply that never came. His burning heart slowly turned cold.
+
+On the third day, Banana encountered another beautiful girl, Sophie, who spoke French. Determined to try again, he decided to code a bilingual "cyber love letter" in English and French.
+
+This time, he wised up. He compiled the "bilingual love letter code" into WebAssembly (WASM), hosted it on a webpage, opened it on a tablet, and proudly presented it to Sophie in person.
+
+Sophie was initially startled, then smiled faintly: "I’m sorry, but I only like girls. But I have a friend who only speaks German… want to give it a shot?"
+
+> *(Slams the table! Can we please stop with these cliché stories next time? Ugh!)*
+
+---
+
+```rust
+#[ignore]
+#[test]
+// en-GB, zh-pinyin
+fn test_bilingual() {
+  use glossa_shared::lang_id::consts::{lang_id_en_gb, lang_id_zh_pinyin};
+
+  let new_ctx = |id| {
+    LocaleContext::default()
+      .with_current_locale(Some(id))
+      .with_all_locales(all_locales())
+  };
+  let zh_pinyin_ctx = new_ctx(lang_id_zh_pinyin());
+  let en_gb_ctx = new_ctx(lang_id_en_gb());
+
+  fn get_text<'a>(ctx: &LocaleContext, key: &str) -> Option<&'a str> {
+    let lookup = |(language, key): (_, &str)| match map(language, key.as_bytes()) {
+      "" => None,
+      x => Some(x),
+    };
+
+    ctx
+      .get_or_try_init_chain()?
+      .iter()
+      .map(|id| (id.as_bytes(), key))
+      .find_map(lookup)
+  }
+
+  let get_cancel_text = |ctx| get_text(ctx, "cancel").unwrap_or_default();
+
+  let zh_pinyin_text = get_cancel_text(&zh_pinyin_ctx);
+  let en_gb_text = get_cancel_text(&en_gb_ctx);
+
+  let text = match zh_pinyin_text == en_gb_text {
+    true => zh_pinyin_text.into(),
+    _ => glossa_shared::fmt_compact!("{en_gb_text}. {zh_pinyin_text}"),
+  };
+
+  assert_eq!(text, "Cancel. QuXiao")
 }
 ```

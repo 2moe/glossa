@@ -16,7 +16,7 @@ use itertools::Itertools;
 use tap::Pipe;
 // use testutils::new_once_lock;
 
-pub const fn all_locales() -> [lang_id::LangID; 11] {
+pub const fn all_locales() -> [lang_id::LangID; 10] {
   use lang_id::consts::*;
   [
     lang_id_cs(),
@@ -27,7 +27,7 @@ pub const fn all_locales() -> [lang_id::LangID; 11] {
     lang_id_ja(),
     lang_id_ko(),
     lang_id_ru(),
-    lang_id_zh(),
+    // lang_id_zh(),
     lang_id_zh_hant(),
     lang_id_zh_pinyin(),
   ]
@@ -137,6 +137,48 @@ pub(crate) fn print_l10n_text() {
   //   ok: 確定
   //   cancel: 取消
   //   confirm: Confirm
+}
+
+#[ignore]
+#[test]
+// en-GB, zh-pinyin
+fn test_bilingual() {
+  init_logger(true);
+
+  use glossa_shared::lang_id::consts::{lang_id_en_gb, lang_id_zh_pinyin};
+
+  let new_ctx = |id| {
+    LocaleContext::default()
+      .with_all_locales(all_locales())
+      .with_current_locale(Some(id))
+  };
+  let zh_pinyin_ctx = new_ctx(lang_id_zh_pinyin());
+  let en_gb_ctx = new_ctx(lang_id_en_gb());
+
+  fn get_text<'a>(ctx: &LocaleContext, key: &str) -> Option<&'a str> {
+    let lookup = |(language, key): (_, &str)| match map(language, key.as_bytes()) {
+      "" => None,
+      x => Some(x),
+    };
+
+    ctx
+      .get_or_try_init_chain()?
+      .iter()
+      .map(|id| (id.as_bytes(), key))
+      .find_map(lookup)
+  }
+
+  let get_cancel_text = |ctx| get_text(ctx, "cancel").unwrap_or_default();
+
+  let zh_pinyin_text = get_cancel_text(&zh_pinyin_ctx);
+  let en_gb_text = get_cancel_text(&en_gb_ctx);
+
+  let text = match zh_pinyin_text == en_gb_text {
+    true => zh_pinyin_text.into(),
+    _ => glossa_shared::fmt_compact!("{en_gb_text}. {zh_pinyin_text}"),
+  };
+
+  assert_eq!(text, "Cancel. QuXiao")
 }
 
 pub(crate) const fn phf_es_map() -> PhfL10nOrderedMap {
