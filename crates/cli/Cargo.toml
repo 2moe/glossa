@@ -10,10 +10,12 @@ repository.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-anyhow.workspace = true
+ahash.workspace = true
 clap = { version = "4.5.35", features = ["color", "derive", "unicode"] }
-compact_str = { workspace = true, features = ["std"] }
 getset.workspace = true
+glossa.workspace = true
+# glossa = { version = "0.0.1", path = "../glossa" }
+# compact_str = { workspace = true, features = ["std"] }
 glossa-codegen = { workspace = true, features = [
     "toml",
     "yaml",

@@ -487,16 +487,16 @@ dependencies = [
 name = "glossa-cli"
 version = "0.0.1"
 dependencies = [
- "anyhow",
+ "ahash",
  "clap",
- "compact_str",
  "getset",
+ "glossa",
  "glossa-codegen",
 ]
 
 [[package]]
 name = "glossa-codegen"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "anyhow",
  "bincode 2.0.1",

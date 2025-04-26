@@ -6,7 +6,7 @@ pub(crate) mod output_phf;
 use std::{io, path::PathBuf, sync::OnceLock};
 
 use getset::{Getters, MutGetters, WithSetters};
-use glossa_shared::tap::Pipe;
+use glossa_shared::{fmt_compact, tap::Pipe};
 pub use output_phf::to_lower_snake_case;
 
 use crate::{
@@ -152,6 +152,29 @@ pub enum MapType {
   DSL,
 }
 
+impl core::str::FromStr for MapType {
+  type Err = io::Error;
+
+  fn from_str(s: &str) -> Result<Self, Self::Err> {
+    use MapType::*;
+    match s {
+      "regular" | "r" => Regular,
+      "highlight" | "h" => Highlight,
+      "dsl" | "tmpl" => DSL,
+      "regular-and-highlight" | "regularandhighlight" | "_" => RegularAndHighlight,
+      other => Err(io::Error::new(
+        io::ErrorKind::InvalidInput,
+        fmt_compact!(
+          r#"
+    Expected: "regular" | "highlight" | "dsl" |  "_"
+    Actual: "{other}""#
+        ),
+      ))?,
+    }
+    .pipe(Ok)
+  }
+}
+
 impl MapType {
   fn get_non_dsl_maps<'a>(
     &self,
@@ -186,7 +209,6 @@ impl Default for MapType {
 
 #[cfg(test)]
 pub(crate) mod dbg_generator {
-
   use super::*;
   use crate::resources::dbg_shared;
 

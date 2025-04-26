@@ -369,7 +369,7 @@ pub(crate) fn print_l10n_text() {
 
 **場景2**：
 
-有個名叫 Banana 的男孩出生在美國, 他的母語是英語，並且不熟悉其他的語言。直到有一天，他遇到了一位講西班牙語的漂亮女孩 Catalina。
+有個名叫 Banana 的男孩出生在美國，他的母語是英語，並且不熟悉其他的語言。直到有一天，他遇到了一位講西班牙語的漂亮女孩 Catalina。
 
 ~~為了展現自己的色批本質，~~ 為了向 Catalina 表達自己的愛意，他決定編寫一份西班牙語的賽博情書💌（表白程式）。
 可是他對翻譯軟體的結果沒有信心，於是他編寫了 “英語-西班牙語” 雙語表白程式。
@@ -382,9 +382,9 @@ Catalina 拿著 iOS 手機，盯著郵件中的 `.exe` 附件陷入了短暫的�
 直到第三天，Banana 遇到了一位講法語的漂亮的女孩 Sophie。
 於是，他打算故技重施，編寫 “英語-法語” 雙語展示的賽博情書。
 
-這次他學聰明瞭，將“雙語賽博情書”編譯成 wasm，然後做成網頁，在平板電腦中開啟，最後當面展示在 Sophie 面前。
+這次他學聰明瞭，先將“雙語賽博情書”編譯成 wasm，然後做成網頁，在平板電腦中開啟，最後當面展示在 Sophie 面前。
 
-Sophie 起初有點吃驚，隨即又談談一笑：“很抱歉，我只喜歡女孩子。不過我有個朋友只會說德語，你要不要試試？”
+Sophie 起初有點吃驚，隨即又談談一笑：“很抱歉，我只喜歡女孩子。不過我有個朋友只會說德語，你要不要...試試？”
 
 （拍桌！下次能不能不要編那麼俗套的故事啊！喂！）
 
@@ -425,9 +425,9 @@ fn test_bilingual() {
 
   let text = match zh_pinyin_text == en_gb_text {
     true => zh_pinyin_text.into(),
-    _ => glossa_shared::fmt_compact!("{en_gb_text}. {zh_pinyin_text}"),
+    _ => glossa_shared::fmt_compact!("{en_gb_text}; {zh_pinyin_text}"),
   };
 
-  assert_eq!(text, "Cancel. QuXiao")
+  assert_eq!(text, "Cancel; QuXiao")
 }
 ```

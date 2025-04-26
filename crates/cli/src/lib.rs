@@ -2,5 +2,3 @@
 
 pub mod options;
 pub mod parser;
-pub use anyhow::Result as AnyResult;
-pub use compact_str as MiniStr;

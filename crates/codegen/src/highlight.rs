@@ -7,6 +7,7 @@ use glossa_shared::{
 pub use hlight::HighlightResource;
 pub use kstring::KString;
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
+use serde::{Deserialize, Serialize};
 
 use crate::{Generator, MiniStr, resources::L10nMapEntry, to_kstr};
 
@@ -35,7 +36,18 @@ impl Default for SyntaxHighlightConfig<'_> {
 }
 
 #[derive(
-  Debug, Clone, Hash, PartialEq, Eq, PartialOrd, Ord, Getters, WithSetters, Default,
+  Debug,
+  Clone,
+  Hash,
+  PartialEq,
+  Eq,
+  PartialOrd,
+  Ord,
+  Getters,
+  WithSetters,
+  Default, //
+  Serialize,
+  Deserialize,
 )]
 #[getset(get = "pub with_prefix", set_with = "pub")]
 pub struct DerivedMapKey {
@@ -296,6 +308,16 @@ float = nan
 
     Ok(())
   }
+
+  // #[ignore]
+  // #[test]
+  // fn test_build_highlight_toml() -> AnyResult<()> {
+  //   let hmap = new_highlight_map();
+  //   let s = toml::to_string_pretty(&hmap)?;
+  //   println!("{s}");
+
+  //   Ok(())
+  // }
 
   #[ignore]
   #[test]

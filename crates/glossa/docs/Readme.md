@@ -418,9 +418,9 @@ fn test_bilingual() {
 
   let text = match zh_pinyin_text == en_gb_text {
     true => zh_pinyin_text.into(),
-    _ => glossa_shared::fmt_compact!("{en_gb_text}. {zh_pinyin_text}"),
+    _ => glossa_shared::fmt_compact!("{en_gb_text}; {zh_pinyin_text}"),
   };
 
-  assert_eq!(text, "Cancel. QuXiao")
+  assert_eq!(text, "Cancel; QuXiao")
 }
 ```
