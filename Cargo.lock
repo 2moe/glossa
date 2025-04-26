@@ -508,7 +508,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-codegen"
-version = "0.0.4"
+version = "0.0.5"
 dependencies = [
  "anyhow",
  "bincode 2.0.1",

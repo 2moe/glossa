@@ -63,7 +63,7 @@ path = "./crates/l10n"
 version = "0.0.1"
 
 [workspace.dependencies.glossa-codegen]
-version = "0.0.4"
+version = "0.0.5"
 path = "crates/codegen"
 
 [workspace.dependencies.glossa]

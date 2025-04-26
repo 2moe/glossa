@@ -192,26 +192,20 @@ impl MapType {
     .pipe(Ok)
   }
 
-  #[cfg(feature = "json")]
-  pub fn output_json<'a>(
+  #[cfg(feature = "ron")]
+  pub fn output_ron<'a>(
     &self,
     generator: &'a Generator<'a>,
   ) -> crate::AnyResult<String> {
-    match self.is_dsl() {
-      true => serde_json::to_string_pretty(generator.get_or_init_dsl_maps())?,
-      _ => serde_json::to_string_pretty(self.get_non_dsl_maps(generator)?)?,
-    }
-    .pipe(Ok)
-  }
+    use ron::ser::PrettyConfig;
 
-  #[cfg(feature = "toml")]
-  pub fn output_toml<'a>(
-    &self,
-    generator: &'a Generator<'a>,
-  ) -> crate::AnyResult<String> {
+    let cfg = PrettyConfig::new()
+      .depth_limit(5)
+      .separate_tuple_members(false);
+
     match self.is_dsl() {
-      true => toml::to_string_pretty(generator.get_or_init_dsl_maps())?,
-      _ => toml::to_string_pretty(self.get_non_dsl_maps(generator)?)?,
+      true => ron::ser::to_string_pretty(generator.get_or_init_dsl_maps(), cfg)?,
+      _ => ron::ser::to_string_pretty(self.get_non_dsl_maps(generator)?, cfg)?,
     }
     .pipe(Ok)
   }

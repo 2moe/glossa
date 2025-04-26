@@ -84,10 +84,7 @@ pub struct GeneratorOpt {
   output_locales_fn: bool,
 
   #[arg(long, help_heading = "Output Debug")]
-  output_json: bool,
-
-  #[arg(long, help_heading = "Output Debug")]
-  output_toml: bool,
+  output_ron: bool,
 }
 
 #[derive(Parser, Debug, Getters, Clone)]

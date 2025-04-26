@@ -4,19 +4,72 @@ use glossa_codegen::{
 
 use crate::{
   options::Cli,
-  parser::{collect_highlight_keys, collect_highlight_values},
+  parser::collect::{collect_highlight_keys, collect_highlight_values},
 };
 
-pub(crate) fn init_highlight_cfg_map(args: &Cli) -> HighlightCfgMap<'_> {
+fn show_syntaxes(map: &HighlightCfgMap) -> Option<()> {
+  map
+    .values()
+    .next()
+    .map(|v| {
+      v.get_resource()
+        .get_syntax_set()
+        .syntaxes()
+    })?
+    .iter()
+    .for_each(|x| {
+      let (name, exts) = (&x.name, &x.file_extensions);
+      println!(
+        "name: {name}\n\
+        exts: {exts:?}\n---"
+      )
+    });
+  Some(())
+}
+
+fn show_themes(map: &HighlightCfgMap) -> Option<()> {
+  map
+    .values()
+    .next()
+    .map(|v| {
+      v.get_resource()
+        .get_theme_set()
+        .get_inner()
+        .themes
+        .keys()
+    })?
+    .for_each(|k| println!("{k}"));
+
+  Some(())
+}
+
+pub(crate) fn init_highlight_cfg_map(args: &Cli) -> Option<HighlightCfgMap<'_>> {
   let raw = args.get_highlight();
-  let keys = collect_highlight_keys(raw);
+  if raw.get_base_name().is_empty() {
+    None?
+  }
+
+  let keys = match collect_highlight_keys(raw) {
+    x if x.is_empty() => None?,
+    x => x,
+  };
   let values = collect_highlight_values(raw, keys.len());
 
-  keys
+  let map = keys
     .iter()
     .zip(values)
     .map(|(k, v)| (k.clone(), v))
-    .collect()
+    .collect::<HighlightCfgMap>();
+  log::trace!("highlight cfg map: {map:#?}");
+
+  raw
+    .get_show_all_syntaxes()
+    .then(|| show_syntaxes(&map));
+  raw
+    .get_show_all_themes()
+    .then(|| show_themes(&map));
+
+  Some(map)
 }
 
 pub(crate) fn init_generator(args: &Cli) -> Generator<'_> {

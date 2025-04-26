@@ -9,7 +9,6 @@ pub(crate) fn output_data<'a>(
 ) -> AnyResult<()> {
   let map_type = args.get_map_type();
   let out_args = args.get_generator();
-  log::info!("output dir: {:?}", out_args.get_outdir());
 
   if *out_args.get_output_locales_fn() {
     generator
@@ -17,15 +16,9 @@ pub(crate) fn output_data<'a>(
       .pipe_ref(puts)
   }
 
-  if *out_args.get_output_json() {
+  if *out_args.get_output_ron() {
     map_type
-      .output_json(generator)?
-      .pipe_ref(puts)
-  }
-
-  if *out_args.get_output_toml() {
-    map_type
-      .output_toml(generator)?
+      .output_ron(generator)?
       .pipe_ref(puts)
   }
 
