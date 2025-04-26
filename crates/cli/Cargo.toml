@@ -12,6 +12,7 @@ rust-version.workspace = true
 [dependencies]
 ahash.workspace = true
 clap = { version = "4.5.35", features = ["color", "derive", "unicode"] }
+env_logger.workspace = true
 getset.workspace = true
 glossa.workspace = true
 # glossa = { version = "0.0.1", path = "../glossa" }
@@ -24,6 +25,8 @@ glossa-codegen = { workspace = true, features = [
     "json5",
     "ron",
 ] }
+log.workspace = true
+time = "0.3.41"
 
 [package.metadata.docs.rs]
 all-features = true

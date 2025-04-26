@@ -13,7 +13,7 @@ mod visibility;
 pub use anyhow::Result as AnyResult;
 //
 pub use generator::Generator;
-pub use glossa_shared::MiniStr;
+pub use glossa_shared::{self, MiniStr};
 pub use resources::L10nResources;
 pub use visibility::Visibility;
 

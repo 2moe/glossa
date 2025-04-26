@@ -176,7 +176,7 @@ impl core::str::FromStr for MapType {
 }
 
 impl MapType {
-  fn get_non_dsl_maps<'a>(
+  pub fn get_non_dsl_maps<'a>(
     &self,
     generator: &'a Generator<'a>,
   ) -> io::Result<&'a L10nMaps> {
@@ -188,6 +188,30 @@ impl MapType {
         .ok_or_else(|| io::Error::other("Failed to get highlight maps"))?,
       RegularAndHighlight => generator.get_or_init_merged_maps(),
       _ => return io::Error::other("DSL Maps are not supported.").pipe(Err),
+    }
+    .pipe(Ok)
+  }
+
+  #[cfg(feature = "json")]
+  pub fn output_json<'a>(
+    &self,
+    generator: &'a Generator<'a>,
+  ) -> crate::AnyResult<String> {
+    match self.is_dsl() {
+      true => serde_json::to_string_pretty(generator.get_or_init_dsl_maps())?,
+      _ => serde_json::to_string_pretty(self.get_non_dsl_maps(generator)?)?,
+    }
+    .pipe(Ok)
+  }
+
+  #[cfg(feature = "toml")]
+  pub fn output_toml<'a>(
+    &self,
+    generator: &'a Generator<'a>,
+  ) -> crate::AnyResult<String> {
+    match self.is_dsl() {
+      true => toml::to_string_pretty(generator.get_or_init_dsl_maps())?,
+      _ => toml::to_string_pretty(self.get_non_dsl_maps(generator)?)?,
     }
     .pipe(Ok)
   }

@@ -2,10 +2,12 @@ use std::path::PathBuf;
 
 use clap::{ColorChoice, Parser};
 use getset::Getters;
-use glossa_codegen::{MiniStr, Visibility, generator::MapType};
+use glossa::MiniStr;
+use glossa_codegen::{Visibility, generator::MapType};
 
-#[derive(Parser, Debug, Getters)]
+#[derive(Parser, Debug, Getters, Clone)]
 #[getset(get = "pub with_prefix")]
+#[command(version)]
 #[command(arg_required_else_help = true)]
 #[command(color = ColorChoice::Always)]
 pub struct Cli {
@@ -26,9 +28,9 @@ pub struct Cli {
   map_type: MapType,
 }
 
-#[derive(Parser, Debug, Getters)]
+#[derive(Parser, Debug, Getters, Clone)]
 #[getset(get = "pub with_prefix")]
-struct GeneratorOpt {
+pub struct GeneratorOpt {
   #[arg(
     long,
     value_hint = clap::ValueHint::DirPath,
@@ -80,13 +82,19 @@ struct GeneratorOpt {
 
   #[arg(long, help_heading = "Output")]
   output_locales_fn: bool,
+
+  #[arg(long, help_heading = "Output Debug")]
+  output_json: bool,
+
+  #[arg(long, help_heading = "Output Debug")]
+  output_toml: bool,
 }
 
 #[derive(Parser, Debug, Getters, Clone)]
 #[getset(get = "pub with_prefix")]
-struct ResourcesOpt {
+pub struct ResourcesOpt {
   #[arg(long, help_heading = "L10nResources", value_name = "/path/to/L10nDir")]
-  input: Option<PathBuf>,
+  input: PathBuf,
 
   #[arg(long, help_heading = "L10nResources", value_name = "string")]
   dsl_suffix: Option<MiniStr>,
@@ -125,24 +133,47 @@ struct ResourcesOpt {
   exclude_map_names: Vec<MiniStr>,
 }
 
-#[derive(Parser, Debug, Getters)]
+#[derive(Parser, Debug, Getters, Clone)]
 #[getset(get = "pub with_prefix")]
-struct HighlightOpt {
-  #[arg(long, help_heading = "Highlight", value_name = "string")]
-  base_name: Option<MiniStr>,
+pub struct HighlightOpt {
+  #[arg(long, help_heading = "HighlightKey", value_name = "Vec<string>")]
+  base_name: Vec<MiniStr>,
 
-  #[arg(long, help_heading = "Highlight", value_name = "string")]
-  suffix: Option<MiniStr>,
+  #[arg(long, help_heading = "HighlightKey", value_name = "Vec<string>")]
+  suffix: Vec<MiniStr>,
+
+  // --------
+  #[arg(long, help_heading = "HighlightValue", value_name = "Vec<bool>")]
+  true_color: Vec<bool>,
+
+  #[arg(long, help_heading = "HighlightValue", value_name = "Vec<string>")]
+  syntax_name: Vec<MiniStr>,
+
+  #[arg(long, help_heading = "HighlightValue", value_name = "Vec<string>")]
+  theme_name: Vec<MiniStr>,
+
+  #[arg(long, help_heading = "HighlightValue", value_name = "Vec<bool>")]
+  background: Vec<bool>,
 
   #[arg(
     long,
-    value_name = r#""Monokai Extended", "ayu-dark""#,
-    help_heading = "Highlight",
-    // group = "theme-name",
-    // num_args = 0..=1,
-    // default_missing_value = "",
-    // help = get_args_text("theme"),
-    // long_help = get_args_md("theme-help"),
+    help_heading = "HighlightValue",
+    value_name = r#"Vec<"/path/to/syntaxset-file">"#,
+    value_hint = clap::ValueHint::FilePath,
   )]
-  theme: Option<MiniStr>,
+  custom_syntax_set: Vec<PathBuf>,
+
+  #[arg(
+    long,
+    help_heading = "HighlightValue",
+    value_name = r#"Vec<"/path/to/themeset-file">"#,
+    value_hint = clap::ValueHint::FilePath,
+  )]
+  custom_theme_set: Vec<PathBuf>,
+
+  #[arg(long, help_heading = "HighlightValue Debug")]
+  show_all_syntaxes: bool,
+
+  #[arg(long, help_heading = "HighlightValue Debug")]
+  show_all_themes: bool,
 }

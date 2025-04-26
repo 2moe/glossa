@@ -4,7 +4,8 @@ use glossa_shared::{
   tap::Pipe,
   type_aliases::ahash::{HashMap, HashMapExt},
 };
-pub use hlight::HighlightResource;
+pub use hlight;
+use hlight::HighlightResource;
 pub use kstring::KString;
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use serde::{Deserialize, Serialize};

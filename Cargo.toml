@@ -63,7 +63,7 @@ path = "./crates/l10n"
 version = "0.0.1"
 
 [workspace.dependencies.glossa-codegen]
-version = "0.0.3"
+version = "0.0.4"
 path = "crates/codegen"
 
 [workspace.dependencies.glossa]
@@ -91,10 +91,8 @@ default-features = false
 path = "../lang-id"
 
 [workspace.dependencies.hlight]
-version = "0.0.10"
+version = "0.0.11"
 path = "../hlight/crates/hlight"
-# path = "../hlight"
-
 
 [workspace.lints.rust.unexpected_cfgs]
 level = "warn"
