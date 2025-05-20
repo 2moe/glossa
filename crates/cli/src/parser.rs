@@ -1,19 +1,19 @@
 use std::fs;
 
 use clap::Parser;
-use glossa::MiniStr;
+use glossa::{MiniStr, fallback::dbg_ref};
 use glossa_codegen::{AnyResult, glossa_shared::tap::Pipe, highlight::KString};
-use log::trace;
 mod collect;
 mod init;
 mod output;
+mod resources;
 
 use crate::{options::Cli, parser::output::output_data};
 
 impl Cli {
   pub fn run() -> AnyResult<()> {
     let args = Cli::parse();
-    trace!("args: {args:#?}");
+    dbg_ref!(args);
 
     let generator = init::init_generator(&args)
       .with_resources(init::init_resources(&args))
@@ -21,7 +21,7 @@ impl Cli {
         Some(x) => res.with_highlight(x),
         _ => res,
       });
-    trace!("generator: {generator:#?}");
+    dbg_ref!(generator);
 
     if let Some(dir) = generator.get_outdir() {
       log::info!("output dir: {dir:?}");

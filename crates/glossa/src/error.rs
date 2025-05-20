@@ -61,7 +61,7 @@ pub(crate) fn get_error_text<'a>(language: &[u8]) -> Option<&'a str> {
 pub(crate) fn text_not_found<'a>() -> &'a str {
   use glossa_l10n::error::default as default_text;
 
-  use crate::sys::LocaleContext;
+  use crate::LocaleContext;
   let all_locales = glossa_l10n::error::locale_registry::all_locales();
 
   match LocaleContext::default()

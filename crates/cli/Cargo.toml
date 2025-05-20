@@ -25,6 +25,7 @@ glossa-codegen = { workspace = true, features = [
     "json5",
     "ron",
 ] }
+# glossa-shared.workspace = true
 log.workspace = true
 time = "0.3.41"
 

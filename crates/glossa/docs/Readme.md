@@ -278,7 +278,7 @@ let lookup = |language, tuple_key| {
 ### Trait Example
 
 ```rust
-use glossa::sys::{ChainProvider, LocaleContext};
+use glossa::{LocaleContext, traits::ChainProvider};
 
 trait GetL10nText: ChainProvider {
   fn try_get_by_key<'t>(&self, key: &[u8]) -> Option<&'t str> {
@@ -330,8 +330,7 @@ pub(crate) fn print_l10n_text() {
 
   {
     set_env_lang("zh_MO.UTF-8");
-    // new_ctx();                           // current_locale =>  get_static_sys_locale()
-    // new_ctx().with_current_locale(None)  // current_locale => get_sys_locale()
+    // new_ctx();                           // current_locale =>  get_static_locale()
     let ctx = new_ctx().with_current_locale(None);
 
     log::debug!("\n---\n--- current locale => zh-MO");
@@ -357,29 +356,11 @@ pub(crate) fn print_l10n_text() {
 In resource-constrained environments, Chinese characters may fail to display properly.
 In such cases, we can switch the localization language to **zh-pinyin** (Chinese romanization).
 
-However, due to **polyphonic characters** in Mandarin Chinese, ambiguities may arise in certain contexts.(can only use Pinyin, not Chinese characters.)
+However, due to **polysemous homophones** in Mandarin Chinese, ambiguities may arise in certain contexts.(can only use Pinyin, not Chinese characters.)
 
 This is precisely where the **bilingual functionality** shines brightly ✨!
 
 > The "bilingual functionality" must be **manually implemented**.
-
-**Scenario 2**:
-
-There was a boy named Banana who was born in the United States. His native language was English, and he knew no other languages——until one day, he met a beautiful Spanish-speaking girl named Catalina.
-
-~~To reveal his inner horndog nature,~~ To express his love for Catalina, he decided to code a bilingual "cyber love letter" 💌 (a confession program) in Spanish. However, distrusting translation apps, he crafted an "English-Spanish" bilingual confession program instead.
-
-The next day, after obtaining Catalina’s email through various channels, he eagerly sent the "cyber love letter" as an attachment. Catalina, holding her iOS phone, stared at the `.exe` file in the email, paused briefly, and promptly deleted it.
-
-Meanwhile, Banana waited nervously for a reply that never came. His burning heart slowly turned cold.
-
-On the third day, Banana encountered another beautiful girl, Sophie, who spoke French. Determined to try again, he decided to code a bilingual "cyber love letter" in English and French.
-
-This time, he wised up. He compiled the "bilingual love letter code" into WebAssembly (WASM), hosted it on a webpage, opened it on a tablet, and proudly presented it to Sophie in person.
-
-Sophie was initially startled, then smiled faintly: "I’m sorry, but I only like girls. But I have a friend who only speaks German… want to give it a shot?"
-
-> *(Slams the table! Can we please stop with these cliché stories next time? Ugh!)*
 
 ---
 

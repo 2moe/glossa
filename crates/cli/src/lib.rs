@@ -3,4 +3,6 @@
 pub mod options;
 mod parser;
 
+pub(crate) mod l10n;
+
 pub use options::Cli;

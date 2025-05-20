@@ -282,7 +282,7 @@ let lookup = |language, tuple_key| {
 ### Trait 例子
 
 ```rust
-use glossa::sys::{ChainProvider, LocaleContext};
+use glossa::{LocaleContext, traits::ChainProvider};
 
 trait GetL10nText: ChainProvider {
   fn try_get_by_key<'t>(&self, key: &[u8]) -> Option<&'t str> {
@@ -335,8 +335,7 @@ pub(crate) fn print_l10n_text() {
 
   {
     set_env_lang("zh_MO.UTF-8");
-    // new_ctx();                           // current_locale =>  get_static_sys_locale()
-    // new_ctx().with_current_locale(None)  // current_locale => get_sys_locale()
+    // new_ctx();                           // current_locale =>  get_static_locale()
     let ctx = new_ctx().with_current_locale(None);
 
     log::debug!("\n---\n--- current locale => zh-MO");
@@ -362,31 +361,10 @@ pub(crate) fn print_l10n_text() {
 在某些资源受限环境中，汉字可能无法正常显示。
 这时候，我们可以将本地化语言切换为汉语拼音。
 
-由于 汉语-普通话 中存在多音字，因此在只能用拼音不能用汉字的情况下，可能会产生歧义。
+由于 汉语-普通话 中存在 同音多义字，因此在只能用拼音不能用汉字的情况下，可能会产生歧义。
 此时，就是“双语功能”闪亮登场✨的时刻了！
 
 > 我们需要手动实现 “双语功能”。
-
-**场景2**：
-
-有个名叫 Banana 的男孩出生在美国，他的母语是英语，并且不熟悉其他的语言。直到有一天，他遇到了一位讲西班牙语的漂亮女孩 Catalina。
-
-~~为了展现自己的色批本质，~~ 为了向 Catalina 表达自己的爱意，他决定编写一份西班牙语的赛博情书💌（表白程序）。
-可是他对翻译软件的结果没有信心，于是他编写了 “英语-西班牙语” 双语表白程序。
-
-第二天，在通过各种渠道得知了 Catalina 的 email 后，他兴高采烈地将“赛博情书”发送给女孩。
-Catalina 拿着 iOS 手机，盯着邮件中的 `.exe` 附件陷入了短暂的思考，然后毫不迟疑地删掉了整封邮件。
-
-与此同时，忐忑不安的 Banana 等了许久都没有得到回复，一颗灼热的心渐渐冷却了下来。
-
-直到第三天，Banana 遇到了一位讲法语的漂亮的女孩 Sophie。
-于是，他打算故技重施，编写 “英语-法语” 双语展示的赛博情书。
-
-这次他学聪明了，先将“双语赛博情书”编译成 wasm，然后做成网页，在平板电脑中打开，最后当面展示在 Sophie 面前。
-
-Sophie 起初有点吃惊，随即又谈谈一笑：“很抱歉，我只喜欢女孩子。不过我有个朋友只会说德语，你要不要...试试？”
-
-（拍桌！下次能不能不要编那么俗套的故事啊！喂！）
 
 ---
 

@@ -4,10 +4,7 @@ use std::path::Path;
 
 use cli_logger::init_logger;
 use compact_str::ToCompactString;
-use glossa::{
-  LangID, MiniStr,
-  sys::{ChainProvider, LocaleContext},
-};
+use glossa::{self, LangID, LocaleContext, MiniStr, traits::ChainProvider};
 use glossa_shared::{
   PhfL10nOrderedMap, PhfTupleKey,
   lang_id::{self, consts::lang_id_en_150},

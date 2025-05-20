@@ -17,6 +17,7 @@ pub use phf_triple_key::PhfTripleKey;
 pub mod small_list;
 
 // -----
+#[cfg(feature = "type-aliases")]
 mod aliases;
 
 #[cfg(feature = "type-aliases")]

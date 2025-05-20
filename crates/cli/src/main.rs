@@ -1,5 +1,4 @@
 use glossa_cli::options::Cli;
-// use glossa_cli::parser::run;
 use glossa_codegen::{AnyResult, glossa_shared::tap::Pipe};
 
 fn main() -> AnyResult<()> {

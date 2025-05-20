@@ -1,6 +1,7 @@
 use glossa_codegen::{
   Generator, L10nResources, glossa_shared::tap::Pipe, highlight::HighlightCfgMap,
 };
+use log::{error, trace};
 
 use crate::{
   options::Cli,
@@ -45,7 +46,10 @@ fn show_themes(map: &HighlightCfgMap) -> Option<()> {
 
 pub(crate) fn init_highlight_cfg_map(args: &Cli) -> Option<HighlightCfgMap<'_>> {
   let raw = args.get_highlight();
-  if raw.get_base_name().is_empty() {
+  if raw.get_base_name().is_empty() || raw.get_suffix().is_empty() {
+    if *raw.get_show_all_syntaxes() || *raw.get_show_all_themes() {
+      error!("Both `--base-name` and `--suffix` must be specified")
+    }
     None?
   }
 
@@ -59,8 +63,8 @@ pub(crate) fn init_highlight_cfg_map(args: &Cli) -> Option<HighlightCfgMap<'_>> 
     .iter()
     .zip(values)
     .map(|(k, v)| (k.clone(), v))
-    .collect::<HighlightCfgMap>();
-  log::trace!("highlight cfg map: {map:#?}");
+    .collect();
+  trace!("highlight cfg map: {map:#?}");
 
   raw
     .get_show_all_syntaxes()
@@ -100,49 +104,14 @@ pub(crate) fn init_generator(args: &Cli) -> Generator<'_> {
 
 pub(crate) fn init_resources(args: &Cli) -> L10nResources {
   let raw = args.get_resources();
-  log::trace!("raw resources args: {raw:#?}");
+  trace!("raw resources args: {raw:#?}");
 
   raw
     .get_input()
     .pipe(L10nResources::new)
-    .pipe(|res| match raw.get_dsl_suffix() {
-      Some(suffix) => res.with_dsl_suffix(suffix.clone()),
-      _ => res,
-    })
-    .pipe(|res| {
-      match raw
-        .get_include_languages()
-        .as_slice()
-      {
-        [] => res,
-        langs => res.with_include_languages(langs.iter().cloned()),
-      }
-    })
-    .pipe(|res| {
-      match raw
-        .get_exclude_languages()
-        .as_slice()
-      {
-        [] => res,
-        langs => res.with_exclude_languages(langs.iter().cloned()),
-      }
-    })
-    .pipe(|res| {
-      match raw
-        .get_include_map_names()
-        .as_slice()
-      {
-        [] => res,
-        names => res.with_include_map_names(names.iter().cloned()),
-      }
-    })
-    .pipe(|res| {
-      match raw
-        .get_exclude_map_names()
-        .as_slice()
-      {
-        [] => res,
-        names => res.with_exclude_map_names(names.iter().cloned()),
-      }
-    })
+    .pipe(|res| raw.update_dsl_suffix(res))
+    .pipe(|res| raw.update_include_languages(res))
+    .pipe(|res| raw.update_exclude_languages(res))
+    .pipe(|res| raw.update_include_map_names(res))
+    .pipe(|res| raw.update_exclude_map_names(res))
 }
