@@ -122,6 +122,11 @@ pub struct GeneratorOpt {
   )]
   output_match_fn: bool,
 
+  #[arg(long, help_heading = "Output", group = "output_map_fn",
+    // help = get_static_text(b"output_match_fn_by_key", None),
+  )]
+  output_match_fn_by_key: bool,
+
   #[arg(long, help_heading = "Output",
     help = get_static_text(b"output_match_fn_all_in_one", None),
   )]
@@ -141,6 +146,11 @@ pub struct GeneratorOpt {
     help = get_static_text(b"output_phf", None),
   )]
   output_phf: bool,
+
+  #[arg(long, help_heading = "Output", group = "output_map_fn",
+    // help = get_static_text(b"output_phf_by_key", None),
+  )]
+  output_phf_by_key: bool,
 
   #[arg(long, help_heading = "Output",
     help = get_static_text(b"output_phf_all_in_one", None),

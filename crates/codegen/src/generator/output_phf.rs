@@ -149,7 +149,8 @@ impl<'h> Generator<'h> {
       .pipe(Ok)
   }
 
-  /// Generates Perfect Hash Function (PHF) maps for localization data
+  /// Generates Perfect Hash Function (PHF) maps for localization data.
+  /// => `const fn map() -> super::PhfL10nOrderedMap`
   ///
   /// # Behavior
   ///
@@ -183,17 +184,44 @@ impl<'h> Generator<'h> {
             .build()
         )
       })
+  }
 
-    // fn l10n_maps() -> Box<[(lang_id::LangID, PhfL10nOrderedMap)]> {
-    //  use lang_id::consts::*;
-    //  vec![
-    //    #[cfg(feature = "l10n_en")]
-    //    (lang_id_en(), l10n_en::maps),
-    //
-    //    #[cfg(feature = "l10n_zh")]
-    //    (lang_id_zh(), l10n_zh::maps),
-    // ].into_boxed_slice()
-    // };
+  /// Generates Perfect Hash Function (PHF) maps for localization data.
+  /// => `const fn map() -> super::OrderedMap<&'static str, &'static str>`
+  ///
+  /// > Note: The generated PHF map is only for localization data where map_name
+  /// > can be ignored. If map_name cannot be ignored, please use
+  /// > [output_phf](Self::output_phf).
+  pub fn output_phf_by_key(&'h self, non_dsl: MapType) -> io::Result<()> {
+    let vis_fn = self.get_visibility().as_str();
+
+    non_dsl
+      .get_non_dsl_maps(self)?
+      .par_iter()
+      .filter(|(_, data)| !data.is_empty())
+      .map(|(lang, map_entry)| {
+        let new_phf_map = map_entry
+          .iter()
+          .map(|((_name, k), v)| {
+            let value = fmt_compact!(r##########"r#####"{v}"#####"##########);
+            (k.as_str(), value)
+          })
+          .fold(OrderedMap::new(), |mut acc, (k,v)| {
+            acc.entry(k, &v);
+            acc
+          });
+        (lang, new_phf_map)
+      })
+      .try_for_each(|(lang, mut map)| {
+        writeln!(
+          &mut self.create_rs_mod_file(lang)?,
+          r##"{vis_fn} const fn map() -> super::OrderedMap<&'static str, &'static str> {{
+          {code}  }}"##,
+          code = map
+            .phf_path("super::phf")
+            .build()
+        )
+      })
   }
 
   /// Creates Rust module file writer with standardized naming

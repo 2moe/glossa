@@ -124,11 +124,11 @@ A:
 
 ### L10n 資料
 
-| L10n 型別            | 描述                                   |
-| -------------------- | -------------------------------------- |
-| Raw 文字檔案         | 未經處理的原始檔案，比如 en/hello.toml |
+| L10n 型別          | 描述                                   |
+| ------------------ | -------------------------------------- |
+| Raw 文字檔案       | 未經處理的原始檔案，比如 en/hello.toml |
 | 轉換出來的rust程式碼 | 支援 const fn，直接硬編碼到程式中      |
-| bincode              | 支援高效反序列化的二進位制檔案         |
+| bincode            | 支援高效反序列化的二進位制檔案           |
 
 我們可以簡單將 Raw 檔案理解為原始碼，其他東西都是用 Raw 檔案編譯出來的。
 
@@ -545,7 +545,11 @@ MapType::DSL 只能輸出為 bincode，而其他 MapType 支援所有的輸出�
     - 比如
       - en => tmp/l10n_en.rs
       - en-GB => tmp/l10n_en_gb.rs
-- `.output_match_fn_all_in_one()`
+  - rs 檔案內容為 `const fn map(map_name: &[u8], key: &[u8]) -> &'static str {...}`
+- `.output_match_fn_by_key() {...}`
+  - 為不同的語言生成獨立的 rust 程式碼檔案
+  - rs 檔案內容為 `const fn map(key: &[u8]) -> &'static str {...}`
+- `.output_match_fn_all_in_one() {...}`
   - 將所有語言的本地化資源都收集為一個字串
     - 其內容為 `const fn map(lang: &[u8], map_name:&[u8], key:&[u8]) -> &'static str {...}`
 - `.output_match_fn_all_in_one_by_language()`

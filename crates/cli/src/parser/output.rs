@@ -36,6 +36,10 @@ pub(crate) fn output_data<'a>(
     generator.output_match_fn(*map_type)?
   }
 
+  if *out_args.get_output_match_fn_by_key() {
+    generator.output_match_fn_by_key(*map_type)?
+  }
+
   if *out_args.get_output_match_fn_all_in_one() {
     generator
       .output_match_fn_all_in_one(*map_type)?
@@ -55,6 +59,11 @@ pub(crate) fn output_data<'a>(
   if *out_args.get_output_phf() {
     generator.output_phf(*map_type)?
   }
+
+  if *out_args.get_output_phf_by_key() {
+    generator.output_phf_by_key(*map_type)?
+  }
+
   if *out_args.get_output_phf_all_in_one() {
     generator
       .output_phf_all_in_one(*map_type)?

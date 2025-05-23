@@ -21,7 +21,6 @@ include_map_names = "当其不为空时，只有位于列表中的 map_names 才
 exclude_languages = "黑名单模式。位于黑名单中的语言 id 不会被初始化"
 exclude_map_names = "位于列表中的 map_names 不会被初始化"
 
-#
 base_name = '基础"高亮Map"的名称'
 suffix = '新生成的"高亮Map"的后缀'
 true_color = "24位真彩色"

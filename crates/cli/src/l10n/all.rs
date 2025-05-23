@@ -1,5 +1,59 @@
 pub(crate) const fn map(language: &[u8], key: &[u8]) -> &'static str {
   match (language, key) {
+    (b"en", b"background") => r#####"whether to enable background"#####,
+    (b"en", b"base_name") => r#####"base name for the highlight map"#####,
+    (b"en", b"bincode_suffix") => r#####"bincode file suffix"#####,
+    (b"en", b"custom_syntax_set") => r#####"custom syntax set file"#####,
+    (b"en", b"custom_theme_set") => r#####"custom theme set file"#####,
+    (b"en", b"dsl_suffix") => r#####"DSL file suffix (default ".dsl")"#####,
+    (b"en", b"exclude_languages") => {
+      r#####"deny list (blacklist) for language IDs to exclude"#####
+    }
+    (b"en", b"exclude_map_names") => {
+      r#####"deny list (blacklist) for map names to exclude"#####
+    }
+    (b"en", b"include_languages") => {
+      r#####"allow list (whitelist) for language IDs to initialize"#####
+    }
+    (b"en", b"include_map_names") => {
+      r#####"allow list (whitelist) for map names to initialize"#####
+    }
+    (b"en", b"input") => r#####"source directory for localization resources"#####,
+    (b"en", b"mod_prefix") => r#####"mod file prefix (default "l10n_")"#####,
+    (b"en", b"outdir") => r#####"output directory"#####,
+    (b"en", b"output_bincode") => {
+      r#####"output bincode to separate files per language"#####
+    }
+    (b"en", b"output_bincode_all_in_one") => {
+      r#####"output all languages' bincode into a single file"#####
+    }
+    (b"en", b"output_locales_fn") => r#####"output all_locales function"#####,
+    (b"en", b"output_match_fn") => {
+      r#####"output match expression functions per language"#####
+    }
+    (b"en", b"output_match_fn_all_in_one") => {
+      r#####"output all languages into a single match function (string)"#####
+    }
+    (b"en", b"output_match_fn_all_in_one_by_language") => {
+      r#####"output all languages into a single match function (string), keyed by language name"#####
+    }
+    (b"en", b"output_match_fn_all_in_one_by_language_and_key") => {
+      r#####"output all languages into a single match function (string), keyed by language name and map_key"#####
+    }
+    (b"en", b"output_phf") => r#####"output phfmap functions per language"#####,
+    (b"en", b"output_phf_all_in_one") => {
+      r#####"output all languages' phfmap into a single function"#####
+    }
+    (b"en", b"output_ron") => r#####"output RON-formatted string"#####,
+    (b"en", b"show_all_syntaxes") => {
+      r#####"display all syntax names and extensions"#####
+    }
+    (b"en", b"show_all_themes") => r#####"display all theme names"#####,
+    (b"en", b"suffix") => r#####"suffix for new highlight maps"#####,
+    (b"en", b"syntax_name") => r#####"syntax name"#####,
+    (b"en", b"theme_name") => r#####"theme name"#####,
+    (b"en", b"true_color") => r#####"24-bit true color"#####,
+    (b"en", b"visibility") => r#####"visibility of generated code"#####,
     (b"zh", b"background") => r#####"是否启用背景"#####,
     (b"zh", b"base_name") => r#####"基础"高亮Map"的名称"#####,
     (b"zh", b"bincode_suffix") => r#####"bincode文件后缀"#####,

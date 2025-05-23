@@ -89,7 +89,6 @@ pub(crate) fn init_generator(args: &Cli) -> Generator<'_> {
     )
     .pipe(|data| match raw.get_outdir() {
       Some(outdir) => data.with_outdir(outdir),
-      // _ => data,
       _ => data.with_outdir("tmp"),
     })
     .pipe(|data| match raw.get_bincode_suffix() {

@@ -515,6 +515,9 @@ Key methods:
     - Example:
       - `en` → `tmp/l10n_en.rs`
       - `en-GB` → `tmp/l10n_en_gb.rs`
+  - The content of the rs file is `const fn map(map_name: &[u8], key: &[u8]) -> &'static str {...}`
+- **output_match_fn_by_key()**:
+  - The content of the rs file is `const fn map(key: &[u8]) -> &'static str {...}`
 - **`.output_match_fn_all_in_one()`**
   - Aggregates all languages into a single function:
 

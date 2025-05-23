@@ -363,6 +363,7 @@ impl<'h> Generator<'h> {
   }
 
   /// Generates individual match functions per locale
+  ///   => `const fn map(map_name: &[u8], key: &[u8]) -> &'static str`
   pub fn output_match_fn(&'h self, non_dsl: MapType) -> io::Result<()> {
     const HEADER: &str = r##"const fn map(map_name: &[u8], key: &[u8]) -> &'static str {
     match (map_name, key) {
@@ -387,6 +388,53 @@ impl<'h> Generator<'h> {
                 ", ",
                 key_as_bytes(data_k).as_str(),
                 r#") => r#####"#,
+                "\"", // "
+                data_v.as_str(),
+                "\"",                            // "
+                r###########"#####,"###########, // ###,
+                "\n",
+              ]
+              .map(|s| acc.push_str(s));
+              acc
+            },
+          )
+          .tap_mut(|buf| buf.push_str("    _ => \"\",\n}}"));
+        (lang, match_fn_string)
+      })
+      .try_for_each(|(lang, s)| {
+        // Write generated content to module files
+        self
+          .create_rs_mod_file(lang)?
+          .write_all(s.as_bytes())
+      })
+  }
+
+  /// Generates individual match functions per locale
+  /// => `const fn map(key: &[u8]) -> &'static str`
+  ///
+  /// Compared to `output_match_fn`, omits map_name. If you're unsure which one
+  /// to use, then use [output_match_fn()](Self::output_match_fn)
+  pub fn output_match_fn_by_key(&'h self, non_dsl: MapType) -> io::Result<()> {
+    const HEADER: &str = r##"const fn map(key: &[u8]) -> &'static str {
+    match key {
+    "##;
+    let new_header = || self.new_match_fn_header(HEADER);
+
+    // Process non-DSL maps only (DSL MapType not supported)
+    non_dsl
+      .get_non_dsl_maps(self)?
+      .iter()
+      // .filter(|(_, data)| !data.is_empty())
+      .map(|(lang, map_entry)| {
+        let match_fn_string = map_entry
+          .iter()
+          .fold(
+            new_header(), //
+            |mut acc, ((_, data_k), data_v)| {
+              // Build match arms for each entry
+              [
+                key_as_bytes(data_k).as_str(),
+                r#" => r#####"#,
                 "\"", // "
                 data_v.as_str(),
                 "\"",                            // "

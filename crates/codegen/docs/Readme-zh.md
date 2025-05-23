@@ -545,7 +545,11 @@ MapType::DSL 只能输出为 bincode，而其他 MapType 支持所有的输出�
     - 比如
       - en => tmp/l10n_en.rs
       - en-GB => tmp/l10n_en_gb.rs
-- `.output_match_fn_all_in_one()`
+  - rs 文件内容为 `const fn map(map_name: &[u8], key: &[u8]) -> &'static str {...}`
+- `.output_match_fn_by_key() {...}`
+  - 为不同的语言生成独立的 rust 代码文件
+  - rs 文件内容为 `const fn map(key: &[u8]) -> &'static str {...}`
+- `.output_match_fn_all_in_one() {...}`
   - 将所有语言的本地化资源都收集为一个字符串
     - 其内容为 `const fn map(lang: &[u8], map_name:&[u8], key:&[u8]) -> &'static str {...}`
 - `.output_match_fn_all_in_one_by_language()`

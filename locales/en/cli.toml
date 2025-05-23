@@ -1,0 +1,33 @@
+outdir = "output directory"
+visibility = "visibility of generated code"
+bincode_suffix = "bincode file suffix"
+mod_prefix = 'mod file prefix (default "l10n_")'
+
+output_bincode = "output bincode to separate files per language"
+output_bincode_all_in_one = "output all languages' bincode into a single file"
+output_match_fn = "output match expression functions per language"
+output_match_fn_all_in_one = "output all languages into a single match function (string)"
+output_match_fn_all_in_one_by_language = "output all languages into a single match function (string), keyed by language name"
+output_match_fn_all_in_one_by_language_and_key = "output all languages into a single match function (string), keyed by language name and map_key"
+output_phf = "output phfmap functions per language"
+output_phf_all_in_one = "output all languages' phfmap into a single function"
+output_locales_fn = "output all_locales function"
+output_ron = "output RON-formatted string"
+
+input = "source directory for localization resources"
+dsl_suffix = 'DSL file suffix (default ".dsl")'
+include_languages = "allow list (whitelist) for language IDs to initialize"
+include_map_names = "allow list (whitelist) for map names to initialize"
+exclude_languages = "deny list (blacklist) for language IDs to exclude"
+exclude_map_names = "deny list (blacklist) for map names to exclude"
+
+base_name = 'base name for the highlight map'
+suffix = 'suffix for new highlight maps'
+true_color = "24-bit true color"
+syntax_name = "syntax name"
+theme_name = "theme name"
+background = "whether to enable background"
+custom_syntax_set = "custom syntax set file"
+custom_theme_set = "custom theme set file"
+show_all_syntaxes = "display all syntax names and extensions"
+show_all_themes = "display all theme names"

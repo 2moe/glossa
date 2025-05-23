@@ -54,6 +54,9 @@ serde_json5 = { version = "0.2", default-features = false }
 dashmap = "6.1"
 derive_more = { version = "2.0.1", default-features = false }
 
+# cli
+directories = "6.0.0"
+
 [workspace.dependencies.glossa-shared]
 path = "./crates/shared"
 version = "0.0.2"
@@ -67,7 +70,7 @@ path = "crates/glossa"
 version = "0.0.1"
 
 [workspace.dependencies.glossa-codegen]
-version = "0.0.5"
+version = "0.0.6"
 path = "crates/codegen"
 
 [workspace.dependencies.glossa-dsl]
@@ -125,5 +128,6 @@ glossa-shared = { workspace = true, features = ["consts"] }
 glossa-l10n = { workspace = true, features = ["yes_no"] }
 
 [dependencies]
+# envpath = "0.0.1"
 # thiserror = "2.0.11"
 # hlight = { path = "./crates/hlight" }
