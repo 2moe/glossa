@@ -1,33 +1,47 @@
+# ========================
+# Core Configuration
+# ========================
 outdir = "output directory"
 visibility = "visibility of generated code"
 bincode_suffix = "bincode file suffix"
-mod_prefix = 'mod file prefix (default "l10n_")'
+mod_prefix = 'mod file prefix (default: "l10n_")'
 
-output_bincode = "output bincode to separate files per language"
+# ========================
+# Output Modes
+# ========================
+output_bincode = "generate separate bincode files per language"
 output_bincode_all_in_one = "output all languages' bincode into a single file"
-output_match_fn = "output match expression functions per language"
-output_match_fn_all_in_one = "output all languages into a single match function (string)"
-output_match_fn_all_in_one_by_language = "output all languages into a single match function (string), keyed by language name"
-output_match_fn_all_in_one_by_language_and_key = "output all languages into a single match function (string), keyed by language name and map_key"
-output_phf = "output phfmap functions per language"
-output_phf_all_in_one = "output all languages' phfmap into a single function"
-output_locales_fn = "output all_locales function"
-output_ron = "output RON-formatted string"
+output_match_fn = "generate Rust code files with match expressions per language"
+output_match_fn_by_key = "similar to output_match_fn, but generates functions using map_key only (without map_name)"
+output_match_fn_all_in_one = "consolidate all language data into a single match function (string)"
+output_match_fn_all_in_one_by_language = "single match function (string) with language name as key"
+output_match_fn_all_in_one_by_language_and_key = "single match function (string) with composite key (language + map_key)"
+output_phf = "generate PHF map functions per language"
+output_phf_by_key = "PHF maps with simple string keys (instead of TupleKey)"
+output_phf_all_in_one = "output all PHF maps into a unified function"
+output_locales_fn = "generate all_locales function"
+output_ron = "output RON-formatted strings"
 
-input = "source directory for localization resources"
-dsl_suffix = 'DSL file suffix (default ".dsl")'
-include_languages = "allow list (whitelist) for language IDs to initialize"
-include_map_names = "allow list (whitelist) for map names to initialize"
-exclude_languages = "deny list (blacklist) for language IDs to exclude"
-exclude_map_names = "deny list (blacklist) for map names to exclude"
+# ========================
+# Input & Filtering
+# ========================
+input = "source directory of localization resources"
+dsl_suffix = 'DSL file suffix (default: ".dsl")'
+include_languages = "allow list mode: only initialize listed language IDs"
+include_map_names = "allow list mode: only initialize listed map names"
+exclude_languages = "block list mode: exclude listed language IDs"
+exclude_map_names = "block list mode: exclude listed map names"
 
-base_name = 'base name for the highlight map'
-suffix = 'suffix for new highlight maps'
+# ========================
+# Syntax Highlighting
+# ========================
+base_name = 'base "Highlight-Map" name'
+suffix = 'suffix for new Highlight-Maps'
 true_color = "24-bit true color"
 syntax_name = "syntax name"
 theme_name = "theme name"
-background = "whether to enable background"
+background = "enable background support"
 custom_syntax_set = "custom syntax set file"
 custom_theme_set = "custom theme set file"
-show_all_syntaxes = "display all syntax names and extensions"
-show_all_themes = "display all theme names"
+list_all_syntaxes = "display all syntax names with extensions"
+list_all_themes = "display all theme names"

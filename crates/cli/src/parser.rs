@@ -8,12 +8,19 @@ mod init;
 mod output;
 mod resources;
 
-use crate::{options::Cli, parser::output::output_data};
+use crate::{options::Cli, parser::output::output_data, static_data};
 
 impl Cli {
   pub fn run() -> AnyResult<()> {
     let args = Cli::parse();
     dbg_ref!(args);
+
+    if *args
+      .get_dbg_options()
+      .get_display_config_dir()
+    {
+      println!("{:?}", static_data::config_dir());
+    }
 
     let generator = init::init_generator(&args)
       .with_resources(init::init_resources(&args))

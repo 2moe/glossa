@@ -411,7 +411,7 @@ pub struct L10nResources {
       - "b.dsl.json" 也会被识别为 **glossa-DSL** 文件
       - "a.toml" 为常规文件
 - include_languages
-  - 白名单模式，当其不为空时，只有位于列表中的语言 id 才会被初始化
+  - 白名单模式。当其不为空时，只有位于列表中的语言 id 才会被初始化。
     - 假设所有语言 id 为: "de", "en", "es", "pt", "ru", "zh"
     - `.with_include_language(["en", "zh"])` => 只有 "en" 和 "zh" 的本地化资源才会被初始化
 - include_map_names
@@ -420,7 +420,7 @@ pub struct L10nResources {
     - 不难看出，所有 map_names 为 `["a", "b"]`
     - `.with_include_map_names(["a"])` => 只有 "en/a.toml" 和 "zh/a.json" 会被初始化
 - exclude_languages
-  - 黑名单模式。位于黑名单中的语言 id 不会被初始化
+  - 黑名单模式。位于黑名单中的语言 id 不会被初始化。
     - 假设存在: "de", "en", "es", "pt", "ru", "zh"
       - `.with_exclude_languages(["en", "es", "ru"])` => `["de", "pt", "zh"]`
       - `.with_include_languages(["en", "es"]).with_exclude_languages(["en"])` => `["es"]`

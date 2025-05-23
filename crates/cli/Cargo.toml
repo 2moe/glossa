@@ -2,7 +2,8 @@
 name = "glossa-cli"
 authors.workspace = true
 edition.workspace = true
-version.workspace = true
+# version.workspace = true
+version = "0.0.0"
 license.workspace = true
 keywords = ["i18n", "l10n", "cli"]
 categories = ["internationalization", "command-line-interface"]
@@ -12,6 +13,7 @@ rust-version.workspace = true
 [dependencies]
 ahash.workspace = true
 clap = { version = "4.5.35", features = ["color", "derive", "unicode"] }
+directories.workspace = true
 env_logger.workspace = true
 getset.workspace = true
 glossa.workspace = true

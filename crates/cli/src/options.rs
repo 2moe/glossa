@@ -5,6 +5,11 @@ use getset::Getters;
 use glossa::{LocaleContext, MiniStr, sys::new_once_lock, traits::ChainProvider};
 use glossa_codegen::{Visibility, generator::MapType};
 
+use crate::{
+  envs::{format_glossa_env, normalize_glossa_lang, static_glossa_lang},
+  static_data,
+};
+
 trait GetL10nText: ChainProvider {
   fn try_get<'t>(&self, map_name: &str, key: &[u8]) -> Option<&'t str> {
     let lookup = |(language, map_name, key)| {
@@ -27,12 +32,24 @@ trait GetL10nText: ChainProvider {
   }
 }
 
+fn load_bincode() {
+  todo!()
+  // let dir = crate::envs::static_glossa_l10n_dir();
+  // let dir = static_data::config_dir();
+}
+
+fn get_builtin_text_or_bincode_text<'a>() -> &'a str {
+  //
+  todo!()
+}
+
 impl GetL10nText for LocaleContext {}
 
 fn static_locale_context() -> &'static LocaleContext {
   new_once_lock!(L: LocaleContext);
   L.get_or_init(|| {
     LocaleContext::default()
+      .with_current_locale(normalize_glossa_lang())
       .with_all_locales(crate::l10n::locale_registry::all_locales())
   })
 }
@@ -50,6 +67,7 @@ fn get_static_text<'a>(key: &[u8], map_name: Option<&str>) -> &'a str {
 #[command(version)]
 #[command(arg_required_else_help = true)]
 #[command(color = ColorChoice::Always)]
+#[command(long_about = format_glossa_env())]
 pub struct Cli {
   #[command(flatten)]
   resources: Box<ResourcesOpt>,
@@ -60,17 +78,26 @@ pub struct Cli {
   #[command(flatten)]
   highlight: Box<HighlightOpt>,
 
+  #[command(flatten)]
+  dbg_options: DbgOpt,
+
   #[arg(
     long,
     value_name = "regular|highlight|dsl|_",
     default_value = "regular"
   )]
   map_type: MapType,
-  // #[arg(long, help_heading = "Local", value_name = "e.g., en, zh, de, es.")]
-  // language: Option<String>,
+}
 
-  // #[arg(long, help_heading = "Local", value_name = "/path/to/all.bincode")]
-  // load_custom_1l0n_bincode: Option<PathBuf>,
+#[derive(Parser, Debug, Getters, Clone)]
+#[getset(get = "pub with_prefix")]
+pub struct DbgOpt {
+  #[arg(
+    long,
+    help_heading = "Debug",
+    help = get_static_text(b"display_config_dir", None),
+  )]
+  display_config_dir: bool,
 }
 
 #[derive(Parser, Debug, Getters, Clone)]
@@ -79,10 +106,9 @@ pub struct GeneratorOpt {
   #[arg(
     long,
     value_hint = clap::ValueHint::DirPath,
-    help_heading = "Generator",
+    help_heading = "Generator Core",
     value_name = "/path/to/output_dir",
-    // help = get_args_text("theme-file"),
-    // long_help = get_args_md("theme-file-help"),
+    // long_help = get_args_md(b"outdir"),
     help = get_static_text(b"outdir", None),
   )]
   outdir: Option<PathBuf>,
@@ -91,17 +117,19 @@ pub struct GeneratorOpt {
     long,
     visible_alias = "vis",
     value_name = "pub | pub(crate)",
-    help_heading = "Generator",
+    help_heading = "Generator Core",
     help = get_static_text(b"visibility", None),
   )]
   visibility: Option<Visibility>,
 
-  #[arg(long, value_name = "string", help_heading = "Generator",
+  #[arg(long, value_name = "string",
+    help_heading = "Generator Core",
     help = get_static_text(b"bincode_suffix", None),
   )]
   bincode_suffix: Option<MiniStr>,
 
-  #[arg(long, value_name = "string", help_heading = "Generator",
+  #[arg(long, value_name = "string",
+  help_heading = "Generator Core",
   help = get_static_text(b"mod_prefix", None),
   )]
   mod_prefix: Option<MiniStr>,
@@ -123,7 +151,7 @@ pub struct GeneratorOpt {
   output_match_fn: bool,
 
   #[arg(long, help_heading = "Output", group = "output_map_fn",
-    // help = get_static_text(b"output_match_fn_by_key", None),
+    help = get_static_text(b"output_match_fn_by_key", None),
   )]
   output_match_fn_by_key: bool,
 
@@ -148,7 +176,7 @@ pub struct GeneratorOpt {
   output_phf: bool,
 
   #[arg(long, help_heading = "Output", group = "output_map_fn",
-    // help = get_static_text(b"output_phf_by_key", None),
+    help = get_static_text(b"output_phf_by_key", None),
   )]
   output_phf_by_key: bool,
 
@@ -171,7 +199,11 @@ pub struct GeneratorOpt {
 #[derive(Parser, Debug, Getters, Clone)]
 #[getset(get = "pub with_prefix")]
 pub struct ResourcesOpt {
-  #[arg(long, help_heading = "L10nResources", value_name = "/path/to/L10nDir",
+  #[arg(
+    long,
+    help_heading = "L10nResources",
+    value_name = "/path/to/L10nDir",
+    default_value = "locales",
     help = get_static_text(b"input", None),
   )]
   input: PathBuf,
@@ -272,12 +304,12 @@ pub struct HighlightOpt {
   custom_theme_set: Vec<PathBuf>,
 
   #[arg(long, help_heading = "HighlightValue Debug",
-    help = get_static_text(b"show_all_syntaxes", None),
+    help = get_static_text(b"list_all_syntaxes", None),
   )]
-  show_all_syntaxes: bool,
+  list_all_syntaxes: bool,
 
   #[arg(long, help_heading = "HighlightValue Debug",
-    help = get_static_text(b"show_all_themes", None),
+    help = get_static_text(b"list_all_themes", None),
   )]
-  show_all_themes: bool,
+  list_all_themes: bool,
 }

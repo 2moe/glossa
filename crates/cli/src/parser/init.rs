@@ -47,7 +47,7 @@ fn show_themes(map: &HighlightCfgMap) -> Option<()> {
 pub(crate) fn init_highlight_cfg_map(args: &Cli) -> Option<HighlightCfgMap<'_>> {
   let raw = args.get_highlight();
   if raw.get_base_name().is_empty() || raw.get_suffix().is_empty() {
-    if *raw.get_show_all_syntaxes() || *raw.get_show_all_themes() {
+    if *raw.get_list_all_syntaxes() || *raw.get_list_all_themes() {
       error!("Both `--base-name` and `--suffix` must be specified")
     }
     None?
@@ -67,10 +67,10 @@ pub(crate) fn init_highlight_cfg_map(args: &Cli) -> Option<HighlightCfgMap<'_>> 
   trace!("highlight cfg map: {map:#?}");
 
   raw
-    .get_show_all_syntaxes()
+    .get_list_all_syntaxes()
     .then(|| show_syntaxes(&map));
   raw
-    .get_show_all_themes()
+    .get_list_all_themes()
     .then(|| show_themes(&map));
 
   Some(map)

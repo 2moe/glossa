@@ -556,7 +556,7 @@ mod tests {
 
   #[ignore]
   #[test]
-  fn test_show_all_locales() -> AnyResult<()> {
+  fn test_list_all_locales() -> AnyResult<()> {
     let s = new_generator()
       .with_visibility(crate::Visibility::Pub)
       .output_locales_fn(

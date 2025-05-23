@@ -38,6 +38,12 @@ getset.workspace = true
 anyhow.workspace = true
 env_logger.workspace = true
 itertools.workspace = true
+lang-id = { workspace = true, features = [
+    "consts",
+    "map",
+    "match",
+    "compact_str",
+] }
 
 [build-dependencies]
 glossa-codegen.workspace = true

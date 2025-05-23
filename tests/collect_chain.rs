@@ -347,8 +347,8 @@ fn test_init_zh_tw_chain() -> AnyResult<()> {
   )?;
 
   // <(id, score)>:
-  // [("zh-TW", 50), ("zh-Hant", 49), ("zh-Hant-TW", 49), ("zh-Hant-CN", 42),
-  // ("zh-Hant-HK", 42), ("zh-MO", 42), ("zh-CN", 31), ("zh-Hans-CN", 31), ("zh",
+  // [("zh-Hant", 50), ("zh-Hant-TW", 50), ("zh-TW", 50), ("zh-Hant-CN", 43),
+  // ("zh-Hant-HK", 43), ("zh-MO", 43), ("zh-CN", 31), ("zh-Hans-CN", 31), ("zh",
   // 31), ("zh-Hans", 31), ("zh-Hans-SG", 27), ("zh-SG", 27), ("zh-Latn-HK", 22),
   // ("zh-Latn", 22)]
 
@@ -360,9 +360,9 @@ fn test_init_zh_tw_chain() -> AnyResult<()> {
   assert_eq!(
     v,
     [
-      "zh-TW",
       "zh-Hant",
       "zh-Hant-TW",
+      "zh-TW",
       "zh-Hant-CN",
       "zh-Hant-HK",
       "zh-MO",
@@ -373,7 +373,7 @@ fn test_init_zh_tw_chain() -> AnyResult<()> {
       "zh-Hans-SG",
       "zh-SG",
       "zh-Latn-HK",
-      "zh-Latn",
+      "zh-Latn"
     ]
   );
 

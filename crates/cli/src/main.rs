@@ -9,7 +9,7 @@ fn main() -> AnyResult<()> {
 
 fn init_logger() {
   env_logger::Env::new()
-    .filter_or("GLOSSA_CLI_LOG", "info")
+    .filter_or("GLOSSA_LOG", "info")
     .pipe(env_logger::Builder::from_env)
     .init()
 }
