@@ -59,7 +59,7 @@ directories = "6.0.0"
 
 [workspace.dependencies.glossa-shared]
 path = "./crates/shared"
-version = "0.0.3"
+version = "0.0.4"
 
 [workspace.dependencies.glossa]
 version = "0.0.3"
