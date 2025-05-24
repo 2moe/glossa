@@ -12,7 +12,7 @@ resolver = "3"
 [workspace.package]
 authors = ["Moe <m@tmoe.me>"]
 edition = "2024"
-version = "0.0.3"
+version = "0.0.4"
 license = "Apache-2.0"
 keywords = ["i18n", "l10n"]
 categories = ["internationalization", "localization"]
@@ -62,7 +62,7 @@ path = "./crates/shared"
 version = "0.0.4"
 
 [workspace.dependencies.glossa]
-version = "0.0.3"
+version = "0.0.4"
 path = "crates/glossa"
 
 [workspace.dependencies.glossa-l10n]

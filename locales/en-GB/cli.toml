@@ -1,0 +1,4 @@
+input = "source directory of localisation resources"
+true_color = "24-bit true colour"
+include_languages = "allow list mode: only initialise listed language IDs"
+include_map_names = "allow list mode: only initialise listed map names"

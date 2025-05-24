@@ -507,7 +507,7 @@ dependencies = [
 
 [[package]]
 name = "glossa"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "anyhow",
  "collect-with",
@@ -599,7 +599,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-l10n"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "lang-id 0.0.20",
 ]
@@ -626,7 +626,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-ui"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "hashbrown"

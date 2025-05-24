@@ -4,6 +4,7 @@ use compact_str::ToCompactString;
 use getset::Getters;
 use lang_id::LangID;
 use log::warn;
+use smallvec::SmallVec;
 use tap::Pipe;
 
 use crate::{MiniStr, fallback::LocaleStrChain, sys::get_static_locale};
@@ -31,6 +32,38 @@ impl LocaleContext {
     self.init_static_locale_if_uninitialized();
     self.all_locales = Some(locales.into());
     self
+  }
+
+  /// Adapts GNU-style colon-separated locale formats by inserting custom
+  /// language chains into context.
+  ///
+  /// Primarily handles compatibility with GNU multi-language fallback formats
+  /// like `en:es:zh`. When colon-separated locale identifiers are
+  /// detected, inserts them at the front of localization context.
+  ///
+  /// ## Processing Logic
+  ///
+  /// 1. Checks for static Glossa language configuration (e.g., environment
+  ///    variables)
+  /// 2. When identifiers match `part:part` format (at least two colon-separated
+  ///    segments):
+  ///    - Splits into locale components
+  ///    - Converts to compact strings
+  ///    - Inserts the custom chain at LocaleContext.chain front
+  pub fn try_push_front_with_colon_separated_str(
+    &mut self,
+    language: Option<&str>,
+  ) -> Result<(), LocaleStrChain> {
+    match language {
+      Some(value) if value.split(':').count() >= 2 => {
+        let custom = value
+          .split(':')
+          .map(|x| x.into())
+          .collect::<SmallVec<_, 4>>();
+        self.try_push_front_with_custom_chain(&custom)
+      }
+      _ => Ok(()),
+    }
   }
 
   /// - all_locales:

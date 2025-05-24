@@ -7,11 +7,14 @@ use glossa::{
 use glossa_codegen::glossa_shared::{
   ToCompactString,
   load_bincode::{self, list_static_bincode_files, try_load_files},
-  tap::Pipe,
+  tap::{Pipe, Tap},
   type_aliases::L10nMaps,
 };
 
-use crate::{envs::normalize_glossa_lang, static_data::bincode_dir};
+use crate::{
+  envs::{normalize_glossa_lang, static_glossa_lang},
+  static_data::bincode_dir,
+};
 
 pub(crate) trait GetL10nText: ChainProvider {
   fn try_get_bincode<'t>(&self, map_name: &str, key: &str) -> Option<&'t str> {
@@ -83,6 +86,11 @@ pub fn static_bincode_resource() -> Option<&'static Arc<L10nMaps>> {
   .as_ref()
 }
 
+fn compatible_with_gnu_language_colon_style(locale_context: &mut LocaleContext) {
+  let _ =
+    locale_context.try_push_front_with_colon_separated_str(static_glossa_lang());
+}
+
 pub fn static_bincode_context() -> Option<&'static LocaleContext> {
   bincode_exists()?;
   new_once_lock!(L: Option<LocaleContext>);
@@ -93,6 +101,7 @@ pub fn static_bincode_context() -> Option<&'static LocaleContext> {
     LocaleContext::default()
       .with_current_locale(normalize_glossa_lang())
       .with_all_locales(locales)
+      .tap_mut(compatible_with_gnu_language_colon_style)
       .pipe(Some)
   })
   .as_ref()
@@ -114,6 +123,7 @@ pub(crate) fn static_locale_context() -> &'static LocaleContext {
     LocaleContext::default()
       .with_current_locale(normalize_glossa_lang())
       .with_all_locales(crate::l10n::locale_registry::all_locales())
+      .tap_mut(compatible_with_gnu_language_colon_style)
   })
 }
 
