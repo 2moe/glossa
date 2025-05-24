@@ -1,0 +1,37 @@
+outdir = "Kimeneti könyvtár"
+visibility = "Generált kód láthatósága"
+bincode_suffix = "bincode fájl utótag"
+mod_prefix = 'mod fájl előtag (alapértelmezett "l10n_")'
+
+output_bincode = "Különálló bincode fájlok generálása különböző nyelvekhez"
+output_bincode_all_in_one = "Összes nyelv bincode-jának exportálása egyetlen fájlba"
+output_match_fn = "Rust fájlok generálása match kifejezésekkel nyelvenként"
+output_match_fn_by_key = "Csak map_key használata kulcsként (map_name nélkül)"
+output_match_fn_all_in_one = "Összes adat összevonása egy match függvénybe (sztring)"
+output_match_fn_all_in_one_by_language = "Match függvény nyelvi névvel mint kulcs"
+output_match_fn_all_in_one_by_language_and_key = "Match függvény kombinált kulccsal (nyelv + map_key)"
+output_phf = "PHF térképfüggvények generálása nyelvenként"
+output_phf_by_key = "PHF térkép közönséges sztring kulcsokkal (nem TupleKey)"
+output_phf_all_in_one = "Összes PHF térkép összevonása egy függvénybe"
+output_locales_fn = "All_locales függvény exportálása"
+output_ron = "Sztring exportálása RON formátumban"
+
+input = "Lokalizációs erőforrások forráskönyvtára"
+dsl_suffix = 'DSL fájl utótag (alapértelmezett ".dsl")'
+include_languages = "Fehérlista mód: Csak listán lévő nyelvi ID-k aktiválása"
+include_map_names = "Csak listán lévő térképnevek aktiválása"
+exclude_languages = "Feketelista mód: Ne aktiválja a listán lévő nyelvi ID-kat"
+exclude_map_names = "Ne aktiválja a listán lévő térképneveket"
+
+base_name = '"Highlight-Map" alapnév'
+suffix = 'Új "Highlight-Map" utótag'
+true_color = "24 bites valódi szín"
+syntax_name = "Szintaxis név"
+theme_name = "Téma név"
+background = "Háttér aktiválása"
+custom_syntax_set = "Egyéni szintaxiskészlet fájl"
+custom_theme_set = "Egyéni témakészlet fájl"
+list_all_syntaxes = "Összes szintaxisnév és kiterjesztés megjelenítése"
+list_all_themes = "Összes témanév megjelenítése"
+
+display_config_dir = "A Glossa konfigurációs könyvtárának megjelenítése"

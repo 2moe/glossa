@@ -1,0 +1,37 @@
+outdir = "Irteerako direktorioa"
+visibility = "Sortutako kodea ikusgaitasuna"
+bincode_suffix = "bincode fitxategi luzapena"
+mod_prefix = 'mod fitxategi aurrizkia (lehenetsia "l10n_")'
+
+output_bincode = "Hizkuntza ezberdinetarako bincode fitxategi independenteak sortu"
+output_bincode_all_in_one = "Hizkuntza guztien bincodeak fitxategi bakar batean esportatu"
+output_match_fn = "Rust kodea fitxategiak sortu (match adierazpenak dituzten funtzioekin)"
+output_match_fn_by_key = "map_key bakarrik erabili gako gisa (map_name ez da sartzen)"
+output_match_fn_all_in_one = "Datu guztiak match funtzio bakar batean esportatu (katea)"
+output_match_fn_all_in_one_by_language = "Hizkuntza izena gako gisa duen match funtzioa"
+output_match_fn_all_in_one_by_language_and_key = "Konbinatutako gakoa (hizkuntza + map_key) duen match funtzioa"
+output_phf = "Hizkuntza ezberdinetarako phf mapa funtzio independenteak sortu"
+output_phf_by_key = "phf mapa kate arrunteko gakorekin (ez TupleKey)"
+output_phf_all_in_one = "phf mapa guztiak funtzio bakar batean konbinatu"
+output_locales_fn = "all_locales funtzioa esportatu"
+output_ron = "Esportatu katea RON formatuan"
+
+input = "Lokalizazio baliabideen iturburu direktorioa"
+dsl_suffix = 'DSL fitxategi luzapena (lehenetsia ".dsl")'
+include_languages = "Zerrenda zuri modua: Zerrendako hizkuntza IDak soilik hasieratu"
+include_map_names = "Zerrendako mapa izenak soilik hasieratu"
+exclude_languages = "Zerrenda beltza modua: Ez hasieratu zerrendako hizkuntza IDak"
+exclude_map_names = "Ez hasieratu zerrendako mapa izenak"
+
+base_name = '"Highlight-Map" oinarrizko izena'
+suffix = '"Highlight-Map" berriaren luzapena'
+true_color = "24 biteko kolore benetakoa"
+syntax_name = "Sintaxiaren izena"
+theme_name = "Gaiaren izena"
+background = "Atzeko planoa aktibatu"
+custom_syntax_set = "Ohiko sintaxi multzoa fitxategia"
+custom_theme_set = "Ohiko gai multzoa fitxategia"
+list_all_syntaxes = "Erakutsi sintaxi izen eta luzapen guztiak"
+list_all_themes = "Erakutsi gai izen guztiak"
+
+display_config_dir = "Erakutsi Glossaren konfigurazio direktorioa"

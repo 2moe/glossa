@@ -1,0 +1,37 @@
+outdir = "چىقىرىش مۇندەرىجىسى"
+visibility = "ھاسىل قىلىنغان كودنىڭ كۆرۈنۈشچانلىقى"
+bincode_suffix = "bincode ھۆججەت كېڭەيتمىسى"
+mod_prefix = 'mod ھۆججەت ئالدىقى (سۈكۈتتىكى "l10n_")'
+
+output_bincode = "تۈرلۈك تىللار ئۈچۈن ئايرىم bincode ھۆججەتلىرىنى ھاسىل قىلىش"
+output_bincode_all_in_one = "بارلىق تىللارنىڭ bincode نى بىر ھۆججەتكە چىقىرىش"
+output_match_fn = "match ئىپادىلىك فونكسىيىلىك Rust كود ھۆججەتلىرىنى ھاسىل قىلىش"
+output_match_fn_by_key = "پەقەت map_key نى كۇنۇپكا قىلىپ (map_name يوق)"
+output_match_fn_all_in_one = "بارلىق سانلىق مەلۇماتنى بىر match فونكسىيىگە چىقىرىش (تېمىس)"
+output_match_fn_all_in_one_by_language = "تىل ئىسمى كۇنۇپكا بولغان بىر match فونكسىيە"
+output_match_fn_all_in_one_by_language_and_key = "بىرلەشكەن كۇنۇپكا (تىل+map_key) بىلەن match فونكسىيە"
+output_phf = "تىللار ئۈچۈن ئايرىم phf خەرىتىلىك فونكسىيە ھاسىل قىلىش"
+output_phf_by_key = "ئادەتتىكى تېمىس كۇنۇپكىسى بىلەن phf خەرىتە (TupleKey ئەمەس)"
+output_phf_all_in_one = "بارلىق phf خەرىتىلەرنى بىر فونكسىيەگە چىقىرىش"
+output_locales_fn = "all_locales فونكسىيەسىنى چىقىرىش"
+output_ron = "RON فورماتىدىكى تېمىسنى چىقىرىش"
+
+input = "يەرلىكلەشكەن مەنبەلەرنىڭ ئەسلى مۇندەرىجىسى"
+dsl_suffix = 'DSL ھۆججەت كېڭەيتمىسى (سۈكۈتتىكى ".dsl")'
+include_languages = "ئاق تىزىم ھالىتى: تىزىمدىكى تىل ID لىرىنىلا ئىنىتسىيالا"
+include_map_names = "تىزىمدىكى خەرىتە ئىملىرىنىلا ئىنىتسىيالا"
+exclude_languages = "قارا تىزىم ھالىتى: تىزىمدىكى تىل ID لىرىنى ئىنىتسىيالىمىسۇن"
+exclude_map_names = "تىزىمدىكى خەرىتە ئىملىرىنى ئىنىتسىيالىمىسۇن"
+
+base_name = '"Highlight-Map" نىڭ ئاساسىي ئىسمى'
+suffix = '"Highlight-Map" نىڭ يېڭى كېڭەيتمىسى'
+true_color = "24-بىتلىق ھەقىقىي رەڭ"
+syntax_name = "سىنتاكس ئىسمى"
+theme_name = "تېما ئىسمى"
+background = "تەگلىكنى ئاكتىپلاشتۇرۇش"
+custom_syntax_set = "خاس سىنتاكس توپلىمى ھۆججىتى"
+custom_theme_set = "خاس تېما توپلىمى ھۆججىتى"
+list_all_syntaxes = "بارلىق سىنتاكس ئىملىرى ۋە كېڭەيتىلمىلىرىنى كۆرسىتىش"
+list_all_themes = "بارلىق تېما ئىملىرىنى كۆرسىتىش"
+
+display_config_dir = "glossa سەپلىمىسى مۇندەرىجىسىنى كۆرسىتىش"

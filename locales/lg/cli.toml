@@ -1,0 +1,37 @@
+outdir = "Folda ey'okufuula"
+visibility = "Okulabika kwa koodi ey'okuzimbwa"
+bincode_suffix = "Endabika ya fayiro ya bincode"
+mod_prefix = 'Endabika ya mod fayiro (ekisooka "l10n_")'
+
+output_bincode = "Kola fayiro za bincode ez'enjawulo mu nnimi ez'enjawulo"
+output_bincode_all_in_one = "Teka bincode z'ennimi zonna mu fayiro emu"
+output_match_fn = "Kola fayiro za Rust code ez'enjawulo nga zikozesa match functions"
+output_match_fn_by_key = "Kozesa map_key okuba ggulu (tewali map_name)"
+output_match_fn_all_in_one = "Teka data yonna mu function emu ya match (mukutu)"
+output_match_fn_all_in_one_by_language = "Match function erina erinnya ly'olulimi nga ggulu"
+output_match_fn_all_in_one_by_language_and_key = "Match function nga ggulu liri erinnya ly'olulimi ne map_key"
+output_phf = "Kola phf map functions ez'enjawulo mu nnimi"
+output_phf_by_key = "Phf map erina ggulu ez'omukutu ogw'okutendekera (si TupleKey)"
+output_phf_all_in_one = "Gatta phf maps zonna mu function emu"
+output_locales_fn = "Tuma all_locales function"
+output_ron = "Tuma mukutu mu nkola ya RON"
+
+input = "Folda ey'okutandikirako ebikozesebwa mu lokalize"
+dsl_suffix = 'Endabika ya DSL fayiro (ekisooka ".dsl")'
+include_languages = "White List: Tandika ID z'ennimi eziri mu lutimbe"
+include_map_names = "Tandika amannya g'amapu agali mu lutimbe"
+exclude_languages = "Black List: Totandika ID z'ennimi eziri mu lutimbe"
+exclude_map_names = "Totandika amannya g'amapu agali mu lutimbe"
+
+base_name = '''Erinnya ery'okusingira "Highlight-Map"'''
+suffix = 'Endabika empya ya "Highlight-Map"'
+true_color = "Langi ey'okutuufu eya 24-bit"
+syntax_name = "Erinnya ly'endabika y'okukola"
+theme_name = "Erinnya ly'omutwe"
+background = "Kozesa ekifo eky'emabega"
+custom_syntax_set = "Fayilo y'endabika z'okukola ez'omwene"
+custom_theme_set = "Fayilo y'emitwe gy'omwene"
+list_all_syntaxes = "Laga ennimi zonna n'endabika zaazo"
+list_all_themes = "Laga emitwe gyonna"
+
+display_config_dir = "Laga folda ya config ya Glossa"

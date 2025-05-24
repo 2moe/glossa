@@ -1,0 +1,37 @@
+outdir = "shutsuryoku direkutori"
+visibility = "seisei kōdo no kashisei"
+bincode_suffix = "bincode fairu kakuchōshi"
+mod_prefix = 'mod fairu settōji (defaruto "l10n_")'
+
+output_bincode = "gengo-goto ni dokuritsu shita bincode fairu o seisei"
+output_bincode_all_in_one = "zen-gengo no bincode o tan'itsu fairu ni shutsuryoku"
+output_match_fn = "match-shiki o fukumu Rust kōdo fairu o gengo-betsu ni seisei"
+output_match_fn_by_key = "map_key nomi o kī to shite shiyō (map_name jogai)"
+output_match_fn_all_in_one = "zen-dēta o tan'itsu match kansū de shutsuryoku (mojiretsu)"
+output_match_fn_all_in_one_by_language = "gengo-mei o kī to shita tōgō match kansū"
+output_match_fn_all_in_one_by_language_and_key = "gengo-mei + map_key fukugō kī no match kansū"
+output_phf = "gengo-betsu phf mappu kansū o seisei"
+output_phf_by_key = "tsūjō mojiretsu kī o shiyō shita phf mappu (TupleKey hi-shiyō)"
+output_phf_all_in_one = "zen-phf mappu o tan'itsu kansū ni tōgō"
+output_locales_fn = "all_locales kansū o shutsuryoku"
+output_ron = "RON keishiki mojiretsu to shite shutsuryoku"
+
+input = "rōkaraizeu shisōsu no sōsu direkutori"
+dsl_suffix = 'DSL fairu kakuchōshi (defaruto ".dsl")'
+include_languages = "howaito risuto mōdo: risuto-nai gengo ID nomi shokika"
+include_map_names = "risuto-nai mappu-mei nomi shokika"
+exclude_languages = "burakku risuto mōdo: risuto-nai gengo ID o jogai"
+exclude_map_names = "risuto-nai mappu-mei o jogai"
+
+base_name = 'kihon 「Highlight-Map」 meishō'
+suffix = 'shinki 「Highlight-Map」 setsūji'
+true_color = "24-bitto True Color"
+syntax_name = "kōbun meishō"
+theme_name = "tēma meishō"
+background = "haikei yūkōka settei"
+custom_syntax_set = "kasutamu kōbun setto fairu"
+custom_theme_set = "kasutamu tēma setto fairu"
+list_all_syntaxes = "zen-kōbun meishō to kakuchōshi o hyōji"
+list_all_themes = "zen-tēma meishō o hyōji"
+
+display_config_dir = "glossa settei direkutori o hyōji"

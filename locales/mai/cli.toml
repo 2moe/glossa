@@ -1,0 +1,37 @@
+outdir = "आउटपुट डायरेक्टरी"
+visibility = "जेनरेट कएल कोड क दृश्यता"
+bincode_suffix = "bincode फाइल क अंत"
+mod_prefix = 'mod फाइल क उपसर्ग (डिफ़ॉल्ट "l10n_")'
+
+output_bincode = "भिन्न भाषा क लेल अलग bincode फाइल निर्माण करू"
+output_bincode_all_in_one = "सभी भाषा क bincode एक फाइल मे निर्यात करू"
+output_match_fn = "भिन्न भाषा क लेल अलग रस्ट कोड फाइल (match एक्सप्रेसन फंक्शन सहित)"
+output_match_fn_by_key = "map_key केवल key के रूप मे, map_name शामिल नहि"
+output_match_fn_all_in_one = "सभी भाषा क डेटा एक match फंक्शन मे निर्यात करू (स्ट्रिंग)"
+output_match_fn_all_in_one_by_language = "भाषा नाम key के रूप मे match फंक्शन"
+output_match_fn_all_in_one_by_language_and_key = "भाषा नाम + map_key क संयुक्त key सहित match फंक्शन"
+output_phf = "भिन्न भाषा क लेल अलग phf map फंक्शन निर्माण करू"
+output_phf_by_key = "सामान्य स्ट्रिंग key सहित phf map (TupleKey नहि)"
+output_phf_all_in_one = "सभी phf map एक फंक्शन मे निर्यात करू"
+output_locales_fn = "all_locales फंक्शन निर्यात करू"
+output_ron = "RON फॉर्मेट स्ट्रिंग के रूप मे निर्यात करू"
+
+input = "स्थानीयकरण संसाधन क स्रोत डायरेक्टरी"
+dsl_suffix = 'DSL फाइल क अंत (डिफ़ॉल्ट ".dsl")'
+include_languages = "श्वेत सूची मोड: सूची मे भाषा ID केवल प्रारंभ करू"
+include_map_names = "सूची मे map_names केवल प्रारंभ करू"
+exclude_languages = "कालो सूची मोड: सूची मे भाषा ID प्रारंभ नहि करू"
+exclude_map_names = "सूची मे map_names प्रारंभ नहि करू"
+
+base_name = 'मूल "हाइलाइट-मैप" क नाम'
+suffix = 'नव निर्मित "हाइलाइट-मैप" क प्रत्यय'
+true_color = "24-बिट असली रंग"
+syntax_name = "वाक्य रचना क नाम"
+theme_name = "विषय क नाम"
+background = "पृष्ठभूमि सक्रिय करू"
+custom_syntax_set = "कस्टम वाक्य रचना सेट फाइल"
+custom_theme_set = "कस्टम विषय सेट फाइल"
+list_all_syntaxes = "सभी वाक्य रचना नाम आ विस्तार प्रदर्शित करू"
+list_all_themes = "सभी विषय नाम प्रदर्शित करू"
+
+display_config_dir = "glossa क कॉन्फ़िग डायरेक्टरी देखाऊ"

@@ -1,0 +1,37 @@
+outdir = "Baarakɛlaw ka ɲɛnabɔ"
+visibility = "Kɔdɛ min sɔrɔ bɛ se ka yɛlɛma"
+bincode_suffix = "Bincode firi tɔw ka suffixe"
+mod_prefix = 'Mod firi tɔw ka prefixe (default "l10n_")'
+
+output_bincode = "Bincode firiw labɛn don dɔɔnin dɔɔnin kan"
+output_bincode_all_in_one = "Bincode bɛɛ taa firi kelen na"
+output_match_fn = "Rust kɔdɛ firiw labɛn kan kɔnɔ match sɛbɛnw ye"
+output_match_fn_by_key = "Map_key dɔrɔn de bɛ baara kɛ (map_name tɛ kɛ)"
+output_match_fn_all_in_one = "Dɔnni bɛɛ taa match fonksiyɔ kelen na (kuru)"
+output_match_fn_all_in_one_by_language = "Match fonksiyɔ kan dɔrɔn dɔ ka kan tɔgɔ ye"
+output_match_fn_all_in_one_by_language_and_key = "Match fonksiyɔ dɔrɔn dɔ (kan tɔgɔ + map_key)"
+output_phf = "PHF mɛpifiriw labɛn don kan kɔnɔ"
+output_phf_by_key = "PHF mɛpi kuru dɔrɔnw (TupleKey tɛ)"
+output_phf_all_in_one = "PHF mɛpi bɛɛ taa fonksiyɔ kelen na"
+output_locales_fn = "All_locales fonksiyɔ bɔ"
+output_ron = "RON format kɔnɔ kuru bɔ"
+
+input = "Lokalizasiyɔn dafɛlɛw ka firi"
+dsl_suffix = 'DSL firi suffixe (default ".dsl")'
+include_languages = "Cɛsiri list: Kan ID list kɔnɔ dɔw sɔrɔ"
+include_map_names = "Mɛpi tɔw list kɔnɔ dɔw sɔrɔ"
+exclude_languages = "Nɔgɔ list: Kan ID list kɔnɔ dɔw tɛ sɔrɔ"
+exclude_map_names = "Mɛpi tɔw list kɔnɔ dɔw tɛ sɔrɔ"
+
+base_name = '"Highlight-Map" dugukolo tɔgɔ'
+suffix = 'Kura "Highlight-Map" ka suffixe'
+true_color = "24-bit nɔgɔlen duman"
+syntax_name = "Sɛntaksɛ tɔgɔ"
+theme_name = "Tɛmɛ tɔgɔ"
+background = "Kɔnɔnin ka ɲɛnabɔ"
+custom_syntax_set = "Yɛrɛsɛn sɛntaksɛ firi"
+custom_theme_set = "Yɛrɛsɛn tɛmɛ firi"
+list_all_syntaxes = "Sɛntaksɛ tɔw bɛɛ jira"
+list_all_themes = "Tɛmɛ tɔw bɛɛ jira"
+
+display_config_dir = "Glossa ka sigida firi jira"

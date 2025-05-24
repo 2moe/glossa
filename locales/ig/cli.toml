@@ -1,0 +1,37 @@
+outdir = "Nchekwa mmepụta"
+visibility = "Nhụta koodu emepụtara"
+bincode_suffix = "Ụda ngwụcha faịlụ bincode"
+mod_prefix = 'Mmalite faịlụ mod (ndabere "l10n_")'
+
+output_bincode = "Mepụta faịlụ bincode nọọrọ onwe ya maka asụsụ dị iche iche"
+output_bincode_all_in_one = "Wepụta bincode nke asụsụ niile n'otu faịlụ"
+output_match_fn = "Mepụta faịlụ Rust nwere ọrụ match maka asụsụ dị iche iche"
+output_match_fn_by_key = "Jiri naanị map_key dị ka isi (enweghị map_name)"
+output_match_fn_all_in_one = "Wepụta data niile n'otu ọrụ match (eriri)"
+output_match_fn_all_in_one_by_language = "Ọrụ match jiri aha asụsụ dị ka isi"
+output_match_fn_all_in_one_by_language_and_key = "Ọrụ match jiri isi jikọtara (aha asụsụ + map_key)"
+output_phf = "Mepụta ọrụ phf map dị iche iche maka asụsụ"
+output_phf_by_key = "phf map nwere isi eriri nkịtị (abụghị TupleKey)"
+output_phf_all_in_one = "Jikọta phf map niile n'otu ọrụ"
+output_locales_fn = "Wepụta ọrụ all_locales"
+output_ron = "Wepụta eriri n'ụdị RON"
+
+input = "Nchekwa isi mmalite nke akụrụngwa obodo"
+dsl_suffix = 'Ụda ngwụcha faịlụ DSL (ndabere ".dsl")'
+include_languages = "Ụdị ndepụta ọcha: Malite naanị ID asụsụ dị na ndepụta"
+include_map_names = "Malite naanị aha map dị na ndepụta"
+exclude_languages = "Ụdị ndepụta ojii: Ejila ID asụsụ dị na ndepụta malite"
+exclude_map_names = "Ejila aha map dị na ndepụta malite"
+
+base_name = 'Aha isi nke "Map Na-egbuke egbuke"'
+suffix = 'Ụda ngwụcha ọhụrụ nke "Map Na-egbuke egbuke"'
+true_color = "Agba ezi 24-bit"
+syntax_name = "Aha nhazi"
+theme_name = "Aha isiokwu"
+background = "Gbaa ọsọ ndabere"
+custom_syntax_set = "Faịlụ nhazi nke ahaziri"
+custom_theme_set = "Faịlụ isiokwu nke ahaziri"
+list_all_syntaxes = "Gosi aha nhazi niile na mgbatị ha"
+list_all_themes = "Gosi aha isiokwu niile"
+
+display_config_dir = "Gosi nchekwa nhazi Glossa"

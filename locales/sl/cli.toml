@@ -1,0 +1,37 @@
+outdir = "Izhodni imenik"
+visibility = "Vidnost generirane kode"
+bincode_suffix = "Pripona bincode datoteke"
+mod_prefix = 'Predpona mod datoteke (privzeto "l10n_")'
+
+output_bincode = "Ustvari ločene bincode datoteke za različne jezike"
+output_bincode_all_in_one = "Izvozi vse bincode jezikov v eno datoteko"
+output_match_fn = "Ustvari Rust datoteke z match izrazi za jezike"
+output_match_fn_by_key = "Uporabi samo map_key kot ključ (brez map_name)"
+output_match_fn_all_in_one = "Združi vse podatke v eno match funkcijo (niz)"
+output_match_fn_all_in_one_by_language = "Match funkcija z imenom jezika kot ključ"
+output_match_fn_all_in_one_by_language_and_key = "Match funkcija s kombiniranim ključem (jezik + map_key)"
+output_phf = "Ustvari phf map funkcije za jezike"
+output_phf_by_key = "phf map z navadnimi nizi kot ključi (ne TupleKey)"
+output_phf_all_in_one = "Združi vse phf mape v eno funkcijo"
+output_locales_fn = "Izvozi all_locales funkcijo"
+output_ron = "Izvozi niz v formatu RON"
+
+input = "Izvorni imenik lokalizacijskih virov"
+dsl_suffix = 'Pripona DSL datoteke (privzeto ".dsl")'
+include_languages = "Beli seznam: Inicializiraj samo ID-je jezikov iz seznama"
+include_map_names = "Inicializiraj samo imena map iz seznama"
+exclude_languages = "Črni seznam: Ne inicializiraj ID-jev jezikov iz seznama"
+exclude_map_names = "Ne inicializiraj imen map iz seznama"
+
+base_name = 'Osnovno ime "Highlight-Map"'
+suffix = 'Nova pripona za "Highlight-Map"'
+true_color = "24-bitne resnične barve"
+syntax_name = "Ime sintakse"
+theme_name = "Ime teme"
+background = "Omogoči ozadje"
+custom_syntax_set = "Datoteka po meri za sintakso"
+custom_theme_set = "Datoteka po meri za teme"
+list_all_syntaxes = "Prikaži vsa imena sintaks in razširitve"
+list_all_themes = "Prikaži vsa imena tem"
+
+display_config_dir = "Prikaži konfiguracijski imenik za Glossa"

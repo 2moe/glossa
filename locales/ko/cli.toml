@@ -1,0 +1,37 @@
+outdir = "출력 디렉터리"
+visibility = "생성된 코드의 가시성"
+bincode_suffix = "bincode 파일 확장자"
+mod_prefix = 'mod 파일 접두사 (기본값 "l10n_")'
+
+output_bincode = "다른 언어용 독립적인 bincode 파일 생성"
+output_bincode_all_in_one = "모든 언어의 bincode를 단일 파일로 출력"
+output_match_fn = "match 표현식 함수 포함 Rust 코드 파일 생성 (언어별)"
+output_match_fn_by_key = "map_key만 키로 사용 (map_name 제외)"
+output_match_fn_all_in_one = "모든 언어 데이터를 단일 match 함수로 출력 (문자열)"
+output_match_fn_all_in_one_by_language = "언어명을 키로 사용한 단일 match 함수 출력"
+output_match_fn_all_in_one_by_language_and_key = "언어명 + map_key 조합 키 사용 match 함수"
+output_phf = "언어별 독립적인 phf map 함수 생성"
+output_phf_by_key = "일반 문자열 키 사용 phf map (TupleKey 미사용)"
+output_phf_all_in_one = "모든 phf map을 단일 함수로 통합"
+output_locales_fn = "all_locales 함수 출력"
+output_ron = "RON 형식 문자열 출력"
+
+input = "지역화 리소스 소스 디렉터리"
+dsl_suffix = 'DSL 파일 확장자 (기본값 ".dsl")'
+include_languages = "화이트리스트 모드: 목록 내 언어 ID만 초기화"
+include_map_names = "목록 내 map_names만 초기화"
+exclude_languages = "블랙리스트 모드: 목록 내 언어 ID 제외"
+exclude_map_names = "목록 내 map_names 제외"
+
+base_name = '기본 하이라이트 맵 이름'
+suffix = '신규 하이라이트 맵 접미사'
+true_color = "24비트 트루 컬러"
+syntax_name = "문법 이름"
+theme_name = "테마 이름"
+background = "배경 활성화 여부"
+custom_syntax_set = "사용자 정의 문법 세트 파일"
+custom_theme_set = "사용자 정의 테마 세트 파일"
+list_all_syntaxes = "모든 문법 이름 및 확장자 표시"
+list_all_themes = "모든 테마 이름 표시"
+
+display_config_dir = "Glossa 설정 디렉터리 표시"

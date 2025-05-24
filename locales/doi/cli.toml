@@ -1,0 +1,37 @@
+outdir = "आउटपुट डायरेक्टरी"
+visibility = "बनाया गया कोड दृश्यता"
+bincode_suffix = "bincode फ़ाइल प्रत्यय"
+mod_prefix = 'mod फ़ाइल उपसर्ग (डिफ़ॉल्ट "l10n_")'
+
+output_bincode = "अलग-अलग भाषाओं के लिए स्वतंत्र bincode फ़ाइलें बनाएं"
+output_bincode_all_in_one = "सभी भाषाओं के bincode एक फ़ाइल में निर्यात करें"
+output_match_fn = "रस्ट कोड फ़ाइलें (match एक्सप्रेशन वाले फ़ंक्शन) बनाएं"
+output_match_fn_by_key = "केवल map_key को कुंजी के रूप में प्रयोग करें (map_name नहीं)"
+output_match_fn_all_in_one = "सभी डेटा को एक match फ़ंक्शन में निर्यात करें (स्ट्रिंग)"
+output_match_fn_all_in_one_by_language = "भाषा नाम को कुंजी के रूप में प्रयोग करने वाला match फ़ंक्शन"
+output_match_fn_all_in_one_by_language_and_key = "संयुक्त कुंजी (भाषा+map_key) वाला match फ़ंक्शन"
+output_phf = "भाषा-विशिष्ट phf मैप फ़ंक्शन बनाएं"
+output_phf_by_key = "सामान्य स्ट्रिंग कुंजी वाले phf मैप (TupleKey नहीं)"
+output_phf_all_in_one = "सभी phf मैप्स को एक फ़ंक्शन में संयोजित करें"
+output_locales_fn = "all_locales फ़ंक्शन निर्यात करें"
+output_ron = "RON प्रारूप में स्ट्रिंग निर्यात करें"
+
+input = "स्थानीयकरण संसाधनों का स्रोत डायरेक्टरी"
+dsl_suffix = 'DSL फ़ाइल प्रत्यय (डिफ़ॉल्ट ".dsl")'
+include_languages = "सफेद सूची मोड: केवल सूची में मौजूद भाषा ID सक्रिय करें"
+include_map_names = "केवल सूची में मौजूद मैप नाम सक्रिय करें"
+exclude_languages = "काली सूची मोड: सूची में मौजूद भाषा ID सक्रिय न करें"
+exclude_map_names = "सूची में मौजूद मैप नाम सक्रिय न करें"
+
+base_name = '"हाइलाइट-मैप" का मूल नाम'
+suffix = '"हाइलाइट-मैप" का नया प्रत्यय'
+true_color = "24-बिट सही रंग"
+syntax_name = "वाक्यविन्यास नाम"
+theme_name = "विषय नाम"
+background = "पृष्ठभूमि सक्रिय करें"
+custom_syntax_set = "कस्टम वाक्यविन्यास सेट फ़ाइल"
+custom_theme_set = "कस्टम थीम सेट फ़ाइल"
+list_all_syntaxes = "सभी वाक्यविन्यास नाम और एक्सटेंशन दिखाएं"
+list_all_themes = "सभी थीम नाम दिखाएं"
+
+display_config_dir = "ग्लोसा कॉन्फ़िग डायरेक्टरी दिखाएं"

@@ -1,0 +1,37 @@
+outdir = "دليل الإخراج"
+visibility = "رؤية الكود المُنشأ"
+bincode_suffix = "لاحقة ملف bincode"
+mod_prefix = 'بادئة ملف mod (الافتراضي "l10n_")'
+
+output_bincode = "إنشاء ملفات bincode منفصلة للغات المختلفة"
+output_bincode_all_in_one = "تصدير جميع ملفات bincode في ملف واحد"
+output_match_fn = "إنشاء ملفات كود Rust مع دوال match للغات"
+output_match_fn_by_key = "استخدام map_key كمفتاح فقط (بدون map_name)"
+output_match_fn_all_in_one = "تصدير جميع البيانات في دالة match واحدة (سلسلة نصية)"
+output_match_fn_all_in_one_by_language = "دالة match تستخدم اسم اللغة كمفتاح"
+output_match_fn_all_in_one_by_language_and_key = "دالة match بمفتاح مركب (اسم اللغة + map_key)"
+output_phf = "إنشاء دوال phf map منفصلة للغات"
+output_phf_by_key = "phf map بمفاتيح نصية عادية (ليست TupleKey)"
+output_phf_all_in_one = "دمج جميع خرائط phf في دالة واحدة"
+output_locales_fn = "تصدير دالة all_locales"
+output_ron = "تصدير سلسلة نصية بصيغة RON"
+
+input = "دليل مصادر المواقع المحلية"
+dsl_suffix = 'لاحقة ملف DSL (الافتراضي ".dsl")'
+include_languages = "وضع القائمة البيضاء: تهيئة معرفات اللغات الموجودة في القائمة فقط"
+include_map_names = "تهيئة أسماء الخرائط الموجودة في القائمة فقط"
+exclude_languages = "وضع القائمة السوداء: عدم تهيئة معرفات اللغات الموجودة في القائمة"
+exclude_map_names = "عدم تهيئة أسماء الخرائط الموجودة في القائمة"
+
+base_name = 'الاسم الأساسي لـ"الخريطة المضيئة"'
+suffix = 'لاحقة جديدة لـ"الخريطة المضيئة"'
+true_color = "لون حقيقي 24-بت"
+syntax_name = "اسم التركيب النحوي"
+theme_name = "اسم السمة"
+background = "تفعيل الخلفية"
+custom_syntax_set = "ملف مجموعة تراكيب مخصصة"
+custom_theme_set = "ملف مجموعة سمات مخصصة"
+list_all_syntaxes = "عرض جميع أسماء التراكيب وامتداداتها"
+list_all_themes = "عرض جميع أسماء السمات"
+
+display_config_dir = "عرض دليل تهيئة glossa"

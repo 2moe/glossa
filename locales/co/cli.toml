@@ -1,0 +1,37 @@
+outdir = "Cartulare di Esportazione"
+visibility = "Visibilità di u codice generatu"
+bincode_suffix = "Suffissu di u schedariu bincode"
+mod_prefix = 'Prefissu di u schedariu mod (predefinitu "l10n_")'
+
+output_bincode = "Generà schedarii bincode separati per ogni lingua"
+output_bincode_all_in_one = "Esportà tutti i bincode in un schedariu"
+output_match_fn = "Generà schedarii Rust cù funzioni match per ogni lingua"
+output_match_fn_by_key = "Utilizà solu map_key cum'è chjave (senza map_name)"
+output_match_fn_all_in_one = "Esportà tutti i dati in una funzione match (stringa)"
+output_match_fn_all_in_one_by_language = "Funzione match cù u nome di a lingua cum'è chjave"
+output_match_fn_all_in_one_by_language_and_key = "Funzione match cù chjave cumbinata (lingua + map_key)"
+output_phf = "Generà funzioni phf map separati per lingue"
+output_phf_by_key = "phf map cù chjavi stringa simplice (micca TupleKey)"
+output_phf_all_in_one = "Cumbinà tutti i phf map in una funzione"
+output_locales_fn = "Esportà a funzione all_locales"
+output_ron = "Esportà stringa in formatu RON"
+
+input = "Cartulare di risorse lucalizate"
+dsl_suffix = 'Suffissu di u schedariu DSL (predefinitu ".dsl")'
+include_languages = '''Modu lista bianca: Inizializà solu l'ID di lingue in lista'''
+include_map_names = "Inizializà solu i nomi di mappe in lista"
+exclude_languages = '''Modu lista nera: Micca inizializà l'ID di lingue in lista'''
+exclude_map_names = "Micca inizializà i nomi di mappe in lista"
+
+base_name = 'Nome di basa di "Highlight-Map"'
+suffix = 'Suffissu novu di "Highlight-Map"'
+true_color = "24-bit culore veru"
+syntax_name = "Nome di a sintassi"
+theme_name = "Nome di u tema"
+background = "Attivà u fondu"
+custom_syntax_set = "Schedariu di sintassi persunalizatu"
+custom_theme_set = "Schedariu di temi persunalizati"
+list_all_syntaxes = "Mustrà tutti i nomi di sintassi è estensioni"
+list_all_themes = "Mustrà tutti i nomi di temi"
+
+display_config_dir = "Mustrà u cartulare di cunfigurazione Glossa"

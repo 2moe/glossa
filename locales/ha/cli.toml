@@ -1,0 +1,37 @@
+outdir = "Kundin Fitarwa"
+visibility = "Ganewar Code da aka Ƙirƙira"
+bincode_suffix = "Ƙarshen Fayil na Bincode"
+mod_prefix = 'Gaban Fayil na Mod (Tsohuwar "l10n_")'
+
+output_bincode = "Ƙirƙiri Fayilolin Bincode Daban don Harsuna Daban-daban"
+output_bincode_all_in_one = "Fitarda Dukkan Bincode na Harsuna cikin Fayil ɗaya"
+output_match_fn = "Ƙirƙiri Fayilolin Rust masu ayyukan Match don Harsuna"
+output_match_fn_by_key = "Kamar output_match_fn amma Map_key kawai ake amfani"
+output_match_fn_all_in_one = "Haɗa Dukkan Bayanai cikin Aikin Match ɗaya (String)"
+output_match_fn_all_in_one_by_language = "Aikin Match mai Sunan Harshe a matsayin Makulli"
+output_match_fn_all_in_one_by_language_and_key = "Aikin Match tare da Makullin (Harshe + Map_key)"
+output_phf = "Ƙirƙiri Ayyukan PHF Map na Harsuna"
+output_phf_by_key = "PHF Map tare da Makullin String na yau da kullun"
+output_phf_all_in_one = "Haɗa Dukkan PHF Map cikin Aiki ɗaya"
+output_locales_fn = "Fitarda Aikin all_locales"
+output_ron = "Fitarda Bayanai cikin Tsarin RON"
+
+input = "Kundin Tushen Albarkatun Ƙabila"
+dsl_suffix = 'Ƙarshen Fayil na DSL (Tsohuwar ".dsl")'
+include_languages = "Yanayin Jerin Fari: IDs na Harsunan da aka jera kawai"
+include_map_names = "Sunayen Map da aka jera kawai"
+exclude_languages = "Yanayin Jerin Baki: IDs na Harsunan da aka hana"
+exclude_map_names = "Sunayen Map da aka hana"
+
+base_name = 'Sunan Asali na "Highlight-Map"'
+suffix = 'Ƙarshen Sabuwar "Highlight-Map"'
+true_color = "Launi na Gaskiya 24-Bit"
+syntax_name = "Sunan Syntax"
+theme_name = "Sunan Jigo"
+background = "Kunna Bango"
+custom_syntax_set = "Fayil na Saitin Syntax na Musamman"
+custom_theme_set = "Fayil na Saitin Jigo na Musamman"
+list_all_syntaxes = "Nuna Dukkan Sunayen Syntax da Ƙararrakinsu"
+list_all_themes = "Nuna Dukkan Sunayen Jigogi"
+
+display_config_dir = "Nuna Kundin Saitin Glossa"

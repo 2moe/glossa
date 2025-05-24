@@ -1,0 +1,37 @@
+outdir = "Eliga dosierujo"
+visibility = "Videbleco de generita kodo"
+bincode_suffix = "Dosiersufikso de bincode"
+mod_prefix = 'Dosierprefikso de mod (defaŭlte "l10n_")'
+
+output_bincode = "Generi apartajn bincode-dosierojn por ĉiu lingvo"
+output_bincode_all_in_one = "Eligi ĉiujn bincode-ojn en ununuran dosieron"
+output_match_fn = "Generi Rust-dosierojn kun match-funkcioj por ĉiu lingvo"
+output_match_fn_by_key = "Simila al output_match_fn, sed nur uzas map_key kiel ŝlosilon (sen map_name)"
+output_match_fn_all_in_one = "Kombini ĉiujn datumojn en unu match-funkcio (kiel ĉeno)"
+output_match_fn_all_in_one_by_language = "Match-funkcio kun lingvo-nomo kiel ŝlosilo"
+output_match_fn_all_in_one_by_language_and_key = "Match-funkcio kun kombina ŝlosilo (lingvo + map_key)"
+output_phf = "Generi PHF-mapojn por ĉiu lingvo"
+output_phf_by_key = "PHF-mapoj kun simplaj ĉenaj ŝlosiloj (ne TupleKey)"
+output_phf_all_in_one = "Kombini ĉiujn PHF-mapojn en unu funkcion"
+output_locales_fn = "Eligi all_locales-funkcion"
+output_ron = "Eligi kiel RON-formatan ĉenon"
+
+input = "Fonta dosierujo de lokaligaj rimedoj"
+dsl_suffix = 'Dosiersufikso de DSL (defaŭlte ".dsl")'
+include_languages = "Blanka listo: nur listigitaj lingvo-IDoj pravaloriziĝas"
+include_map_names = "Nur listigitaj map-nomoj pravaloriziĝas"
+exclude_languages = "Nigra listo: listigitaj lingvo-IDoj ne pravaloriziĝas"
+exclude_map_names = "Listigitaj map-nomoj ne pravaloriziĝas"
+
+base_name = 'Baza nomo de Highlight-Map'
+suffix = 'Sufikso por nova Highlight-Map'
+true_color = "24-bita vera koloro"
+syntax_name = "Nomo de sintakso"
+theme_name = "Nomo de temo"
+background = "Ĉu aktivigi fonon"
+custom_syntax_set = "Propra sintaksa aro-dosiero"
+custom_theme_set = "Propra tema aro-dosiero"
+list_all_syntaxes = "Montri ĉiujn sintaksnomojn kun etendaĵoj"
+list_all_themes = "Montri ĉiujn temnomojn"
+
+display_config_dir = "Montri agordan dosierujon de Glossa"

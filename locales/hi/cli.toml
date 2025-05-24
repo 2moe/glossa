@@ -1,0 +1,37 @@
+outdir = "आउटपुट निर्देशिका"
+visibility = "जेनरेटेड कोड की दृश्यता"
+bincode_suffix = "bincode फ़ाइल एक्सटेंशन"
+mod_prefix = 'mod फ़ाइल प्रीफ़िक्स (डिफ़ॉल्ट "l10n_")'
+
+output_bincode = "विभिन्न भाषाओं के लिए अलग-अलग bincode फ़ाइलें जनरेट करें"
+output_bincode_all_in_one = "सभी भाषाओं के bincode एक फ़ाइल में एक्सपोर्ट करें"
+output_match_fn = "रस्ट कोड फ़ाइलें जनरेट करें (match एक्सप्रेशन वाले फ़ंक्शन)"
+output_match_fn_by_key = "केवल map_key को कुंजी के रूप में प्रयोग करें (map_name नहीं)"
+output_match_fn_all_in_one = "सभी डेटा को एक match फ़ंक्शन में एक्सपोर्ट करें (स्ट्रिंग)"
+output_match_fn_all_in_one_by_language = "भाषा नाम कुंजी के रूप में वाला match फ़ंक्शन"
+output_match_fn_all_in_one_by_language_and_key = "संयुक्त कुंजी (भाषा+map_key) वाला match फ़ंक्शन"
+output_phf = "विभिन्न भाषाओं के लिए अलग-अलग phf मैप फ़ंक्शन जनरेट करें"
+output_phf_by_key = "सामान्य स्ट्रिंग कुंजी वाला phf मैप (TupleKey नहीं)"
+output_phf_all_in_one = "सभी phf मैप्स को एक फ़ंक्शन में संयोजित करें"
+output_locales_fn = "all_locales फ़ंक्शन एक्सपोर्ट करें"
+output_ron = "RON फ़ॉर्मेट में स्ट्रिंग एक्सपोर्ट करें"
+
+input = "स्थानीयकरण संसाधनों का स्रोत निर्देशिका"
+dsl_suffix = 'DSL फ़ाइल एक्सटेंशन (डिफ़ॉल्ट ".dsl")'
+include_languages = "व्हाइटलिस्ट मोड: केवल सूची में उपस्थित भाषा ID प्रारंभ करें"
+include_map_names = "केवल सूची में उपस्थित मैप नाम प्रारंभ करें"
+exclude_languages = "ब्लैकलिस्ट मोड: सूची में उपस्थित भाषा ID प्रारंभ न करें"
+exclude_map_names = "सूची में उपस्थित मैप नाम प्रारंभ न करें"
+
+base_name = '"हाइलाइट-मैप" का आधार नाम'
+suffix = '"हाइलाइट-मैप" का नया एक्सटेंशन'
+true_color = "24-बिट ट्रू कलर"
+syntax_name = "सिंटैक्स नाम"
+theme_name = "विषय नाम"
+background = "पृष्ठभूमि सक्षम करें"
+custom_syntax_set = "कस्टम सिंटैक्स सेट फ़ाइल"
+custom_theme_set = "कस्टम थीम सेट फ़ाइल"
+list_all_syntaxes = "सभी सिंटैक्स नाम और एक्सटेंशन प्रदर्शित करें"
+list_all_themes = "सभी थीम नाम प्रदर्शित करें"
+
+display_config_dir = "glossa कॉन्फ़िग निर्देशिका प्रदर्शित करें"

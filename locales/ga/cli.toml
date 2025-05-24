@@ -1,0 +1,37 @@
+outdir = "Comhadlann Aschur"
+visibility = "Infeictheacht an chóid ghin"
+bincode_suffix = "Iarmhír comhaid bincode"
+mod_prefix = 'Réimír comhaid mod (réamhshocraithe "l10n_")'
+
+output_bincode = "Gin comhaid bincode neamhspleácha do theangacha éagsúla"
+output_bincode_all_in_one = "Aschur gach bincode teanga i gcomhad amháin"
+output_match_fn = "Gin comhaid Rust le feidhmeanna match do theangacha"
+output_match_fn_by_key = "Úsáid map_key mar eochair amháin (gan map_name)"
+output_match_fn_all_in_one = "Comhcheangail sonraí i bhfeidhm match amháin (teaghrán)"
+output_match_fn_all_in_one_by_language = "Feidhm match le hainm teanga mar eochair"
+output_match_fn_all_in_one_by_language_and_key = "Feidhm match le heochair chomhshuite (ainm teanga + map_key)"
+output_phf = "Gin feidhmeanna léarphort phf do theangacha"
+output_phf_by_key = "Léarphort phf le heochracha teaghrán (ní TupleKey)"
+output_phf_all_in_one = "Comhcheangail gach léarphort phf i bhfeidhm amháin"
+output_locales_fn = "Aschur feidhm all_locales"
+output_ron = "Aschur i bhformáid RON mar theaghrán"
+
+input = "Comhadlann fhoinse acmhainní logánúcháin"
+dsl_suffix = 'Iarmhír comhaid DSL (réamhshocraithe ".dsl")'
+include_languages = "Mód liosta bán: ID teanga liostaithe amháin a thúsú"
+include_map_names = "Ainmneacha léarphort liostaithe amháin a thúsú"
+exclude_languages = "Mód liosta dubh: ID teanga liostaithe gan thúsú"
+exclude_map_names = "Ainmneacha léarphort liostaithe gan thúsú"
+
+base_name = 'Bunainm "Highlight-Map"'
+suffix = 'Iarmhír "Highlight-Map" nua'
+true_color = "Dath fíor 24-giotán"
+syntax_name = "Ainm chomhréir"
+theme_name = "Ainm téama"
+background = "Cumasú cúlra"
+custom_syntax_set = "Comhad tacair chomhréir saincheaptha"
+custom_theme_set = "Comhad tacair téama saincheaptha"
+list_all_syntaxes = "Taispeáin gach ainm comhréire agus síneadh"
+list_all_themes = "Taispeáin gach ainm téama"
+
+display_config_dir = "Taispeáin comhadlann cumraíochta glossa"

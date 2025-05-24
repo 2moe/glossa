@@ -1,0 +1,37 @@
+outdir = "Direktori Output"
+visibility = "Katonan kode sing digawe"
+bincode_suffix = "Sufiks file bincode"
+mod_prefix = 'Awalan file mod (default "l10n_")'
+
+output_bincode = "Nggawe file bincode kapisah kanggo basa beda"
+output_bincode_all_in_one = "Ekspor kabeh bincode menyang siji file"
+output_match_fn = "Nggawe file Rust kanthi fungsi match kanggo saben basa"
+output_match_fn_by_key = "Mung nggunakake map_key minangka kunci (ora kalebu map_name)"
+output_match_fn_all_in_one = "Ekspor kabeh data menyang siji fungsi match (string)"
+output_match_fn_all_in_one_by_language = "Fungsi match nganggo jeneng basa minangka kunci"
+output_match_fn_all_in_one_by_language_and_key = "Fungsi match nganggo kunci gabung (basa + map_key)"
+output_phf = "Nggawe fungsi phf map kapisah kanggo saben basa"
+output_phf_by_key = "phf map nganggo kunci string biasa (dudu TupleKey)"
+output_phf_all_in_one = "Gabung kabeh phf map menyang siji fungsi"
+output_locales_fn = "Ekspor fungsi all_locales"
+output_ron = "Ekspor string nganggo format RON"
+
+input = "Direktori sumber lokalisasi"
+dsl_suffix = 'Sufiks file DSL (default ".dsl")'
+include_languages = "Mode daftar putih: Inisialisasi ID basa sing ana ing daftar"
+include_map_names = "Inisialisasi jeneng peta sing ana ing daftar"
+exclude_languages = "Mode daftar ireng: Aja inisialisasi ID basa sing ana ing daftar"
+exclude_map_names = "Aja inisialisasi jeneng peta sing ana ing daftar"
+
+base_name = 'Jeneng dhasar "Highlight-Map"'
+suffix = 'Sufiks anyar "Highlight-Map"'
+true_color = "Warna asli 24-bit"
+syntax_name = "Jeneng sintaks"
+theme_name = "Jeneng tema"
+background = "Aktifake latar mburi"
+custom_syntax_set = "File set sintaks kustom"
+custom_theme_set = "File set tema kustom"
+list_all_syntaxes = "Tampilake kabeh jeneng sintaks lan ekstensi"
+list_all_themes = "Tampilake kabeh jeneng tema"
+
+display_config_dir = "Tampilake direktori konfig glossa"

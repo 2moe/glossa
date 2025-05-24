@@ -1,0 +1,37 @@
+outdir = "Chiqish katalogi"
+visibility = "Yaratilgan kodning koʻrinishi"
+bincode_suffix = "bincode fayl kengaytmasi"
+mod_prefix = 'mod fayl prefiksi (standart "l10n_")'
+
+output_bincode = "Turli tillar uchun alohida bincode fayllarini yaratish"
+output_bincode_all_in_one = "Barcha tillarning bincode'larini bitta faylga eksport qilish"
+output_match_fn = "Rust kodi fayllarini yaratish (match ifodalari bilan)"
+output_match_fn_by_key = "Faqat map_key'ni kalit sifatida ishlatish (map_name kiritilmaydi)"
+output_match_fn_all_in_one = "Barcha maʼlumotlarni bitta match funktsiyasiga eksport qilish (satr)"
+output_match_fn_all_in_one_by_language = "Til nomi kalit boʻlgan match funktsiyasi"
+output_match_fn_all_in_one_by_language_and_key = "Birlashtirilgan kalit (til+map_key) bilan match funktsiyasi"
+output_phf = "Har bir til uchun alohida phf xarita funktsiyalari"
+output_phf_by_key = "Oddiy satr kalitli phf xarita (TupleKey emas)"
+output_phf_all_in_one = "Barcha phf xaritalarni bitta funktsiyada birlashtirish"
+output_locales_fn = "all_locales funktsiyasini eksport qilish"
+output_ron = "RON formatida satrni eksport qilish"
+
+input = "Lokalizatsiya resurslarining manba katalogi"
+dsl_suffix = 'DSL fayl kengaytmasi (standart ".dsl")'
+include_languages = "Oq roʻyxat rejimi: Roʻyxatdagi til ID'larini faqat ishga tushirish"
+include_map_names = "Roʻyxatdagi xarita nomlarini faqat ishga tushirish"
+exclude_languages = "Qora roʻyxat rejimi: Roʻyxatdagi til ID'larini ishga tushirmaslik"
+exclude_map_names = "Roʻyxatdagi xarita nomlarini ishga tushirmaslik"
+
+base_name = '"Highlight-Map"ning asosiy nomi'
+suffix = '"Highlight-Map"ning yangi kengaytmasi'
+true_color = "24-bitli haqiqiy rang"
+syntax_name = "Sintaksis nomi"
+theme_name = "Mavzu nomi"
+background = "Fonni faollashtirish"
+custom_syntax_set = "Maxsus sintaksis toʻplami fayli"
+custom_theme_set = "Maxsus mavzular toʻplami fayli"
+list_all_syntaxes = "Barcha sintaksis nomlari va kengaytmalarini koʻrsatish"
+list_all_themes = "Barcha mavzu nomlarini koʻrsatish"
+
+display_config_dir = "Glossa konfiguratsiya katalogini koʻrsatish"

@@ -1,0 +1,37 @@
+outdir = "Directory ea ho hlahisa"
+visibility = "Ponahalo ea khoutu e hlahisitsoeng"
+bincode_suffix = "Sefate sa bincode"
+mod_prefix = 'Peo ea mod (ka khetho "l10n_")'
+
+output_bincode = "Hlahisa lifaele tsa bincode tse ikemetseng ka puo e fapaneng"
+output_bincode_all_in_one = "Hlahisa bincode ea dipuo tsohle ka faele e le 'ngoe"
+output_match_fn = "Hlahisa lifaele tsa Rust le mesebetsi ea match ka puo e fapaneng"
+output_match_fn_by_key = "Sebelisa map_key feela e le senotlolo (ha se map_name)"
+output_match_fn_all_in_one = "Hlahisa data kaofela ka mesebetsi e le 'ngoe ea match (lentsoe)"
+output_match_fn_all_in_one_by_language = "Mesebetsi ea match e nang le lebitso la puo e le senotlolo"
+output_match_fn_all_in_one_by_language_and_key = "Mesebetsi ea match e nang le senotlolo sa lebitso + map_key"
+output_phf = "Hlahisa mesebetsi ea phf map ka puo e fapaneng"
+output_phf_by_key = "phf map e nang le lentsoe le tloaelehileng (eseng TupleKey)"
+output_phf_all_in_one = "Hlahisa phf map tsohle ka mesebetsi e le 'ngoe"
+output_locales_fn = "Hlahisa mesebetsi ea all_locales"
+output_ron = "Hlahisa lentsoe ka foromo ea RON"
+
+input = "Directory ea mohloli oa lipatlisiso tsa lehae"
+dsl_suffix = 'Sefate sa DSL (ka khetho ".dsl")'
+include_languages = "Mokhoa oa lenane le lešoeu: Hlophisa ID ea puo feela haeba lenane le se le sieo"
+include_map_names = "Hlophisa maina a map feela haeba lenane le se le sieo"
+exclude_languages = "Mokhoa oa lenane le lesoeu: Se ke oa hlophisa ID ea puo e le lenaneng"
+exclude_map_names = "Se ke oa hlophisa maina a map e le lenaneng"
+
+base_name = 'Lebitso la motheo oa "Highlight-Map"'
+suffix = 'Sefate se setjha sa "Highlight-Map"'
+true_color = "Mmala oa 'nete oa 24-bit"
+syntax_name = "Lebitso la syntax"
+theme_name = "Lebitso la thero"
+background = "Enable background"
+custom_syntax_set = "Faele ea setaepte ea syntax e ikhethileng"
+custom_theme_set = "Faele ea setaepte ea ditheto e ikhethileng"
+list_all_syntaxes = "Hlahisa maina ohle a syntax le li-extension"
+list_all_themes = "Hlahisa maina ohle a ditheto"
+
+display_config_dir = "Hlahisa directory ea config ea glossa"

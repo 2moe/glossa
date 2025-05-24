@@ -1,0 +1,37 @@
+outdir = "Ելքային պանակ"
+visibility = "Ստեղծված կոդի տեսանելիություն"
+bincode_suffix = "bincode ֆայլի վերջածանց"
+mod_prefix = 'mod ֆայլի նախածանց (լռելյայն "l10n_")'
+
+output_bincode = "Առանձին bincode ֆայլերի ստեղծում տարբեր լեզուների համար"
+output_bincode_all_in_one = "Բոլոր լեզուների bincode-ների միավորում մեկ ֆայլում"
+output_match_fn = "Rust կոդի ֆայլերի ստեղծում match արտահայտություններով"
+output_match_fn_by_key = "Օգտագործել միայն map_key որպես բանալի (առանց map_name-ի)"
+output_match_fn_all_in_one = "Բոլոր տվյալների միավորում մեկ match ֆունկցիայում (տող)"
+output_match_fn_all_in_one_by_language = "Match ֆունկցիա լեզվի անվամբ որպես բանալի"
+output_match_fn_all_in_one_by_language_and_key = "Match ֆունկցիա համակցված բանալիով (լեզու + map_key)"
+output_phf = "phf քարտեզի ֆունկցիաների ստեղծում տարբեր լեզուների համար"
+output_phf_by_key = "phf քարտեզ սովորական տողային բանալիով (ոչ TupleKey)"
+output_phf_all_in_one = "Բոլոր phf քարտեզների միավորում մեկ ֆունկցիայում"
+output_locales_fn = "all_locales ֆունկցիայի արտահանում"
+output_ron = "Տողի արտահանում RON ձևաչափով"
+
+input = "Լոկալիզացիայի ռեսուրսների աղբյուրային պանակ"
+dsl_suffix = 'DSL ֆայլի վերջածանց (լռելյայն ".dsl")'
+include_languages = "Սպիտակ ցուցակի ռեժիմ. Միայն ցուցակում նշված լեզվի ID-ների նախաձեռնում"
+include_map_names = "Միայն ցուցակում նշված քարտեզների անունների նախաձեռնում"
+exclude_languages = "Սև ցուցակի ռեժիմ. Ցուցակում նշված լեզվի ID-ների անտեսում"
+exclude_map_names = "Ցուցակում նշված քարտեզների անունների անտեսում"
+
+base_name = '"Highlight-Map" հիմնական անվանում'
+suffix = '"Highlight-Map" նոր վերջածանց'
+true_color = "24-բիթային իրական գույն"
+syntax_name = "Շարահյուսության անվանում"
+theme_name = "Թեմայի անվանում"
+background = "Ֆոնի ակտիվացում"
+custom_syntax_set = "Շարահյուսության հատուկ հավաքածուի ֆայլ"
+custom_theme_set = "Թեմայի հատուկ հավաքածուի ֆայլ"
+list_all_syntaxes = "Ցուցադրել բոլոր շարահյուսությունների անուններն ու ընդարձակումները"
+list_all_themes = "Ցուցադրել բոլոր թեմաների անունները"
+
+display_config_dir = "Glossa-ի կոնֆիգուրացիայի պանակի ցուցադրում"

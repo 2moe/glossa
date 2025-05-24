@@ -1,0 +1,37 @@
+outdir = "Nnwoma a wɔato so"
+visibility = "Biakoyɛ a kod a wɔayɛ no wɔ"
+bincode_suffix = "Bincode file akyi"
+mod_prefix = 'Mod file din a wɔde hyɛ ase (default "l10n_")'
+
+output_bincode = "Yɛ bincode file ahorow ma nnkyekyɛmu kasa"
+output_bincode_all_in_one = "To bincode a ɛwɔ kasa nyinaa gu file baako mu"
+output_match_fn = "Yɛ Rust kod file ahorow (ne match expression function) ma kasa nnkyekyɛmu"
+output_match_fn_by_key = "Sɛnea ɛte wɔ output_match_fn, nanso map_key nko na ɛyɛ key, map_name nni mu"
+output_match_fn_all_in_one = "To kasa data nyinaa to match function baako mu (string)"
+output_match_fn_all_in_one_by_language = "To kasa data nyinaa to match function baako mu (string) a ɔkyerɛw kasa din"
+output_match_fn_all_in_one_by_language_and_key = "To kasa data nyinaa to match function baako mu (string) a ɔkyerɛw kasa din ne map_key"
+output_phf = "Yɛ phf map function ahorow ma nnkyekyɛmu kasa"
+output_phf_by_key = "Sɛnea ɛte wɔ output_phf, nanso string key na ɛwɔ hɔ, nnyɛ TupleKey"
+output_phf_all_in_one = "To phf map a ɛwɔ kasa nyinaa to function baako mu"
+output_locales_fn = "To all_locales function"
+output_ron = "To RON format string"
+
+input = "Fie a localization nnwuma fi"
+dsl_suffix = 'DSL file akyi (default ".dsl")'
+include_languages = "WhiteList ɔkwan: Sɛ lista no nyɛ empty a, language ID a ɛwɔ lista no mu na ɛbɛhyɛ ase"
+include_map_names = "Sɛ lista no nyɛ empty a, map_names a ɛwɔ lista no mu na ɛbɛhyɛ ase"
+exclude_languages = "BlackList ɔkwan: Language ID a ɛwɔ lista no mu nnhyɛ ase"
+exclude_map_names = "Map_names a ɛwɔ lista no mu nnhyɛ ase"
+
+base_name = 'Mfitiaseɛ "Highlight-Map" din'
+suffix = 'Akyi a ɛwɔ Highlight-Map foforo so'
+true_color = "24-bit nokware kɔla"
+syntax_name = "Syntax din"
+theme_name = "Theme din"
+background = "Sɛ background be tumi ase"
+custom_syntax_set = "Wɔn ano adwuma syntax set file"
+custom_theme_set = "Wɔn ano adwuma theme set file"
+list_all_syntaxes = "Kyerɛ syntax din nyinaa ne extensions"
+list_all_themes = "Kyerɛ theme din nyinaa"
+
+display_config_dir = "Kyerɛ glossa configuration fie"

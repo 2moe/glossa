@@ -1,0 +1,37 @@
+outdir = "Κατάλογος εξόδου"
+visibility = "Ορατότητα δημιουργημένου κώδικα"
+bincode_suffix = "Επίθημα αρχείου bincode"
+mod_prefix = 'Πρόθεμα αρχείου mod (προεπιλογή "l10n_")'
+
+output_bincode = "Δημιουργία ανεξάρτητων αρχείων bincode ανά γλώσσα"
+output_bincode_all_in_one = "Εξαγωγή όλων των bincode σε ενιαίο αρχείο"
+output_match_fn = "Δημιουργία Rust αρχείων με συναρτήσεις match ανά γλώσσα"
+output_match_fn_by_key = "Χρήση μόνο map_key ως κλειδί (χωρίς map_name)"
+output_match_fn_all_in_one = "Ενοποίηση δεδομένων σε μία συνάρτηση match (συμβολοσειρά)"
+output_match_fn_all_in_one_by_language = "Συνάρτηση match με όνομα γλώσσας ως κλειδί"
+output_match_fn_all_in_one_by_language_and_key = "Συνάρτηση match με σύνθετο κλειδί (γλώσσα + map_key)"
+output_phf = "Δημιουργία ανεξάρτητων phf map συναρτήσεων ανά γλώσσα"
+output_phf_by_key = "phf map με απλές συμβολοσειρές κλειδιών (όχι TupleKey)"
+output_phf_all_in_one = "Ενοποίηση όλων των phf map σε μία συνάρτηση"
+output_locales_fn = "Εξαγωγή συνάρτησης all_locales"
+output_ron = "Εξαγωγή συμβολοσειράς σε μορφή RON"
+
+input = "Πηγαίος κατάλογος τοπικών πόρων"
+dsl_suffix = 'Επίθημα αρχείου DSL (προεπιλογή ".dsl")'
+include_languages = "Λειτουργία λευκής λίστας: Αρχικοποίηση μόνο εγγεγραμμένων γλωσσών"
+include_map_names = "Αρχικοποίηση μόνο εγγεγραμμένων ονομάτων χαρτών"
+exclude_languages = "Λειτουργία μαύρης λίστας: Αποκλεισμός εγγεγραμμένων γλωσσών"
+exclude_map_names = "Αποκλεισμός εγγεγραμμένων ονομάτων χαρτών"
+
+base_name = 'Βασικό όνομα "Highlight-Map"'
+suffix = 'Επίθημα νέου "Highlight-Map"'
+true_color = "Αληθινό χρώμα 24-bit"
+syntax_name = "Όνομα σύνταξης"
+theme_name = "Όνομα θέματος"
+background = "Ενεργοποίηση υποβάθρου"
+custom_syntax_set = "Προσαρμοσμένο αρχείο συντακτικών ρυθμίσεων"
+custom_theme_set = "Προσαρμοσμένο αρχείο θεματικών ρυθμίσεων"
+list_all_syntaxes = "Εμφάνιση όλων συντακτικών ονομάτων και επεκτάσεων"
+list_all_themes = "Εμφάνιση όλων ονομάτων θεμάτων"
+
+display_config_dir = "Εμφάνιση καταλόγου ρυθμίσεων glossa"

@@ -1,0 +1,37 @@
+outdir = "Dosye Sorti"
+visibility = "Vizibilite kod ki finn generé"
+bincode_suffix = "Sufiks fichier bincode"
+mod_prefix = 'Prefiks fichier mod (default "l10n_")'
+
+output_bincode = "Gener fichier bincode separe pou bann langaz diferan"
+output_bincode_all_in_one = "Met tou bincode dan enn sel fichier"
+output_match_fn = "Gener fichier Rust ek fonksyon match pou sak langaz"
+output_match_fn_by_key = "Sir map_key kouma kle selman (pa ena map_name)"
+output_match_fn_all_in_one = "Met tou done dan enn sel fonksyon match (string)"
+output_match_fn_all_in_one_by_language = "Fonksyon match avek non langaz kouma kle"
+output_match_fn_all_in_one_by_language_and_key = "Fonksyon match avek kle konbine (langaz + map_key)"
+output_phf = "Gener fonksyon phf map separe pou langaz"
+output_phf_by_key = "phf map avek kle string ordinær (pa TupleKey)"
+output_phf_all_in_one = "Met tou phf map dan enn sel fonksyon"
+output_locales_fn = "Sorti fonksyon all_locales"
+output_ron = "Sorti string dan format RON"
+
+input = "Dosye resous lokalizasion"
+dsl_suffix = 'Sufiks fichier DSL (default ".dsl")'
+include_languages = "Mòd lis blan: Sir ID langaz dan lis selman"
+include_map_names = "Sir non map dan lis selman"
+exclude_languages = "Mòd lis nwar: Pa sir ID langaz dan lis"
+exclude_map_names = "Pa sir non map dan lis"
+
+base_name = 'Non baz "Highlight-Map"'
+suffix = 'Nouvo sufix "Highlight-Map"'
+true_color = "Koulè reyèl 24-bit"
+syntax_name = "Non sentaks"
+theme_name = "Non tèm"
+background = "Active fond"
+custom_syntax_set = "Fichier sentaks personnalisé"
+custom_theme_set = "Fichier tèm personnalisé"
+list_all_syntaxes = "Afiche tou non sentaks ek ekstansyon"
+list_all_themes = "Afiche tou non tèm"
+
+display_config_dir = "Afiche dosye konfigirasion Glossa"

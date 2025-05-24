@@ -1,0 +1,37 @@
+outdir = "Folda ya Matokeo"
+visibility = "Uonekano wa Msimbo Ulioundwa"
+bincode_suffix = "Kiambishi cha Faili ya Bincode"
+mod_prefix = 'Kiambishi cha Awali cha Faili ya Mod (chaguo-msingi "l10n_")'
+
+output_bincode = "Tengeneza faili za Bincode tofauti kwa lugha mbalimbali"
+output_bincode_all_in_one = "Toa Bincode za lugha zote kwa faili moja"
+output_match_fn = "Tengeneza faili za Rust zenye vitendakazi vya match"
+output_match_fn_by_key = "Tumia map_key pekee kama ufunguo (bila map_name)"
+output_match_fn_all_in_one = "Toa data zote kwa kazi moja ya match (mfululizo)"
+output_match_fn_all_in_one_by_language = "Kazi ya match yenye jina la lugha kama ufunguo"
+output_match_fn_all_in_one_by_language_and_key = "Kazi ya match yenye ufunguo mchanganyiko (jina la lugha + map_key)"
+output_phf = "Tengeneza kazi za PHF Map tofauti kwa lugha"
+output_phf_by_key = "PHF Map yenye vfunguo vya kawaida vya mfululizo (sio TupleKey)"
+output_phf_all_in_one = "Unganisha PHF Map zote kwa kazi moja"
+output_locales_fn = "Toa kazi ya all_locales"
+output_ron = "Toa mfululizo katika umbizo la RON"
+
+input = "Folda chanzi ya rasilimali za ukalimani"
+dsl_suffix = 'Kiambishi cha Faili ya DSL (chaguo-msingi ".dsl")'
+include_languages = "Hali ya Orodha Nyeupe: Weka kuanzisha ID za lugha katika orodha tu"
+include_map_names = "Weka kuanzisha majina ya ramani katika orodha tu"
+exclude_languages = "Hali ya Orodha Nyeusi: Usianzishe ID za lugha katika orodha"
+exclude_map_names = "Usianzishe majina ya ramani katika orodha"
+
+base_name = 'Jina la Msingi la "Highlight-Map"'
+suffix = 'Kiambishi kipya cha "Highlight-Map"'
+true_color = "Rangi halisi 24-bit"
+syntax_name = "Jina la Sintaksia"
+theme_name = "Jina la Mada"
+background = "Washa Usuli wa Mandharinyuma"
+custom_syntax_set = "Faili maalum ya seti ya sintaksia"
+custom_theme_set = "Faili maalum ya seti ya mada"
+list_all_syntaxes = "Onyesha majina yote ya sintaksia na viambishi"
+list_all_themes = "Onyesha majina yote ya mada"
+
+display_config_dir = "Onyesha folda ya usanidi ya Glossa"

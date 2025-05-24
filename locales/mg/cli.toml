@@ -1,0 +1,37 @@
+outdir = "Dossier famoahana"
+visibility = "Fahitana ny kaody novokarina"
+bincode_suffix = "Suffixe fichier bincode"
+mod_prefix = 'Prefixe fichier mod (default "l10n_")'
+
+output_bincode = "Mamorona fichier bincode samihafa ho an'ny fiteny"
+output_bincode_all_in_one = "Mamoaka bincode rehetra ao anaty fichier iray"
+output_match_fn = "Mamorona fichier Rust misy fonction match ho an'ny fiteny"
+output_match_fn_by_key = "Mampiasa map_key ho solokely (tsy misy map_name)"
+output_match_fn_all_in_one = "Mamorona fonction match iray ho an'ny angon-drakitra (string)"
+output_match_fn_all_in_one_by_language = "Fonction match miaraka amin'ny anaran'ny fiteny ho solokely"
+output_match_fn_all_in_one_by_language_and_key = "Fonction match miaraka amin'ny solokely tambatra (fiteny + map_key)"
+output_phf = "Mamorona fonction phf map samihafa ho an'ny fiteny"
+output_phf_by_key = "phf map miaraka amin'ny string solokely (fa tsy TupleKey)"
+output_phf_all_in_one = "Mamorona fonction iray ho an'ny phf map rehetra"
+output_locales_fn = "Mamoaka fonction all_locales"
+output_ron = "Mamoaka string amin'ny format RON"
+
+input = "Dossier loharanon'ny ressources localisés"
+dsl_suffix = 'Suffixe fichier DSL (default ".dsl")'
+include_languages = "Mode lisitra fotsiny: Manomboka ny ID fiteny ao @lisitra"
+include_map_names = "Manomboka ny anaran'ny sarintany ao @lisitra"
+exclude_languages = "Mode lisitra mainty: Aza manomboka ny ID fiteny ao @lisitra"
+exclude_map_names = "Aza manomboka ny anaran'ny sarintany ao @lisitra"
+
+base_name = 'Anarana fototra "Highlight-Map"'
+suffix = 'Suffixe vaovao "Highlight-Map"'
+true_color = "Loko marina 24-bit"
+syntax_name = "Anarana syntaxe"
+theme_name = "Anarana lohahevitra"
+background = "Hamerina ny background"
+custom_syntax_set = "Fichier syntaxe personnalisé"
+custom_theme_set = "Fichier lohahevitra personnalisé"
+list_all_syntaxes = "Asehoy ny anarana syntaxe sy extension rehetra"
+list_all_themes = "Asehoy ny anarana lohahevitra rehetra"
+
+display_config_dir = "Asehoy ny dossier config glossa"

@@ -1,0 +1,37 @@
+outdir = "آؤٹ پٹ ڈائریکٹری"
+visibility = "تخلیق شدہ کوڈ کی نظاریت"
+bincode_suffix = "bincode فائل کا سابقہ"
+mod_prefix = 'mod فائل کا سابقہ (ڈیفالٹ "l10n_")'
+
+output_bincode = "مختلف زبانوں کے لیے علیحدہ bincode فائلیں تخلیق کریں"
+output_bincode_all_in_one = "تمام زبانوں کے bincode ایک فائل میں برآمد کریں"
+output_match_fn = "مختلف زبانوں کے لیے Rust کوڈ فائلیں (match ایکسپریشنز والے فنکشنز)"
+output_match_fn_by_key = "صرف map_key کو کلید کے طور پر استعمال کریں (map_name شامل نہیں)"
+output_match_fn_all_in_one = "تمام ڈیٹا کو ایک match فنکشن میں برآمد کریں (سٹرنگ)"
+output_match_fn_all_in_one_by_language = "زبان کے نام کو کلید بنانے والا match فنکشن"
+output_match_fn_all_in_one_by_language_and_key = "مشترکہ کلید (زبان+map_key) والا match فنکشن"
+output_phf = "مختلف زبانوں کے لیے علیحدہ phf میپ فنکشنز"
+output_phf_by_key = "عام سٹرنگ کلیدوں والی phf میپ (TupleKey نہیں)"
+output_phf_all_in_one = "تمام phf میپز کو ایک فنکشن میں جمع کریں"
+output_locales_fn = "all_locales فنکشن برآمد کریں"
+output_ron = "RON فارمیٹ میں سٹرنگ برآمد کریں"
+
+input = "مقامی وسائل کا ماخذ ڈائریکٹری"
+dsl_suffix = 'DSL فائل کا سابقہ (ڈیفالٹ ".dsl")'
+include_languages = "سفید فہرست موڈ: صرف فہرست والی زبان IDs کو شروع کریں"
+include_map_names = "صرف فہرست والے میپ ناموں کو شروع کریں"
+exclude_languages = "سیاہ فہرست موڈ: فہرست والی زبان IDs شروع نہ کریں"
+exclude_map_names = "فہرست والے میپ نام شروع نہ کریں"
+
+base_name = '"Highlight-Map" کا بنیادی نام'
+suffix = '"Highlight-Map" کا نیا سابقہ'
+true_color = "24-بٹ اصلی رنگ"
+syntax_name = "نحو کا نام"
+theme_name = "تھیم کا نام"
+background = "بیک گراؤنڈ فعال کریں"
+custom_syntax_set = "خصوصی نحو سیٹ فائل"
+custom_theme_set = "خصوصی تھیم سیٹ فائل"
+list_all_syntaxes = "تمام نحو ناموں اور ایکسٹینشنز دکھائیں"
+list_all_themes = "تمام تھیم نام دکھائیں"
+
+display_config_dir = "Glossa کی کنفیگریشن ڈائریکٹری دکھائیں"

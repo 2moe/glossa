@@ -1,0 +1,37 @@
+outdir = "Director ieșire"
+visibility = "Vizibilitate cod generat"
+bincode_suffix = "Sufix fișier bincode"
+mod_prefix = 'Prefix fișier mod (implicit "l10n_")'
+
+output_bincode = "Generează fișiere bincode separate pentru limbi diferite"
+output_bincode_all_in_one = "Exportă toate bincode-urile într-un singur fișier"
+output_match_fn = "Generează fișiere Rust cu funcții match pentru fiecare limbă"
+output_match_fn_by_key = "Folosește doar map_key ca cheie (fără map_name)"
+output_match_fn_all_in_one = "Consolidează toate datele într-o funcție match (șir)"
+output_match_fn_all_in_one_by_language = "Funcție match cu numele limbii ca cheie"
+output_match_fn_all_in_one_by_language_and_key = "Funcție match cu cheie compusă (limbă + map_key)"
+output_phf = "Generează funcții phf map pentru limbi diferite"
+output_phf_by_key = "phf map cu chei șir obișnuite (nu TupleKey)"
+output_phf_all_in_one = "Consolidează toate phf map-urile într-o funcție"
+output_locales_fn = "Exportă funcția all_locales"
+output_ron = "Exportă șir în format RON"
+
+input = "Director sursă pentru resurse localizate"
+dsl_suffix = 'Sufix fișier DSL (implicit ".dsl")'
+include_languages = "Mod listă albă: Inițializează doar ID-uri din listă"
+include_map_names = "Inițializează doar nume de mapă din listă"
+exclude_languages = "Mod listă neagră: Nu inițializa ID-uri din listă"
+exclude_map_names = "Nu inițializa nume de mapă din listă"
+
+base_name = 'Numele de bază al "Highlight-Map"'
+suffix = 'Sufixul noului "Highlight-Map"'
+true_color = "Culoare adevărată 24-biți"
+syntax_name = "Nume sintaxă"
+theme_name = "Nume temă"
+background = "Activează fundal"
+custom_syntax_set = "Fișier set sintaxă personalizat"
+custom_theme_set = "Fișier set teme personalizate"
+list_all_syntaxes = "Afișează toate numele de sintaxă și extensiile"
+list_all_themes = "Afișează toate numele de teme"
+
+display_config_dir = "Afișează directorul de config glossa"

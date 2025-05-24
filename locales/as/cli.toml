@@ -1,0 +1,37 @@
+outdir = "আউটপুট ডাইৰেক্টৰী"
+visibility = "জেনেৰেট কৰা ক'ডৰ দৃশ্যমানতা"
+bincode_suffix = "bincode ফাইলৰ প্ৰত্যয়"
+mod_prefix = 'mod ফাইল প্ৰিফিক্স (ডিফল্ট "l10n_")'
+
+output_bincode = "বিভিন্ন ভাষাৰ বাবে পৃথক bincode ফাইল সৃষ্টি কৰক"
+output_bincode_all_in_one = "সকলো ভাষাৰ bincode এটা ফাইলত এক্সপ'ৰ্ট কৰক"
+output_match_fn = "ৰাষ্ট ক'ড ফাইল সৃষ্টি কৰক (match এক্সপ্ৰেছ্যন থকা ফাংচনসহ)"
+output_match_fn_by_key = "কেৱল map_key কে কী হিচাপে ব্যৱহাৰ কৰক (map_name নোহোৱা)"
+output_match_fn_all_in_one = "সকলো তথ্য এটা match ফাংচনত এক্সপ'ৰ্ট কৰক (ষ্ট্ৰিং)"
+output_match_fn_all_in_one_by_language = "ভাষাৰ নামৰ সৈতে match ফাংচন"
+output_match_fn_all_in_one_by_language_and_key = "সংযুক্ত কী (ভাষা+map_key) ৰে match ফাংচন"
+output_phf = "বিভিন্ন ভাষাৰ বাবে পৃথক phf মেপ ফাংচন সৃষ্টি কৰক"
+output_phf_by_key = "সাধাৰণ ষ্ট্ৰিং কীৰে phf মেপ (TupleKey নহয়)"
+output_phf_all_in_one = "সকলো phf মেপ এটা ফাংচনত সংযুক্ত কৰক"
+output_locales_fn = "all_locales ফাংচন এক্সপ'ৰ্ট কৰক"
+output_ron = "RON ফৰ্মাটত ষ্ট্ৰিং এক্সপ'ৰ্ট কৰক"
+
+input = "স্থানীয়কৰণ সম্পদৰ উৎস ডাইৰেক্টৰী"
+dsl_suffix = 'DSL ফাইলৰ প্ৰত্যয় (ডিফল্ট ".dsl")'
+include_languages = "বগা তালিকা ম'ড: তালিকাৰ ভাষা ID বিলাকহে ইনিচিয়েলাইজ কৰক"
+include_map_names = "তালিকাৰ মেপ নামবিলাকহে ইনিচিয়েলাইজ কৰক"
+exclude_languages = "ক'লা তালিকা ম'ড: তালিকাৰ ভাষা ID বিলাক ইনিচিয়েলাইজ নকৰিব"
+exclude_map_names = "তালিকাৰ মেপ নামবিলাক ইনিচিয়েলাইজ নকৰিব"
+
+base_name = '"হাইলাইট-মেপ" ৰ মূল নাম'
+suffix = '"হাইলাইট-মেপ" ৰ নতুন প্ৰত্যয়'
+true_color = "24-বিটৰ প্ৰকৃত ৰং"
+syntax_name = "চিন্টেক্স নাম"
+theme_name = "থীম নাম"
+background = "পটভূমি সক্ৰিয় কৰিব নে"
+custom_syntax_set = "কাষ্টম চিন্টেক্স ছেট ফাইল"
+custom_theme_set = "কাষ্টম থীম ছেট ফাইল"
+list_all_syntaxes = "সকলো চিন্টেক্স নাম আৰু এক্সটেনচ্যন দেখুৱাওক"
+list_all_themes = "সকলো থীম নাম দেখুৱাওক"
+
+display_config_dir = "গ্ল'ছাৰ কনফিগাৰেচন ডাইৰেক্টৰী দেখুৱাওক"

@@ -1,0 +1,37 @@
+outdir = "پوشه خروجی"
+visibility = "قابلیت مشاهده کد تولیدشده"
+bincode_suffix = "پسوند فایل bincode"
+mod_prefix = 'پیشوند فایل mod (پیش‌فرض "l10n_")'
+
+output_bincode = "ایجاد فایل‌های bincode جداگانه برای زبان‌های مختلف"
+output_bincode_all_in_one = "خروجی تمام bincodeها در یک فایل واحد"
+output_match_fn = "ایجاد فایل‌های کد Rust با توابع match برای زبان‌ها"
+output_match_fn_by_key = "فقط از map_key به عنوان کلید استفاده شود (بدون map_name)"
+output_match_fn_all_in_one = "خروجی تمام داده‌ها در یک تابع match (رشته)"
+output_match_fn_all_in_one_by_language = "تابع match با نام زبان به عنوان کلید"
+output_match_fn_all_in_one_by_language_and_key = "تابع match با کلید ترکیبی (زبان + map_key)"
+output_phf = "ایجاد توابع phf map جداگانه برای زبان‌ها"
+output_phf_by_key = "phf map با کلیدهای رشته‌ای ساده (نه TupleKey)"
+output_phf_all_in_one = "ادغام تمام phf mapها در یک تابع"
+output_locales_fn = "خروجی تابع all_locales"
+output_ron = "خروجی رشته با فرمت RON"
+
+input = "پوشه منبع منابع محلی‌سازی"
+dsl_suffix = 'پسوند فایل DSL (پیش‌فرض ".dsl")'
+include_languages = "حالت لیست سفید: فقط شناسه‌های زبانی موجود در لیست مقداردهی شوند"
+include_map_names = "فقط نام‌های map موجود در لیست مقداردهی شوند"
+exclude_languages = "حالت لیست سیاه: شناسه‌های زبانی موجود در لیست مقداردهی نشوند"
+exclude_map_names = "نام‌های map موجود در لیست مقداردهی نشوند"
+
+base_name = 'نام پایه "Highlight-Map"'
+suffix = 'پسوند جدید "Highlight-Map"'
+true_color = "رنگ واقعی 24 بیتی"
+syntax_name = "نام سینتکس"
+theme_name = "نام تم"
+background = "فعال‌سازی پس‌زمینه"
+custom_syntax_set = "فایل مجموعه سینتکس سفارشی"
+custom_theme_set = "فایل مجموعه تم سفارشی"
+list_all_syntaxes = "نمایش تمام نام‌های سینتکس و پسوندها"
+list_all_themes = "نمایش تمام نام‌های تم"
+
+display_config_dir = "نمایش پوشه پیکربندی glossa"

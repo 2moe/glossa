@@ -1,0 +1,37 @@
+outdir = "Directorum Outputi"
+visibility = "Visibilitas Codicis Generati"
+bincode_suffix = "Suffixum Bincode Fasciculi"
+mod_prefix = 'Praefixum Mod Fasciculi (default "l10n_")'
+
+output_bincode = "Generare Fasciculos Bincode Separatos pro Linguis Diversis"
+output_bincode_all_in_one = "Exportare Omnes Bincode in Unum Fasciculum"
+output_match_fn = "Generare Fasciculos Rust cum Functionibus Match pro Linguis"
+output_match_fn_by_key = "Simile output_match_fn, sed cum Clave map_key tantum"
+output_match_fn_all_in_one = "Consolidare Omnes Data in Functionem Match Unam (Fila)"
+output_match_fn_all_in_one_by_language = "Functio Match cum Nomine Linguae pro Clave"
+output_match_fn_all_in_one_by_language_and_key = "Functio Match cum Clave Composita (Lingua + map_key)"
+output_phf = "Generare Functiones Map PHF pro Linguis Diversis"
+output_phf_by_key = "Map PHF cum Clavibus Filorum (Non TupleKey)"
+output_phf_all_in_one = "Consolidare Omnes Maps PHF in Unam Functionem"
+output_locales_fn = "Exportare Functionem all_locales"
+output_ron = "Exportare Filum in Formato RON"
+
+input = "Directorum Fontis Locorum"
+dsl_suffix = 'Suffixum DSL Fasciculi (default ".dsl")'
+include_languages = "Modus Album Indicem: Initia ID Linguarum in Indice"
+include_map_names = "Initia Nomina Maparum in Indice"
+exclude_languages = "Modus Nigrum Indicem: Non Initia ID Linguarum in Indice"
+exclude_map_names = "Non Initia Nomina Maparum in Indice"
+
+base_name = 'Nomen Basile "Highlight-Map"'
+suffix = 'Suffixum Novi "Highlight-Map"'
+true_color = "Verum Colorem 24-bit"
+syntax_name = "Nomen Syntaxeos"
+theme_name = "Nomen Thematis"
+background = "Activa Fundum"
+custom_syntax_set = "Fasciculus Syntaxeos Custom"
+custom_theme_set = "Fasciculus Thematum Custom"
+list_all_syntaxes = "Monstrare Omnia Nomina Syntaxeos cum Extensionibus"
+list_all_themes = "Monstrare Omnia Nomina Thematum"
+
+display_config_dir = "Monstrare Directorum Configurationis Glossa"

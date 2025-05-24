@@ -1,0 +1,37 @@
+outdir = "Dhairekitori rekuburitsa"
+visibility = "Kuonekwa kwekodhi yakagadzirwa"
+bincode_suffix = "Sufikisi yefaira rebincode"
+mod_prefix = 'Chirevo chekutanga chefaira remod (default "l10n_")'
+
+output_bincode = "Gadzira mafaira ebincode akazvimirira emitauro yakasiyana"
+output_bincode_all_in_one = "Buritsa mabincode ese mufaira rimwechete"
+output_match_fn = "Gadzira mafaira eRust ane mabasa ematch emitauro yakasiyana"
+output_match_fn_by_key = "Shandisa map_key chete sekiyi (hapana map_name)"
+output_match_fn_all_in_one = "Batanidza data remitauro yese mubasa rimwe rematch (mutsara)"
+output_match_fn_all_in_one_by_language = "Basa rematch rine zita remutauro sekiyi"
+output_match_fn_all_in_one_by_language_and_key = "Basa rematch rine kiyi yakabatanidzwa (mutauro + map_key)"
+output_phf = "Gadzira mapu ephf emitauro yakasiyana"
+output_phf_by_key = "Mapu ephf ane kiyi dzemitsara (kwete TupleKey)"
+output_phf_all_in_one = "Batanidza mapu ese ephf mubasa rimwe"
+output_locales_fn = "Buritsa basa reall_locales"
+output_ron = "Buritsa mutsara weRON"
+
+input = "Dhairekitori rekutanga rezviwanikwa zvekushandura"
+dsl_suffix = 'Sufikisi yefaira reDSL (default ".dsl")'
+include_languages = "Modhi yerondedzero chena: ID dzemitauro dzirondedzero dzinotanga"
+include_map_names = "Mazita emapu ariporondedzero anotanga"
+exclude_languages = "Modhi yerondedzero nhema: ID dzemitauro dzirondedzero hadzitangi"
+exclude_map_names = "Mazita emapu ariporondedzero haatangi"
+
+base_name = 'Zita rekutanga re"Highlight-Map"'
+suffix = 'Sufikisi ye"Highlight-Map" itsva'
+true_color = "24-bit mavara echokwadi"
+syntax_name = "Zita resintakisi"
+theme_name = "Zita remusoro"
+background = "Shandisa kumashure here"
+custom_syntax_set = "Faira resintakisi rakagadzirwa"
+custom_theme_set = "Faira remusoro wakagadzirwa"
+list_all_syntaxes = "Ratidza mazita ese esintakisi nemawedzero"
+list_all_themes = "Ratidza mazita ese emisoro"
+
+display_config_dir = "Ratidza dhairekitori rekugadzirisa glossa"

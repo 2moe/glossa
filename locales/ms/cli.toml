@@ -1,0 +1,37 @@
+outdir = "direktori output"
+visibility = "keterlihatan kod terhasil"
+bincode_suffix = "akhiran fail bincode"
+mod_prefix = 'awalan fail mod (lalai: "l10n_")'
+
+output_bincode = "jana fail bincode berasingan untuk setiap bahasa"
+output_bincode_all_in_one = "eksport semua bincode bahasa ke satu fail"
+output_match_fn = "jana fail kod Rust dengan fungsi match expression"
+output_match_fn_by_key = "hanya gunakan map_key sebagai kunci (tiada map_name)"
+output_match_fn_all_in_one = "gabung semua data dalam satu fungsi match (string)"
+output_match_fn_all_in_one_by_language = "fungsi match dengan nama bahasa sebagai kunci"
+output_match_fn_all_in_one_by_language_and_key = "fungsi match dengan kunci kombo (bahasa + map_key)"
+output_phf = "jana fungsi phf map berasingan per bahasa"
+output_phf_by_key = "phf map dengan kunci string biasa (bukan TupleKey)"
+output_phf_all_in_one = "gabung semua phf map dalam satu fungsi"
+output_locales_fn = "eksport fungsi all_locales"
+output_ron = "eksport string berformat RON"
+
+input = "direktori sumber lokal"
+dsl_suffix = 'akhiran fail DSL (lalai: ".dsl")'
+include_languages = "mod senarai putih: hanya ID bahasa tersenarai diinisialisasi"
+include_map_names = "hanya nama peta tersenarai diinisialisasi"
+exclude_languages = "mod senarai hitam: ID bahasa tersenarai tidak diinisialisasi"
+exclude_map_names = "nama peta tersenarai tidak diinisialisasi"
+
+base_name = 'nama asas Highlight-Map'
+suffix = 'akhiran untuk Highlight-Map baru'
+true_color = "24-bit warna sebenar"
+syntax_name = "nama sintaks"
+theme_name = "nama tema"
+background = "dayakan latar belakang"
+custom_syntax_set = "fail set sintaks tersuai"
+custom_theme_set = "fail set tema tersuai"
+list_all_syntaxes = "paparkan semua nama sintaks dengan sambungan"
+list_all_themes = "paparkan semua nama tema"
+
+display_config_dir = "paparkan direktori konfigurasi glossa"

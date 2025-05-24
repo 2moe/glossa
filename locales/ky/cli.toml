@@ -1,0 +1,37 @@
+outdir = "Чыгуу директориясы"
+visibility = "Жасалган коддун көрүнүшү"
+bincode_suffix = "bincode файл суффикси"
+mod_prefix = 'mod файл префикси (демейки "l10n_")'
+
+output_bincode = "Тилдер үчүн өз алдынча bincode файлдарды түзүү"
+output_bincode_all_in_one = "Бардык тилдердин bincode'ун бир файлга чыгаруу"
+output_match_fn = "Rust коду файлдарын түзүү (match функциялары менен)"
+output_match_fn_by_key = "map_key гана ачкыч катары колдонуу (map_name жок)"
+output_match_fn_all_in_one = "Бардык маалыматты бир match функцияга чыгаруу (сап)"
+output_match_fn_all_in_one_by_language = "Тил атын ачкыч кылган match функция"
+output_match_fn_all_in_one_by_language_and_key = "Комбинацияланган ачкыч (тил+map_key) менен match функция"
+output_phf = "Тилдер үчүн phf карта функцияларын түзүү"
+output_phf_by_key = "Кадимки сап ачкычтары менен phf карта (TupleKey эмес)"
+output_phf_all_in_one = "Бардык phf карталарды бир функцияга бириктирүү"
+output_locales_fn = "all_locales функциясын чыгаруу"
+output_ron = "RON форматында сап чыгаруу"
+
+input = "Локалдаштырылган ресурсттардын башкы директориясы"
+dsl_suffix = 'DSL файл суффикси (демейки ".dsl")'
+include_languages = "Ак тизме режими: Тизмедеги тил ID'лерин гана ишке киргизүү"
+include_map_names = "Тизмедеги карта аттарын гана ишке киргизүү"
+exclude_languages = "Кара тизме режими: Тизме тилдерин ишке киргизбөө"
+exclude_map_names = "Тизмедеги карта аттарын ишке киргизбөө"
+
+base_name = '"Highlight-Map" негизги аталышы'
+suffix = '"Highlight-Map" жаңы суффикси'
+true_color = "24-бит чыныгы түс"
+syntax_name = "Синтаксис аталышы"
+theme_name = "Тема аталышы"
+background = "Фонду иштетүү"
+custom_syntax_set = "Ыңгайлаштырылган синтаксис топтому"
+custom_theme_set = "Ыңгайлаштырылган темалар топтому"
+list_all_syntaxes = "Бардык синтаксис аталыштарын көрсөтүү"
+list_all_themes = "Бардык темаларды көрсөтүү"
+
+display_config_dir = "Glossa конфигурация директориясын көрсөтүү"

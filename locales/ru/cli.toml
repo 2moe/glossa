@@ -1,0 +1,37 @@
+outdir = "Выходная директория"
+visibility = "Видимость сгенерированного кода"
+bincode_suffix = "Суффикс файла bincode"
+mod_prefix = 'Префикс файла mod (по умолчанию "l10n_")'
+
+output_bincode = "Генерировать отдельные bincode-файлы для разных языков"
+output_bincode_all_in_one = "Экспортировать все bincode в один файл"
+output_match_fn = "Генерировать Rust-файлы с match-функциями для языков"
+output_match_fn_by_key = "Использовать только map_key как ключ (без map_name)"
+output_match_fn_all_in_one = "Объединить все данные в одну match-функцию (строка)"
+output_match_fn_all_in_one_by_language = "Match-функция с названием языка как ключом"
+output_match_fn_all_in_one_by_language_and_key = "Match-функция с комбинированным ключом (язык+map_key)"
+output_phf = "Генерировать phf-карты для разных языков"
+output_phf_by_key = "phf-карта с обычными строковыми ключами (не TupleKey)"
+output_phf_all_in_one = "Объединить все phf-карты в одну функцию"
+output_locales_fn = "Экспортировать функцию all_locales"
+output_ron = "Экспортировать строку в формате RON"
+
+input = "Исходная директория локализованных ресурсов"
+dsl_suffix = 'Суффикс DSL-файла (по умолчанию ".dsl")'
+include_languages = "Режим белого списка: Инициализировать только ID из списка"
+include_map_names = "Инициализировать только названия карт из списка"
+exclude_languages = "Режим чёрного списка: Не инициализировать ID из списка"
+exclude_map_names = "Не инициализировать названия карт из списка"
+
+base_name = 'Базовое название "Highlight-Map"'
+suffix = 'Новый суффикс для "Highlight-Map"'
+true_color = "24-битный истинный цвет"
+syntax_name = "Название синтаксиса"
+theme_name = "Название темы"
+background = "Активировать фон"
+custom_syntax_set = "Пользовательский набор синтаксиса"
+custom_theme_set = "Пользовательский набор тем"
+list_all_syntaxes = "Показать все названия синтаксисов"
+list_all_themes = "Показать все названия тем"
+
+display_config_dir = "Показать конфигурационную директорию Glossa"

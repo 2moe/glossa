@@ -1,0 +1,37 @@
+outdir = "Direktoria e Daljes"
+visibility = "Dukshmëria e Kodit të Gjeneruar"
+bincode_suffix = "Shtesë e File Bincode"
+mod_prefix = 'Parashtesë Mod File (default "l10n_")'
+
+output_bincode = "Gjenero file bincode të pavarura për gjuhë të ndryshme"
+output_bincode_all_in_one = "Eksporto të gjitha bincodet në një file"
+output_match_fn = "Gjenero file Rust me funksione match për gjuhë"
+output_match_fn_by_key = "Përdor vetëm map_key si çelës (pa map_name)"
+output_match_fn_all_in_one = "Konsolido të gjitha të dhënat në një funksion match (varg)"
+output_match_fn_all_in_one_by_language = "Funksion match me emrin e gjuhës si çelës"
+output_match_fn_all_in_one_by_language_and_key = "Funksion match me çelës të kombinuar (gjuhë + map_key)"
+output_phf = "Gjenero funksione phf map për gjuhë të ndryshme"
+output_phf_by_key = "phf map me çelësa të zakonshëm vargu (jo TupleKey)"
+output_phf_all_in_one = "Kombino të gjitha phf map në një funksion"
+output_locales_fn = "Eksporto funksionin all_locales"
+output_ron = "Eksporto varg në formatin RON"
+
+input = "Direktoria Burimore e Burimeve të Lokalizuara"
+dsl_suffix = 'Shtesë DSL File (default ".dsl")'
+include_languages = "Modalitet Lista e Bardhë: Inicializo vetëm ID gjuhësh nga lista"
+include_map_names = "Inicializo vetëm emrat e hartave nga lista"
+exclude_languages = "Modalitet Lista e Zezë: Mos inicializo ID gjuhësh nga lista"
+exclude_map_names = "Mos inicializo emrat e hartave nga lista"
+
+base_name = 'Emri Bazë i "Highlight-Map"'
+suffix = 'Shtesa e Re e "Highlight-Map"'
+true_color = "Ngjyra e Vërtetë 24-bit"
+syntax_name = "Emri i Sintaksës"
+theme_name = "Emri i Temës"
+background = "Aktivizo sfondin"
+custom_syntax_set = "File Set Sintakse i Personalizuar"
+custom_theme_set = "File Set Temash i Personalizuar"
+list_all_syntaxes = "Shfaq të gjitha emrat e sintaksës dhe zgjerimet"
+list_all_themes = "Shfaq të gjitha emrat e temave"
+
+display_config_dir = "Shfaq Direktorinë e Konfigurimit të Glossa"

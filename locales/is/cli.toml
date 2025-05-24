@@ -1,0 +1,37 @@
+outdir = "Úttaksskráarsafn"
+visibility = "Sýnileiki myndaðs kóða"
+bincode_suffix = "bincode skráarending"
+mod_prefix = 'mod forskeyti skráar (sjálfgefið "l10n_")'
+
+output_bincode = "Búa til aðskildar bincode skrár fyrir mismunandi tungumál"
+output_bincode_all_in_one = "Úttak allra bincode í eina skrá"
+output_match_fn = "Búa til Rust kóðaskrár með match virkni fyrir tungumál"
+output_match_fn_by_key = "Nota aðeins map_key sem lykil (án map_name)"
+output_match_fn_all_in_one = "Úttak allra gagna í eina match virkni (strengur)"
+output_match_fn_all_in_one_by_language = "Match virkni með tungumálsheiti sem lykil"
+output_match_fn_all_in_one_by_language_and_key = "Match virkni með samsettum lykli (tungumál+map_key)"
+output_phf = "Búa til aðskildar phf kortavirknir fyrir tungumál"
+output_phf_by_key = "phf kort með venjulegum strenglykli (ekki TupleKey)"
+output_phf_all_in_one = "Sameina öll phf kort í eina virkni"
+output_locales_fn = "Úttak all_locales virkni"
+output_ron = "Úttak streng í RON-sniði"
+
+input = "Upprunaskráarsafn staðfærðra auðlinda"
+dsl_suffix = 'DSL skráarending (sjálfgefið ".dsl")'
+include_languages = "Hvítur listi: Frumstilla aðeins tungumáls ID í lista"
+include_map_names = "Frumstilla aðeins kortanöfn í lista"
+exclude_languages = "Svartur listi: Ekki frumstilla tungumáls ID í lista"
+exclude_map_names = "Ekki frumstilla kortanöfn í lista"
+
+base_name = 'Grunnheiti "Highlight-Map"'
+suffix = 'Ný ending fyrir "Highlight-Map"'
+true_color = "24-bita sann litur"
+syntax_name = "Málfræðiheiti"
+theme_name = "Þemaheiti"
+background = "Virkja bakgrunn"
+custom_syntax_set = "Sérsniðin málfræðiskrá"
+custom_theme_set = "Sérsniðin þemaskrá"
+list_all_syntaxes = "Sýna öll málfræðiheiti og endingar"
+list_all_themes = "Sýna öll þemaheiti"
+
+display_config_dir = "Sýna stillingaskráarsafn Glossa"

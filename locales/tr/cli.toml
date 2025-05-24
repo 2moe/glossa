@@ -1,0 +1,37 @@
+outdir = "Çıktı dizini"
+visibility = "Oluşturulan kodun görünürlüğü"
+bincode_suffix = "bincode dosya uzantısı"
+mod_prefix = 'mod dosya öneki (varsayılan "l10n_")'
+
+output_bincode = "Farklı diller için bağımsız bincode dosyaları oluştur"
+output_bincode_all_in_one = "Tüm dillerin bincode'larını tek dosyaya aktar"
+output_match_fn = "Farklı diller için Rust kod dosyaları oluştur (match ifadeli fonksiyonlar içeren)"
+output_match_fn_by_key = "Yalnızca map_key'i anahtar olarak kullan (map_name içermez)"
+output_match_fn_all_in_one = "Tüm verileri tek match fonksiyonuna aktar (dize)"
+output_match_fn_all_in_one_by_language = "Dil adını anahtar olarak kullanan match fonksiyonu"
+output_match_fn_all_in_one_by_language_and_key = "Birleşik anahtarlı match fonksiyonu (dil adı + map_key)"
+output_phf = "Farklı diller için bağımsız phf harita fonksiyonları oluştur"
+output_phf_by_key = "Sıradan dize anahtarlı phf harita (TupleKey değil)"
+output_phf_all_in_one = "Tüm phf haritaları tek fonksiyonda birleştir"
+output_locales_fn = "all_locales fonksiyonunu dışa aktar"
+output_ron = "RON formatında dize dışa aktar"
+
+input = "Yerelleştirme kaynaklarının kaynak dizini"
+dsl_suffix = 'DSL dosya uzantısı (varsayılan ".dsl")'
+include_languages = "Beyaz liste modu: Yalnızca listedeki dil ID'leri başlatılır"
+include_map_names = "Yalnızca listedeki harita adları başlatılır"
+exclude_languages = "Kara liste modu: Listedeki dil ID'leri başlatılmaz"
+exclude_map_names = "Listedeki harita adları başlatılmaz"
+
+base_name = '"Highlight-Map" temel adı'
+suffix = '"Highlight-Map" yeni uzantısı'
+true_color = "24-bit gerçek renk"
+syntax_name = "Sözdizimi adı"
+theme_name = "Tema adı"
+background = "Arka plan etkinleştirilsin mi"
+custom_syntax_set = "Özel sözdizimi seti dosyası"
+custom_theme_set = "Özel tema seti dosyası"
+list_all_syntaxes = "Tüm sözdizimi adlarını ve uzantıları göster"
+list_all_themes = "Tüm tema adlarını göster"
+
+display_config_dir = "Glossa yapılandırma dizinini göster"

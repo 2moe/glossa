@@ -1,0 +1,37 @@
+outdir = "Uitvoergids"
+visibility = "Sigbaarheid van gegenereerde kode"
+bincode_suffix = "bincode-lêeragtervoegsel"
+mod_prefix = 'mod-lêervoorvoegsel (standaard "l10n_")'
+
+output_bincode = "Genereer aparte bincode-lêers vir verskillende tale"
+output_bincode_all_in_one = "Eksporteer alle tale se bincode na een lêer"
+output_match_fn = "Genereer Rust-lêers met match-uitdrukkings vir tale"
+output_match_fn_by_key = "Gebruik slegs map_key as sleutel (sonder map_name)"
+output_match_fn_all_in_one = "Konsolideer alle data in een match-funksie (string)"
+output_match_fn_all_in_one_by_language = "Match-funksie met taalnaam as sleutel"
+output_match_fn_all_in_one_by_language_and_key = "Match-funksie met gekombineerde sleutel (taal + map_key)"
+output_phf = "Genereer phf-kaartfunksies per taal"
+output_phf_by_key = "phf-kaart met gewone string-sleutels (nie TupleKey)"
+output_phf_all_in_one = "Kombineer alle phf-kaarte in een funksie"
+output_locales_fn = "Eksporteer all_locales-funksie"
+output_ron = "Eksporteer string in RON-formaat"
+
+input = "Bronkatalogus vir lokaliseringhulpbronne"
+dsl_suffix = 'DSL-lêeragtervoegsel (standaard ".dsl")'
+include_languages = "Witlysmodus: Inisialiseer slegs taal-ID's in lys"
+include_map_names = "Inisialiseer slegs kaartname in lys"
+exclude_languages = "Swartlysmodus: Moet nie taal-ID's inisialiseer nie"
+exclude_map_names = "Moet nie kaartname in lys inisialiseer nie"
+
+base_name = 'Basisnaam van "Highlight-Map"'
+suffix = 'Nuwe "Highlight-Map"-agtervoegsel'
+true_color = "24-bis ware kleur"
+syntax_name = "Sintaksnaam"
+theme_name = "Temanaam"
+background = "Aktiveer agtergrond"
+custom_syntax_set = "Aangepaste sintaksisstel-lêer"
+custom_theme_set = "Aangepaste temastel-lêer"
+list_all_syntaxes = "Vertoon alle sintaksname en uitbreidings"
+list_all_themes = "Vertoon alle temaname"
+
+display_config_dir = "Vertoon glossa se opstellinggids"

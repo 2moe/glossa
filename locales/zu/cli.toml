@@ -1,0 +1,37 @@
+outdir = "Indawo yokuphuma"
+visibility = "Ukubonakala kwekhodi ekhiqiziwe"
+bincode_suffix = "Isijobelelo sefayela ye-bincode"
+mod_prefix = 'Isiqalo sefayela ye-mod (okungu-"l10n_" ngokumiselwe)'
+
+output_bincode = "Dala amafayela e-bincode ahlukene ngezilimi ezahlukene"
+output_bincode_all_in_one = "Khipha zonke izilimi ze-bincode kufayela elilodwa"
+output_match_fn = "Dala amafayela e-Rust ane-match functions ezilimini ezahlukene"
+output_match_fn_by_key = "Sebenzisa i-map_key kuphela njengesihluthuli (akufaki i-map_name)"
+output_match_fn_all_in_one = "Khipha yonke idatha kufayela elilodwa le-match function (uchungechunge)"
+output_match_fn_all_in_one_by_language = "I-match function enegama lesiLimi njengesihluthuli"
+output_match_fn_all_in_one_by_language_and_key = "I-match function enesihluthuli esihlanganisiwe (igama lesiLimi + map_key)"
+output_phf = "Dala ama-phf map functions ahlukene ngezilimi"
+output_phf_by_key = "I-phf map enezihluthuli eziyimvumelwano (hhayi i-TupleKey)"
+output_phf_all_in_one = "Hlanganisa zonke iziphakamiso ze-phf map kufayela elilodwa"
+output_locales_fn = "Khipha i-all_locales function"
+output_ron = "Khipha uchungechunge ngefomethi ye-RON"
+
+input = "Indawo yemithombo yesiZulu"
+dsl_suffix = 'Isijobelelo sefayela ye-DSL (okungu-".dsl" ngokumiselwe)'
+include_languages = "Imodi yohlu olumhlophe: Qalisa kuphela ama-ID ezilimi ohlwini"
+include_map_names = "Qalisa kuphela amagama e-map ahlwini"
+exclude_languages = "Imodi yohlu olumnyama: Ungaqalisi ama-ID ezilimi ahlwini"
+exclude_map_names = "Ungaqalisi amagama e-map ahlwini"
+
+base_name = 'Igama eliyisisekelo le-"Highlight-Map"'
+suffix = 'Isijobelelo esisha se-"Highlight-Map"'
+true_color = "Umbala weqiniso onamabhithi angu-24"
+syntax_name = "Igama lesiTakhi"
+theme_name = "Igama lesihloko"
+background = "Vula isizinda"
+custom_syntax_set = "Ifayela lesiTakhi elikhethekile"
+custom_theme_set = "Ifayela lamathimu akhethekile"
+list_all_syntaxes = "Bonisa wonke amagama esiTakhi kanye nezandiso"
+list_all_themes = "Bonisa wonke amagama amathimu"
+
+display_config_dir = "Bonisa indawo yokucushwa kwe-Glossa"

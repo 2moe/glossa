@@ -1,0 +1,37 @@
+outdir = "תיקיית פלט"
+visibility = "נראות קוד שנוצר"
+bincode_suffix = "סיומת קובץ bincode"
+mod_prefix = 'קידומת קובץ mod (ברירת מחדל "l10n_")'
+
+output_bincode = "צור קבצי bincode נפרדים לשפות שונות"
+output_bincode_all_in_one = "ייצא את כל ה-bincode לקובץ אחד"
+output_match_fn = "צור קבצי Rust עם פונקציות match לכל שפה"
+output_match_fn_by_key = "השתמש רק ב-map_key כמפתח (ללא map_name)"
+output_match_fn_all_in_one = "ייצא את כל הנתונים לפונקציית match אחת (מחרוזת)"
+output_match_fn_all_in_one_by_language = "פונקציית match עם שם שפה כמפתח"
+output_match_fn_all_in_one_by_language_and_key = "פונקציית match עם מפתח משולב (שפה + map_key)"
+output_phf = "צור פונקציות phf map נפרדות לשפות"
+output_phf_by_key = "phf map עם מפתחות מחרוזת רגילים (לא TupleKey)"
+output_phf_all_in_one = "מזג את כל ה-phf maps לפונקציה אחת"
+output_locales_fn = "ייצא את פונקציית all_locales"
+output_ron = "ייצא מחרוזת בפורמט RON"
+
+input = "תיקיית מקור למשאבים מקומיים"
+dsl_suffix = 'סיומת קובץ DSL (ברירת מחדל ".dsl")'
+include_languages = "מצב רשימה לבנה: אתחל רק מזהה שפות מהרשימה"
+include_map_names = "אתחל רק שמות מפות מהרשימה"
+exclude_languages = "מצב רשימה שחורה: אל תאתחל מזהה שפות מהרשימה"
+exclude_map_names = "אל תאתחל שמות מפות מהרשימה"
+
+base_name = 'שם בסיס ל"Highlight-Map"'
+suffix = 'סיומת חדשה ל"Highlight-Map"'
+true_color = "צבע אמיתי 24-ביט"
+syntax_name = "שם תחביר"
+theme_name = "שם ערכת עיצוב"
+background = "הפעל רקע"
+custom_syntax_set = "קובץ ערכת תחביר מותאמת"
+custom_theme_set = "קובץ ערכת עיצוב מותאמת"
+list_all_syntaxes = "הצג כל שמות תחביר וסיומות"
+list_all_themes = "הצג כל שמות ערכות עיצוב"
+
+display_config_dir = "הצג תיקיית תצורת glossa"

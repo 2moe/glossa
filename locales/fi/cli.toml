@@ -1,0 +1,37 @@
+outdir = "Tulostushakemisto"
+visibility = "Luodun koodin näkyvyys"
+bincode_suffix = "bincode-tiedoston pääte"
+mod_prefix = 'mod-tiedoston etuliite (oletus "l10n_")'
+
+output_bincode = "Luo erilliset bincode-tiedostot eri kielille"
+output_bincode_all_in_one = "Vie kaikki kielten bincodet yhteen tiedostoon"
+output_match_fn = "Luo erilliset Rust-kooditiedostot (sisältää match-lausekkeet) kielille"
+output_match_fn_by_key = "Käytä vain map_key:ta avaimena (ei map_name)"
+output_match_fn_all_in_one = "Yhdistä kaikki tiedot yhteen match-funktioon (merkkijono)"
+output_match_fn_all_in_one_by_language = "Match-funktio kielten nimillä avaimina"
+output_match_fn_all_in_one_by_language_and_key = "Match-funktio yhdistetyillä avaimilla (kieli + map_key)"
+output_phf = "Luo erilliset phf-karttafunktiot kielille"
+output_phf_by_key = "phf-kartta tavallisilla merkkijonoavaimilla (ei TupleKey)"
+output_phf_all_in_one = "Yhdistä kaikki phf-kartat yhteen funktioon"
+output_locales_fn = "Vie all_locales-funktio"
+output_ron = "Vie merkkijono RON-muodossa"
+
+input = "Lokalisointiresurssien lähdehakemisto"
+dsl_suffix = 'DSL-tiedoston pääte (oletus ".dsl")'
+include_languages = "Valkoinen lista: Alusta vain listalla olevat kielitunnisteet"
+include_map_names = "Alusta vain listalla olevat karttanimet"
+exclude_languages = "Musta lista: Älä alusta listalla olevia kielitunnisteita"
+exclude_map_names = "Älä alusta listalla olevia karttanimiä"
+
+base_name = 'Highlight-Mapin perusnimi'
+suffix = 'Uuden Highlight-Mapin pääte'
+true_color = "24-bittinen todellinen väri"
+syntax_name = "Syntaksin nimi"
+theme_name = "Teeman nimi"
+background = "Ota tausta käyttöön"
+custom_syntax_set = "Mukautettu syntaksikokoelmantiedosto"
+custom_theme_set = "Mukautettu teemakokoelmantiedosto"
+list_all_syntaxes = "Näytä kaikki syntaksien nimet ja päätteet"
+list_all_themes = "Näytä kaikki teemojen nimet"
+
+display_config_dir = "Näytä glossan asetushakemisto"

@@ -1,0 +1,37 @@
+outdir = "Dosye Sòti"
+visibility = "Vizibilite Kòd Jenere"
+bincode_suffix = "Sifiks Dosye Bincode"
+mod_prefix = 'Prefiks Dosye Mod (default "l10n_")'
+
+output_bincode = "Jenere dosye bincode endepandan pou chak lang"
+output_bincode_all_in_one = "Ekspòte tout bincode nan yon sèl dosye"
+output_match_fn = "Jenere dosye Rust ak fonksyon match pou chak lang"
+output_match_fn_by_key = "Sèlman itilize map_key kòm kle (san map_name)"
+output_match_fn_all_in_one = "Konsolide tout done nan yon sèl fonksyon match (chenn)"
+output_match_fn_all_in_one_by_language = "Fonksyon match ak non lang kòm kle"
+output_match_fn_all_in_one_by_language_and_key = "Fonksyon match ak kle konpoze (non lang + map_key)"
+output_phf = "Jenere fonksyon phf map pou chak lang"
+output_phf_by_key = "phf map ak kle chenn òdinè (pa TupleKey)"
+output_phf_all_in_one = "Konsolide tout phf map nan yon sèl fonksyon"
+output_locales_fn = "Ekspòte fonksyon all_locales"
+output_ron = "Ekspòte chenn nan fòma RON"
+
+input = "Dosye Sous Resous Lokalizasyon"
+dsl_suffix = 'Sifiks Dosye DSL (default ".dsl")'
+include_languages = "Mòd Lis Blan: Inisyalize sèlman ID lang nan lis la"
+include_map_names = "Inisyalize sèlman non kat nan lis la"
+exclude_languages = "Mòd Lis Nwa: Pa inisyalize ID lang nan lis la"
+exclude_map_names = "Pa inisyalize non kat nan lis la"
+
+base_name = 'Non Baz "Highlight-Map"'
+suffix = 'Sifiks Nouvo "Highlight-Map"'
+true_color = "Koulè Vre 24-bit"
+syntax_name = "Non Sentaks"
+theme_name = "Non Tèm"
+background = "Pèmèt background"
+custom_syntax_set = "Dosye Sentaks Personnalize"
+custom_theme_set = "Dosye Tèm Personnalize"
+list_all_syntaxes = "Afiche tout non sentaks ak ekstansyon"
+list_all_themes = "Afiche tout non tèm"
+
+display_config_dir = "Afiche Dosye Konfigirasyon Glossa"

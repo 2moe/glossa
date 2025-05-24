@@ -1,4 +1,4 @@
-use glossa::{LangID, sys::new_once_lock};
+use glossa::sys::new_once_lock;
 
 fn get_env(s: &str) -> Option<String> {
   std::env::var(s)
@@ -19,15 +19,6 @@ pub fn static_glossa_l10n_dir() -> Option<&'static str> {
   new_once_lock!(V: Option<String>);
   V.get_or_init(|| get_env("GLOSSA_L10N_DIR"))
     .as_deref()
-}
-
-/// `GLOSSA_LANG.split(['.', '@', ':']).next().into().parse()`
-pub fn normalize_glossa_lang() -> Option<LangID> {
-  static_glossa_lang().and_then(|v| {
-    v.split(['.', '@', ':'])
-      .next()
-      .and_then(|x| x.parse().ok())
-  })
 }
 
 /// GLOSSA_LANG

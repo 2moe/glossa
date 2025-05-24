@@ -1,0 +1,37 @@
+outdir = "Utdatakatalog"
+visibility = "Synlighet för genererad kod"
+bincode_suffix = "Bincode-filsuffix"
+mod_prefix = 'Prefix för mod-fil (standard "l10n_")'
+
+output_bincode = "Generera separata bincode-filer för olika språk"
+output_bincode_all_in_one = "Exportera alla språks bincode till en fil"
+output_match_fn = "Generera Rust-kodfiler med match-uttryck för olika språk"
+output_match_fn_by_key = "Använd endast map_key som nyckel (exkluderar map_name)"
+output_match_fn_all_in_one = "Samla all data i en match-funktion (sträng)"
+output_match_fn_all_in_one_by_language = "Match-funktion med språknamn som nyckel"
+output_match_fn_all_in_one_by_language_and_key = "Match-funktion med sammansatt nyckel (språk + map_key)"
+output_phf = "Generera phf-map-funktioner per språk"
+output_phf_by_key = "phf-map med vanliga strängnycklar (inte TupleKey)"
+output_phf_all_in_one = "Samla alla phf-mappar i en funktion"
+output_locales_fn = "Exportera all_locales-funktionen"
+output_ron = "Exportera sträng i RON-format"
+
+input = "Källkatalog för lokaliseringsresurser"
+dsl_suffix = 'DSL-filsuffix (standard ".dsl")'
+include_languages = "Vitlistningsläge: Endast initiera språk-ID:n i listan"
+include_map_names = "Endast initiera map-namn i listan"
+exclude_languages = "Svartlistningsläge: Initiera inte språk-ID:n i listan"
+exclude_map_names = "Initiera inte map-namn i listan"
+
+base_name = 'Basnamn för "Highlight-Map"'
+suffix = 'Suffix för nygenererad "Highlight-Map"'
+true_color = "24-bitars sann färg"
+syntax_name = "Syntaxnamn"
+theme_name = "Temanamn"
+background = "Aktivera bakgrund"
+custom_syntax_set = "Anpassad syntaxsamlingsfil"
+custom_theme_set = "Anpassad temafilsamling"
+list_all_syntaxes = "Visa alla syntaxnamn och tillägg"
+list_all_themes = "Visa alla temanamn"
+
+display_config_dir = "Visa Glossas konfigurationskatalog"

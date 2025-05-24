@@ -1,0 +1,37 @@
+outdir = "Lisi o Galuega"
+visibility = "Malamalama o le code ua fausia"
+bincode_suffix = "Fa'ai'uga o le faila bincode"
+mod_prefix = '''Fa'amuamua o le faila mod (le masani "l10n_")'''
+
+output_bincode = "Fausia faila bincode eseese mo gagana eseese"
+output_bincode_all_in_one = "Tu'u uma bincode gagana i se faila e tasi"
+output_match_fn = "Fausia faila Rust ma galuega match mo gagana ta'itasi"
+output_match_fn_by_key = "Fa'aaoga na'o le map_key e fai ma ki (leai se map_name)"
+output_match_fn_all_in_one = "Fa'atasi fa'amaumauga i se galuega match e tasi (string)"
+output_match_fn_all_in_one_by_language = "Galuega match ma igoa gagana e fai ma ki"
+output_match_fn_all_in_one_by_language_and_key = "Galuega match ma ki tu'ufa'atasi (igoa gagana + map_key)"
+output_phf = "Fausia galuega phf map mo gagana eseese"
+output_phf_by_key = "phf map ma ki masani (leai se TupleKey)"
+output_phf_all_in_one = "Fa'atasi uma phf map i se galuega e tasi"
+output_locales_fn = "Tu'u atu le galuega all_locales"
+output_ron = "Tu'u atu string i le faatulagaga RON"
+
+input = "Lisi puna o punaoa fa'alotoifale"
+dsl_suffix = '''Fa'ai'uga o le faila DSL (le masani ".dsl")'''
+include_languages = "Faiga Lisi Pa'epa'e: Fa'ato'a ID gagana i le lisi pe a le gaogao"
+include_map_names = "Fa'ato'a igoa map i le lisi pe a le gaogao"
+exclude_languages = "Faiga Lisi Uliuli: Aua ne'i fa'ato'a ID gagana i le lisi"
+exclude_map_names = "Aua ne'i fa'ato'a igoa map i le lisi"
+
+base_name = 'Igoa autu o le "Highlight-Map"'
+suffix = '''Fa'ai'uga fou o le "Highlight-Map"'''
+true_color = "Lanu moni 24-bit"
+syntax_name = "Igoa o le syntax"
+theme_name = "Igoa autu"
+background = "Fa'aaga le talaaga"
+custom_syntax_set = "Faila seti syntax fa'apitoa"
+custom_theme_set = "Faila seti autu fa'apitoa"
+list_all_syntaxes = "Fa'aali uma igoa syntax ma fa'aopoopoga"
+list_all_themes = "Fa'aali uma igoa autu"
+
+display_config_dir = "Fa'aali le lisi fa'atulagaina o le glossa"

@@ -242,7 +242,8 @@ impl<'h> Generator<'h> {
 
     eprintln!(
       "#[cfg(feature = \"{mod_prefix}{language}\")]\n\
-      mod {rs_file_name}\n"
+      mod {};\n",
+      rs_file_name.trim_end_matches(".rs")
     );
 
     let out_dir = self.get_outdir().as_deref();

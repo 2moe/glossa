@@ -1,0 +1,37 @@
+outdir = "Directoorka soo-saarka"
+visibility = "Muujinta koodhka la abuuray"
+bincode_suffix = "suffixka faylka bincode"
+mod_prefix = 'Prefixka faylka mod (default "l10n_")'
+
+output_bincode = "Abuur faylal bincode kala duwan luqadaha"
+output_bincode_all_in_one = "Dhammaan bincode-yada luqadaha ku dar fayl hal ah"
+output_match_fn = "Abuur faylal Rust leh shaqooyin match kala duwan"
+output_match_fn_by_key = "Kaliya isticmaal map_key sida fure (aan la socon map_name)"
+output_match_fn_all_in_one = "Wadaag dhammaan xogta mid ka mid ah shaqo match (xarriiq)"
+output_match_fn_all_in_one_by_language = "Shaqo match leh magaca luqada sida fure"
+output_match_fn_all_in_one_by_language_and_key = "Shaqo match leh fure isku-dhafan (luqad+map_key)"
+output_phf = "Abuur shaqooyin phf map kala duwan luqadaha"
+output_phf_by_key = "phf map leh fureyo caadi ah (maahan TupleKey)"
+output_phf_all_in_one = "Dhammaan phf map-yada ku dar shaqo hal ah"
+output_locales_fn = "Soo saar shaqada all_locales"
+output_ron = "Soo saar xarriiq qaabka RON"
+
+input = "Directoorka asalka khayraadka gobolaysiinta"
+dsl_suffix = 'Suffixka faylka DSL (default ".dsl")'
+include_languages = "Qaabka liistada cad: Kaliya ID-yaasha luqadaha liistada la bilaabiyo"
+include_map_names = "Kaliya magacyada khariidad liistada la bilaabiyo"
+exclude_languages = "Qaabka liistada madow: Ha bilaabin ID-yaasha luqadaha"
+exclude_map_names = "Ha bilaabin magacyada khariidad liistada"
+
+base_name = 'Magaca aasaasiga ah ee "Highlight-Map"'
+suffix = 'Suffixka cusub ee "Highlight-Map"'
+true_color = "Midab run ah 24-bit"
+syntax_name = "Magaca syntax-ka"
+theme_name = "Magaca mawduuca"
+background = "Hawl-geli background"
+custom_syntax_set = "Faylka syntax-ka gaarka ah"
+custom_theme_set = "Faylka mawduucyada gaarka ah"
+list_all_syntaxes = "Tus dhammaan magacyada syntax iyo kordhintooda"
+list_all_themes = "Tus dhammaan magacyada mawduucyada"
+
+display_config_dir = "Tus directoorka qaabeynta glossa"

@@ -1,0 +1,37 @@
+outdir = "ไดเรกทอรีผลลัพธ์"
+visibility = "การมองเห็นของโค้ดที่สร้าง"
+bincode_suffix = "นามสกุลไฟล์ bincode"
+mod_prefix = 'คำนำหน้าไฟล์ mod (ค่าเริ่มต้น "l10n_")'
+
+output_bincode = "สร้างไฟล์ bincode แยกสำหรับแต่ละภาษา"
+output_bincode_all_in_one = "ส่งออก bincode ทุกภาษาเป็นไฟล์เดียว"
+output_match_fn = "สร้างไฟล์ Rust แยกพร้อมฟังก์ชัน match expression"
+output_match_fn_by_key = "ใช้เฉพาะ map_key เป็นคีย์ (ไม่มี map_name)"
+output_match_fn_all_in_one = "ส่งออกข้อมูลทั้งหมดเป็นฟังก์ชัน match เดียว (สตริง)"
+output_match_fn_all_in_one_by_language = "ฟังก์ชัน match ใช้ชื่อภาษาเป็นคีย์"
+output_match_fn_all_in_one_by_language_and_key = "ฟังก์ชัน match ใช้คีย์รวม (ชื่อภาษา + map_key)"
+output_phf = "สร้างฟังก์ชัน phf map แยกสำหรับแต่ละภาษา"
+output_phf_by_key = "phf map ใช้คีย์สตริงธรรมดา (ไม่ใช้ TupleKey)"
+output_phf_all_in_one = "รวม phf map ทั้งหมดเป็นฟังก์ชันเดียว"
+output_locales_fn = "ส่งออกฟังก์ชัน all_locales"
+output_ron = "ส่งออกสตริงในรูปแบบ RON"
+
+input = "ไดเรกทอรีต้นทางของทรัพยากรท้องถิ่น"
+dsl_suffix = 'นามสกุลไฟล์ DSL (ค่าเริ่มต้น ".dsl")'
+include_languages = "โหมดไวท์ลิสต์: เริ่มต้นเฉพาะ ID ภาษาในรายการ"
+include_map_names = "เริ่มต้นเฉพาะชื่อแผนที่ในรายการ"
+exclude_languages = "โหมดแบล็คลิสต์: ไม่เริ่มต้น ID ภาษาในรายการ"
+exclude_map_names = "ไม่เริ่มต้นชื่อแผนที่ในรายการ"
+
+base_name = 'ชื่อพื้นฐานของ "Highlight-Map"'
+suffix = 'นามสกุลใหม่ของ "Highlight-Map"'
+true_color = "สีจริง 24-bit"
+syntax_name = "ชื่อไวยากรณ์"
+theme_name = "ชื่อธีม"
+background = "เปิดใช้งานพื้นหลัง"
+custom_syntax_set = "ไฟล์ชุดไวยากรณ์กำหนดเอง"
+custom_theme_set = "ไฟล์ชุดธีมกำหนดเอง"
+list_all_syntaxes = "แสดงชื่อไวยากรณ์และนามสกุลทั้งหมด"
+list_all_themes = "แสดงชื่อธีมทั้งหมด"
+
+display_config_dir = "แสดงไดเรกทอรีการตั้งค่า glossa"

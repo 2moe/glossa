@@ -1,0 +1,37 @@
+outdir = "Таһаарыы паапката"
+visibility = "Үөскээбит коду көстүүтэ"
+bincode_suffix = "Bincode билэ суффикса"
+mod_prefix = 'Mod билэ префикса (сүрүннээх "l10n_")'
+
+output_bincode = "Тус-туспа тылларга араас bincode билэлэри оҥоруу"
+output_bincode_all_in_one = "Бары тыллар bincode-ларын биир билэҕэ таһаарыы"
+output_match_fn = "Rust коду билэлэрин оҥоруу (match функциялаах)"
+output_match_fn_by_key = "map_key-ны эрэ ключ курдук тутун (map_name суох)"
+output_match_fn_all_in_one = "Бары дааннайы биир match функцияҕа таһаарыы (строка)"
+output_match_fn_all_in_one_by_language = "Тыл аата ключ курдук match функция"
+output_match_fn_all_in_one_by_language_and_key = "Холбоһуктуу ключ (тыл аата + map_key) match функция"
+output_phf = "Тылларга phf хаарта функцияларын оҥоруу"
+output_phf_by_key = "Эрээссийэ строка ключтаах phf хаарта (TupleKey буолбатах)"
+output_phf_all_in_one = "Бары phf хаарталары биир функцияҕа таһаарыы"
+output_locales_fn = "all_locales функцияны таһаарыы"
+output_ron = "RON формаатыгар строканы таһаарыы"
+
+input = "Локализация ресурстарын төрүт паапката"
+dsl_suffix = 'DSL билэ суффикса (сүрүннээх ".dsl")'
+include_languages = "Үрүҥ испииһэк: Испииһэккэ баар тыл ID-ларын эрэ инициализациялаа"
+include_map_names = "Испииһэккэ баар хаарта ааттарын эрэ инициализациялаа"
+exclude_languages = "Хара испииһэк: Испииһэк тыл ID-ларын инициализациялаама"
+exclude_map_names = "Испииһэк хаарта ааттарын инициализациялаама"
+
+base_name = '"Highlight-Map" төрүт аата'
+suffix = '"Highlight-Map" саҥа суффикса'
+true_color = "24-бит истиэннээх өҥ"
+syntax_name = "Синтаксис аата"
+theme_name = "Тема аата"
+background = "Фоннары холбооһун"
+custom_syntax_set = "Анал синтаксис хомуурун билэтэ"
+custom_theme_set = "Анал тема хомуурун билэтэ"
+list_all_syntaxes = "Бары синтаксис ааттарын уонна эбии ааттарын көрдөр"
+list_all_themes = "Бары тема ааттарын көрдөр"
+
+display_config_dir = "Glossa конфиг паапкатын көрдөр"

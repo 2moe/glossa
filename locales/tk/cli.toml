@@ -1,0 +1,37 @@
+outdir = "Çykdylar katalogy"
+visibility = "Generirlen kodyň görnüşi"
+bincode_suffix = "Bincode faýl suffiksi"
+mod_prefix = 'Mod faýl prefiksi (deslapky "l10n_")'
+
+output_bincode = "Aýratyn diller üçin aýratyn bincode faýllary döretmek"
+output_bincode_all_in_one = "Ähli dilleriň bincode-laryny bir faýla çykarmak"
+output_match_fn = "Rust kody faýllaryny döretmek (match ifadeli funksiýalar bilen)"
+output_match_fn_by_key = "Diňe map_key açar ulanyň (map_name ýok)"
+output_match_fn_all_in_one = "Ähli maglumatlary bir match funksiýasynda çykarmak (setir)"
+output_match_fn_all_in_one_by_language = "Dil ady bilen açar ulanylýan match funksiýasy"
+output_match_fn_all_in_one_by_language_and_key = "Birleşdirilen açar (dil+map_key) bilen match funksiýasy"
+output_phf = "Aýratyn diller üçin phf kart funksiýalary döretmek"
+output_phf_by_key = "Adaty setir açarlary bilen phf kart (TupleKey däl)"
+output_phf_all_in_one = "Ähli phf kartlary bir funksiýada birleşdirmek"
+output_locales_fn = "all_locales funksiýasyny çykarmak"
+output_ron = "RON formatynda setir çykarmak"
+
+input = "Lokalizasiýa resurslarynyň çeşmesi"
+dsl_suffix = 'DSL faýl suffiksi (deslapky ".dsl")'
+include_languages = "Ak sanaw tertibi: Sanawdaky dil ID-laryny diňe başlat"
+include_map_names = "Sanawdaky kart adlaryny diňe başlat"
+exclude_languages = "Gara sanaw tertibi: Sanawdaky dil ID-laryny başlatma"
+exclude_map_names = "Sanawdaky kart adlaryny başlatma"
+
+base_name = '"Highlight-Map" esasy ady'
+suffix = '"Highlight-Map" täze suffiksi'
+true_color = "24-bit hakyky reňk"
+syntax_name = "Sintaksis ady"
+theme_name = "Tema ady"
+background = "Fon işletmek"
+custom_syntax_set = "Özleşdirilen sintaksis toplumy faýly"
+custom_theme_set = "Özleşdirilen tema toplumy faýly"
+list_all_syntaxes = "Ähli sintaksis adlaryny we giňeltmeleri görkez"
+list_all_themes = "Ähli tema adlaryny görkez"
+
+display_config_dir = "Glossa konfigurasiýa katalogyny görkez"

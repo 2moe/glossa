@@ -1,0 +1,37 @@
+outdir = "Direktoryo ng Output"
+visibility = "Visibility ng nabuong code"
+bincode_suffix = "Suffix ng bincode file"
+mod_prefix = 'Prefix ng mod file (default: "l10n_")'
+
+output_bincode = "Gumawa ng hiwalay na bincode file para sa bawat wika"
+output_bincode_all_in_one = "Ilagay ang lahat ng bincode sa iisang file"
+output_match_fn = "Gumawa ng Rust code file na may match expression para sa bawat wika"
+output_match_fn_by_key = "Katulad ng output_match_fn pero map_key lang ang key (walang map_name)"
+output_match_fn_all_in_one = "Isama ang lahat ng data sa iisang match function (string)"
+output_match_fn_all_in_one_by_language = "Match function na may language name bilang key"
+output_match_fn_all_in_one_by_language_and_key = "Match function na may kombinasyong key (language + map_key)"
+output_phf = "Gumawa ng hiwalay na phf map function para sa bawat wika"
+output_phf_by_key = "Phf map na may regular string key (hindi TupleKey)"
+output_phf_all_in_one = "Pagsamasamahin ang lahat ng phf map sa iisang function"
+output_locales_fn = "Ilabas ang all_locales function"
+output_ron = "Ilabas bilang RON-formatted string"
+
+input = "Source directory ng localization resources"
+dsl_suffix = 'Suffix ng DSL file (default: ".dsl")'
+include_languages = "Whitelist mode: I-initialize lang ang nakalista na language IDs"
+include_map_names = "I-initialize lang ang nakalista na map_names"
+exclude_languages = "Blacklist mode: Hindi i-initialize ang nakalista na language IDs"
+exclude_map_names = "Hindi i-initialize ang nakalista na map_names"
+
+base_name = 'Pangalan ng base Highlight-Map'
+suffix = 'Suffix ng bagong Highlight-Map'
+true_color = "24-bit True Color"
+syntax_name = "Pangalan ng syntax"
+theme_name = "Pangalan ng theme"
+background = "I-enable ang background"
+custom_syntax_set = "Custom syntax set file"
+custom_theme_set = "Custom theme set file"
+list_all_syntaxes = "Ipakita ang lahat ng syntax name at extensions"
+list_all_themes = "Ipakita ang lahat ng theme name"
+
+display_config_dir = "Ipakita ang config directory ng glossa"

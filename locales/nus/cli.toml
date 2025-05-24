@@ -1,0 +1,37 @@
+outdir = "Paŋ de Gat"
+visibility = "Rɛɛr de Code Yen Yen"
+bincode_suffix = "Kɔc bincode"
+mod_prefix = 'Mod kuɔny (ŋic "l10n_")'
+
+output_bincode = "Yen bɛ̈n bincode yic kɔc dhɔ̈kic"
+output_bincode_all_in_one = "Bincode dhɔ̈kic ku kɔc yen yic"
+output_match_fn = "Rust code yen match wut kɔc dhɔ̈kic"
+output_match_fn_by_key = "Map_key ee key, map_name aacï"
+output_match_fn_all_in_one = "Kɔc ku kɔc yen match (lɛ̈k)"
+output_match_fn_all_in_one_by_language = "Match ku key ye dhɔ̈k"
+output_match_fn_all_in_one_by_language_and_key = "Match ku key (dhɔ̈k + map_key)"
+output_phf = "PHF map yic kɔc dhɔ̈kic"
+output_phf_by_key = "PHF map ku key lɛ̈k (mɛn TupleKey)"
+output_phf_all_in_one = "PHF map dhɔ̈kic ku yic"
+output_locales_fn = "Yen all_locales wut"
+output_ron = "Yen RON lɛ̈k"
+
+input = "Paŋ rɛɛr kuɔny"
+dsl_suffix = 'DSL kɔc (ŋic ".dsl")'
+include_languages = "Aköl piɔ̈ŋ: ID dhɔ̈kic ye yen"
+include_map_names = "Map_names piɔ̈ŋ ye yen"
+exclude_languages = "Aköl cïï: ID dhɔ̈kic aacï"
+exclude_map_names = "Map_names cïï aacï"
+
+base_name = 'Nyuɔɔth "Highlight-Map"'
+suffix = 'Kɔc në "Highlight-Map"'
+true_color = "24-bit nyuɔɔth"
+syntax_name = "Nyuɔɔth wɛ̈t"
+theme_name = "Nyuɔɔth wɛ̈t"
+background = "Yen piny"
+custom_syntax_set = "Wɛ̈t yen tɔ̈u"
+custom_theme_set = "Theme yen tɔ̈u"
+list_all_syntaxes = "Yen wɛ̈t ku kɔc"
+list_all_themes = "Yen theme ku kɔc"
+
+display_config_dir = "Yen glossa paŋ"

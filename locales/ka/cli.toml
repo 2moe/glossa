@@ -1,0 +1,37 @@
+outdir = "გამომავალი დირექტორია"
+visibility = "გენერირებული კოდის ხილვადობა"
+bincode_suffix = "bincode ფაილის სუფიქსი"
+mod_prefix = 'mod ფაილის პრეფიქსი (ნაგულისხმევი "l10n_")'
+
+output_bincode = "შექმენით ცალკე bincode ფაილები სხვადასხვა ენისთვის"
+output_bincode_all_in_one = "ყველა ენის bincode-ების ერთ ფაილში გატანა"
+output_match_fn = "შექმენით Rust კოდის ფაილები (match გამოსახულების ფუნქციებით)"
+output_match_fn_by_key = "გამოიყენეთ მხოლოდ map_key როგორც გასაღები (map_name-ს გარეშე)"
+output_match_fn_all_in_one = "ყველა მონაცემის ერთ match ფუნქციაში გატანა (სტრიქონი)"
+output_match_fn_all_in_one_by_language = "match ფუნქცია ენის სახელით გასაღებად"
+output_match_fn_all_in_one_by_language_and_key = "match ფუნქცია კომბინირებული გასაღებით (ენა + map_key)"
+output_phf = "შექმენით ცალკე phf რუკის ფუნქციები ენებისთვის"
+output_phf_by_key = "phf რუკა ჩვეულებრივი სტრიქონის გასაღებებით (არა TupleKey)"
+output_phf_all_in_one = "ყველა phf რუკის ერთ ფუნქციაში გაერთიანება"
+output_locales_fn = "all_locales ფუნქციის გატანა"
+output_ron = "სტრიქონის გატანა RON ფორმატში"
+
+input = "ლოკალიზაციის რესურსების საწყისი დირექტორია"
+dsl_suffix = 'DSL ფაილის სუფიქსი (ნაგულისხმევი ".dsl")'
+include_languages = "თეთრი სიის რეჟიმი: ინიციალიზაცია მხოლოდ სიაში არსებული ენის ID-ებით"
+include_map_names = "ინიციალიზაცია მხოლოდ სიაში არსებული რუკის სახელებით"
+exclude_languages = "შავი სიის რეჟიმი: არ ინიციალიზებდეს სიაში არსებულ ენის ID-ებს"
+exclude_map_names = "არ ინიციალიზებდეს სიაში არსებულ რუკის სახელებს"
+
+base_name = '"Highlight-Map"-ის საბაზისო სახელი'
+suffix = '"Highlight-Map"-ის ახალი სუფიქსი'
+true_color = "24-ბიტიანი ნამდვილი ფერი"
+syntax_name = "სინტაქსის სახელი"
+theme_name = "თემის სახელი"
+background = "ფონის გააქტიურება"
+custom_syntax_set = "მორგებული სინტაქსის კომპლექტის ფაილი"
+custom_theme_set = "მორგებული თემის კომპლექტის ფაილი"
+list_all_syntaxes = "ყველა სინტაქსის სახელის და გაფართოების ჩვენება"
+list_all_themes = "ყველა თემის სახელის ჩვენება"
+
+display_config_dir = "Glossa-ის კონფიგურაციის დირექტორიის ჩვენება"

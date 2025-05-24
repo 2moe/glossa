@@ -29,3 +29,16 @@ pub mod traits;
 mod context;
 #[cfg(feature = "std")]
 pub use context::LocaleContext;
+
+pub mod misc {
+  use lang_id::LangID;
+
+  /// `language.split(['.', '@', ':']).next().into().parse()`
+  pub fn normalize_glossa_lang(language: Option<&str>) -> Option<LangID> {
+    language.and_then(|v| {
+      v.split(['.', '@', ':'])
+        .next()
+        .and_then(|x| x.parse().ok())
+    })
+  }
+}

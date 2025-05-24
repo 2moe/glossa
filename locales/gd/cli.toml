@@ -1,0 +1,37 @@
+outdir = "Clàr nan Tìoraidh"
+visibility = "So-fhaicsinneachd còd ginte"
+bincode_suffix = "Iar-leasachan faidhle bincode"
+mod_prefix = 'Ro-leasachan faidhle mod (bun-suidhte "l10n_")'
+
+output_bincode = "Gin faidhlichean bincode neo-eisimeileach airson diofar chànanan"
+output_bincode_all_in_one = "Cuir a-mach bincode nan cànan uile gu aon fhaidhle"
+output_match_fn = "Gin faidhlichean Rust le gnìomhan match airson gach cànan"
+output_match_fn_by_key = "Cleachd map_key mar iuchair a-mhàin (gun map_name)"
+output_match_fn_all_in_one = "Cuir a-mach dàta uile ann an aon ghnìomh match (sreang)"
+output_match_fn_all_in_one_by_language = "Gnìomh match le ainm cànain mar iuchair"
+output_match_fn_all_in_one_by_language_and_key = "Gnìomh match le iuchair còmhla (ainm cànain + map_key)"
+output_phf = "Gin gnìomhan phf map airson diofar chànanan"
+output_phf_by_key = "phf map le iuchraichean sreang àbhaisteach (chan e TupleKey)"
+output_phf_all_in_one = "Cuir a-mach phf map uile ann an aon ghnìomh"
+output_locales_fn = "Cuir a-mach gnìomh all_locales"
+output_ron = "Cuir a-mach sreang ann an cruth RON"
+
+input = "Clàr stòiridh goireasan ionadail"
+dsl_suffix = 'Iar-leasachan faidhle DSL (bun-suidhte ".dsl")'
+include_languages = "Modh liosta geal: Dìth stèidheachadh ID cànain às a' liosta"
+include_map_names = "Dìth stèidheachadh ainmean mapa às a' liosta"
+exclude_languages = "Modh liosta dubh: Na stèidhich ID cànain às a' liosta"
+exclude_map_names = "Na stèidhich ainmean mapa às a' liosta"
+
+base_name = 'Ainm bunait "Highlight-Map"'
+suffix = 'Iar-leasachan ùr "Highlight-Map"'
+true_color = "Dath fìor 24-bit"
+syntax_name = "Ainm co-chòdadh"
+theme_name = "Ainm cuspair"
+background = "Cuir cùlaibh an gnìomh"
+custom_syntax_set = "Faidhle seata co-chòdadh gnàthaichte"
+custom_theme_set = "Faidhle seata cuspairean gnàthaichte"
+list_all_syntaxes = "Seall ainmean co-chòdadh is leudachain"
+list_all_themes = "Seall ainmean cuspairean uile"
+
+display_config_dir = "Seall clàr rèiteachaidh glossa"

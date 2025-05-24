@@ -1,0 +1,37 @@
+outdir = "Directori de sortida"
+visibility = "Visibilitat del codi generat"
+bincode_suffix = "Sufix de fitxer bincode"
+mod_prefix = 'Prefix de fitxer mod (per defecte "l10n_")'
+
+output_bincode = "Generar fitxers bincode independents per a cada idioma"
+output_bincode_all_in_one = "Exportar tots els bincode a un únic fitxer"
+output_match_fn = "Generar fitxers Rust amb funcions match per idioma"
+output_match_fn_by_key = "Utilitzar només map_key com a clau (sense map_name)"
+output_match_fn_all_in_one = "Consolidar dades en una funció match (cadena)"
+output_match_fn_all_in_one_by_language = "Funció match amb nom d'idioma com a clau"
+output_match_fn_all_in_one_by_language_and_key = "Funció match amb clau combinada (idioma + map_key)"
+output_phf = "Generar funcions phf map per a diferents idiomes"
+output_phf_by_key = "phf map amb claus de cadena simples (no TupleKey)"
+output_phf_all_in_one = "Consolidar totes les phf map en una funció"
+output_locales_fn = "Exportar funció all_locales"
+output_ron = "Exportar cadena en format RON"
+
+input = "Directori font de recursos de localització"
+dsl_suffix = 'Sufix de fitxer DSL (per defecte ".dsl")'
+include_languages = "Mode llista blanca: Inicialitzar només IDs d'idioma de la llista"
+include_map_names = "Inicialitzar només noms de mapa de la llista"
+exclude_languages = "Mode llista negra: No inicialitzar IDs d'idioma de la llista"
+exclude_map_names = "No inicialitzar noms de mapa de la llista"
+
+base_name = 'Nom base del "Highlight-Map"'
+suffix = 'Sufix del nou "Highlight-Map"'
+true_color = "Color real de 24 bits"
+syntax_name = "Nom de la sintaxi"
+theme_name = "Nom del tema"
+background = "Activar fons"
+custom_syntax_set = "Fitxer de sintaxi personalitzada"
+custom_theme_set = "Fitxer de temes personalitzats"
+list_all_syntaxes = "Mostrar tots els noms de sintaxi i extensions"
+list_all_themes = "Mostrar tots els noms de temes"
+
+display_config_dir = "Mostrar directori de configuració de glossa"

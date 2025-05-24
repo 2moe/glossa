@@ -1,0 +1,37 @@
+outdir = "Diréktori kaluaran"
+visibility = "katingalina kode anu dihasilkeun"
+bincode_suffix = "sufiks file bincode"
+mod_prefix = 'préfiks file mod (default "l10n_")'
+
+output_bincode = "Nyieun file bincode misah pikeun tiap basa"
+output_bincode_all_in_one = "Nyitak sadaya bincode kana hiji file"
+output_match_fn = "Nyieun file Rust kalayan fungsi match pikeun tiap basa"
+output_match_fn_by_key = "Ngan make map_key salaku konci (teu kaasup map_name)"
+output_match_fn_all_in_one = "Nyatak sadaya data kana hiji fungsi match (string)"
+output_match_fn_all_in_one_by_language = "Fungsi match maké ngaran basa salaku konci"
+output_match_fn_all_in_one_by_language_and_key = "Fungsi match kalayan konci gabungan (ngaran basa + map_key)"
+output_phf = "Nyieun fungsi phf map pikeun tiap basa"
+output_phf_by_key = "phf map kalayan konci string biasa (sanés TupleKey)"
+output_phf_all_in_one = "Nyatak sadaya phf map kana hiji fungsi"
+output_locales_fn = "Nyitak fungsi all_locales"
+output_ron = "Nyitak string dina format RON"
+
+input = "Diréktori sumber sumber lokal"
+dsl_suffix = 'sufiks file DSL (default ".dsl")'
+include_languages = "Mode daptar bodas: Inisialisasi ID basa dina daptar wungkul"
+include_map_names = "Inisialisasi ngaran map dina daptar wungkul"
+exclude_languages = "Mode daptar hideung: Ulah inisialisasi ID basa dina daptar"
+exclude_map_names = "Ulah inisialisasi ngaran map dina daptar"
+
+base_name = 'Ngaran dasar "Highlight-Map"'
+suffix = 'Sufiks anyar "Highlight-Map"'
+true_color = "Warna asli 24-bit"
+syntax_name = "Ngaran sintaksis"
+theme_name = "Ngaran téma"
+background = "Aktipkeun latar tukang"
+custom_syntax_set = "File set sintaksis khusus"
+custom_theme_set = "File set téma khusus"
+list_all_syntaxes = "Témbongkeun sadaya ngaran sintaksis jeung éksténsi"
+list_all_themes = "Témbongkeun sadaya ngaran téma"
+
+display_config_dir = "Témbongkeun diréktori konfig glossa"

@@ -1,0 +1,40 @@
+pub(crate) const fn map(key: &[u8]) -> &'static str {
+  match key {
+    b"background" => r#####"Yen piny"#####,
+    b"base_name" => r#####"Nyuɔɔth "Highlight-Map""#####,
+    b"bincode_suffix" => r#####"Kɔc bincode"#####,
+    b"custom_syntax_set" => r#####"Wɛ̈t yen tɔ̈u"#####,
+    b"custom_theme_set" => r#####"Theme yen tɔ̈u"#####,
+    b"display_config_dir" => r#####"Yen glossa paŋ"#####,
+    b"dsl_suffix" => r#####"DSL kɔc (ŋic ".dsl")"#####,
+    b"exclude_languages" => r#####"Aköl cïï: ID dhɔ̈kic aacï"#####,
+    b"exclude_map_names" => r#####"Map_names cïï aacï"#####,
+    b"include_languages" => r#####"Aköl piɔ̈ŋ: ID dhɔ̈kic ye yen"#####,
+    b"include_map_names" => r#####"Map_names piɔ̈ŋ ye yen"#####,
+    b"input" => r#####"Paŋ rɛɛr kuɔny"#####,
+    b"list_all_syntaxes" => r#####"Yen wɛ̈t ku kɔc"#####,
+    b"list_all_themes" => r#####"Yen theme ku kɔc"#####,
+    b"mod_prefix" => r#####"Mod kuɔny (ŋic "l10n_")"#####,
+    b"outdir" => r#####"Paŋ de Gat"#####,
+    b"output_bincode" => r#####"Yen bɛ̈n bincode yic kɔc dhɔ̈kic"#####,
+    b"output_bincode_all_in_one" => r#####"Bincode dhɔ̈kic ku kɔc yen yic"#####,
+    b"output_locales_fn" => r#####"Yen all_locales wut"#####,
+    b"output_match_fn" => r#####"Rust code yen match wut kɔc dhɔ̈kic"#####,
+    b"output_match_fn_all_in_one" => r#####"Kɔc ku kɔc yen match (lɛ̈k)"#####,
+    b"output_match_fn_all_in_one_by_language" => r#####"Match ku key ye dhɔ̈k"#####,
+    b"output_match_fn_all_in_one_by_language_and_key" => {
+      r#####"Match ku key (dhɔ̈k + map_key)"#####
+    }
+    b"output_match_fn_by_key" => r#####"Map_key ee key, map_name aacï"#####,
+    b"output_phf" => r#####"PHF map yic kɔc dhɔ̈kic"#####,
+    b"output_phf_all_in_one" => r#####"PHF map dhɔ̈kic ku yic"#####,
+    b"output_phf_by_key" => r#####"PHF map ku key lɛ̈k (mɛn TupleKey)"#####,
+    b"output_ron" => r#####"Yen RON lɛ̈k"#####,
+    b"suffix" => r#####"Kɔc në "Highlight-Map""#####,
+    b"syntax_name" => r#####"Nyuɔɔth wɛ̈t"#####,
+    b"theme_name" => r#####"Nyuɔɔth wɛ̈t"#####,
+    b"true_color" => r#####"24-bit nyuɔɔth"#####,
+    b"visibility" => r#####"Rɛɛr de Code Yen Yen"#####,
+    _ => "",
+  }
+}

@@ -1,0 +1,37 @@
+outdir = "Каталог вываду"
+visibility = "Бачнасць згенераванага кода"
+bincode_suffix = "Суфікс файла bincode"
+mod_prefix = 'Прэфікс файла mod (па змаўчанні "l10n_")'
+
+output_bincode = "Ствараць асобныя файлы bincode для розных моў"
+output_bincode_all_in_one = "Экспартаваць усе bincode ў адзін файл"
+output_match_fn = "Ствараць Rust-файлы з функцыямі match для моў"
+output_match_fn_by_key = "Выкарыстоўваць толькі map_key як ключ (без map_name)"
+output_match_fn_all_in_one = "Аб'яднаць усе дадзеныя ў адну функцыю match (радок)"
+output_match_fn_all_in_one_by_language = "Функцыя match з назвай мовы як ключом"
+output_match_fn_all_in_one_by_language_and_key = "Функцыя match з камбінаваным ключом (мова + map_key)"
+output_phf = "Ствараць асобныя phf-функцыі для моў"
+output_phf_by_key = "phf-map з звычайнымі радковымі ключамі (не TupleKey)"
+output_phf_all_in_one = "Аб'яднаць усе phf-map у адну функцыю"
+output_locales_fn = "Экспартаваць функцыю all_locales"
+output_ron = "Экспартаваць радок у фармаце RON"
+
+input = "Зыходны каталог лакалізацыйных рэсурсаў"
+dsl_suffix = 'Суфікс DSL-файла (па змаўчанні ".dsl")'
+include_languages = "Рэжым белага спісу: Ініцыялізаваць толькі ID моў са спісу"
+include_map_names = "Ініцыялізаваць толькі назвы map са спісу"
+exclude_languages = "Рэжым чорнага спісу: Не ініцыялізаваць ID моў са спісу"
+exclude_map_names = "Не ініцыялізаваць назвы map са спісу"
+
+base_name = 'Базавая назва "Highlight-Map"'
+suffix = 'Новы суфікс для "Highlight-Map"'
+true_color = "24-бітны сапраўдны колер"
+syntax_name = "Назва сінтаксісу"
+theme_name = "Назва тэмы"
+background = "Уключыць фон"
+custom_syntax_set = "Карыстацкі файл сінтаксісу"
+custom_theme_set = "Карыстацкі файл тэм"
+list_all_syntaxes = "Адлюстраваць усе назвы сінтаксісаў і пашырэнні"
+list_all_themes = "Адлюстраваць усе назвы тэм"
+
+display_config_dir = "Адлюстраваць канфігурацыйны каталог glossa"

@@ -1,0 +1,37 @@
+outdir = "Output-Verzeichnes"
+visibility = "Sichtbarkeet vum generéierte Code"
+bincode_suffix = "Bincode-Fichier Suffix"
+mod_prefix = 'Präfix fir Mod-Fichieren (default "l10n_")'
+
+output_bincode = "Generéiert onofhängeg Bincode-Fichiere fir verschidde Sproochen"
+output_bincode_all_in_one = "All Bincode-Fichieren an een Fichier exportéieren"
+output_match_fn = "Generéiert Rust-Code-Fichiere mat Match-Funktiounen pro Sprooch"
+output_match_fn_by_key = "Benotzt nëmmen map_key als Schlëssel (ouni map_name)"
+output_match_fn_all_in_one = "Kombinéiert all Daten an eng Match-Funktioun (String)"
+output_match_fn_all_in_one_by_language = "Match-Funktioun mat Sprooche Numm als Schlëssel"
+output_match_fn_all_in_one_by_language_and_key = "Match-Funktioun mat kombinéiertem Schlëssel (Sprooch + map_key)"
+output_phf = "Generéiert PHF-Map Funktiounen pro Sprooch"
+output_phf_by_key = "PHF-Map mat normale String-Schlësselen (keen TupleKey)"
+output_phf_all_in_one = "Kombinéiert all PHF-Mappen an eng Funktioun"
+output_locales_fn = "Exportéiert all_locales Funktioun"
+output_ron = "Exportéiert String am RON-Format"
+
+input = "Quellverzeichnes fir lokaliséiert Ressourcen"
+dsl_suffix = 'DSL-Fichier Suffix (default ".dsl")'
+include_languages = "Whëss-Lëscht Modus: Initialiséiert nëmmen Sprooch-IDs aus der Lëscht"
+include_map_names = "Initialiséiert nëmmen Map-Nimm aus der Lëscht"
+exclude_languages = "Schwaarz-Lëscht Modus: Initialiséiert keng Sprooch-IDs aus der Lëscht"
+exclude_map_names = "Initialiséiert keng Map-Nimm aus der Lëscht"
+
+base_name = 'Basisnumm vum "Highlight-Map"'
+suffix = 'Neit Suffix fir "Highlight-Map"'
+true_color = "24-bit richteg Faarf"
+syntax_name = "Syntax Numm"
+theme_name = "Thema Numm"
+background = "Hannergrond aktivéieren"
+custom_syntax_set = "Personaliséiert Syntax-Set Fichier"
+custom_theme_set = "Personaliséiert Theme-Set Fichier"
+list_all_syntaxes = "Weist all Syntax-Nimm an Erweiderungen"
+list_all_themes = "Weist all Theema-Nimm"
+
+display_config_dir = "Weist d'Glossa Config-Verzeichnes"

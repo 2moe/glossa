@@ -1,0 +1,37 @@
+outdir = "Излезен директориум"
+visibility = "Видливост на генерираниот код"
+bincode_suffix = "Наставка за bincode датотека"
+mod_prefix = 'Префикс за mod датотека (стандардно "l10n_")'
+
+output_bincode = "Генерирај посебни bincode датотеки за различни јазици"
+output_bincode_all_in_one = "Експортирај ги сите bincode во една датотека"
+output_match_fn = "Генерирај Rust кодни датотеки со match функции за јазици"
+output_match_fn_by_key = "Користи само map_key како клуч (без map_name)"
+output_match_fn_all_in_one = "Експортирај ги сите податоци во една match функција (стринг)"
+output_match_fn_all_in_one_by_language = "Match функција со име на јазик како клуч"
+output_match_fn_all_in_one_by_language_and_key = "Match функција со комбиниран клуч (јазик + map_key)"
+output_phf = "Генерирај посебни phf map функции за јазици"
+output_phf_by_key = "phf map со обични стринг клучеви (не TupleKey)"
+output_phf_all_in_one = "Спој ги сите phf карти во една функција"
+output_locales_fn = "Експортирај ја функцијата all_locales"
+output_ron = "Експортирај стринг во RON формат"
+
+input = "Изворен директориум за локализациски ресурси"
+dsl_suffix = 'Наставка за DSL датотека (стандардно ".dsl")'
+include_languages = "Режим на бела листа: Иницијализирај ги само ID на јазиците од листата"
+include_map_names = "Иницијализирај ги само имињата на карти од листата"
+exclude_languages = "Режим на црна листа: Не ги иницијализирај ID на јазиците од листата"
+exclude_map_names = "Не ги иницијализирај имињата на карти од листата"
+
+base_name = 'Основно име за "Highlight-Map"'
+suffix = 'Нова наставка за "Highlight-Map"'
+true_color = "24-битна вистинска боја"
+syntax_name = "Име на синтакса"
+theme_name = "Име на тема"
+background = "Активирај позадина"
+custom_syntax_set = "Прилагодена синтаксна датотека"
+custom_theme_set = "Прилагодена датотека за теми"
+list_all_syntaxes = "Прикажи ги сите имиња на синтакси и екстензии"
+list_all_themes = "Прикажи ги сите имиња на теми"
+
+display_config_dir = "Прикажи го конфигурацискиот директориум на Glossa"

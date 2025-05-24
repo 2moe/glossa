@@ -1,0 +1,37 @@
+outdir = "ထုတ်လုပ်သည့်ဖိုင်တွဲ"
+visibility = "ထုတ်လုပ်ထားသော ကုဒ်၏ မြင်နိုင်မှု"
+bincode_suffix = "bincode ဖိုင်အဆုံးသတ်"
+mod_prefix = 'mod ဖိုင်ရှေ့ဆက် (ပုံသေ "l10n_")'
+
+output_bincode = "ဘာသာစကားအမျိုးမျိုးအတွက် သီးသန့် bincode ဖိုင်များ ထုတ်လုပ်ပါ"
+output_bincode_all_in_one = "ဘာသာစကားအားလုံး၏ bincode များကို ဖိုင်တစ်ခုတည်းသို့ ထုတ်ပါ"
+output_match_fn = "match ဖော်ပြချက်ပါသော Rust ကုဒ်ဖိုင်များ ထုတ်လုပ်ပါ"
+output_match_fn_by_key = "map_key ကိုသာ သော့ချက်အဖြစ် အသုံးပြုပါ (map_name မပါဝင်)"
+output_match_fn_all_in_one = "ဒေတာအားလုံးကို match လုပ်ဆောင်ချက်တစ်ခုအဖြစ် ထုတ်ပါ (စာတန်း)"
+output_match_fn_all_in_one_by_language = "ဘာသာစကားအမည်ကို သော့ချက်အဖြစ်ပါသော match လုပ်ဆောင်ချက်"
+output_match_fn_all_in_one_by_language_and_key = "ဘာသာစကားအမည် + map_key ပေါင်းစပ်သော့ပါသော match လုပ်ဆောင်ချက်"
+output_phf = "ဘာသာစကားအလိုက် phf မြေပုံလုပ်ဆောင်ချက်များ ထုတ်လုပ်ပါ"
+output_phf_by_key = "သာမန်စာတန်းသော့များပါသော phf မြေပုံများ (TupleKey မဟုတ်)"
+output_phf_all_in_one = "phf မြေပုံအားလုံးကို လုပ်ဆောင်ချက်တစ်ခုတည်းသို့ ထုတ်ပါ"
+output_locales_fn = "all_locales လုပ်ဆောင်ချက်ကို ထုတ်ပါ"
+output_ron = "RON ဖော်မတ်ဖြင့် စာတန်းထုတ်ပါ"
+
+input = "ဒေသခံအရင်းအမြစ်များ၏ မူလဖိုင်တွဲ"
+dsl_suffix = 'DSL ဖိုင်အဆုံးသတ် (ပုံသေ ".dsl")'
+include_languages = "အဖြူစာရင်းမုဒ်: စာရင်းထဲရှိ ဘာသာစကား ID များကိုသာ အစပြုပါ"
+include_map_names = "စာရင်းထဲရှိ မြေပုံအမည်များကိုသာ အစပြုပါ"
+exclude_languages = "အမဲစာရင်းမုဒ်: စာရင်းထဲရှိ ဘာသာစကား ID များကို မစတင်ပါ"
+exclude_map_names = "စာရင်းထဲရှိ မြေပုံအမည်များကို မစတင်ပါ"
+
+base_name = 'အခြေခံ "Highlight-Map" ၏ အမည်'
+suffix = 'အသစ်ထုတ်လုပ်သော "Highlight-Map" ၏ အဆုံးသတ်'
+true_color = "24-bit အစစ်အမှန်အရောင်"
+syntax_name = "သဒ္ဒါအမည်"
+theme_name = "အကြောင်းအရာအမည်"
+background = "နောက်ခံကို ဖွင့်ရန်"
+custom_syntax_set = "စိတ်ကြိုက်သဒ္ဒါစုစည်းမှုဖိုင်"
+custom_theme_set = "စိတ်ကြိုက်အကြောင်းအရာစုစည်းမှုဖိုင်"
+list_all_syntaxes = "သဒ္ဒါအမည်များနှင့် ချဲ့ထွင်မှုများအားလုံးကို ပြသပါ"
+list_all_themes = "အကြောင်းအရာအမည်အားလုံးကို ပြသပါ"
+
+display_config_dir = "glossa ၏ ပြင်ဆင်မှုဖိုင်တွဲကို ပြသပါ"

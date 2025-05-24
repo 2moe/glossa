@@ -1,0 +1,37 @@
+outdir = "آوٙٹ ڊائریکٹری"
+visibility = "ڄمٙل کٙوڊ جو نظارٙو"
+bincode_suffix = "bincode فائل سَڄٙ"
+mod_prefix = 'mod فائل پیشوند (ڊیفالٹ "l10n_")'
+
+output_bincode = "ویکّھے زباناں کٙی خودمختار bincode فائلاں ٹیار کٙرٙ"
+output_bincode_all_in_one = "سٙبھ زباناں کٙے bincodes ہک فائل اِچ ایکسپورٹ کٙرٙ"
+output_match_fn = "روست کوڊ فائلاں ٹیار کٙرٙ (match اِظہار والے فَنکشنز)"
+output_match_fn_by_key = "صرف map_key کلید طور استعمال کٙرٙ (map_name شامل نٙہ)"
+output_match_fn_all_in_one = "سٙبھ ڊیٹا ہک match فَنکشن اِچ ایکسپورٹ کٙرٙ (سٹرنگ)"
+output_match_fn_all_in_one_by_language = "زبان کٙے ناں سان کلید والی match فَنکشن"
+output_match_fn_all_in_one_by_language_and_key = "مُکٙل کلید (زبان + map_key) سان match فَنکشن"
+output_phf = "ویکّھے زباناں کٙی خودمختار phf میپ فَنکشنز"
+output_phf_by_key = "عام سٹرنگ کلیداں سان phf میپ (TupleKey نٙہ)"
+output_phf_all_in_one = "سٙبھ phf میپز ہک فَنکشن اِچ مٙلاءِ کٙرٙ"
+output_locales_fn = "all_locales فَنکشن ایکسپورٹ کٙرٙ"
+output_ron = "RON فارمیٹ اِچ سٹرنگ ایکسپورٹ کٙرٙ"
+
+input = "لوکلائزیشن وسائل کٙا ماخذ ڊائریکٹری"
+dsl_suffix = 'DSL فائل سَڄٙ (ڊیفالٹ ".dsl")'
+include_languages = "سفید لیست موڊ: صرف لسٹ اِچ زبان آئی ڊیز اینیٙت کٙرٙ"
+include_map_names = "صرف لسٹ اِچ میپ ناں اینیٙت کٙرٙ"
+exclude_languages = "سیاه لیست موڊ: لسٹ اِچ زبان آئی ڊیز اینیٙت نٙہ کٙرٙ"
+exclude_map_names = "لسٹ اِچ میپ ناں اینیٙت نٙہ کٙرٙ"
+
+base_name = '"Highlight-Map" کٙا بنیادی ناں'
+suffix = '"Highlight-Map" کٙا نواں سَڄٙ'
+true_color = "24-بٹ اصلی رنگ"
+syntax_name = "سِنٹیکس ناں"
+theme_name = "موضوع ناں"
+background = "پس منظر اینیبل کٙرٙ"
+custom_syntax_set = "کسٹم سِنٹیکس سیٹ فائل"
+custom_theme_set = "کسٹم تھیم سیٹ فائل"
+list_all_syntaxes = "سٙبھ سِنٹیکس ناں تٙہ ایکسٹینشنز ڏیٙکھاؤ"
+list_all_themes = "سٙبھ تھیم ناں ڏیٙکھاؤ"
+
+display_config_dir = "glossa کٙے کانفیگ ڊائریکٹری ڏیٙکھاؤ"

@@ -1,0 +1,37 @@
+outdir = "Fooqonna baasii"
+visibility = "Mul'ata koodii kan uumame"
+bincode_suffix = "Suffix failii bincode"
+mod_prefix = 'Prefiksi failii mod (haqa "l10n_")'
+
+output_bincode = "Uumuu failota bincode addaa afaan adda addaaf"
+output_bincode_all_in_one = "Baasii bincode afaanota hunda failii tokkotti"
+output_match_fn = "Uumuu failota Rust waliin match function afaan adda addaaf"
+output_match_fn_by_key = "Fayyadama map_key qofa (map_name hin qabu)"
+output_match_fn_all_in_one = "Madda afaanota hunda match function tokko keessatti (jijjiirama)"
+output_match_fn_all_in_one_by_language = "Match function maqaa afaanii fayyadamuun"
+output_match_fn_all_in_one_by_language_and_key = "Match function waliigala (maqaa afaanii + map_key)"
+output_phf = "Uumuu phf map function addaa afaan adda addaaf"
+output_phf_by_key = "phf map jijjiirama qaamolee (hin TaplKey)"
+output_phf_all_in_one = "Madda phf map hunda function tokko keessatti"
+output_locales_fn = "Baasii function all_locales"
+output_ron = "Baasii jijjiirama fomataa RON"
+
+input = "Fooqonna utubaa lokalizeessuu"
+dsl_suffix = 'Suffix failii DSL (haqa ".dsl")'
+include_languages = "Fakkii Listaa: ID afaanota listaa qofa jalqabsiisuu"
+include_map_names = "Maqoota map listaa qofa jalqabsiisuu"
+exclude_languages = "Fakkii Listaa Gurraacha: ID afaanota hin jalqabsiisin"
+exclude_map_names = "Maqoota map hin jalqabsiisin"
+
+base_name = 'Maqaa jalqabaa "Highlight-Map"'
+suffix = 'Suffix haaraa "Highlight-Map"'
+true_color = "Halluu dhugaa 24-bit"
+syntax_name = "Maqaa syntax"
+theme_name = "Maqaa theme"
+background = "Duuba dhaabbachuu"
+custom_syntax_set = "Failii syntax sirreeffama"
+custom_theme_set = "Failii theme sirreeffama"
+list_all_syntaxes = "Maqoota syntax hunda agarsiisuu"
+list_all_themes = "Maqoota theme hunda agarsiisuu"
+
+display_config_dir = "Fooqonna saagantaa glossa agarsiisuu"

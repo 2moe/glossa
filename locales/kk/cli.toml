@@ -1,0 +1,37 @@
+outdir = "Шығару директориясы"
+visibility = "Жасалған кодтың көрінуі"
+bincode_suffix = "bincode файл кенестіргіші"
+mod_prefix = 'mod файл префиксі (әдепкі "l10n_")'
+
+output_bincode = "Түрлі тілдер үшін бөлек bincode файлдарын жасау"
+output_bincode_all_in_one = "Барлық тілдердің bincode-ын бір файлға шығару"
+output_match_fn = "Rust кодының файлдарын жасау (match өрнектері бар функциялар)"
+output_match_fn_by_key = "Тек map_key кілт ретінде (map_name жоқ)"
+output_match_fn_all_in_one = "Барлық деректерді бір match функциясына шығару (жол)"
+output_match_fn_all_in_one_by_language = "Тіл атауы кілт болатын match функциясы"
+output_match_fn_all_in_one_by_language_and_key = "Қосылған кілт (тіл+map_key) бар match функциясы"
+output_phf = "Әр тілге арналған бөлек phf карта функциялары"
+output_phf_by_key = "Қарапайым жол кілттері бар phf карта (TupleKey емес)"
+output_phf_all_in_one = "Барлық phf карталарды бір функцияға біріктіру"
+output_locales_fn = "all_locales функциясын шығару"
+output_ron = "RON форматында жолды шығару"
+
+input = "Локализация ресурстарының түпнұсқа директориясы"
+dsl_suffix = 'DSL файл кенестіргіші (әдепкі ".dsl")'
+include_languages = "Ақ тізім режимі: Тізімдегі тіл ID-лерін ғана инициализациялау"
+include_map_names = "Тізімдегі карта атауларын ғана инициализациялау"
+exclude_languages = "Қара тізім режимі: Тізімдегі тіл ID-лерін инициализацияламау"
+exclude_map_names = "Тізімдегі карта атауларын инициализацияламау"
+
+base_name = '"Highlight-Map" негізгі атауы'
+suffix = '"Highlight-Map" жаңа кенестіргіші'
+true_color = "24-биттік шынайы түс"
+syntax_name = "Синтаксис атауы"
+theme_name = "Тақырып атауы"
+background = "Фонды қосу"
+custom_syntax_set = "Теңдеу жинағы файлы"
+custom_theme_set = "Тақырып жинағы файлы"
+list_all_syntaxes = "Барлық синтаксис атаулары мен кеңейтулерін көрсету"
+list_all_themes = "Барлық тақырып атауларын көрсету"
+
+display_config_dir = "Glossa конфигурация директориясын көрсету"

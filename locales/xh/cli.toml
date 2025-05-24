@@ -1,0 +1,37 @@
+outdir = "Indlela yokuphuma"
+visibility = "Ukubonakala kwekhowudi eyenziwe"
+bincode_suffix = "Isihloko sefayile ye-bincode"
+mod_prefix = 'Isiqalo sefayile ye-mod (okwendalo "l10n_")'
+
+output_bincode = "Yenza iifayile ze-bincode ezizimeleyo ngeelwimi ezahlukeneyo"
+output_bincode_all_in_one = "Khupha zonke ii-bincode zolwimi kufayile enye"
+output_match_fn = "Yenza iifayile ze-Rust ezinemisebenzi ye-match ngeelwimi ezahlukeneyo"
+output_match_fn_by_key = "Sebenzisa kuphela i-map_key njengekhi (akubandakanyi i-map_name)"
+output_match_fn_all_in_one = "Khupha yonke idatha kumsebenzi omnye we-match (umgca)"
+output_match_fn_all_in_one_by_language = "Umsebenzi we-match onegama lolwimi njengekhi"
+output_match_fn_all_in_one_by_language_and_key = "Umsebenzi we-match onekhi edityanisiweyo (igama lolwimi + i-map_key)"
+output_phf = "Yenza imisebenzi ye-phf map ngeelwimi ezahlukeneyo"
+output_phf_by_key = "I-phf map enekhi yomgca oqhelekileyo (hayi i-TupleKey)"
+output_phf_all_in_one = "Khupha zonke ii-phf map kumsebenzi omnye"
+output_locales_fn = "Khupha umsebenzi we-all_locales"
+output_ron = "Khupha umgca ngefomethi ye-RON"
+
+input = "Indlela yemithombo yokufaka ulwimi"
+dsl_suffix = 'Isihloko sefayile ye-DSL (okwendalo ".dsl")'
+include_languages = "Imo yeluhlu olumhlophe: Qalisa kuphela ii-ID zolwimi ezikuluhlu"
+include_map_names = "Qalisa kuphela amagama e-map akuluhlu"
+exclude_languages = "Imo yeluhlu olumnyama: Musa ukuqalisa ii-ID zolwimi ezikuluhlu"
+exclude_map_names = "Musa ukuqalisa amagama e-map akuluhlu"
+
+base_name = 'Igama lesiseko se-"Highlight-Map"'
+suffix = 'Isihloko esitsha se-"Highlight-Map"'
+true_color = "Umbala wenyani we-24-bit"
+syntax_name = "Igama lesintaksi"
+theme_name = "Igama lomxholo"
+background = "Qalisa ingemva"
+custom_syntax_set = "Ifayile yokucwangcisa isintaksi"
+custom_theme_set = "Ifayile yokucwangcisa imixholo"
+list_all_syntaxes = "Bonisa zonke iigama zesintaksi kunye nokunwetshwa"
+list_all_themes = "Bonisa zonke iigama zemixholo"
+
+display_config_dir = "Bonisa indlela yokucwangcisa ye-glossa"

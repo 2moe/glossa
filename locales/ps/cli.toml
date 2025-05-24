@@ -1,0 +1,37 @@
+outdir = "د تولید د فولډر"
+visibility = "د جوړ شوي کوډ لید"
+bincode_suffix = "د bincode د فایل وروستي"
+mod_prefix = 'د mod فایل مخکښ (اصلي "l10n_")'
+
+output_bincode = "د مختلفو ژبو لپاره جلا bincode فایلونه جوړول"
+output_bincode_all_in_one = "ټولو ژبو bincode په یو فایل کې خپرول"
+output_match_fn = "د مختلفو ژبو لپاره د match فانکشن سره Rust فایلونه جوړول"
+output_match_fn_by_key = "یوازې map_key د کیلي په توګه کارول (map_name نه لري)"
+output_match_fn_all_in_one = "ټول ډیټا په یو match فانکشن کې خپرول (سترګه)"
+output_match_fn_all_in_one_by_language = "د ژبې نوم د کیلي په توګه match فانکشن"
+output_match_fn_all_in_one_by_language_and_key = "د ترکیبي کیلي سره match فانکشن (ژبه + map_key)"
+output_phf = "د مختلفو ژبو لپاره د phf نقشه فانکشنونه جوړول"
+output_phf_by_key = "د عامو سترګو کیلي سره phf نقشه (نه TupleKey)"
+output_phf_all_in_one = "ټولې phf نقشې په یو فانکشن کې یوځای کول"
+output_locales_fn = "د all_locales فانکشن خپرول"
+output_ron = "په RON بڼه کې سترګه خپرول"
+
+input = "د محلي سرچینو اصلی فولډر"
+dsl_suffix = 'د DSL فایل وروستي (اصلي ".dsl")'
+include_languages = "سپینه لېست: یوازې په لېست کې ژبې ID فعالول"
+include_map_names = "یوازې په لېست کې نقشه نومونه فعالول"
+exclude_languages = "تور لېست: په لېست کې ژبې ID فعال مه کړئ"
+exclude_map_names = "په لېست کې نقشه نومونه فعال مه کړئ"
+
+base_name = 'د "Highlight-Map" اصلي نوم'
+suffix = 'د نوي "Highlight-Map" وروستي'
+true_color = "24-بټه اصلي رنګ"
+syntax_name = "د نحوې نوم"
+theme_name = "د تمې نوم"
+background = "شالید فعال کول"
+custom_syntax_set = "دودیز نحوي تنظیم فایل"
+custom_theme_set = "دودیز تمې تنظیم فایل"
+list_all_syntaxes = "ټول نحوي نومونه او غځونې ښکاره کول"
+list_all_themes = "ټول تمې نومونه ښکاره کول"
+
+display_config_dir = "د glossa د تنظیماتو فولډر ښکاره کول"

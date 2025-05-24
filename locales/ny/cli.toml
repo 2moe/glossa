@@ -1,0 +1,37 @@
+outdir = "Diresi Yokhazikika"
+visibility = "Kuwonekera kwa code yomwe yapangidwa"
+bincode_suffix = "Tsatoli la fayilo ya bincode"
+mod_prefix = 'Chiyambi cha fayilo ya mod (default "l10n_")'
+
+output_bincode = "Pangani mafayilo a bincode okhala ndi mitundu ya zilankhulo"
+output_bincode_all_in_one = "Tulutsani ma bincode onse mu fayilo limodzi"
+output_match_fn = "Pangani mafayilo a Rust ndi ntchito za match pazilankhulo"
+output_match_fn_by_key = "Gwiritsani map_key kokha ngati khodi (osaphimba map_name)"
+output_match_fn_all_in_one = "Gwirizanitsani zonse mu ntchito imodzi ya match (mawu)"
+output_match_fn_all_in_one_by_language = "Ntchito ya match yokhala ndi dzina la chiyankhulo ngati khodi"
+output_match_fn_all_in_one_by_language_and_key = "Ntchito ya match ndi khodi yophatikiza (dzina + map_key)"
+output_phf = "Pangani ntchito za phf map pazilankhulo"
+output_phf_by_key = "phf map ndi mawu owoneka (osati TupleKey)"
+output_phf_all_in_one = "Gwirizanitsani ma phf map onse mu ntchito imodzi"
+output_locales_fn = "Tulutsani ntchito ya all_locales"
+output_ron = "Tulutsani mawu mu RON format"
+
+input = "Diresi yoyambira ya zida za localization"
+dsl_suffix = 'Tsatoli la fayilo ya DSL (default ".dsl")'
+include_languages = "Njira ya mndanda woyera: Yambitsani ID za zilankhulo zokha"
+include_map_names = "Yambitsani map_names zokha"
+exclude_languages = "Njira ya mndanda wakuda: Musayambitse ID za zilankhulo"
+exclude_map_names = "Musayambitse map_names"
+
+base_name = 'Dzina loyambira la "Highlight-Map"'
+suffix = 'Tsatoli latsopano la "Highlight-Map"'
+true_color = "Mtundu weniweni wa 24-bit"
+syntax_name = "Dzina la syntax"
+theme_name = "Dzina la theme"
+background = "Yambitsani chithunzi chakumbuyo"
+custom_syntax_set = "Fayilo yokhazikika ya syntax"
+custom_theme_set = "Fayilo yokhazikika ya mitheme"
+list_all_syntaxes = "Onetsani mainsyntax onse ndi zowonjezera"
+list_all_themes = "Onetsani mathemu onse"
+
+display_config_dir = "Onetsani diresi ya kasamalidwe ka glossa"

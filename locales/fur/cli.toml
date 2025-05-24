@@ -1,0 +1,37 @@
+outdir = "Diretori di esportazion"
+visibility = "Visibilitât dal codi gjenerât"
+bincode_suffix = "Sufîs file bincode"
+mod_prefix = 'Prefîs file mod (predefinît "l10n_")'
+
+output_bincode = "Gjenerâ files bincode separâts par ogni lenghe"
+output_bincode_all_in_one = "Espuartâ ducj i bincode intun unicon file"
+output_match_fn = "Gjenerâ files Rust separâts cun funzion di espression match"
+output_match_fn_by_key = "Dopre dome map_key come clâf (cence map_name)"
+output_match_fn_all_in_one = "Unificâ dâts di dutis lenghis intun funzion match (stringhe)"
+output_match_fn_all_in_one_by_language = "Funzion match cun non lenghe come clâf"
+output_match_fn_all_in_one_by_language_and_key = "Funzion match cun clâf combinade (non lenghe + map_key)"
+output_phf = "Gjenerâ funzions phf map separadis par lenghis"
+output_phf_by_key = "phf map cun clâf stringhe normâl (no TupleKey)"
+output_phf_all_in_one = "Unificâ ducj i phf map intun funzion"
+output_locales_fn = "Espuartâ funzion all_locales"
+output_ron = "Espuartâ stringhe in format RON"
+
+input = "Diretori sorzint di risorsis di localizazion"
+dsl_suffix = 'Sufîs file DSL (predefinît ".dsl")'
+include_languages = "Mode liste blancje: Inizialize dome IDs listâts"
+include_map_names = "Inizialize dome map_names listâts"
+exclude_languages = "Mode liste nere: Ignorâ IDs listâts"
+exclude_map_names = "Ignorâ map_names listâts"
+
+base_name = 'Non basâl di "Highlight-Map"'
+suffix = 'Sufîs pe gnove Highlight-Map'
+true_color = "Color reâl 24-bit"
+syntax_name = "Non de sintassi"
+theme_name = "Non dal teme"
+background = "Ativâ supuart pal fond"
+custom_syntax_set = "File di sintassi personalizade"
+custom_theme_set = "File di temis personalizâts"
+list_all_syntaxes = "Mostrâ ducj i nons di sintassi cun estensions"
+list_all_themes = "Mostrâ ducj i nons dai temis"
+
+display_config_dir = "Mostrâ diretori di configurazion glossa"

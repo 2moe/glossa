@@ -1,0 +1,37 @@
+outdir = "Dîrektorîya Derketinê"
+visibility = "Dîtbarîya Kodê Çêkirî"
+bincode_suffix = "Paşpirtika Pelê Bincode"
+mod_prefix = 'Pêşpirtika Pelê Mod (Default "l10n_")'
+
+output_bincode = "Pelên Bincodeyê yên Cuda ji bo Zimanan Çêke"
+output_bincode_all_in_one = "Hemû Bincodeyên Zimanan di Pelê Yekane de Derxîne"
+output_match_fn = "Pelên Kodê Rust yên Cuda bi Fonksiyonên Match-ê Çêke"
+output_match_fn_by_key = "Tenê Map_key wekî Key Bikar Bîne (Map_name Tune)"
+output_match_fn_all_in_one = "Hemû Daneyan di Fonksiyonek Match-ê de Derxîne (Zincîre)"
+output_match_fn_all_in_one_by_language = "Fonksiyona Match bi Navê Zimanê wekî Key"
+output_match_fn_all_in_one_by_language_and_key = "Fonksiyona Match bi Keya Pêkhatî (Ziman + Map_key)"
+output_phf = "Fonksiyonên PHF Map yên Cuda ji bo Zimanan Çêke"
+output_phf_by_key = "PHF Map bi Keyên Zincîreya Normal (Ne TupleKey)"
+output_phf_all_in_one = "Hemû PHF Map-ê di Fonksiyonekê de Bihevgire"
+output_locales_fn = "Fonksiyona all_locales Derxîne"
+output_ron = "Zincîreya Formata RON Derxîne"
+
+input = "Dîrektorîya Çavkaniyên Lokalîzekirî"
+dsl_suffix = 'Paşpirtika Pelê DSL (Default ".dsl")'
+include_languages = "Moda Lîsteya Spî: Tenê IDyên Zimanên di Lîsteyê de Bikar Bîne"
+include_map_names = "Tenê Navên Mapên di Lîsteyê de Bikar Bîne"
+exclude_languages = "Moda Lîsteya Reş: IDyên Zimanên di Lîsteyê de Bikar Neîne"
+exclude_map_names = "Navên Mapên di Lîsteyê de Bikar Neîne"
+
+base_name = 'Navê Binyatê yê "Highlight-Map"'
+suffix = 'Paşpirtika Nû ya "Highlight-Map"'
+true_color = "Rengê Rastîn ê 24-Bîtî"
+syntax_name = "Navê Sîntaksê"
+theme_name = "Navê Tema"
+background = "Rûxarê Çalak Bike"
+custom_syntax_set = "Pelê Seta Sîntaksa Xweser"
+custom_theme_set = "Pelê Seta Tema Xweser"
+list_all_syntaxes = "Hemû Navên Sîntaksê û Berfirehiyan Nîşan Bide"
+list_all_themes = "Hemû Navên Tema Nîşan Bide"
+
+display_config_dir = "Dîrektorîya Veavakirina Glossa Nîşan Bide"

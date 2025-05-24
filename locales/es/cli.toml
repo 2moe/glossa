@@ -1,0 +1,37 @@
+outdir = "directorio de salida"
+visibility = "visibilidad del código generado"
+bincode_suffix = "sufijo de archivo bincode"
+mod_prefix = 'prefijo de archivo mod (por defecto: "l10n_")'
+
+output_bincode = "generar archivos bincode independientes por idioma"
+output_bincode_all_in_one = "consolidar todos los bincode en un solo archivo"
+output_match_fn = "generar archivos Rust con funciones match por idioma"
+output_match_fn_by_key = "solo usa map_key como clave (sin map_name)"
+output_match_fn_all_in_one = "unificar datos en función match (string)"
+output_match_fn_all_in_one_by_language = "función match con nombre de idioma como clave"
+output_match_fn_all_in_one_by_language_and_key = "función match con clave compuesta (idioma + map_key)"
+output_phf = "generar funciones phf map por idioma"
+output_phf_by_key = "phf map con claves string (no TupleKey)"
+output_phf_all_in_one = "unificar todas las phf map en una función"
+output_locales_fn = "generar función all_locales"
+output_ron = "generar string en formato RON"
+
+input = "directorio fuente de recursos de localización"
+dsl_suffix = 'sufijo de archivo DSL (por defecto: ".dsl")'
+include_languages = "modo lista blanca: solo inicializar IDs listados"
+include_map_names = "solo inicializar map_names listados"
+exclude_languages = "modo lista negra: excluir IDs listados"
+exclude_map_names = "excluir map_names listados"
+
+base_name = 'nombre base de Highlight-Map'
+suffix = 'sufijo para nuevas Highlight-Maps'
+true_color = "24-bit color verdadero"
+syntax_name = "nombre de sintaxis"
+theme_name = "nombre de tema"
+background = "habilitar fondo"
+custom_syntax_set = "archivo personalizado de sintaxis"
+custom_theme_set = "archivo personalizado de temas"
+list_all_syntaxes = "mostrar nombres de sintaxis y extensiones"
+list_all_themes = "mostrar nombres de temas"
+
+display_config_dir = "mostrar directorio de configuración de glossa"

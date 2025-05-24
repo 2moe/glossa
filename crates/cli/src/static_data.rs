@@ -6,13 +6,12 @@ pub fn config_dir() -> &'static Path {
   new_once_lock!(V: PathBuf);
 
   V.get_or_init(|| {
-    let proj_dir =
-      || match directories::ProjectDirs::from("me", "tmoe", "glossa-cli")
-        .map(|d| d.config_local_dir().into())
-      {
-        Some(v) => v,
-        _ => std::env::temp_dir().join("me.tmoe.glossa-cli"),
-      };
+    let proj_dir = || match directories::ProjectDirs::from("me", "tmoe", "glossa")
+      .map(|d| d.config_local_dir().into())
+    {
+      Some(v) => v,
+      _ => std::env::temp_dir().join("me.tmoe.glossa"),
+    };
 
     match crate::envs::static_glossa_cfg_dir() {
       Some(v) => v.into(),

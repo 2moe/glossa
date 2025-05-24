@@ -1,0 +1,37 @@
+outdir = "आउटपुट डायरेक्टरी"
+visibility = "निर्मित कोडची दृश्यमानता"
+bincode_suffix = "बिनकोड फाइल प्रत्यय"
+mod_prefix = 'मॉड फाइल उपसर्ग (पूर्वनिर्धारित "l10n_")'
+
+output_bincode = "विविध भाषांसाठी स्वतंत्र बिनकोड फाइल्स निर्माण करा"
+output_bincode_all_in_one = "सर्व भाषांचे बिनकोड एकाच फाइलमध्ये निर्यात करा"
+output_match_fn = "मॅच एक्स्प्रेशन असलेल्या रस्ट फाइल्स निर्माण करा"
+output_match_fn_by_key = "फक्त map_key की म्हणून वापरा (map_name वगळा)"
+output_match_fn_all_in_one = "सर्व डेटा एकाच मॅच फंक्शनमध्ये निर्यात करा (स्ट्रिंग)"
+output_match_fn_all_in_one_by_language = "भाषानाव की असलेले एकीकृत मॅच फंक्शन"
+output_match_fn_all_in_one_by_language_and_key = "संयुक्त की (भाषा+map_key) असलेले मॅच फंक्शन"
+output_phf = "भाषानुसार स्वतंत्र phf नकाशे निर्माण करा"
+output_phf_by_key = "सामान्य स्ट्रिंग की असलेली phf नकाशे (टपलकी नाही)"
+output_phf_all_in_one = "सर्व phf नकाशे एकाच फंक्शनमध्ये समाविष्ट करा"
+output_locales_fn = "all_locales फंक्शन निर्यात करा"
+output_ron = "RON फॉरमॅटमध्ये स्ट्रिंग निर्यात करा"
+
+input = "स्थानिक संसाधनांची स्त्रोत डायरेक्टरी"
+dsl_suffix = 'DSL फाइल प्रत्यय (पूर्वनिर्धारित ".dsl")'
+include_languages = "पांढर्या यादी मोड: फक्त यादीतील भाषा ID सक्रिय करा"
+include_map_names = "फक्त यादीतील नकाशा नावे सक्रिय करा"
+exclude_languages = "काळ्या यादी मोड: यादीतील भाषा ID सक्रिय करू नका"
+exclude_map_names = "यादीतील नकाशा नावे सक्रिय करू नका"
+
+base_name = 'हायलाइट नकाशाचे मूळ नाव'
+suffix = 'नवीन हायलाइट नकाशाचा प्रत्यय'
+true_color = "24-बिट वास्तविक रंग"
+syntax_name = "सिंटॅक्स नाव"
+theme_name = "थीम नाव"
+background = "पार्श्वभूमी सक्रिय करायची का"
+custom_syntax_set = "सानुकूल सिंटॅक्स संच फाइल"
+custom_theme_set = "सानुकूल थीम संच फाइल"
+list_all_syntaxes = "सर्व सिंटॅक्स नावे आणि विस्तार दाखवा"
+list_all_themes = "सर्व थीम नावे दाखवा"
+
+display_config_dir = "ग्लोसाची कॉन्फिगरेशन डायरेक्टरी दाखवा"

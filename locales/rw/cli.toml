@@ -1,0 +1,37 @@
+outdir = "Indangamuntu y’ibyazamutungo"
+visibility = "Kugaragara kwa code yubatswe"
+bincode_suffix = "Indangamugaragaro y'idosiye bincode"
+mod_prefix = '''Indangamugaragaro y'idosiye mod (Bisanzwe "l10n_")'''
+
+output_bincode = "Kubaka idosiye bincode zihariye ku ndimi zitandukanye"
+output_bincode_all_in_one = "Gusesa buri bincode y'indimi muri dosiye imwe"
+output_match_fn = "Kubaka idosiye Rust zihariye hamwe n'imikorere ya match"
+output_match_fn_by_key = "Nka output_match_fn ariko ikoresha map_key nk'urufunguzo gusa"
+output_match_fn_all_in_one = "Gusesa byose muri fonction imwe ya match (umurongo)"
+output_match_fn_all_in_one_by_language = "Fonction ya match ifite izina ry'ururimi nk'urufunguzo"
+output_match_fn_all_in_one_by_language_and_key = "Fonction ya match ifite urufunguzo (izina + map_key)"
+output_phf = "Kubaka phf map zihariye ku ndimi"
+output_phf_by_key = "phf map ifite imibare y'umurongo (Oya TupleKey)"
+output_phf_all_in_one = "Gusesa buri phf map muri fonction imwe"
+output_locales_fn = "Gusesa fonction ya all_locales"
+output_ron = "Gusesa umurongo wa format RON"
+
+input = "Indangamuntu y'ingenzi y'ibikoresho by'ururimi"
+dsl_suffix = '''Indangamugaragaro y'idosiye DSL (Bisanzwe ".dsl")'''
+include_languages = "Uburyo gahunda yera: ID z'indimi ziri murutonde gusa"
+include_map_names = "Amazina ya map yiri murutonde gusa"
+exclude_languages = "Uburyo gahunda mbi: ID z'indimi ziri murutonde ntabwo zishoboka"
+exclude_map_names = "Amazina ya map yiri murutonde ntabwo ari byemewe"
+
+base_name = '''Izina ry''ishingiro rya "Highlight-Map"'''
+suffix = 'Indangamugaragaro ya "Highlight-Map" nshya'
+true_color = "Amabara nyakuri 24-bit"
+syntax_name = "Izina ry'ibisobanuro"
+theme_name = "Izina ry'inyandiko"
+background = "Kwinjiza inyuma"
+custom_syntax_set = "Idosiye y'ibisobanuro byihariye"
+custom_theme_set = "Idosiye y'inyandiko zihariye"
+list_all_syntaxes = "Kwerekana amazina y'ibisobanuro n'ibinyurizo"
+list_all_themes = "Kwerekana amazina y'inyandiko zose"
+
+display_config_dir = "Kwerekana indangamuntu y'ibintu bya glossa"

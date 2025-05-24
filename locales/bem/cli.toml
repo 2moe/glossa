@@ -1,0 +1,37 @@
+outdir = "Indekelo yokupuma"
+visibility = "Ukumoneka kwa code eyasanduka"
+bincode_suffix = "Ifile ya bincode ya kumapila"
+mod_prefix = 'Ifile ya mod ya kumpanda (default "l10n_")'
+
+output_bincode = "Amapanga ifile ya bincode yekha kuli ndimi elyo"
+output_bincode_all_in_one = "Fumya bincode yonse mu ifile imo"
+output_match_fn = "Amapanga ifile ya Rust ine match functions kuli ndimi"
+output_match_fn_by_key = "Shatilako map_key fye nkana key (tafye map_name)"
+output_match_fn_all_in_one = "Fumya data yonse mu function imo ya match (ulubalushi)"
+output_match_fn_all_in_one_by_language = "Match function nshi lyakuti ndimi nkana key"
+output_match_fn_all_in_one_by_language_and_key = "Match function ine key yasanganwa (ndimi + map_key)"
+output_phf = "Amapanga phf map functions yekha kuli ndimi"
+output_phf_by_key = "Phf map ine key shalapo (shili TupleKey)"
+output_phf_all_in_one = "Sanganisha phf map yonse mu function imo"
+output_locales_fn = "Fumya all_locales function"
+output_ron = "Fumya ulubalushi mu format ya RON"
+
+input = "Indekelo ya mapango ya localization"
+dsl_suffix = 'Ifile ya DSL ya kumapila (default ".dsl")'
+include_languages = "White list: Initializa ID ya ndimi sha list fye"
+include_map_names = "Initializa map names sha list fye"
+exclude_languages = "Black list: Uwaya initializa ID ya ndimi sha list"
+exclude_map_names = "Uwaya initializa map names sha list"
+
+base_name = 'Ishina lyakuti "Highlight-Map"'
+suffix = 'Ishina lishya lya "Highlight-Map" ya kumapila'
+true_color = "Ubwanga bwa 24-bit"
+syntax_name = "Ishina lya syntax"
+theme_name = "Ishina lya theme"
+background = "Amkenye background"
+custom_syntax_set = "Ifile ya syntax set ya kwikala"
+custom_theme_set = "Ifile ya theme set ya kwikala"
+list_all_syntaxes = "Langa ishina lyonse lya syntax ne extensions"
+list_all_themes = "Langa ishina lyonse lya theme"
+
+display_config_dir = "Langa indekelo ya config ya glossa"

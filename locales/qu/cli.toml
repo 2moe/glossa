@@ -1,0 +1,37 @@
+outdir = "Lluqsiq qillqana"
+visibility = "Rurasqa codepa rikchakuynin"
+bincode_suffix = "bincode willay qipa"
+mod_prefix = 'mod willaw qallariy (sapallanta "l10n_")'
+
+output_bincode = "Simikunapaq sapalla bincode willayta ruway"
+output_bincode_all_in_one = "Llapa simikunapa bincoden huk willayman apay"
+output_match_fn = "Rust code willayta ruway (match expresionniyuq) simikunapaq"
+output_match_fn_by_key = "map_key-lla llamk'achiy (map_name mana)"
+output_match_fn_all_in_one = "Llapa simi datakunata huk match funcionman (qillqa)"
+output_match_fn_all_in_one_by_language = "Match funcionpi simi sutitaq llamk'achiy"
+output_match_fn_all_in_one_by_language_and_key = "Match funcionpi simi suti + map_key llamk'achiy"
+output_phf = "PHF map funcionkunata simikunapaq ruway"
+output_phf_by_key = "PHF map kaq stringwan (mana TupleKey)"
+output_phf_all_in_one = "Llapa phf mapkuna huk funcionman"
+output_locales_fn = "All_locales funcionta apay"
+output_ron = "RON formato stringta apay"
+
+input = "Localización qallariy qutukuna"
+dsl_suffix = 'DSL willay qipa (sapallanta ".dsl")'
+include_languages = "Yuraq lista: Listapi kaq simi ID-kunalla qallarin"
+include_map_names = "Listapi kaq map_names-kunalla qallarin"
+exclude_languages = "Yana lista: Listapi kaq simi ID mana qallarin"
+exclude_map_names = "Listapi kaq map_names mana qallarin"
+
+base_name = 'Tiksi "Highlight-Map" sutin'
+suffix = 'Musuq Highlight-Map qipan'
+true_color = "24-bit chiqap k'illim"
+syntax_name = "Simi kamachiy sutin"
+theme_name = "Tema sutin"
+background = "Wañunanpaq llamk'achiy"
+custom_syntax_set = "Kikinmanta ruwasqa sintaxis wakichi"
+custom_theme_set = "Kikinmanta ruwasqa tema wakichi"
+list_all_syntaxes = "Llapa sintaxis sutinkunata rikuchiy"
+list_all_themes = "Llapa tema sutinkunata rikuchiy"
+
+display_config_dir = "Glossa configuración qututa rikuchiy"

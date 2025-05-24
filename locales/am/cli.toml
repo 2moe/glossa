@@ -1,0 +1,37 @@
+outdir = "የውጤት ማውጫ"
+visibility = "የተፈጠረው ኮድ ታይነት"
+bincode_suffix = "bincode ፋይል ቅጥያ"
+mod_prefix = 'mod ፋይል ቅድመ ቅጥያ (ነባሪ "l10n_")'
+
+output_bincode = "ለተለያዩ ቋንቋዎች የተለዩ bincode ፋይሎችን ፍጠር"
+output_bincode_all_in_one = "ሁሉንም ቋንቋዎች የbincode ፋይሎችን በአንድ ፋይል ላይ አስገባ"
+output_match_fn = "ለተለያዩ ቋንቋዎች Rust ኮድ ፋይሎችን ፍጠር (match አባባሎች ያሉት)"
+output_match_fn_by_key = "map_key ብቻ እንደ ቁልፍ ይጠቀሙ (map_name አይጨምር)"
+output_match_fn_all_in_one = "ሁሉንም ውሂብ በአንድ match ፋይል ውስጥ አስገባ (ገለፃ ገበታ)"
+output_match_fn_all_in_one_by_language = "ቋንቋ ስም እንደ ቁልፍ ያለው match ፋይል"
+output_match_fn_all_in_one_by_language_and_key = "ተዋህዶ ቁልፍ (ቋንቋ+map_key) ያለው match ፋይል"
+output_phf = "ለተለያዩ ቋንቋዎች phf ካርታ ፋይሎችን ፍጠር"
+output_phf_by_key = "መደበኛ ገለፃ ቁልፍ ያለው phf ካርታ (TupleKey አይደለም)"
+output_phf_all_in_one = "ሁሉንም phf ካርታዎች በአንድ ፋይል ውስጥ አስገባ"
+output_locales_fn = "all_locales ፋይልን አስገባ"
+output_ron = "RON ፎርማት ያለውን ገለፃ አስገባ"
+
+input = "የአካባቢ ሀብቶች ምንጭ ማውጫ"
+dsl_suffix = 'DSL ፋይል ቅጥያ (ነባሪ ".dsl")'
+include_languages = "የነጭ ዝርዝር ሁነታ፡ ዝርዝሩ ባዶ ካልሆነ ብቻ የቋንቋ IDዎችን አስጀምር"
+include_map_names = "ዝርዝሩ ባዶ ካልሆነ ብቻ የካርታ ስሞችን አስጀምር"
+exclude_languages = "የጥቁር ዝርዝር ሁነታ፡ በዝርዝሩ ውስጥ ያሉ የቋንቋ IDዎችን አትነሳ"
+exclude_map_names = "በዝርዝሩ ውስጥ ያሉ የካርታ ስሞችን አትነሳ"
+
+base_name = '"ብሩህ-ካርታ" መሰረታዊ ስም'
+suffix = '"ብሩህ-ካርታ" አዲስ ቅጥያ'
+true_color = "24-ቢት እውነተኛ ቀለም"
+syntax_name = "የሰዋሰው ስም"
+theme_name = "የገጽታ ስም"
+background = "ዳቦሳ አገልግል"
+custom_syntax_set = "ብጉር የሰዋሰው ስብስብ ፋይል"
+custom_theme_set = "ብጉር የገጽታ ስብስብ ፋይል"
+list_all_syntaxes = "ሁሉንም የሰዋሰው ስሞች እና ቅጥያዎች አሳይ"
+list_all_themes = "ሁሉንም የገጽታ ስሞች አሳይ"
+
+display_config_dir = "የglossa ውቅር ማውጫ አሳይ"

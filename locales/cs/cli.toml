@@ -1,0 +1,37 @@
+outdir = "Výstupní adresář"
+visibility = "Viditelnost generovaného kódu"
+bincode_suffix = "Přípona souboru bincode"
+mod_prefix = 'Předpona mod souboru (výchozí "l10n_")'
+
+output_bincode = "Generovat samostatné soubory bincode pro různé jazyky"
+output_bincode_all_in_one = "Exportovat všechny bincode do jednoho souboru"
+output_match_fn = "Generovat Rust soubory s match funkcemi pro jazyky"
+output_match_fn_by_key = "Použít pouze map_key jako klíč (bez map_name)"
+output_match_fn_all_in_one = "Exportovat všechna data do jedné match funkce (řetězec)"
+output_match_fn_all_in_one_by_language = "Match funkce s názvem jazyka jako klíčem"
+output_match_fn_all_in_one_by_language_and_key = "Match funkce s kombinovaným klíčem (jazyk+map_key)"
+output_phf = "Generovat samostatné phf map funkce pro jazyky"
+output_phf_by_key = "phf map s obyčejnými řetězcovými klíči (ne TupleKey)"
+output_phf_all_in_one = "Sloučit všechny phf mapy do jedné funkce"
+output_locales_fn = "Exportovat funkci all_locales"
+output_ron = "Exportovat řetězec ve formátu RON"
+
+input = "Zdrojový adresář lokalizačních prostředků"
+dsl_suffix = 'Přípona DSL souboru (výchozí ".dsl")'
+include_languages = "Režim bílé listiny: Inicializovat pouze ID jazyků ze seznamu"
+include_map_names = "Inicializovat pouze názvy map ze seznamu"
+exclude_languages = "Režim černé listiny: Neinicializovat ID jazyků ze seznamu"
+exclude_map_names = "Neinicializovat názvy map ze seznamu"
+
+base_name = 'Základní název "Highlight-Map"'
+suffix = 'Nová přípona pro "Highlight-Map"'
+true_color = "24bitová skutečná barva"
+syntax_name = "Název syntaxe"
+theme_name = "Název motivu"
+background = "Povolit pozadí"
+custom_syntax_set = "Vlastní soubor syntaxových sad"
+custom_theme_set = "Vlastní soubor sad motivů"
+list_all_syntaxes = "Zobrazit všechny názvy syntaxí a rozšíření"
+list_all_themes = "Zobrazit všechny názvy motivů"
+
+display_config_dir = "Zobrazit konfigurační adresář Glossa"

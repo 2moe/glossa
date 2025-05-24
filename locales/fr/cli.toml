@@ -1,0 +1,37 @@
+outdir = "Répertoire de sortie"
+visibility = "Visibilité du code généré"
+bincode_suffix = "Suffixe de fichier bincode"
+mod_prefix = 'Préfixe de fichier mod (par défaut "l10n_")'
+
+output_bincode = "Générer des fichiers bincode indépendants par langue"
+output_bincode_all_in_one = "Exporter tous les bincode dans un seul fichier"
+output_match_fn = "Générer des fichiers Rust avec fonctions match par langue"
+output_match_fn_by_key = "Utilise uniquement map_key comme clé (exclut map_name)"
+output_match_fn_all_in_one = "Consolider toutes les données dans une fonction match (chaîne)"
+output_match_fn_all_in_one_by_language = "Fonction match avec nom de langue comme clé"
+output_match_fn_all_in_one_by_language_and_key = "Fonction match avec clé composite (langue + map_key)"
+output_phf = "Générer des fonctions phf map par langue"
+output_phf_by_key = "phf map avec clés chaînes simples (pas TupleKey)"
+output_phf_all_in_one = "Fusionner toutes les phf map dans une fonction"
+output_locales_fn = "Exporter la fonction all_locales"
+output_ron = "Exporter en chaîne format RON"
+
+input = "Répertoire source des ressources de localisation"
+dsl_suffix = 'Suffixe de fichier DSL (par défaut ".dsl")'
+include_languages = "Mode liste blanche : Initialiser uniquement les ID de langue listés"
+include_map_names = "Initialiser uniquement les noms de cartes listés"
+exclude_languages = "Mode liste noire : Ne pas initialiser les ID de langue listés"
+exclude_map_names = "Ne pas initialiser les noms de cartes listés"
+
+base_name = 'Nom de base "Highlight-Map"'
+suffix = 'Suffixe du nouveau "Highlight-Map"'
+true_color = "Couleur vraie 24 bits"
+syntax_name = "Nom de syntaxe"
+theme_name = "Nom du thème"
+background = "Activer l'arrière-plan"
+custom_syntax_set = "Fichier de syntaxe personnalisé"
+custom_theme_set = "Fichier de thèmes personnalisés"
+list_all_syntaxes = "Afficher tous les noms de syntaxe et extensions"
+list_all_themes = "Afficher tous les noms de thèmes"
+
+display_config_dir = "Afficher le répertoire de configuration de glossa"

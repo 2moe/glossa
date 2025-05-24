@@ -1,0 +1,37 @@
+outdir = "Izvades direktorija"
+visibility = "Ģenerētā koda redzamība"
+bincode_suffix = "bincode failu paplašinājums"
+mod_prefix = 'mod faila prefikss (noklusējums "l10n_")'
+
+output_bincode = "Ģenerēt atsevišķus bincode failus dažādām valodām"
+output_bincode_all_in_one = "Eksportēt visu valodu bincode vienā failā"
+output_match_fn = "Ģenerēt Rust koda failus ar match izteiksmēm (funkcijas)"
+output_match_fn_by_key = "Lietot tikai map_key kā atslēgu (bez map_name)"
+output_match_fn_all_in_one = "Eksportēt visus datus vienā match funkcijā (virkne)"
+output_match_fn_all_in_one_by_language = "Match funkcija ar valodas nosaukumu kā atslēgu"
+output_match_fn_all_in_one_by_language_and_key = "Match funkcija ar kombinētu atslēgu (valoda + map_key)"
+output_phf = "Ģenerēt atsevišķas phf kartes funkcijas valodām"
+output_phf_by_key = "phf karte ar parastām virknes atslēgām (ne TupleKey)"
+output_phf_all_in_one = "Apvienot visas phf kartes vienā funkcijā"
+output_locales_fn = "Eksportēt all_locales funkciju"
+output_ron = "Eksportēt virkni RON formātā"
+
+input = "Lokalizācijas resursu avota direktorija"
+dsl_suffix = 'DSL faila paplašinājums (noklusējums ".dsl")'
+include_languages = "Baltā saraksta režīms: Inicializēt tikai sarakstā esošos valodu ID"
+include_map_names = "Inicializēt tikai sarakstā esošos karšu nosaukumus"
+exclude_languages = "Melnā saraksta režīms: Neinicializēt sarakstā esošos valodu ID"
+exclude_map_names = "Neinicializēt sarakstā esošos karšu nosaukumus"
+
+base_name = '"Highlight-Map" pamatnosaukums'
+suffix = '"Highlight-Map" jaunais paplašinājums'
+true_color = "24 bitu īstā krāsa"
+syntax_name = "Sintakses nosaukums"
+theme_name = "Tēmas nosaukums"
+background = "Vai aktivizēt fona"
+custom_syntax_set = "Pielāgota sintakses kopas fails"
+custom_theme_set = "Pielāgota tēmu kopas fails"
+list_all_syntaxes = "Rādīt visus sintakses nosaukumus un paplašinājumus"
+list_all_themes = "Rādīt visas tēmu nosaukumus"
+
+display_config_dir = "Rādīt Glossa konfigurācijas direktoriju"

@@ -1,0 +1,37 @@
+outdir = "Чыгыш директориясе"
+visibility = "Яратылган кодның күренүчәнлеге"
+bincode_suffix = "bincode файл суффиксы"
+mod_prefix = 'mod файл префиксы (көйләнмәгән "l10n_")'
+
+output_bincode = "Төрле телләр өчен аерым bincode файллар ясау"
+output_bincode_all_in_one = "Барлык телләрнең bincode'ын бер файлга чыгару"
+output_match_fn = "Төрле телләр өчен match функцияле Rust файллар ясау"
+output_match_fn_by_key = "map_key'ны генә ачкыч итеп куллану (map_name керми)"
+output_match_fn_all_in_one = "Барлык мәгълүматны бер match функциясенә чыгару (юл)"
+output_match_fn_all_in_one_by_language = "Тел исеме ачкыч булган бердәм match функциясе"
+output_match_fn_all_in_one_by_language_and_key = "Комбик ачкычлы (тел исеме + map_key) match функциясе"
+output_phf = "Төрле телләр өчен аерым phf карта функцияләре ясау"
+output_phf_by_key = "Гади юл ачкычлы phf карта (TupleKey түгел)"
+output_phf_all_in_one = "Барлык phf карталарны бер функциягә берләштерү"
+output_locales_fn = "all_locales функциясен чыгару"
+output_ron = "RON форматтагы юлны чыгару"
+
+input = "Локализация ресурсларының чыганак директориясе"
+dsl_suffix = 'DSL файл суффиксы (көйләнмәгән ".dsl")'
+include_languages = "Ак исемлек режимы: Исемлектәге тел ID'ларын гына башлау"
+include_map_names = "Исемлектәге карта исемнәрен гына башлау"
+exclude_languages = "Кара исемлек режимы: Исемлектәге тел ID'ларын башламау"
+exclude_map_names = "Исемлектәге карта исемнәрен башламау"
+
+base_name = '"Highlight-Map" нигез исеме'
+suffix = 'Яңа "Highlight-Map" суффиксы'
+true_color = "24-битлы чын төс"
+syntax_name = "Синтаксис исеме"
+theme_name = "Тема исеме"
+background = "Фонны активлаштыру"
+custom_syntax_set = "Көйләнә торган синтаксис җыелмасы файлы"
+custom_theme_set = "Көйләнә торган тема җыелмасы файлы"
+list_all_syntaxes = "Барлык синтаксис исемнәрен һәм киңәйтмәләрне күрсәтү"
+list_all_themes = "Барлык тема исемнәрен күрсәтү"
+
+display_config_dir = "Glossa көйләүләре директориясен күрсәтү"

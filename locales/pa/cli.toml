@@ -1,0 +1,37 @@
+outdir = "ਆਉਟਪੁੱਟ ਡਾਇਰੈਕਟਰੀ"
+visibility = "ਜਨਰੇਟ ਕੋਡ ਦੀ ਦ੍ਰਿਸ਼ਟੀਗੋਚਰਤਾ"
+bincode_suffix = "bincode ਫਾਇਲ ਪਿਛੇਤਰ"
+mod_prefix = 'mod ਫਾਇਲ ਪ੍ਰੀਫਿਕਸ (ਡਿਫੌਲਟ "l10n_")'
+
+output_bincode = "ਵੱਖ-ਵੱਖ ਭਾਸ਼ਾਵਾਂ ਲਈ ਅਲੱਗ bincode ਫਾਇਲਾਂ ਬਣਾਓ"
+output_bincode_all_in_one = "ਸਾਰੀਆਂ ਭਾਸ਼ਾਵਾਂ ਦੇ bincode ਇੱਕੋ ਫਾਇਲ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰੋ"
+output_match_fn = "ਰੱਸਟ ਕੋਡ ਫਾਇਲਾਂ (match ਐਕਸਪ੍ਰੈਸ਼ਨ ਫੰਕਸ਼ਨ ਸਮੇਤ) ਬਣਾਓ"
+output_match_fn_by_key = "ਕੇਵਲ map_key ਨੂੰ ਕੁੰਜੀ ਵਜੋਂ ਵਰਤੋਂ (map_name ਨਾਲ ਨਹੀਂ)"
+output_match_fn_all_in_one = "ਸਾਰੇ ਡੇਟਾ ਨੂੰ ਇੱਕ match ਫੰਕਸ਼ਨ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰੋ (ਸਟ੍ਰਿੰਗ)"
+output_match_fn_all_in_one_by_language = "ਭਾਸ਼ਾ ਨਾਮ ਨਾਲ ਕੁੰਜੀ ਵਾਲੀ match ਫੰਕਸ਼ਨ"
+output_match_fn_all_in_one_by_language_and_key = "ਕੁੰਜੀ (ਭਾਸ਼ਾ+map_key) ਨਾਲ match ਫੰਕਸ਼ਨ"
+output_phf = "ਭਾਸ਼ਾਵਾਂ ਲਈ ਅਲੱਗ phf ਮੈਪ ਫੰਕਸ਼ਨ ਬਣਾਓ"
+output_phf_by_key = "ਸਧਾਰਨ ਸਟ੍ਰਿੰਗ ਕੁੰਜੀਆਂ ਵਾਲੇ phf ਮੈਪ (TupleKey ਨਹੀਂ)"
+output_phf_all_in_one = "ਸਾਰੇ phf ਮੈਪ ਇੱਕ ਫੰਕਸ਼ਨ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰੋ"
+output_locales_fn = "all_locales ਫੰਕਸ਼ਨ ਐਕਸਪੋਰਟ ਕਰੋ"
+output_ron = "RON ਫਾਰਮੈਟ ਵਿੱਚ ਸਟ੍ਰਿੰਗ ਐਕਸਪੋਰਟ ਕਰੋ"
+
+input = "ਲੋਕਲਾਈਜ਼ੇਸ਼ਨ ਸਰੋਤਾਂ ਦੀ ਸਰੋਤ ਡਾਇਰੈਕਟਰੀ"
+dsl_suffix = 'DSL ਫਾਇਲ ਪਿਛੇਤਰ (ਡਿਫੌਲਟ ".dsl")'
+include_languages = "ਵ੍ਹਾਈਟਲਿਸਟ ਮੋਡ: ਸੂਚੀ ਵਾਲੇ ਭਾਸ਼ਾ ID ਹੀ ਇਨੀਸ਼ੀਏਟ ਹੋਣ"
+include_map_names = "ਸੂਚੀ ਵਾਲੇ ਮੈਪ ਨਾਮ ਹੀ ਇਨੀਸ਼ੀਏਟ ਹੋਣ"
+exclude_languages = "ਬਲੈਕਲਿਸਟ ਮੋਡ: ਸੂਚੀ ਵਾਲੇ ਭਾਸ਼ਾ ID ਇਨੀਸ਼ੀਏਟ ਨਹੀਂ ਹੋਣ"
+exclude_map_names = "ਸੂਚੀ ਵਾਲੇ ਮੈਪ ਨਾਮ ਇਨੀਸ਼ੀਏਟ ਨਹੀਂ ਹੋਣ"
+
+base_name = 'ਮੂਲ "ਹਾਈਲਾਈਟ-ਮੈਪ" ਦਾ ਨਾਮ'
+suffix = 'ਨਵੇਂ "ਹਾਈਲਾਈਟ-ਮੈਪ" ਦਾ ਪਿਛੇਤਰ'
+true_color = "24-ਬਿੱਟ ਅਸਲੀ ਰੰਗ"
+syntax_name = "ਸਿੰਟੈਕਸ ਨਾਮ"
+theme_name = "ਥੀਮ ਨਾਮ"
+background = "ਬੈਕਗ੍ਰਾਊਂਡ ਸਮਰੱਥ ਕਰੋ"
+custom_syntax_set = "ਕਸਟਮ ਸਿੰਟੈਕਸ ਸੈੱਟ ਫਾਇਲ"
+custom_theme_set = "ਕਸਟਮ ਥੀਮ ਸੈੱਟ ਫਾਇਲ"
+list_all_syntaxes = "ਸਾਰੇ ਸਿੰਟੈਕਸ ਨਾਮ ਅਤੇ ਐਕਸਟੈਨਸ਼ਨ ਦਿਖਾਓ"
+list_all_themes = "ਸਾਰੇ ਥੀਮ ਨਾਮ ਦਿਖਾਓ"
+
+display_config_dir = "glossa ਦੀ ਕਨਫਿਗਰੇਸ਼ਨ ਡਾਇਰੈਕਟਰੀ ਦਿਖਾਓ"

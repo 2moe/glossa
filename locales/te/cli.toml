@@ -1,0 +1,37 @@
+outdir = "అవుట్పుట్ డైరెక్టరీ"
+visibility = "జనరేట్ చేసిన కోడ్ దృశ్యమానత"
+bincode_suffix = "bincode ఫైల్ సఫిక్స్"
+mod_prefix = 'mod ఫైల్ ప్రిఫిక్స్ (డిఫాల్ట్ "l10n_")'
+
+output_bincode = "వివిధ భాషలకు స్వతంత్ర bincode ఫైళ్ళను సృష్టించు"
+output_bincode_all_in_one = "అన్ని భాషల bincodeలను ఒకే ఫైల్‌లో ఎగుమతి చేయి"
+output_match_fn = "రస్ట్ కోడ్ ఫైళ్ళను సృష్టించు (match ఎక్స్‌ప్రెషన్ ఫంక్షన్‌లతో)"
+output_match_fn_by_key = "map_keyని మాత్రమే కీగా ఉపయోగించు (map_name లేదు)"
+output_match_fn_all_in_one = "అన్ని డేటాను ఒక match ఫంక్షన్‌లో ఎగుమతి చేయి (స్ట్రింగ్)"
+output_match_fn_all_in_one_by_language = "భాష పేరును కీగా ఉపయోగించే match ఫంక్షన్"
+output_match_fn_all_in_one_by_language_and_key = "కాంబైన్డ్ కీ (భాష+map_key) తో match ఫంక్షన్"
+output_phf = "భిన్న భాషలకు స్వతంత్ర phf మ్యాప్ ఫంక్షన్‌లు"
+output_phf_by_key = "సాధారణ స్ట్రింగ్ కీలతో phf మ్యాప్ (TupleKey కాదు)"
+output_phf_all_in_one = "అన్ని phf మ్యాప్‌లను ఒక ఫంక్షన్‌లో కలుపు"
+output_locales_fn = "all_locales ఫంక్షన్‌ను ఎగుమతి చేయి"
+output_ron = "RON ఫార్మాట్‌లో స్ట్రింగ్ ఎగుమతి చేయి"
+
+input = "స్థానికీకరణ వనరుల మూల డైరెక్టరీ"
+dsl_suffix = 'DSL ఫైల్ సఫిక్స్ (డిఫాల్ట్ ".dsl")'
+include_languages = "వైట్‌లిస్ట్ మోడ్: జాబితాలోని భాష IDలను మాత్రమే ప్రారంభించు"
+include_map_names = "జాబితాలోని మ్యాప్ పేర్లను మాత్రమే ప్రారంభించు"
+exclude_languages = "బ్లాక్‌లిస్ట్ మోడ్: జాబితా భాష IDలను ప్రారంభించవద్దు"
+exclude_map_names = "జాబితా మ్యాప్ పేర్లను ప్రారంభించవద్దు"
+
+base_name = '"హైలైట్-మ్యాప్" బేస్ పేరు'
+suffix = '"హైలైట్-మ్యాప్" కొత్త సఫిక్స్'
+true_color = "24-బిట్ నిజమైన రంగు"
+syntax_name = "సింటాక్స్ పేరు"
+theme_name = "థీమ్ పేరు"
+background = "బ్యాక్‌గ్రౌండ్ ప్రారంభించాలా"
+custom_syntax_set = "కస్టమ్ సింటాక్స్ సెట్ ఫైల్"
+custom_theme_set = "కస్టమ్ థీమ్ సెట్ ఫైల్"
+list_all_syntaxes = "అన్ని సింటాక్స్ పేర్లు మరియు ఎక్స్‌టెన్షన్‌లను చూపించు"
+list_all_themes = "అన్ని థీమ్ పేర్లను చూపించు"
+
+display_config_dir = "గ్లోసా కాన్ఫిగ్ డైరెక్టరీని చూపించు"

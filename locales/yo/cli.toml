@@ -1,0 +1,37 @@
+outdir = "Àpótí Ìṣejáde"
+visibility = "Ìfihàn kóòdù tí a ṣẹ̀dá"
+bincode_suffix = "Àkẹ́yìn fáìlì bincode"
+mod_prefix = 'Àtẹ̀yìn fáìlì mod (aṣẹ̀dá "l10n_")'
+
+output_bincode = "Ṣẹ̀dá fáìlì bincode oríṣiríṣi fún èdè"
+output_bincode_all_in_one = "Ṣe ìṣejáde gbogbo bincode èdè sí fáìlì kan"
+output_match_fn = "Ṣẹ̀dá fáìlì Rust pẹ̀lú iṣẹ́ match fún èdè"
+output_match_fn_by_key = "Jẹ́rìí output_match_fn, ṣùgbọ́n map_key nìkan ló jẹ́ key"
+output_match_fn_all_in_one = "Ṣe ìṣejáde gbogbo dátà sí iṣẹ́ match kan (ọ̀rọ̀-ńtàkùn)"
+output_match_fn_all_in_one_by_language = "Iṣẹ́ match pẹ̀lú orúkọ èdè gẹ́gẹ́ bí key"
+output_match_fn_all_in_one_by_language_and_key = "Iṣẹ́ match pẹ̀lú key (orúkọ èdè + map_key)"
+output_phf = "Ṣẹ̀dá iṣẹ́ phf map oríṣiríṣi fún èdè"
+output_phf_by_key = "phf map pẹ̀lú ọ̀rọ̀-ńtàkùn deede (kì í ṣe TupleKey)"
+output_phf_all_in_one = "Ṣe ìṣejáde gbogbo phf map sí iṣẹ́ kan"
+output_locales_fn = "Ṣe ìṣejáde iṣẹ́ all_locales"
+output_ron = "Ṣe ìṣejáde ọ̀rọ̀-ńtàkùn fọ́rmátì ron"
+
+input = "Àtòjọ orísun ìṣàkóso èdè"
+dsl_suffix = 'Àkẹ́yìn fáìlì DSL (aṣẹ̀dá ".dsl")'
+include_languages = "Àpèjú àwòrán funfun: Ṣàtúnṣe ID èdè tí ó wà nínú àtòjọ"
+include_map_names = "Ṣàtúnṣe àwọn orúkọ map tí ó wà nínú àtòjọ"
+exclude_languages = "Àpèjú àwòrán dúdú: Má ṣàtúnṣe ID èdè tí ó wà nínú àtòjọ"
+exclude_map_names = "Má ṣàtúnṣe àwọn orúkọ map tí ó wà nínú àtòjọ"
+
+base_name = 'Orúkọ ipilẹ̀ "Highlight-Map"'
+suffix = 'Àkẹ́yìn fún "Highlight-Map" tuntun'
+true_color = "Àwọ̀ títọ́ 24-bítì"
+syntax_name = "Orúkọ èròngbà"
+theme_name = "Orúkọ àkọ́lé"
+background = "Ṣàmúlò àbáwọ̀lẹ̀"
+custom_syntax_set = "Fáìlì èròngbà àṣà"
+custom_theme_set = "Fáìlì àwọn àkọ́lé àṣà"
+list_all_syntaxes = "Fihàn gbogbo orúkọ èròngbà àti àfikún"
+list_all_themes = "Fihàn gbogbo orúkọ àkọ́lé"
+
+display_config_dir = "Fihàn àtòjọ ìṣàkóso glossa"

@@ -1,0 +1,37 @@
+outdir = "Direktoryo sa Gipagawas"
+visibility = "Makita ang gihimong kodigo"
+bincode_suffix = "Sufiks sa bincode nga file"
+mod_prefix = 'Mod file unahan (default "l10n_")'
+
+output_bincode = "Mugna tagsa-tagsa nga bincode files para sa lain-laing pinulongan"
+output_bincode_all_in_one = "Ipagawas tanang bincode ngadto sa usa ka file"
+output_match_fn = "Mugna Rust files nga adunay match function matag pinulongan"
+output_match_fn_by_key = "Gamita lamang ang map_key ingon key (walay map_name)"
+output_match_fn_all_in_one = "Ipagawas tanang datos ngadto sa usa ka match function (string)"
+output_match_fn_all_in_one_by_language = "Match function nga gamiton ang pinulongan nga ngalan ingon key"
+output_match_fn_all_in_one_by_language_and_key = "Match function nga kombinasyon sa pinulongan + map_key ingon key"
+output_phf = "Mugna phf map functions matag pinulongan"
+output_phf_by_key = "phf map nga ordinaryo nga string keys (dili TupleKey)"
+output_phf_all_in_one = "Ipagawas tanang phf maps ngadto sa usa ka function"
+output_locales_fn = "Ipagawas ang all_locales function"
+output_ron = "Ipagawas string sa RON format"
+
+input = "Source directory sa lokal nga mga kapanguhaan"
+dsl_suffix = 'DSL file suffix (default ".dsl")'
+include_languages = "White list mode: I-initialize lamang ang ID sa lista"
+include_map_names = "I-initialize lamang ang map names sa lista"
+exclude_languages = "Black list mode: Ayaw i-initialize ang ID sa lista"
+exclude_map_names = "Ayaw i-initialize ang map names sa lista"
+
+base_name = 'Base ngalan sa "Highlight-Map"'
+suffix = 'Bag-ong himo nga suffix sa "Highlight-Map"'
+true_color = "24-bit tinuod nga kolor"
+syntax_name = "Ngalan sa syntax"
+theme_name = "Ngalan sa tema"
+background = "I-enable ang background"
+custom_syntax_set = "Custom syntax set file"
+custom_theme_set = "Custom theme set file"
+list_all_syntaxes = "Ipakita tanang syntax names ug extensions"
+list_all_themes = "Ipakita tanang theme names"
+
+display_config_dir = "Ipakita config directory sa glossa"

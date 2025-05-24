@@ -1,0 +1,37 @@
+outdir = "வெளியீட்டு அடைவு"
+visibility = "உருவாக்கிய குறியீட்டின் காண்பித்தல்"
+bincode_suffix = "bincode கோப்பு பின்னொட்டு"
+mod_prefix = 'mod கோப்பு முன்னொட்டு (இயல்புநிலை "l10n_")'
+
+output_bincode = "வேறுபட்ட மொழிகளுக்கு தனி bincode கோப்புகளை உருவாக்கு"
+output_bincode_all_in_one = "அனைத்து மொழி bincodeகளை ஒரு கோப்பில் வெளியிடு"
+output_match_fn = "match வெளிப்பாடு செயல்பாடுகளுடன் Rust கோப்புகளை உருவாக்கு"
+output_match_fn_by_key = "map_key மட்டுமே சாவியாக பயன்படுத்து (map_name இல்லை)"
+output_match_fn_all_in_one = "அனைத்து தரவுகளை ஒரு match செயல்பாடாக வெளியிடு (சரம்)"
+output_match_fn_all_in_one_by_language = "மொழி பெயரை சாவியாக கொண்ட match செயல்பாடு"
+output_match_fn_all_in_one_by_language_and_key = "மொழி + map_key சாவியுடன் match செயல்பாடு"
+output_phf = "மொழிகளுக்கு தனி phf வரைபட செயல்பாடுகள்"
+output_phf_by_key = "எளிய சரம் சாவிகள் கொண்ட phf வரைபடங்கள் (TupleKey அல்ல)"
+output_phf_all_in_one = "அனைத்து phf வரைபடங்களை ஒரு செயல்பாடாக இணைக்க"
+output_locales_fn = "all_locales செயல்பாட்டை வெளியிடு"
+output_ron = "RON வடிவத்தில் சரம் வெளியிடு"
+
+input = "மொழியாக்க வளங்களின் மூல அடைவு"
+dsl_suffix = 'DSL கோப்பு பின்னொட்டு (இயல்புநிலை ".dsl")'
+include_languages = "வெள்ளை பட்டியல்: பட்டியலில் உள்ள மொழி IDகள் மட்டுமே துவக்கப்படும்"
+include_map_names = "பட்டியலில் உள்ள வரைபட பெயர்கள் மட்டுமே துவக்கப்படும்"
+exclude_languages = "கருப்பு பட்டியல்: பட்டியலில் உள்ள மொழி IDகள் துவக்கப்படாது"
+exclude_map_names = "பட்டியலில் உள்ள வரைபட பெயர்கள் துவக்கப்படாது"
+
+base_name = 'அடிப்படை "Highlight-Map" பெயர்'
+suffix = 'புதிய "Highlight-Map" பின்னொட்டு'
+true_color = "24-பிட் உண்மை நிறம்"
+syntax_name = "தொடரியல் பெயர்"
+theme_name = "தீம் பெயர்"
+background = "பின்னணியை இயக்கவும்"
+custom_syntax_set = "தனிப்பயன் தொடரியல் தொகுப்பு கோப்பு"
+custom_theme_set = "தனிப்பயன் தீம் தொகுப்பு கோப்பு"
+list_all_syntaxes = "அனைத்து தொடரியல் பெயர்கள் & நீட்சிகளை காட்டு"
+list_all_themes = "அனைத்து தீம் பெயர்களை காட்டு"
+
+display_config_dir = "Glossa உள்ளமைவு அடைவை காட்டு"

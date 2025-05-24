@@ -1,0 +1,37 @@
+outdir = "Изходна директория"
+visibility = "Видимост на генерирания код"
+bincode_suffix = "Файлово разширение за bincode"
+mod_prefix = 'Представка за mod файлове (по подразбиране "l10n_")'
+
+output_bincode = "Генериране на отделни bincode файлове за различни езици"
+output_bincode_all_in_one = "Експортиране на всички езикови bincode в един файл"
+output_match_fn = "Генериране на Rust файлове с match функции за различни езици"
+output_match_fn_by_key = "Използва само map_key като ключ (без map_name)"
+output_match_fn_all_in_one = "Консолидиране на всички данни в една match функция (низ)"
+output_match_fn_all_in_one_by_language = "Match функция с име на език като ключ"
+output_match_fn_all_in_one_by_language_and_key = "Match функция с комбиниран ключ (език + map_key)"
+output_phf = "Генериране на PHF карти за различни езици"
+output_phf_by_key = "PHF карти с обикновени низови ключове (не TupleKey)"
+output_phf_all_in_one = "Консолидиране на всички PHF карти в една функция"
+output_locales_fn = "Експортиране на функцията all_locales"
+output_ron = "Експортиране на низ във формат RON"
+
+input = "Изходна директория за локализирани ресурси"
+dsl_suffix = 'Файлово разширение за DSL (по подразбиране ".dsl")'
+include_languages = "Режим бял списък: Само езикови ID в списъка се инициализират"
+include_map_names = "Инициализира се само списък с имена на карти"
+exclude_languages = "Режим черен списък: Езикови ID в списъка не се инициализират"
+exclude_map_names = "Имена на карти в списъка не се инициализират"
+
+base_name = 'Базово име "Highlight-Map"'
+suffix = 'Суфикс за ново "Highlight-Map"'
+true_color = "Истински цветове 24-бита"
+syntax_name = "Име на синтаксис"
+theme_name = "Име на тема"
+background = "Активиране на фон"
+custom_syntax_set = "Персонализиран файл с синтактични настройки"
+custom_theme_set = "Персонализиран файл с тематични настройки"
+list_all_syntaxes = "Показване на всички синтактични имена и разширения"
+list_all_themes = "Показване на всички имена на теми"
+
+display_config_dir = "Показване на конфигурационна директория за glossa"

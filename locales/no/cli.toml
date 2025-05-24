@@ -1,0 +1,37 @@
+outdir = "Utdatakatalog"
+visibility = "Synlighet for generert kode"
+bincode_suffix = "Bincode-filsuffiks"
+mod_prefix = 'Mod-prefiks for fil (standard "l10n_")'
+
+output_bincode = "Generer separate bincode-filer for forskjellige språk"
+output_bincode_all_in_one = "Eksporter alle språks bincode til én fil"
+output_match_fn = "Generer Rust-filer med match-uttrykksfunksjoner per språk"
+output_match_fn_by_key = "Bruk kun map_key som nøkkel (ekskluder map_name)"
+output_match_fn_all_in_one = "Konsolider alle data i én match-funksjon (streng)"
+output_match_fn_all_in_one_by_language = "Match-funksjon med språknavn som nøkkel"
+output_match_fn_all_in_one_by_language_and_key = "Match-funksjon med kombinasjonsnøkkel (språk + map_key)"
+output_phf = "Generer phf-kartfunksjoner per språk"
+output_phf_by_key = "phf-kart med vanlige strengnøkler (ikke TupleKey)"
+output_phf_all_in_one = "Konsolider alle phf-kart i én funksjon"
+output_locales_fn = "Eksporter all_locales-funksjonen"
+output_ron = "Eksporter streng i RON-format"
+
+input = "Katalog for lokaliseringsressurser"
+dsl_suffix = 'DSL-filsuffiks (standard ".dsl")'
+include_languages = "Hvitliste-modus: Kun initialiser språk-IDer i listen"
+include_map_names = "Kun initialiser map-navn i listen"
+exclude_languages = "Svartliste-modus: Ikke initialiser språk-IDer i listen"
+exclude_map_names = "Ikke initialiser map-navn i listen"
+
+base_name = 'Grunnnavn for "Highlight-Map"'
+suffix = 'Suffiks for nygenerert "Highlight-Map"'
+true_color = "24-biters ekte farger"
+syntax_name = "Syntaksnavn"
+theme_name = "Temanavn"
+background = "Aktiver bakgrunn"
+custom_syntax_set = "Tilpasset syntakssett-fil"
+custom_theme_set = "Tilpasset temasett-fil"
+list_all_syntaxes = "Vis alle syntaksnavn og utvidelser"
+list_all_themes = "Vis alle temanavn"
+
+display_config_dir = "Vis konfigurasjonskatalog for glossa"

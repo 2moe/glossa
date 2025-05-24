@@ -1,0 +1,37 @@
+outdir = "Ekika ky'okushushana"
+visibility = "Okurikwata kwa code eyaakozesebwa"
+bincode_suffix = "Endabika y'efayile ya bincode"
+mod_prefix = 'Engeri yokutandika kwa fayile ya mod (Ebisangibwa "l10n_")'
+
+output_bincode = "Kukora fayile za bincode ezaawukana mu nnimi ezaawukana"
+output_bincode_all_in_one = "Okushushana ebintu byonna bya bincode mu fayile emu"
+output_match_fn = "Kukora fayile za Rust ezikwatagana ne match mu nnimi"
+output_match_fn_by_key = "Kukozesa map_key okukka ekintu ekikulu (tetwaliramu map_name)"
+output_match_fn_all_in_one = "Kushushana byonna mu kintu kimu ekikwatana (olukwegu)"
+output_match_fn_all_in_one_by_language = "Ekintu ekikwatana kikozese erinnya ly'olulimi"
+output_match_fn_all_in_one_by_language_and_key = "Ekintu ekikwatana kikozese erinnya + map_key"
+output_phf = "Kukora phf map ezaawukana mu nnimi"
+output_phf_by_key = "phf map ezikozesa olukwegu olwa bulijjo (si TupleKey)"
+output_phf_all_in_one = "Kushushana phf map zonna mu kintu kimu"
+output_locales_fn = "Okushushana ekintu ky'all_locales"
+output_ron = "Okushushana olukwegu lwa RON"
+
+input = "Ekika ky'ebikozesebwa eby'olulimi"
+dsl_suffix = '''Endabika y'efayile ya DSL (Ebisangibwa ".dsl")'''
+include_languages = "Engeri y'olukalata: ID z'olulimi ezigendereza gye zikozesebwa"
+include_map_names = "Amannya g'emapu agendereza gye gakozesebwa"
+exclude_languages = "Engeri y'okugoba: ID z'olulimi ezikwatiddwa tezikozesebwa"
+exclude_map_names = "Amannya g'emapu agakwatiddwa tegaakozesebwa"
+
+base_name = '''Elinnya ly''ekisinga "Highlight-Map"'''
+suffix = '''Endabika y''ekisinga "Highlight-Map" empya'''
+true_color = "Amabara agenkufu 24-bit"
+syntax_name = "Elinnya ly'endabika"
+theme_name = "Elinnya ly'omutwe"
+background = "Kukozesa ekirala wamu"
+custom_syntax_set = "Fayile y'endabika ey'okwegomba"
+custom_theme_set = "Fayile y'emitwe gy'okwegomba"
+list_all_syntaxes = "Okulaga amannya gendabika n'okwongerwako"
+list_all_themes = "Okulaga amannya g'emitwe gyonna"
+
+display_config_dir = "Okulaga ekika ky'okutegekera glossa"

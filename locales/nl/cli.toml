@@ -1,0 +1,37 @@
+outdir = "Uitvoermap"
+visibility = "Zichtbaarheid van gegenereerde code"
+bincode_suffix = "Bincode-bestandsextensie"
+mod_prefix = 'Mod-bestandsvoorvoegsel (standaard "l10n_")'
+
+output_bincode = "Genereer aparte bincode-bestanden voor verschillende talen"
+output_bincode_all_in_one = "Exporteer alle bincodes naar één bestand"
+output_match_fn = "Genereer Rust-bestanden met match-expressies per taal"
+output_match_fn_by_key = "Gebruik alleen map_key als sleutel (zonder map_name)"
+output_match_fn_all_in_one = "Consolideer alle data in één match-functie (tekenreeks)"
+output_match_fn_all_in_one_by_language = "Match-functie met taalnaam als sleutel"
+output_match_fn_all_in_one_by_language_and_key = "Match-functie met gecombineerde sleutel (taal + map_key)"
+output_phf = "Genereer PHF-mapfuncties per taal"
+output_phf_by_key = "PHF-map met standaard tekenreekssleutels (geen TupleKey)"
+output_phf_all_in_one = "Consolideer alle PHF-maps in één functie"
+output_locales_fn = "Exporteer all_locales-functie"
+output_ron = "Exporteer tekenreeks in RON-formaat"
+
+input = "Bronmap voor gelokaliseerde bronnen"
+dsl_suffix = 'DSL-bestandsextensie (standaard ".dsl")'
+include_languages = "Whitelist-modus: Initialiseer alleen taal-ID's in de lijst"
+include_map_names = "Initialiseer alleen mapnamen in de lijst"
+exclude_languages = "Blacklist-modus: Initialiseer geen taal-ID's in de lijst"
+exclude_map_names = "Initialiseer geen mapnamen in de lijst"
+
+base_name = 'Basisnaam van "Highlight-Map"'
+suffix = 'Nieuw achtervoegsel voor "Highlight-Map"'
+true_color = "24-bits truecolor"
+syntax_name = "Syntaxismaam"
+theme_name = "Themanaam"
+background = "Achtergrond inschakelen"
+custom_syntax_set = "Aangepast syntaxisset-bestand"
+custom_theme_set = "Aangepast themaset-bestand"
+list_all_syntaxes = "Toon alle syntaxismen en extensies"
+list_all_themes = "Toon alle thema's"
+
+display_config_dir = "Toon configuratiemap van Glossa"

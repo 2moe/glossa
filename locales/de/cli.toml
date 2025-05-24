@@ -1,49 +1,37 @@
-# ========================
-# Kernkonfiguration
-# ========================
 outdir = "Ausgabeverzeichnis"
 visibility = "Sichtbarkeit des generierten Codes"
 bincode_suffix = "Bincode-Dateiendung"
-mod_prefix = 'Modul-Präfix (Standard: "l10n_")'
+mod_prefix = 'Mod-Präfix (Standard "l10n_")'
 
-# ========================
-# Ausgabemodi
-# ========================
-output_bincode = "Separate Bincode-Dateien pro Sprache generieren"
-output_bincode_all_in_one = "Alle Sprach-Bincodes in einer Datei konsolidieren"
-output_match_fn = "Rust-Code mit Match-Ausdrücken pro Sprache generieren"
-output_match_fn_by_key = "Wie output_match_fn, aber nur mit map_key als Schlüssel (ohne map_name)"
-output_match_fn_all_in_one = "Alle Sprachdaten in einer Match-Funktion (String) zusammenführen"
+output_bincode = "Separate Bincode-Dateien für verschiedene Sprachen generieren"
+output_bincode_all_in_one = "Alle Bincodes in einer Datei ausgeben"
+output_match_fn = "Rust-Code-Dateien mit Match-Funktionen für Sprachen erstellen"
+output_match_fn_by_key = "Nur map_key als Schlüssel verwenden (ohne map_name)"
+output_match_fn_all_in_one = "Alle Daten in einer Match-Funktion ausgeben (Zeichenkette)"
 output_match_fn_all_in_one_by_language = "Match-Funktion mit Sprachnamen als Schlüssel"
 output_match_fn_all_in_one_by_language_and_key = "Match-Funktion mit kombiniertem Schlüssel (Sprache + map_key)"
-output_phf = "PHF-Map-Funktionen pro Sprache generieren"
-output_phf_by_key = "PHF-Maps mit einfachen String-Schlüsseln (statt TupleKey)"
-output_phf_all_in_one = "Alle PHF-Maps in einer Funktion vereinen"
-output_locales_fn = "all_locales-Funktion ausgeben"
-output_ron = "RON-formatierte Strings generieren"
+output_phf = "Separate PHF-Map-Funktionen für Sprachen generieren"
+output_phf_by_key = "PHF-Map mit einfachen Zeichenkettenschlüsseln (kein TupleKey)"
+output_phf_all_in_one = "Alle PHF-Maps in einer Funktion zusammenführen"
+output_locales_fn = "all_locales-Funktion exportieren"
+output_ron = "Zeichenkette im RON-Format exportieren"
 
-# ========================
-# Eingabe & Filterung
-# ========================
-input = "Quellverzeichnis der Lokalisierungsressourcen"
-dsl_suffix = 'DSL-Dateiendung (Standard: ".dsl")'
-include_languages = "Whitelist-Modus: Nur gelistete Sprach-IDs initialisieren"
-include_map_names = "Nur gelistete Map-Namen initialisieren"
-exclude_languages = "Blacklist-Modus: Gelistete Sprach-IDs ausschließen"
-exclude_map_names = "Gelistete Map-Namen ausschließen"
+input = "Quellverzeichnis für Lokalisierungsressourcen"
+dsl_suffix = 'DSL-Dateiendung (Standard ".dsl")'
+include_languages = "Whitelist-Modus: Nur Sprach-IDs aus der Liste initialisieren"
+include_map_names = "Nur Map-Namen aus der Liste initialisieren"
+exclude_languages = "Blacklist-Modus: Sprach-IDs aus der Liste nicht initialisieren"
+exclude_map_names = "Map-Namen aus der Liste nicht initialisieren"
 
-# ========================
-# Syntaxhervorhebung
-# ========================
-base_name = 'Basisname der Highlight-Map'
-suffix = 'Suffix für neue Highlight-Maps'
-true_color = "24-Bit True Color (Echtfarben)"
-syntax_name = "Syntaxbezeichnung"
-theme_name = "Themenbezeichnung"
-background = "Hintergrundunterstützung aktivieren"
+base_name = 'Basisname der "Highlight-Map"'
+suffix = 'Neue Endung für "Highlight-Map"'
+true_color = "24-Bit-Echtfarbe"
+syntax_name = "Syntaxname"
+theme_name = "Themenname"
+background = "Hintergrund aktivieren"
 custom_syntax_set = "Benutzerdefinierte Syntax-Set-Datei"
-custom_theme_set = "Benutzerdefinierte Themen-Set-Datei"
-list_all_syntaxes = "Alle Syntaxnamen mit Erweiterungen anzeigen"
+custom_theme_set = "Benutzerdefiniertes Themen-Set"
+list_all_syntaxes = "Alle Syntaxnamen und Erweiterungen anzeigen"
 list_all_themes = "Alle Themennamen anzeigen"
 
 display_config_dir = "Glossa-Konfigurationsverzeichnis anzeigen"

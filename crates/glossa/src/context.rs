@@ -43,10 +43,8 @@ impl LocaleContext {
   ///
   /// ## Processing Logic
   ///
-  /// 1. Checks for static Glossa language configuration (e.g., environment
-  ///    variables)
-  /// 2. When identifiers match `part:part` format (at least two colon-separated
-  ///    segments):
+  /// When language identifiers match `part:part` format (at least two
+  ///    colon-separated segments):
   ///    - Splits into locale components
   ///    - Converts to compact strings
   ///    - Inserts the custom chain at LocaleContext.chain front

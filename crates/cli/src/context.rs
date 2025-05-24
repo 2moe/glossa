@@ -1,8 +1,8 @@
 use std::sync::Arc;
 
 use glossa::{
-  LangID, LocaleContext, fallback::dbg_ref, sys::new_once_lock,
-  traits::ChainProvider,
+  LangID, LocaleContext, fallback::dbg_ref, misc::normalize_glossa_lang,
+  sys::new_once_lock, traits::ChainProvider,
 };
 use glossa_codegen::glossa_shared::{
   ToCompactString,
@@ -11,10 +11,7 @@ use glossa_codegen::glossa_shared::{
   type_aliases::L10nMaps,
 };
 
-use crate::{
-  envs::{normalize_glossa_lang, static_glossa_lang},
-  static_data::bincode_dir,
-};
+use crate::{envs::static_glossa_lang, static_data::bincode_dir};
 
 pub(crate) trait GetL10nText: ChainProvider {
   fn try_get_bincode<'t>(&self, map_name: &str, key: &str) -> Option<&'t str> {
@@ -42,7 +39,7 @@ pub(crate) trait GetL10nText: ChainProvider {
   }
 
   fn try_get_bulitin_cli_data<'t>(&self, key: &[u8]) -> Option<&'t str> {
-    let lookup = |language| match crate::l10n::all::map(language, key) {
+    let lookup = |language| match crate::l10n::router::map(language, key) {
       "" => None,
       s => Some(s),
     };
@@ -99,7 +96,7 @@ pub fn static_bincode_context() -> Option<&'static LocaleContext> {
     let locales = merge_locales()?;
     dbg_ref!(locales);
     LocaleContext::default()
-      .with_current_locale(normalize_glossa_lang())
+      .with_current_locale(normalize_glossa_lang(static_glossa_lang()))
       .with_all_locales(locales)
       .tap_mut(compatible_with_gnu_language_colon_style)
       .pipe(Some)
@@ -121,7 +118,7 @@ pub(crate) fn static_locale_context() -> &'static LocaleContext {
   new_once_lock!(L: LocaleContext);
   L.get_or_init(|| {
     LocaleContext::default()
-      .with_current_locale(normalize_glossa_lang())
+      .with_current_locale(normalize_glossa_lang(static_glossa_lang()))
       .with_all_locales(crate::l10n::locale_registry::all_locales())
       .tap_mut(compatible_with_gnu_language_colon_style)
   })
@@ -135,5 +132,8 @@ pub fn get_text<'a>(key: &str, map_name: Option<&str>) -> &'a str {
     _ => static_locale_context(),
   }
   .try_get(map_name, key)
-  .unwrap_or_default()
+  .unwrap_or_else(|| {
+    log::warn!("{}", glossa::Error::new_map_text_not_found(map_name, key));
+    ""
+  })
 }

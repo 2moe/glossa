@@ -1,0 +1,37 @@
+outdir = "আউটপুট ডিরেক্টরি"
+visibility = "জেনারেট করা কোডের দৃশ্যমানতা"
+bincode_suffix = "bincode ফাইলের সাফিক্স"
+mod_prefix = 'mod ফাইলের প্রিফিক্স (ডিফল্ট "l10n_")'
+
+output_bincode = "বিভিন্ন ভাষার জন্য স্বতন্ত্র bincode ফাইল জেনারেট করুন"
+output_bincode_all_in_one = "সকল ভাষার bincode একটি ফাইলে এক্সপোর্ট করুন"
+output_match_fn = "ম্যাচ এক্সপ্রেশন সহ Rust কোড ফাইল জেনারেট করুন (প্রতিটি ভাষার জন্য)"
+output_match_fn_by_key = "শুধুমাত্র map_key কে কী হিসেবে ব্যবহার করুন (map_name বাদ দিন)"
+output_match_fn_all_in_one = "সমস্ত ডেটা একটি ম্যাচ ফাংশনে এক্সপোর্ট করুন (স্ট্রিং)"
+output_match_fn_all_in_one_by_language = "ভাষার নামকে কী হিসেবে ব্যবহার করে ম্যাচ ফাংশন"
+output_match_fn_all_in_one_by_language_and_key = "কম্বাইন্ড কী (ভাষার নাম + map_key) সহ ম্যাচ ফাংশন"
+output_phf = "প্রতিটি ভাষার জন্য আলাদা phf ম্যাপ ফাংশন জেনারেট করুন"
+output_phf_by_key = "সাধারণ স্ট্রিং কী সহ phf ম্যাপ (TupleKey নয়)"
+output_phf_all_in_one = "সমস্ত phf ম্যাপ একটি ফাংশনে একত্রিত করুন"
+output_locales_fn = "all_locales ফাংশন এক্সপোর্ট করুন"
+output_ron = "RON ফরম্যাটে স্ট্রিং এক্সপোর্ট করুন"
+
+input = "লোকালাইজেশন রিসোর্সের সোর্স ডিরেক্টরি"
+dsl_suffix = 'DSL ফাইলের সাফিক্স (ডিফল্ট ".dsl")'
+include_languages = "হোয়াইটলিস্ট মোড: তালিকাভুক্ত ভাষা ID গুলি শুধুমাত্র ইনিশিয়ালাইজ করুন"
+include_map_names = "তালিকাভুক্ত ম্যাপ নামগুলি শুধুমাত্র ইনিশিয়ালাইজ করুন"
+exclude_languages = "ব্ল্যাকলিস্ট মোড: তালিকাভুক্ত ভাষা ID গুলি ইনিশিয়ালাইজ করবেন না"
+exclude_map_names = "তালিকাভুক্ত ম্যাপ নামগুলি ইনিশিয়ালাইজ করবেন না"
+
+base_name = '"হাইলাইট-ম্যাপ" এর বেস নাম'
+suffix = '"হাইলাইট-ম্যাপ" এর নতুন সাফিক্স'
+true_color = "24-বিট সত্যিকারের রঙ"
+syntax_name = "সিনট্যাক্সের নাম"
+theme_name = "থিমের নাম"
+background = "ব্যাকগ্রাউন্ড সক্রিয় করুন"
+custom_syntax_set = "কাস্টম সিনট্যাক্স সেট ফাইল"
+custom_theme_set = "কাস্টম থিম সেট ফাইল"
+list_all_syntaxes = "সমস্ত সিনট্যাক্স নাম এবং এক্সটেনশন দেখান"
+list_all_themes = "সমস্ত থিমের নাম দেখান"
+
+display_config_dir = "Glossa এর কনফিগ ডিরেক্টরি দেখান"

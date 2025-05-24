@@ -1,0 +1,37 @@
+outdir = "ಔಟ್ಪುಟ್ ಡೈರೆಕ್ಟರಿ"
+visibility = "ರಚಿಸಲಾದ ಕೋಡ್‌ನ ಗೋಚರತೆ"
+bincode_suffix = "bincode ಫೈಲ್ ಸಫಿಕ್ಸ್"
+mod_prefix = 'mod ಫೈಲ್ ಪ್ರಿಫಿಕ್ಸ್ (ಡೀಫಾಲ್ಟ್ "l10n_")'
+
+output_bincode = "ವಿಭಿನ್ನ ಭಾಷೆಗಳಿಗಾಗಿ ಪ್ರತ್ಯೇಕ bincode ಫೈಲ್‌ಗಳನ್ನು ರಚಿಸಿ"
+output_bincode_all_in_one = "ಎಲ್ಲಾ ಭಾಷೆಗಳ bincode‌ಗಳನ್ನು ಒಂದೇ ಫೈಲ್‌ಗೆ ರವಾನಿಸಿ"
+output_match_fn = "ರಸ್ಟ್ ಕೋಡ್ ಫೈಲ್‌ಗಳನ್ನು ರಚಿಸಿ (match ಎಕ್ಸ್‌ಪ್ರೆಶನ್‌ಗಳೊಂದಿಗೆ)"
+output_match_fn_by_key = "map_key ಮಾತ್ರ ಕೀ ಆಗಿ ಬಳಸಿ (map_name ಬಳಸಬೇಡಿ)"
+output_match_fn_all_in_one = "ಎಲ್ಲಾ ಡೇಟಾವನ್ನು ಒಂದೇ match ಫಂಕ್ಷನ್‌ಗೆ ರವಾನಿಸಿ (ಸ್ಟ್ರಿಂಗ್)"
+output_match_fn_all_in_one_by_language = "ಭಾಷಾ ಹೆಸರನ್ನು ಕೀ ಆಗಿ ಬಳಸುವ match ಫಂಕ್ಷನ್"
+output_match_fn_all_in_one_by_language_and_key = "ಸಂಯುಕ್ತ ಕೀ (ಭಾಷೆ+map_key) ಯೊಂದಿಗೆ match ಫಂಕ್ಷನ್"
+output_phf = "ವಿಭಿನ್ನ ಭಾಷೆಗಳಿಗಾಗಿ ಪ್ರತ್ಯೇಕ phf map ಫಂಕ್ಷನ್‌ಗಳನ್ನು ರಚಿಸಿ"
+output_phf_by_key = "ಸಾಮಾನ್ಯ ಸ್ಟ್ರಿಂಗ್ ಕೀ‌ಗಳೊಂದಿಗೆ phf map (TupleKey ಅಲ್ಲ)"
+output_phf_all_in_one = "ಎಲ್ಲಾ phf map‌ಗಳನ್ನು ಒಂದೇ ಫಂಕ್ಷನ್‌ಗೆ ಸಂಯೋಜಿಸಿ"
+output_locales_fn = "all_locales ಫಂಕ್ಷನ್ ಅನ್ನು ರವಾನಿಸಿ"
+output_ron = "RON ಫಾರ್ಮ್ಯಾಟ್‌ನಲ್ಲಿ ಸ್ಟ್ರಿಂಗ್ ಅನ್ನು ರವಾನಿಸಿ"
+
+input = "ಸ್ಥಳೀಕರಣ ಸಂಪನ್ಮೂಲಗಳ ಮೂಲ ಡೈರೆಕ್ಟರಿ"
+dsl_suffix = 'DSL ಫೈಲ್ ಸಫಿಕ್ಸ್ (ಡೀಫಾಲ್ಟ್ ".dsl")'
+include_languages = "ವೈಟ್‌ಲಿಸ್ಟ್ ಮೋಡ್: ಪಟ್ಟಿಯಲ್ಲಿರುವ ಭಾಷಾ ID‌ಗಳನ್ನು ಮಾತ್ರ ಆರಂಭಿಸಿ"
+include_map_names = "ಪಟ್ಟಿಯಲ್ಲಿರುವ ನಕ್ಷೆ ಹೆಸರುಗಳನ್ನು ಮಾತ್ರ ಆರಂಭಿಸಿ"
+exclude_languages = "ಬ್ಲ್ಯಾಕ್‌ಲಿಸ್ಟ್ ಮೋಡ್: ಪಟ್ಟಿಯ ಭಾಷಾ ID‌ಗಳನ್ನು ಆರಂಭಿಸಬೇಡಿ"
+exclude_map_names = "ಪಟ್ಟಿಯ ನಕ್ಷೆ ಹೆಸರುಗಳನ್ನು ಆರಂಭಿಸಬೇಡಿ"
+
+base_name = '"ಹೈಲೈಟ್-ಮ್ಯಾಪ್" ನ ಮೂಲ ಹೆಸರು'
+suffix = '"ಹೈಲೈಟ್-ಮ್ಯಾಪ್" ನ ಹೊಸ ಸಫಿಕ್ಸ್'
+true_color = "24-ಬಿಟ್ ನಿಜವಾದ ಬಣ್ಣ"
+syntax_name = "ವಾಕ್ಯರಚನೆಯ ಹೆಸರು"
+theme_name = "ಥೀಮ್ ಹೆಸರು"
+background = "ಹಿನ್ನೆಲೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕೇ"
+custom_syntax_set = "ಕಸ್ಟಮ್ ವಾಕ್ಯರಚನೆ ಸೆಟ್ ಫೈಲ್"
+custom_theme_set = "ಕಸ್ಟಮ್ ಥೀಮ್ ಸೆಟ್ ಫೈಲ್"
+list_all_syntaxes = "ಎಲ್ಲಾ ವಾಕ್ಯರಚನೆ ಹೆಸರುಗಳು ಮತ್ತು ವಿಸ್ತರಣೆಗಳನ್ನು ತೋರಿಸಿ"
+list_all_themes = "ಎಲ್ಲಾ ಥೀಮ್ ಹೆಸರುಗಳನ್ನು ತೋರಿಸಿ"
+
+display_config_dir = "Glossa ನ ಕಾನ್ಫಿಗ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ತೋರಿಸಿ"

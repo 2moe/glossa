@@ -1,0 +1,37 @@
+outdir = "Diri Yalo"
+visibility = "Nen mar code ma oyier"
+bincode_suffix = "Yien bincode"
+mod_prefix = 'Nyime mod (ma chiel "l10n_")'
+
+output_bincode = "Ket fichier bincode machielgi kode duto"
+output_bincode_all_in_one = "Goy bincode duto e fichier achiel"
+output_match_fn = "Ket fichier Rust gi function match machielgi"
+output_match_fn_by_key = "Tiyo map_key kodi (map_name onge)"
+output_match_fn_all_in_one = "Goy data duto e function match achiel (string)"
+output_match_fn_all_in_one_by_language = "Function match gi nying kod molil"
+output_match_fn_all_in_one_by_language_and_key = "Function match gi nying kod gi map_key"
+output_phf = "Ket phf map machielgi kode duto"
+output_phf_by_key = "phf map gi string kodi (kama TupleKey)"
+output_phf_all_in_one = "Goy phf map duto e function achiel"
+output_locales_fn = "Goy function all_locales"
+output_ron = "Goy string e format RON"
+
+input = "Diri moting'o gi lok"
+dsl_suffix = 'Yien DSL (ma chiel ".dsl")'
+include_languages = "Par White List: Ket ID kod molil ma e list"
+include_map_names = "Ket nying map ma e list"
+exclude_languages = "Par Black List: Kik ket ID kod molil ma e list"
+exclude_map_names = "Kik ket nying map ma e list"
+
+base_name = 'Nying map mar "Highlight-Map"'
+suffix = 'Yien map manyien mar "Highlight-Map"'
+true_color = "Rangi ma 24-bit"
+syntax_name = "Nying syntax"
+theme_name = "Nying theme"
+background = "Goyo background"
+custom_syntax_set = "Fichier syntax ma itimo"
+custom_theme_set = "Fichier theme ma itimo"
+list_all_syntaxes = "Nyiso nying syntax gi extension duto"
+list_all_themes = "Nyiso nying theme duto"
+
+display_config_dir = "Nyiso diri config mar glossa"

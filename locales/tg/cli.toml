@@ -1,0 +1,37 @@
+outdir = "Феҳристи баровардаҳо"
+visibility = "Намоишаи коди сохташуда"
+bincode_suffix = "Пасонанди файли bincode"
+mod_prefix = 'Пешванди файли mod (пешфарз "l10n_")'
+
+output_bincode = "Эҷоди файлҳои bincode-и алоҳида барои забонҳои гуногун"
+output_bincode_all_in_one = "Баровардани ҳамаи bincode-ҳо ба як файл"
+output_match_fn = "Эҷоди файлҳои Rust бо функсияҳои match барои забонҳо"
+output_match_fn_by_key = "Танҳо map_key-ро ҳамчун калид истифода кунед (бе map_name)"
+output_match_fn_all_in_one = "Ҳамаи додаҳоро дар як функсияи match (сатр) ҷамъ кунед"
+output_match_fn_all_in_one_by_language = "Функсияи match бо номи забон ҳамчун калид"
+output_match_fn_all_in_one_by_language_and_key = "Функсияи match бо калиди иловагӣ (забон + map_key)"
+output_phf = "Эҷоди функсияҳои phf map барои забонҳои гуногун"
+output_phf_by_key = "phf map бо калидҳои сатри оддӣ (на TupleKey)"
+output_phf_all_in_one = "Ҳамаи phf map-ҳоро дар як функсия ҷамъ кунед"
+output_locales_fn = "Баровардани функсияи all_locales"
+output_ron = "Баровардани сатрҳо дар формати RON"
+
+input = "Феҳристи манбаъи захираҳои маҳаллӣ"
+dsl_suffix = 'Пасонанди файли DSL (пешфарз ".dsl")'
+include_languages = "Реҷаи рӯйхати сафед: Танҳо ID-ҳои забонҳои рӯйхатшуда оғоз меёбанд"
+include_map_names = "Танҳо номҳои харитаҳои рӯйхатшуда оғоз меёбанд"
+exclude_languages = "Реҷаи рӯйхати сиёҳ: ID-ҳои забонҳои рӯйхатшуда оғоз намеёбанд"
+exclude_map_names = "Номҳои харитаҳои рӯйхатшуда оғоз намеёбанд"
+
+base_name = 'Номи асосии "Highlight-Map"'
+suffix = 'Пасонанди "Highlight-Map"-и нав'
+true_color = "Ранги аслӣ 24-битӣ"
+syntax_name = "Номи синтаксис"
+theme_name = "Номи мавзӯъ"
+background = "Фаъол кардани замина"
+custom_syntax_set = "Файли синтаксиси фармоишӣ"
+custom_theme_set = "Файли мавзӯъҳои фармоишӣ"
+list_all_syntaxes = "Намоиши ҳамаи номҳои синтаксис ва васеъшавиҳо"
+list_all_themes = "Намоиши ҳамаи номҳои мавзӯъҳо"
+
+display_config_dir = "Намоиши феҳристи танзимоти Glossa"

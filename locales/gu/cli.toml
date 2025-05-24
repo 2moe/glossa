@@ -1,0 +1,37 @@
+outdir = "આઉટપુટ ડિરેક્ટરી"
+visibility = "જનરેટ થયેલ કોડની દૃશ્યમાનતા"
+bincode_suffix = "bincode ફાઇલ સફિક્સ"
+mod_prefix = 'mod ફાઇલ પ્રિફિક્સ (ડિફૉલ્ટ "l10n_")'
+
+output_bincode = "વિવિધ ભાષાઓ માટે સ્વતંત્ર bincode ફાઇલો જનરેટ કરો"
+output_bincode_all_in_one = "બધી ભાષાઓના bincode એક જ ફાઇલમાં એક્સપોર્ટ કરો"
+output_match_fn = "રસ્ટ કોડ ફાઇલો match એક્સપ્રેશન સાથે જનરેટ કરો"
+output_match_fn_by_key = "માત્ર map_key ને કી તરીકે વાપરો (map_name નહીં)"
+output_match_fn_all_in_one = "બધા ડેટાને એક match ફંક્શનમાં એક્સપોર્ટ કરો (સ્ટ્રિંગ)"
+output_match_fn_all_in_one_by_language = "ભાષાના નામને કી તરીકે વાપરતી match ફંક્શન"
+output_match_fn_all_in_one_by_language_and_key = "કોમ્બિનેશન કી (ભાષા+map_key) સાથે match ફંક્શન"
+output_phf = "ભાષા-આધારિત phf મેપ ફંક્શન્સ જનરેટ કરો"
+output_phf_by_key = "સાદા સ્ટ્રિંગ કી સાથે phf મેપ (TupleKey નહીં)"
+output_phf_all_in_one = "બધી phf મેપ્સને એક ફંક્શનમાં એકત્રિત કરો"
+output_locales_fn = "all_locales ફંક્શન એક્સપોર્ટ કરો"
+output_ron = "RON ફોર્મેટમાં સ્ટ્રિંગ એક્સપોર્ટ કરો"
+
+input = "લોકલાઇઝેશન સ્રોતોની સોર્સ ડિરેક્ટરી"
+dsl_suffix = 'DSL ફાઇલ સફિક્સ (ડિફૉલ્ટ ".dsl")'
+include_languages = "વ્હાઇટલિસ્ટ મોડ: ફક્ત લિસ્ટમાંના ભાષા ID સક્રિય કરો"
+include_map_names = "ફક્ત લિસ્ટમાંના મેપ નામો સક્રિય કરો"
+exclude_languages = "બ્લેકલિસ્ટ મોડ: લિસ્ટના ભાષા ID સક્રિય ન કરો"
+exclude_map_names = "લિસ્ટના મેપ નામો સક્રિય ન કરો"
+
+base_name = '"હાઇલાઇટ-મેપ" નું બેઝ નામ'
+suffix = '"હાઇલાઇટ-મેપ" નું નવું સફિક્સ'
+true_color = "24-બિટ ટ્રૂ કલર"
+syntax_name = "સિન્ટેક્સ નામ"
+theme_name = "થીમ નામ"
+background = "બેકગ્રાઉન્ડ સક્રિય કરવું"
+custom_syntax_set = "કસ્ટમ સિન્ટેક્સ સેટ ફાઇલ"
+custom_theme_set = "કસ્ટમ થીમ સેટ ફાઇલ"
+list_all_syntaxes = "બધા સિન્ટેક્સ નામો અને એક્સ્ટેન્શન્સ બતાવો"
+list_all_themes = "બધી થીમ્સ બતાવો"
+
+display_config_dir = "Glossa કોન્ફિગ ડિરેક્ટરી બતાવો"

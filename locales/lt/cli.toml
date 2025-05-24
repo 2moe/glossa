@@ -1,0 +1,37 @@
+outdir = "Išvesties katalogas"
+visibility = "Sugeneruoto kodo matomumas"
+bincode_suffix = "bincode failo plėtinys"
+mod_prefix = 'Mod failo prefiksas (numatytasis "l10n_")'
+
+output_bincode = "Generuoti atskirus bincode failus skirtingoms kalboms"
+output_bincode_all_in_one = "Eksportuoti visų kalbų bincode į vieną failą"
+output_match_fn = "Generuoti Rust kodo failus su match išraiškomis kiekvienai kalbai"
+output_match_fn_by_key = "Naudoti tik map_key kaip raktą (be map_name)"
+output_match_fn_all_in_one = "Visų kalbų duomenis eksportuoti į vieną match funkciją (eilutė)"
+output_match_fn_all_in_one_by_language = "Match funkcija su kalbos pavadinimu kaip raktu"
+output_match_fn_all_in_one_by_language_and_key = "Match funkcija su kombinuotu raktu (kalba + map_key)"
+output_phf = "Generuoti atskiras phf žemėlapio funkcijas kiekvienai kalbai"
+output_phf_by_key = "phf žemėlapis su paprastais eilutės raktais (ne TupleKey)"
+output_phf_all_in_one = "Visus phf žemėlapius sujungti į vieną funkciją"
+output_locales_fn = "Eksportuoti all_locales funkciją"
+output_ron = "Eksportuoti eilutę RON formatu"
+
+input = "Lokalizuotų resursų šaltinio katalogas"
+dsl_suffix = 'DSL failo plėtinys (numatytasis ".dsl")'
+include_languages = "Baltasis sąrašas: Inicijuoti tik sąraše esančius kalbų ID"
+include_map_names = "Inicijuoti tik sąraše esančius žemėlapių pavadinimus"
+exclude_languages = "Juodasis sąrašas: Neinicijuoti sąraše esančių kalbų ID"
+exclude_map_names = "Neinicijuoti sąraše esančių žemėlapių pavadinimų"
+
+base_name = '"Highlight-Map" bazinis pavadinimas'
+suffix = '"Highlight-Map" naujas plėtinys'
+true_color = "24-bitų tikros spalvos"
+syntax_name = "Sintaksės pavadinimas"
+theme_name = "Temos pavadinimas"
+background = "Ar įjungti foną"
+custom_syntax_set = "Pasirinktinis sintaksės rinkinio failas"
+custom_theme_set = "Pasirinktinis temų rinkinio failas"
+list_all_syntaxes = "Rodyti visus sintaksės pavadinimus ir plėtinius"
+list_all_themes = "Rodyti visas temas"
+
+display_config_dir = "Rodyti Glossa konfigūracijos katalogą"

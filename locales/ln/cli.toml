@@ -1,0 +1,37 @@
+outdir = "Dosíye ya bokɔtisi"
+visibility = "Komɔnisi ya kode ya kobongwama"
+bincode_suffix = "Bincode sufixe ya fisyé"
+mod_prefix = 'Préfixe ya fisyé mod (par défaut "l10n_")'
+
+output_bincode = "Kokela fisyé bincode indépendant na ndinga nyɔnsɔ"
+output_bincode_all_in_one = "Kobimisa bincode ya ndinga nyɔnsɔ na fisyé moko"
+output_match_fn = "Kokela fisyé Rust na fonction match na ndinga nyɔnsɔ"
+output_match_fn_by_key = "Kosálela map_key kaka lokola cle (map_name tê)"
+output_match_fn_all_in_one = "Kobimisa makambo nyɔnsɔ na fonction match moko (chaine)"
+output_match_fn_all_in_one_by_language = "Fonction match na nkombo ya ndinga lokola cle"
+output_match_fn_all_in_one_by_language_and_key = "Fonction match na cle ya combinaison (ndinga + map_key)"
+output_phf = "Kokela fonction phf map indépendant na ndinga"
+output_phf_by_key = "phf map na cle ya chaine simple (tô TupleKey)"
+output_phf_all_in_one = "Kobimisa phf map nyɔnsɔ na fonction moko"
+output_locales_fn = "Kobimisa fonction all_locales"
+output_ron = "Kobimisa chaine na format RON"
+
+input = "Dosíye source ya resourse ya lokalisasion"
+dsl_suffix = 'Suffixe fisyé DSL (par défaut ".dsl")'
+include_languages = "Mode liste blanc: Initialiser kaka ID ya ndinga o list"
+include_map_names = "Initialiser kaka nkombo ya map o list"
+exclude_languages = "Mode liste noir: Kopɛsí initialiser ID ndinga o list"
+exclude_map_names = "Kopɛsí initialiser nkombo ya map o list"
+
+base_name = 'Nkombo ya libanda ya "Highlight-Map"'
+suffix = 'Suffixe ya sika ya "Highlight-Map"'
+true_color = "Langilangi ya 24-bit"
+syntax_name = "Nkombo ya syntax"
+theme_name = "Nkombo ya thème"
+background = "Kokómisa fond"
+custom_syntax_set = "Fisyé ya syntax personnalisé"
+custom_theme_set = "Fisyé ya thème personnalisé"
+list_all_syntaxes = "Komɔnisa nkombo ya syntax nyɔnsɔ mpé extension"
+list_all_themes = "Komɔnisa nkombo ya thème nyɔnsɔ"
+
+display_config_dir = "Komɔnisa dosíye ya configuration glossa"

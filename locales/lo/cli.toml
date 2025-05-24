@@ -1,0 +1,37 @@
+outdir = "ໂຟນເດີຜົນອອກ"
+visibility = "ການເຫັນໄດ້ຂອງລະຫັດທີ່ສ້າງ"
+bincode_suffix = "ນາມສະກຸນໄຟລ໌ bincode"
+mod_prefix = 'ຄຳນຳໜ້າ mod (ຄ່າເລີ່ມ "l10n_")'
+
+output_bincode = "ສ້າງໄຟລ໌ bincode ແຍກຕ່າງກັນສຳລັບພາສາຕ່າງໆ"
+output_bincode_all_in_one = "ສົ່ງ bincode ທຸກພາສາເຂົ້າໄຟລ໌ດຽວ"
+output_match_fn = "ສ້າງໄຟລ໌ Rust ພາສາແຍກກັນ (ມີຟັງຊັ່ນ match)"
+output_match_fn_by_key = "ໃຊ້ map_key ເປັນກະແຈຢ່າງດຽວ (ບໍ່ມີ map_name)"
+output_match_fn_all_in_one = "ສົ່ງຂໍ້ມູນທັງໝົດເຂົ້າໄຟລ໌ match ດຽວ (ສະຕຣິງ)"
+output_match_fn_all_in_one_by_language = "ຟັງຊັ່ນ match ໂດຍໃຊ້ຊື່ພາສາເປັນກະແຈ"
+output_match_fn_all_in_one_by_language_and_key = "ຟັງຊັ່ນ match ດ້ວຍກະແຈປະສົມ (ຊື່ພາສາ+map_key)"
+output_phf = "ສ້າງຟັງຊັ່ນ phf map ແຍກຕ່າງຫາພາສາ"
+output_phf_by_key = "phf map ດ້ວຍກະແຈສະຕຣິງທຳມະດາ (ບໍ່ແມ່ນ TupleKey)"
+output_phf_all_in_one = "ສົ່ງ phf map ທັງໝົດເຂົ້າໄຟລ໌ດຽວ"
+output_locales_fn = "ສົ່ງຟັງຊັ່ນ all_locales"
+output_ron = "ສົ່ງຂໍ້ມູນເປັນສະຕຣິງ RON"
+
+input = "ໂຟນເດີແຫຼ່ງຂໍ້ມູນທ້ອງຖິ່ນ"
+dsl_suffix = 'ນາມສະກຸນ DSL (ຄ່າເລີ່ມ ".dsl")'
+include_languages = "ໂໝດບັນຊີຂາວ: ເລີ່ມພຽງ ID ພາສາໃນລາຍຊື່"
+include_map_names = "ເລີ່ມພຽງຊື່ແຜນທີ່ໃນລາຍຊື່"
+exclude_languages = "ໂໝດບັນຊີດຳ: ບໍ່ເລີ່ມ ID ພາສາໃນລາຍຊື່"
+exclude_map_names = "ບໍ່ເລີ່ມຊື່ແຜນທີ່ໃນລາຍຊື່"
+
+base_name = 'ຊື່ພື້ນຖານ "ແຜນທີ່ເດັ່ນ"'
+suffix = 'ນາມສະກຸນໃໝ່ຂອງ "ແຜນທີ່ເດັ່ນ"'
+true_color = "ສີຈິງ 24 ບິດ"
+syntax_name = "ຊື່ໂຄງສ້າງ"
+theme_name = "ຊື່ຫົວຂໍ້"
+background = "ເປີດໃຊ້ພື້ນຫຼັງ"
+custom_syntax_set = "ໄຟລ໌ກຳນົດໂຄງສ້າງສະເພາະ"
+custom_theme_set = "ໄຟລ໌ກຳນົດຫົວຂໍ້ສະເພາະ"
+list_all_syntaxes = "ສະແດງຊື່ໂຄງສ້າງໝົດທຸກຊື່ ແລະ ນາມສະກຸນ"
+list_all_themes = "ສະແດງຊື່ຫົວຂໍ້ໝົດທຸກຊື່"
+
+display_config_dir = "ສະແດງໂຟນເດີຕັ້ງຄ່າ glossa"

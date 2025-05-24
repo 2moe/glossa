@@ -1,0 +1,37 @@
+outdir = "Kōpaki Putanga"
+visibility = "Te Kitea o te Waehere Hanga"
+bincode_suffix = "Pīmuri Kōnae Bincode"
+mod_prefix = 'Kōmuri Kōnae Mod (Taunoa "l10n_")'
+
+output_bincode = "Hanga Kōnae Bincode Wehe mō Ngā Reo"
+output_bincode_all_in_one = "Tuku Ngā Bincode Katoa ki Kōnae Kotahi"
+output_match_fn = "Hanga Kōnae Rust me Ngā Mahi Match mō Reo"
+output_match_fn_by_key = "Whakamahi Map_key Anake hei Kī (Kāore ko Map_name)"
+output_match_fn_all_in_one = "Hōputu Katoa ki Mahi Match Kotahi (Tūtohi)"
+output_match_fn_all_in_one_by_language = "Mahi Match me Ingoa Reo hei Kī"
+output_match_fn_all_in_one_by_language_and_key = "Mahi Match me Kī Honohono (Reo + Map_key)"
+output_phf = "Hanga Mahi PHF Map mō Ngā Reo"
+output_phf_by_key = "PHF Map me Kī Tūtohi Noa (Ehara i te TupleKey)"
+output_phf_all_in_one = "Hōputu Katoa ki Mahi PHF Kotahi"
+output_locales_fn = "Tuku Mahi All_Locales"
+output_ron = "Tuku Tūtohi ki Hōputu RON"
+
+input = "Kōpaki Pūtake mō Ngā Rauemi Reo"
+dsl_suffix = 'Pīmuri Kōnae DSL (Taunoa ".dsl")'
+include_languages = "Aratau Rārangi Mā: Whakahohe ID Reo kei Rārangi"
+include_map_names = "Whakahohe Ingoa Map kei Rārangi"
+exclude_languages = "Aratau Rārangi Pango: Kaua e Whakahohe ID Reo"
+exclude_map_names = "Kaua e Whakahohe Ingoa Map kei Rārangi"
+
+base_name = 'Ingoa Taketake mō "Highlight-Map"'
+suffix = 'Pīmuri Hou mō "Highlight-Map"'
+true_color = "Tae Māramatanga 24-bit"
+syntax_name = "Ingoa Wetereo"
+theme_name = "Ingoa Kaupapa"
+background = "Whakahohe Papamuri"
+custom_syntax_set = "Kōnae Wetereo Whaiaronga"
+custom_theme_set = "Kōnae Kaupapa Whaiaronga"
+list_all_syntaxes = "Whakaatu Ngā Ingoa Wetereo me Ngā Whakawhānui"
+list_all_themes = "Whakaatu Ngā Ingoa Kaupapa Katoa"
+
+display_config_dir = "Whakaatu Kōpaki Whirihora mō Glossa"

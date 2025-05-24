@@ -1,0 +1,37 @@
+outdir = "Cyfeiriadur Allbwn"
+visibility = "Gwelededd y Cod a Gynhyrchwyd"
+bincode_suffix = "Ôl-ddodiad Ffeil Bincode"
+mod_prefix = 'Rhagddodiad Ffeil Mod (diofyn "l10n_")'
+
+output_bincode = "Cynhyrchu ffeiliau bincode annibynnol ar gyfer ieithoedd gwahanol"
+output_bincode_all_in_one = "Allbynnu pob bincode i un ffeil"
+output_match_fn = "Cynhyrchu ffeiliau Rust gyda swyddogaethau match ar gyfer ieithoedd"
+output_match_fn_by_key = "Defnyddio map_key yn unig fel allwedd (heb map_name)"
+output_match_fn_all_in_one = "Cyfuno pob data mewn swyddogaeth match unigol (llinyn)"
+output_match_fn_all_in_one_by_language = "Swyddogaeth match gydag enw iaith fel allwedd"
+output_match_fn_all_in_one_by_language_and_key = "Swyddogaeth match gydag allwedd cyfansawdd (iaith + map_key)"
+output_phf = "Cynhyrchu mapiau phf annibynnol ar gyfer ieithoedd"
+output_phf_by_key = "Mapiau phf gydag allweddi llinyn cyffredin (Nid TupleKey)"
+output_phf_all_in_one = "Cyfuno pob map phf mewn un swyddogaeth"
+output_locales_fn = "Allbynnu swyddogaeth all_locales"
+output_ron = "Allbynnu llinyn ar ffurf RON"
+
+input = "Cyfeiriadur Ffynhonnell Adnoddau Lleoleiddio"
+dsl_suffix = 'Ôl-ddodiad Ffeil DSL (diofyn ".dsl")'
+include_languages = "Modd Rhestr Gwyn: Ymgychwyn ID iaith yn unig os yw rhestr yn wag"
+include_map_names = "Ymgychwyn enwau map yn unig os yw rhestr yn wag"
+exclude_languages = "Modd Rhestr Ddu: Peidio ymgychwyn ID iaith mewn rhestr"
+exclude_map_names = "Peidio ymgychwyn enwau map mewn rhestr"
+
+base_name = 'Enw Craidd "Highlight-Map"'
+suffix = 'Ôl-ddodiad "Highlight-Map" newydd'
+true_color = "Lliw Cywir 24-bit"
+syntax_name = "Enw Cystrawen"
+theme_name = "Enw Themâu"
+background = "Galluogi cefndir"
+custom_syntax_set = "Ffeil Set Cystrawen Wedi'i Addasu"
+custom_theme_set = "Ffeil Set Themâu Wedi'i Addasu"
+list_all_syntaxes = "Dangos pob enw cystrawen ac estyniadau"
+list_all_themes = "Dangos pob enw themâu"
+
+display_config_dir = "Dangos cyfeiriadur cyfluniad glossa"

@@ -1,0 +1,37 @@
+outdir = "出力ディレクトリ"
+visibility = "生成コードの可視性"
+bincode_suffix = "bincodeファイル拡張子"
+mod_prefix = 'modファイル接頭辞 (デフォルト "l10n_")'
+
+output_bincode = "言語ごとに独立したbincodeファイルを生成"
+output_bincode_all_in_one = "全言語のbincodeを単一ファイルに出力"
+output_match_fn = "match式を含むRustコードファイルを言語別に生成"
+output_match_fn_by_key = "map_keyのみをキーとして使用（map_name除外）"
+output_match_fn_all_in_one = "全データを単一match関数で出力（文字列）"
+output_match_fn_all_in_one_by_language = "言語名をキーとした統合match関数"
+output_match_fn_all_in_one_by_language_and_key = "言語名+map_key複合キーのmatch関数"
+output_phf = "言語別phfマップ関数を生成"
+output_phf_by_key = "通常文字列キーを使用したphfマップ（TupleKey非使用）"
+output_phf_all_in_one = "全phfマップを単一関数に統合"
+output_locales_fn = "all_locales関数を出力"
+output_ron = "RON形式文字列として出力"
+
+input = "ローカライズリソースのソースディレクトリ"
+dsl_suffix = 'DSLファイル拡張子 (デフォルト ".dsl")'
+include_languages = "ホワイトリストモード：リスト内言語IDのみ初期化"
+include_map_names = "リスト内マップ名のみ初期化"
+exclude_languages = "ブラックリストモード：リスト内言語IDを除外"
+exclude_map_names = "リスト内マップ名を除外"
+
+base_name = '基本「Highlight-Map」名称'
+suffix = '新規「Highlight-Map」接尾辞'
+true_color = "24ビットTrue Color"
+syntax_name = "構文名称"
+theme_name = "テーマ名称"
+background = "背景有効化設定"
+custom_syntax_set = "カスタム構文セットファイル"
+custom_theme_set = "カスタムテーマセットファイル"
+list_all_syntaxes = "全構文名称と拡張子を表示"
+list_all_themes = "全テーマ名称を表示"
+
+display_config_dir = "glossa設定ディレクトリを表示"

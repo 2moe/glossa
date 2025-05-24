@@ -1,0 +1,37 @@
+outdir = "دایرێکتۆریی دەرچوون"
+visibility = "دیتنەوەی کۆدی دروستکراو"
+bincode_suffix = "پاشەکەوتی فایلی bincode"
+mod_prefix = 'پێشگری فایلی mod (بنەڕەت "l10n_")'
+
+output_bincode = "فایلی bincodeی سەربەخۆ دروست بکە بۆ زمانە جیاوازەکان"
+output_bincode_all_in_one = "هەموو bincodeی زمانەکان لە فایلێکی تاکدا دەرچوون"
+output_match_fn = "فایلی کۆدی RUSTی سەربەخۆ دروست بکە بۆ زمانەکان (بە فەنکشنی match)"
+output_match_fn_by_key = "وەک output_match_fn، بەڵام تەنها map_key وەک کلیلی فەنکشن"
+output_match_fn_all_in_one = "هەموو داتاکان لە فەنکشنێکی matchی تاکدا دەرچوون (سٹرینگ)"
+output_match_fn_all_in_one_by_language = "فەنکشنی match بە کلیلی ناوی زمان"
+output_match_fn_all_in_one_by_language_and_key = "فەنکشنی match بە کلیلی (نامە زمان + map_key)"
+output_phf = "فەنکشنی phf mapی سەربەخۆ دروست بکە بۆ زمانەکان"
+output_phf_by_key = "phf map بە کلیلی سترینگی ئاسایی (نەک TupleKey)"
+output_phf_all_in_one = "هەموو phf mapەکان لە فەنکشنێکی تاکدا یەکبخە"
+output_locales_fn = "فەنکشنی all_locales دەرچوون"
+output_ron = "دەرچوون بە شێوازی RON"
+
+input = "دایرێکتۆری سەرچاوەی سەرچاوەکانی لوکالایزکردن"
+dsl_suffix = 'پاشەکەوتی فایلی DSL (بنەڕەت ".dsl")'
+include_languages = "دۆخی لیستی سپی: تەنها IDی زمانە لیستکراوەکان دەستپێدەکەن"
+include_map_names = "تەنها ناوە mapە لیستکراوەکان دەستپێدەکەن"
+exclude_languages = "دۆخی لیستی ڕەش: IDی زمانە لیستکراوەکان دەستپێناکەن"
+exclude_map_names = "ناوە mapە لیستکراوەکان دەستپێناکەن"
+
+base_name = 'ناوی بنەڕەتی "Highlight-Map"'
+suffix = 'پاشەکەوتی "Highlight-Map"ی نوێ'
+true_color = "ڕەنگی ڕاستەقینەی 24-bit"
+syntax_name = "ناوی سینتاکس"
+theme_name = "ناوی تێم"
+background = "چالاککردنی پاشبنەما"
+custom_syntax_set = "فایلی دەستکاریکراوی سینتاکس"
+custom_theme_set = "فایلی دەستکاریکراوی تێم"
+list_all_syntaxes = "هەموو ناوەکانی سینتاکس و گەشەپێدانەکان پیشانبدە"
+list_all_themes = "هەموو ناوەکانی تێمەکان پیشانبدە"
+
+display_config_dir = "دایرێکتۆری ڕێکخستنی glossa پیشانبدە"

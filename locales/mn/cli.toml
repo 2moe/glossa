@@ -1,0 +1,37 @@
+outdir = "Гарцны лавлах"
+visibility = "Үүсгэсэн кодын харагдац"
+bincode_suffix = "bincode файлын суффикс"
+mod_prefix = 'mod файлын угтвар (default "l10n_")'
+
+output_bincode = "Өөр өөр хэлэнд зориулсан тусдаа bincode файл үүсгэх"
+output_bincode_all_in_one = "Бүх хэлний bincode-г нэг файлд нэгтгэх"
+output_match_fn = "Хэл бүрт зориулсан Rust match функцтэй файл үүсгэх"
+output_match_fn_by_key = "Зөвхөн map_key-г түлхүүр болгон ашиглах (map_name оруулахгүй)"
+output_match_fn_all_in_one = "Бүх өгөгдлийг нэг match функцэд нэгтгэх (тэмдэгт мөр)"
+output_match_fn_all_in_one_by_language = "Хэлний нэрээр түлхүүрлэсэн match функц"
+output_match_fn_all_in_one_by_language_and_key = "Хэл+map_key хослолоор түлхүүрлэсэн match функц"
+output_phf = "Хэл бүрт зориулсан phf map функц үүсгэх"
+output_phf_by_key = "Энгийн тэмдэгт түлхүүртэй phf map (TupleKey биш)"
+output_phf_all_in_one = "Бүх phf map-ийг нэг функцэд нэгтгэх"
+output_locales_fn = "all_locales функцийг гаргах"
+output_ron = "RON форматаар тэмдэгт мөр гаргах"
+
+input = "Орон нутгийн нөөцийн эх лавлах"
+dsl_suffix = 'DSL файлын суффикс (default ".dsl")'
+include_languages = "Цагаан жагсаалтын горим: Жагсаалтад байгаа хэлний ID-г л идэвхжүүлэх"
+include_map_names = "Жагсаалтад байгаа газрын нэрсийг л идэвхжүүлэх"
+exclude_languages = "Хар жагсаалтын горим: Жагсаалтад байгаа хэлний ID-г идэвхжүүлэхгүй"
+exclude_map_names = "Жагсаалтад байгаа газрын нэрсийг идэвхжүүлэхгүй"
+
+base_name = '"Highlight-Map"-н суурь нэр'
+suffix = '"Highlight-Map"-н шинэ суффикс'
+true_color = "24 битийн жинхэнэ өнгө"
+syntax_name = "Синтаксын нэр"
+theme_name = "Сэдвийн нэр"
+background = "Дэвсгэр идэвхжүүлэх эсэх"
+custom_syntax_set = "Захиалгат синтакс цуглуулгын файл"
+custom_theme_set = "Захиалгат сэдэв цуглуулгын файл"
+list_all_syntaxes = "Бүх синтакс нэр/өргөтгөлүүдийг харуулах"
+list_all_themes = "Бүх сэдэв нэрсийг харуулах"
+
+display_config_dir = "Glossa-гийн тохиргооны лавлахыг харуулах"

@@ -1,0 +1,37 @@
+outdir = "direttorju tal-output"
+visibility = "viżibilità tal-kodiġi ġenerat"
+bincode_suffix = "suffiss tal-fajl bincode"
+mod_prefix = 'prefiss tal-fajl mod (default: "l10n_")'
+
+output_bincode = "toħloq fajls bincode separati għal lingwi differenti"
+output_bincode_all_in_one = "esporta bincode ta' lingwi kollha f'fajl wieħed"
+output_match_fn = "toħloq fajls Rust b'funzjonijiet match għal kull lingwa"
+output_match_fn_by_key = "bħal output_match_fn iżda biss juża map_key bħala ċavetta"
+output_match_fn_all_in_one = "ikkonsolida data ta' lingwi kollha f'funzjoni match waħda (string)"
+output_match_fn_all_in_one_by_language = "funzjoni match b'isem tal-lingwa bħala ċavetta"
+output_match_fn_all_in_one_by_language_and_key = "funzjoni match b'ċavetti kombinati (lingwa + map_key)"
+output_phf = "toħloq funzjonijiet phf map separati għal lingwi differenti"
+output_phf_by_key = "phf map b'ċavetti string ordinarji (mhux TupleKey)"
+output_phf_all_in_one = "ikkonsolida phf map kollha f'funzjoni waħda"
+output_locales_fn = "esporta funzjoni all_locales"
+output_ron = "esporta string f'format RON"
+
+input = "direttorju tas-sors għar-riżorsi tal-lokalizzazzjoni"
+dsl_suffix = 'suffiss tal-fajl DSL (default: ".dsl")'
+include_languages = "modalità lista bajda: initialize biss IDs lingwi listati"
+include_map_names = "initialize biss map_names listati"
+exclude_languages = "modalità lista sewda: skip IDs lingwi listati"
+exclude_map_names = "skip map_names listati"
+
+base_name = 'isem bażi tal-"Highlight-Map"'
+suffix = 'suffiss għal Highlight-Map ġodda'
+true_color = "24-bit kulur veru"
+syntax_name = "isem tas-sintassi"
+theme_name = "isem tat-tema"
+background = "attiva appoġġ għall-isfond"
+custom_syntax_set = "fajl sett sintassi personalizzat"
+custom_theme_set = "fajl sett tema personalizzat"
+list_all_syntaxes = "uri ismijiet sintassi u estensjonijiet kollha"
+list_all_themes = "uri ismijiet tema kollha"
+
+display_config_dir = "uri direttorju tal-konfigurazzjoni ta' glossa"

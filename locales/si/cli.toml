@@ -1,0 +1,37 @@
+outdir = "ප්රතිදාන ඩිරෙක්ටරිය"
+visibility = "ජනනය කරන ලද කේතයේ දෘශ්යතාව"
+bincode_suffix = "bincode ගොනු පසුප්රත්යය"
+mod_prefix = 'mod ගොනු පෙරබෙදුම (පෙරනිමිය "l10n_")'
+
+output_bincode = "විවිධ භාෂා සඳහා ස්වාධීන bincode ගොනු ජනනය කරන්න"
+output_bincode_all_in_one = "සියලු භාෂාවල bincode එක් ගොනුවකට නිර්යාත කරන්න"
+output_match_fn = "රස්ට් කේත ගොනු ජනනය කරන්න (match ප්රකාශන සහිත කාර්යයන්)"
+output_match_fn_by_key = "map_key පමණක් යතුරක් ලෙස භාවිතා කරන්න (map_name අඩංගු නොවේ)"
+output_match_fn_all_in_one = "සියලු දත්ත match කාර්යයකට නිර්යාත කරන්න (පේළිය)"
+output_match_fn_all_in_one_by_language = "භාෂා නාමය යතුරු ලෙස භාවිත කරන match කාර්යය"
+output_match_fn_all_in_one_by_language_and_key = "සංයුක්ත යතුරු සහිත match කාර්යය (භාෂා+map_key)"
+output_phf = "භාෂාවලට වෙන්වූ phf සිතියම් කාර්යයන් ජනනය කරන්න"
+output_phf_by_key = "සාමාන්ය පේළි යතුරු සහිත phf සිතියම් (TupleKey නොවේ)"
+output_phf_all_in_one = "සියලු phf සිතියම් එක් කාර්යයකට එක් කරන්න"
+output_locales_fn = "all_locales කාර්යය නිර්යාත කරන්න"
+output_ron = "RON ආකෘතියෙන් පේළිය නිර්යාත කරන්න"
+
+input = "ස්ථානීයකරණ සම්පත් මූලාශ්ර ඩිරෙක්ටරිය"
+dsl_suffix = 'DSL ගොනු පසුප්රත්යය (පෙරනිමිය ".dsl")'
+include_languages = "සුදු ලැයිස්තු ප්රකාරය: ලැයිස්තුවේ භාෂා ID පමණක් ආරම්භ කරන්න"
+include_map_names = "ලැයිස්තුවේ සිතියම් නාම පමණක් ආරම්භ කරන්න"
+exclude_languages = "කලු ලැයිස්තු ප්රකාරය: ලැයිස්තු භාෂා ID ආරම්භ නොකරන්න"
+exclude_map_names = "ලැයිස්තු සිතියම් නාම ආරම්භ නොකරන්න"
+
+base_name = '"Highlight-Map" පදනම් නාමය'
+suffix = '"Highlight-Map" අලුත් පසුප්රත්යය'
+true_color = "24-බිට් සත්ය වර්ණ"
+syntax_name = "වාක්ය රචනයේ නාමය"
+theme_name = "තේමා නාමය"
+background = "පසෙක් පිටුපස සක්රිය කරන්නද"
+custom_syntax_set = "අභිරුචි වාක්ය රචන කට්ටල ගොනුව"
+custom_theme_set = "අභිරුචි තේමා කට්ටල ගොනුව"
+list_all_syntaxes = "සියලු වාක්ය රචන නාම සහ දිගු පෙන්වන්න"
+list_all_themes = "සියලු තේමා නාම පෙන්වන්න"
+
+display_config_dir = "Glossa වින්යාස ඩිරෙක්ටරිය පෙන්වන්න"

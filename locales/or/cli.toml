@@ -1,0 +1,37 @@
+outdir = "ଆଉଟପୁଟ ଡାଇରେକ୍ଟରୀ"
+visibility = "ଜେନେରେଟ ହୋଇଥିବା କୋଡ୍ ଦୃଶ୍ୟମାନତା"
+bincode_suffix = "bincode ଫାଇଲ୍ ସଫିକ୍ସ"
+mod_prefix = 'mod ଫାଇଲ୍ ପ୍ରିଫିକ୍ସ (ଡିଫଲ୍ଟ "l10n_")'
+
+output_bincode = "ବିଭିନ୍ନ ଭାଷା ପାଇଁ ସ୍ୱତନ୍ତ୍ର bincode ଫାଇଲ୍ ସୃଷ୍ଟି କରନ୍ତୁ"
+output_bincode_all_in_one = "ସମସ୍ତ ଭାଷାର bincode ଗୁଡିକୁ ଗୋଟିଏ ଫାଇଲ୍ରେ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ"
+output_match_fn = "ରଷ୍ଟ କୋଡ୍ ଫାଇଲ୍ ସୃଷ୍ଟି କରନ୍ତୁ (match ଏକ୍ସପ୍ରେସନ୍ ସହିତ)"
+output_match_fn_by_key = "କେବଳ map_key କୁ କୀ ଭାବରେ ବ୍ୟବହାର କରନ୍ତୁ (map_name ନୁହେଁ)"
+output_match_fn_all_in_one = "ସମସ୍ତ ଡାଟା ଗୋଟିଏ match ଫଙ୍କସନ୍ରେ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ (ଷ୍ଟ୍ରିଂ)"
+output_match_fn_all_in_one_by_language = "ଭାଷା ନାମକୁ କୀ ଭାବରେ ବ୍ୟବହାର କରୁଥିବା match ଫଙ୍କସନ୍"
+output_match_fn_all_in_one_by_language_and_key = "କମ୍ବାଇନ୍ କୀ (ଭାଷା+map_key) ସହିତ match ଫଙ୍କସନ୍"
+output_phf = "ଭିନ୍ନ ଭାଷା ପାଇଁ phf ମ୍ୟାପ୍ ଫଙ୍କସନ୍ ସୃଷ୍ଟି କରନ୍ତୁ"
+output_phf_by_key = "ସାଧାରଣ ଷ୍ଟ୍ରିଂ କୀ ସହିତ phf ମ୍ୟାପ୍ (TupleKey ନୁହେଁ)"
+output_phf_all_in_one = "ସମସ୍ତ phf ମ୍ୟାପ୍ ଗୁଡିକୁ ଗୋଟିଏ ଫଙ୍କସନ୍ରେ ଏକତ୍ର କରନ୍ତୁ"
+output_locales_fn = "all_locales ଫଙ୍କସନ୍ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ"
+output_ron = "RON ଫର୍ମାଟରେ ଷ୍ଟ୍ରିଂ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ"
+
+input = "ଲୋକାଲାଇଜେସନ୍ ସ୍ରୋତ ଡାଇରେକ୍ଟରୀ"
+dsl_suffix = 'DSL ଫାଇଲ୍ ସଫିକ୍ସ (ଡିଫଲ୍ଟ ".dsl")'
+include_languages = "ଧଳା ତାଲିକା ମୋଡ୍: ତାଲିକାରେ ଥିବା ଭାଷା ID ଗୁଡିକୁ କେବଳ ଇନିସିଆଲାଇଜ୍ କରନ୍ତୁ"
+include_map_names = "ତାଲିକାରେ ଥିବା ମ୍ୟାପ୍ ନାମଗୁଡିକୁ କେବଳ ଇନିସିଆଲାଇଜ୍ କରନ୍ତୁ"
+exclude_languages = "କଳା ତାଲିକା ମୋଡ୍: ତାଲିକାରେ ଥିବା ଭାଷା ID ଗୁଡିକୁ ଇନିସିଆଲାଇଜ୍ କରନ୍ତୁ ନାହିଁ"
+exclude_map_names = "ତାଲିକାରେ ଥିବା ମ୍ୟାପ୍ ନାମଗୁଡିକୁ ଇନିସିଆଲାଇଜ୍ କରନ୍ତୁ ନାହିଁ"
+
+base_name = '"ହାଇଲାଇଟ-ମ୍ୟାପ୍" ର ମୂଳ ନାମ'
+suffix = '"ହାଇଲାଇଟ-ମ୍ୟାପ୍" ର ନୂତନ ସଫିକ୍ସ'
+true_color = "24-ବିଟ୍ ପ୍ରକୃତ ରଙ୍ଗ"
+syntax_name = "ସିଣ୍ଟାକ୍ସ ନାମ"
+theme_name = "ଥିମ୍ ନାମ"
+background = "ପୃଷ୍ଠଭୂମି ସକ୍ରିୟ କରନ୍ତୁ"
+custom_syntax_set = "କଷ୍ଟମ୍ ସିଣ୍ଟାକ୍ସ ସେଟ୍ ଫାଇଲ୍"
+custom_theme_set = "କଷ୍ଟମ୍ ଥିମ୍ ସେଟ୍ ଫାଇଲ୍"
+list_all_syntaxes = "ସମସ୍ତ ସିଣ୍ଟାକ୍ସ ନାମ ଏବଂ ଏକ୍ସଟେନ୍ସନ୍ ଦେଖାନ୍ତୁ"
+list_all_themes = "ସମସ୍ତ ଥିମ୍ ନାମ ଦେଖାନ୍ତୁ"
+
+display_config_dir = "Glossa ର କଂଫିଗ୍ ଡାଇରେକ୍ଟରୀ ଦେଖାନ୍ତୁ"

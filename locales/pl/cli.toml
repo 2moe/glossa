@@ -1,0 +1,37 @@
+outdir = "Katalog wyjściowy"
+visibility = "Widoczność wygenerowanego kodu"
+bincode_suffix = "sufiks pliku bincode"
+mod_prefix = 'prefiks pliku mod (domyślnie "l10n_")'
+
+output_bincode = "Generuj osobne pliki bincode dla różnych języków"
+output_bincode_all_in_one = "Eksportuj wszystkie bincode do jednego pliku"
+output_match_fn = "Generuj pliki kodu Rust z funkcjami match dla języków"
+output_match_fn_by_key = "Używaj tylko map_key jako klucza (bez map_name)"
+output_match_fn_all_in_one = "Eksportuj wszystkie dane do jednej funkcji match (ciąg znaków)"
+output_match_fn_all_in_one_by_language = "Funkcja match z nazwą języka jako kluczem"
+output_match_fn_all_in_one_by_language_and_key = "Funkcja match z kluczem złożonym (język + map_key)"
+output_phf = "Generuj osobne funkcje phf map dla języków"
+output_phf_by_key = "phf map ze zwykłymi kluczami tekstowymi (nie TupleKey)"
+output_phf_all_in_one = "Scal wszystkie phf mapy w jednej funkcji"
+output_locales_fn = "Eksportuj funkcję all_locales"
+output_ron = "Eksportuj ciąg w formacie RON"
+
+input = "Katalog źródłowy zasobów lokalizacyjnych"
+dsl_suffix = 'sufiks pliku DSL (domyślnie ".dsl")'
+include_languages = "Tryb białej listy: Inicjuj tylko ID języków z listy"
+include_map_names = "Inicjuj tylko nazwy map z listy"
+exclude_languages = "Tryb czarnej listy: Nie inicjuj ID języków z listy"
+exclude_map_names = "Nie inicjuj nazw map z listy"
+
+base_name = 'Podstawowa nazwa "Highlight-Map"'
+suffix = 'Nowy sufiks "Highlight-Map"'
+true_color = "24-bitowy prawdziwy kolor"
+syntax_name = "Nazwa składni"
+theme_name = "Nazwa motywu"
+background = "Aktywuj tło"
+custom_syntax_set = "Niestandardowy zestaw składni"
+custom_theme_set = "Niestandardowy zestaw motywów"
+list_all_syntaxes = "Wyświetl wszystkie nazwy składni i rozszerzenia"
+list_all_themes = "Wyświetl wszystkie nazwy motywów"
+
+display_config_dir = "Pokaż katalog konfiguracyjny Glossa"

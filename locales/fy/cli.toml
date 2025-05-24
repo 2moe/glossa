@@ -1,0 +1,37 @@
+outdir = "Útfier map"
+visibility = "Sichtberens fan generearre koade"
+bincode_suffix = "bincode-efterheaksel"
+mod_prefix = 'mod-foarheaksel (standert "l10n_")'
+
+output_bincode = "Genearje aparte bincode-triemmen foar ferskillende talen"
+output_bincode_all_in_one = "Eksportearje alle bincodes nei ien triem"
+output_match_fn = "Meitsje Rust-koade mei match-funksjes per taal"
+output_match_fn_by_key = "Brûk allinnich map_key as kaai (sûnder map_name)"
+output_match_fn_all_in_one = "Kombinearje alle gegevens yn ien match-funksje (string)"
+output_match_fn_all_in_one_by_language = "Match-funksje mei taalnamme as kaai"
+output_match_fn_all_in_one_by_language_and_key = "Match-funksje mei kombinaasje kaai (taalnamme + map_key)"
+output_phf = "Meitsje phf-map funksjes per taal"
+output_phf_by_key = "phf-map mei gewoane string-kaaien (gjin TupleKey)"
+output_phf_all_in_one = "Kombinearje alle phf-maps yn ien funksje"
+output_locales_fn = "Eksportearje all_locales-funksje"
+output_ron = "Eksportearje string yn RON-formaat"
+
+input = "Boarnemap foar lokalisearjebronnen"
+dsl_suffix = 'DSL-efterheaksel (standert ".dsl")'
+include_languages = "Wite list modus: Allinnich talen yn list inisjalisearje"
+include_map_names = "Allinnich map-nammen yn list inisjalisearje"
+exclude_languages = "Swarte list modus: Talen yn list net inisjalisearje"
+exclude_map_names = "Map-nammen yn list net inisjalisearje"
+
+base_name = 'Basisnamme fan "Highlight-Map"'
+suffix = 'Nij generearre efterheaksel foar "Highlight-Map"'
+true_color = "24-bit wiere kleur"
+syntax_name = "Syntaksisnamme"
+theme_name = "Tema-namme"
+background = "Eftergrûn ynskeakelje"
+custom_syntax_set = "Oanpaste syntaksis set bestân"
+custom_theme_set = "Oanpast tema set bestân"
+list_all_syntaxes = "Toane alle syntaksisnammen mei útwreidingen"
+list_all_themes = "Toane alle tema-nammen"
+
+display_config_dir = "Toane glossa ynstellingsmap"

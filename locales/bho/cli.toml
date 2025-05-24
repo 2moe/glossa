@@ -1,0 +1,37 @@
+outdir = "आउटपुट डायरेक्टरी"
+visibility = "बनल कोड के दृश्यता"
+bincode_suffix = "bincode फाइल प्रत्यय"
+mod_prefix = 'mod फाइल उपसर्ग (डिफॉल्ट "l10n_")'
+
+output_bincode = "अलग-अलग भाषा खातिर अलग bincode फाइल बनावल"
+output_bincode_all_in_one = "सभ भाषा के bincode के एकही फाइल में निर्यात करव"
+output_match_fn = "रस्ट कोड के फाइल बनावल (match एक्सप्रेशन वाला फंक्शन)"
+output_match_fn_by_key = "सिर्फ map_key के चाबी बनावल (map_name ना राखल)"
+output_match_fn_all_in_one = "सभ डेटा के एकही match फंक्शन में निर्यात करव (स्ट्रिंग)"
+output_match_fn_all_in_one_by_language = "भाषा नाम के चाबी वाला match फंक्शन"
+output_match_fn_all_in_one_by_language_and_key = "मिलावट चाबी (भाषा+map_key) वाला match फंक्शन"
+output_phf = "अलग-अलग भाषा खातिर phf मैप फंक्शन बनावल"
+output_phf_by_key = "सादा स्ट्रिंग चाबी वाला phf मैप (TupleKey ना)"
+output_phf_all_in_one = "सभ phf मैप के एकही फंक्शन में मिलावल"
+output_locales_fn = "all_locales फंक्शन निर्यात करव"
+output_ron = "RON फॉर्मेट में स्ट्रिंग निर्यात करव"
+
+input = "लोकलाइजेशन संसाधन के मूल डायरेक्टरी"
+dsl_suffix = 'DSL फाइल प्रत्यय (डिफॉल्ट ".dsl")'
+include_languages = "व्हाइटलिस्ट मोड: लिस्ट के भाषा ID के सिर्फ इनिशियलाइज करव"
+include_map_names = "लिस्ट के मैप नाम के सिर्फ इनिशियलाइज करव"
+exclude_languages = "ब्लैकलिस्ट मोड: लिस्ट के भाषा ID के इनिशियलाइज ना करव"
+exclude_map_names = "लिस्ट के मैप नाम के इनिशियलाइज ना करव"
+
+base_name = '"हाइलाइट-मैप" के मूल नाम'
+suffix = '"हाइलाइट-मैप" के नया प्रत्यय'
+true_color = "24-बिट असली रंग"
+syntax_name = "सिंटैक्स नाम"
+theme_name = "थीम नाम"
+background = "बैकग्राउंड चालू करव"
+custom_syntax_set = "कस्टम सिंटैक्स सेट फाइल"
+custom_theme_set = "कस्टम थीम सेट फाइल"
+list_all_syntaxes = "सभ सिंटैक्स नाम आ एक्सटेंशन देखावल"
+list_all_themes = "सभ थीम नाम देखावल"
+
+display_config_dir = "glossa के कॉन्फिग डायरेक्टरी देखावल"

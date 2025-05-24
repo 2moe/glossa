@@ -1,0 +1,37 @@
+outdir = "Thư mục đầu ra"
+visibility = "Khả năng hiển thị của mã được tạo"
+bincode_suffix = "Hậu tố tập tin bincode"
+mod_prefix = 'Tiền tố tập tin mod (mặc định "l10n_")'
+
+output_bincode = "Tạo các tập tin bincode độc lập cho các ngôn ngữ khác nhau"
+output_bincode_all_in_one = "Xuất tất cả bincode vào một tập tin duy nhất"
+output_match_fn = "Tạo tập tin Rust với hàm match cho từng ngôn ngữ"
+output_match_fn_by_key = "Chỉ sử dụng map_key làm khóa (không chứa map_name)"
+output_match_fn_all_in_one = "Kết hợp tất cả dữ liệu vào một hàm match (chuỗi)"
+output_match_fn_all_in_one_by_language = "Hàm match sử dụng tên ngôn ngữ làm khóa"
+output_match_fn_all_in_one_by_language_and_key = "Hàm match với khóa kết hợp (tên ngôn ngữ + map_key)"
+output_phf = "Tạo hàm phf map riêng cho từng ngôn ngữ"
+output_phf_by_key = "phf map sử dụng chuỗi thường làm khóa (không phải TupleKey)"
+output_phf_all_in_one = "Kết hợp tất cả phf map vào một hàm"
+output_locales_fn = "Xuất hàm all_locales"
+output_ron = "Xuất chuỗi theo định dạng RON"
+
+input = "Thư mục nguồn tài nguyên bản địa hóa"
+dsl_suffix = 'Hậu tố tập tin DSL (mặc định ".dsl")'
+include_languages = "Chế độ danh sách trắng: Chỉ khởi tạo ID ngôn ngữ trong danh sách"
+include_map_names = "Chỉ khởi tạo tên bản đồ trong danh sách"
+exclude_languages = "Chế độ danh sách đen: Không khởi tạo ID ngôn ngữ trong danh sách"
+exclude_map_names = "Không khởi tạo tên bản đồ trong danh sách"
+
+base_name = 'Tên cơ sở của "Highlight-Map"'
+suffix = 'Hậu tố mới của "Highlight-Map"'
+true_color = "Màu thật 24-bit"
+syntax_name = "Tên cú pháp"
+theme_name = "Tên chủ đề"
+background = "Kích hoạt nền hay không"
+custom_syntax_set = "Tập tin bộ cú pháp tùy chỉnh"
+custom_theme_set = "Tập tin bộ chủ đề tùy chỉnh"
+list_all_syntaxes = "Hiển thị tất cả tên cú pháp và phần mở rộng"
+list_all_themes = "Hiển thị tất cả tên chủ đề"
+
+display_config_dir = "Hiển thị thư mục cấu hình glossa"

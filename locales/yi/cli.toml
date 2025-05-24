@@ -1,0 +1,37 @@
+outdir = "אויסגאַבע דירעקטאָרי"
+visibility = "דערזעאונג פון דזשענערירטע קאָד"
+bincode_suffix = "בינקאָדע טעקע סופפיקס"
+mod_prefix = 'מאָד טעקע פּרעפיקס (דיפאָלט "l10n_")'
+
+output_bincode = "שאַפֿן סעפּאַראַטע בינקאָדע טעקעס פֿאַר פאַרשידענע שפּראַכן"
+output_bincode_all_in_one = "אַרויסגעבן אַלע בינקאָדעס אין איין טעקע"
+output_match_fn = "שאַפֿן ראַסט טעקעס מיט מאַטש פֿונקציע פֿאַר יעדער שפּראַך"
+output_match_fn_by_key = "ניצן בלויז map_key ווי שליסל (אָן map_name)"
+output_match_fn_all_in_one = "קאַנסאַלידירן אַלע דאַטן אין איין מאַטש פֿונקציע (שטריקל)"
+output_match_fn_all_in_one_by_language = "מאַטש פֿונקציע מיט שפּראַך נאָמען שליסל"
+output_match_fn_all_in_one_by_language_and_key = "מאַטש פֿונקציע מיט קאָמבינירטן שליסל (שפּראַך+map_key)"
+output_phf = "שאַפֿן סעפּאַראַטע פֿף מאַפּעס פֿאַר שפּראַכן"
+output_phf_by_key = "פֿף מאַפּעס מיט נאָרמאַלע שטריקל שליסלען (ניט TupleKey)"
+output_phf_all_in_one = "צונויפֿנעמען אַלע פֿף מאַפּעס אין איין פֿונקציע"
+output_locales_fn = "אַרויסגעבן all_locales פֿונקציע"
+output_ron = "אַרויסגעבן שטריקל אין RAN פֿאָרמאַט"
+
+input = "צענטראַל דירעקטאָרי פֿון לאָוקאַליזאַציע רעסורסן"
+dsl_suffix = 'דסל טעקע סופפיקס (דיפאָלט ".dsl")'
+include_languages = "ווײַס ליסטע מאָדע: נאָר איניטיאַליזירן שפּראַך ID אין ליסטע"
+include_map_names = "נאָר איניטיאַליזירן מאַפּע נעמען אין ליסטע"
+exclude_languages = "שוואַרץ ליסטע מאָדע: ניט איניטיאַליזירן שפּראַך ID"
+exclude_map_names = "ניט איניטיאַליזירן מאַפּע נעמען אין ליסטע"
+
+base_name = 'באַזע נאָמען פֿון "Highlight-Map"'
+suffix = 'נייַ סופפיקס פֿון "Highlight-Map"'
+true_color = "24-ביט אמת קאָליר"
+syntax_name = "סינטאַקס נאָמען"
+theme_name = "טעמע נאָמען"
+background = "אקטיווירן הינטערגרונט"
+custom_syntax_set = "מנהג סינטאַקס סעט טעקע"
+custom_theme_set = "מנהג טעמע סעט טעקע"
+list_all_syntaxes = "ווייַזן אַלע סינטאַקס נעמען מיט עקסטענשאַנז"
+list_all_themes = "ווייַזן אַלע טעמע נעמען"
+
+display_config_dir = "ווייַזן glossa קאָנפיג דירעקטאָרי"

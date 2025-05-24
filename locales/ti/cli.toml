@@ -1,0 +1,37 @@
+outdir = "ውጽእቲ ዳይረክቶሪ"
+visibility = "ዝተፈጥረ ኮድ እዚ ርአይታ"
+bincode_suffix = "ባንኮድ ፋይል ሰፊክስ"
+mod_prefix = 'ሞድ ፋይል ፕሪፊክስ (ነባሪ "l10n_")'
+
+output_bincode = "ንዝተፈላለየ ቋንቋታት ነጻ ባንኮድ ፋይላት ምፍጣር"
+output_bincode_all_in_one = "ኩሎም ባንኮድታት ኣብ ሓደ ፋይል ምውጻእ"
+output_match_fn = "ንቋንቋታት ራስት ኮድ ምፍጣር (ማች ኤክስፕረሽን ዘለዎም ፋንክሽን)"
+output_match_fn_by_key = "ማፕ_ኪ ጥራይ ከም ቁልፊ ብምጥቃም (ማፕ_ነም የልቦን)"
+output_match_fn_all_in_one = "ኩሎም ዳታታት ኣብ ሓደ ማች ፋንክሽን ምውጻእ (ጽሑፍ)"
+output_match_fn_all_in_one_by_language = "ቋንቋ ስም ከም ቁልፊ ዘለዎ ማች ፋንክሽን"
+output_match_fn_all_in_one_by_language_and_key = "ቋንቋ ስም + ማፕ_ኪ ዝተተባህለ ማች ፋንክሽን"
+output_phf = "ንቋንቋታት ፂም ፂም ፂ.ኤች.ኤፍ መፍትሕታት ምፍጣር"
+output_phf_by_key = "ብተለቀቅቲ ጽሑፍ ቁልፍታት ዘለዎ ፂ.ኤች.ኤፍ መፍትሕ (ነቲ ቱፕልኪ ዘይኮነ)"
+output_phf_all_in_one = "ኩሎም ፂ.ኤች.ኤፍ መፍትሕታት ኣብ ሓደ ፋንክሽን ምውጻእ"
+output_locales_fn = "ኩሎም_ሎኬልስ ፋንክሽን ምውጻእ"
+output_ron = "ጽሑፍ ብኣር.ኦ.ኤን ፎርማት ምውጻእ"
+
+input = "ናይ ሎካላይዜሽን ምንጪ ዳይረክቶሪ"
+dsl_suffix = 'ዲ.ኤስ.ኤል ፋይል ሰፊክስ (ነባሪ ".dsl")'
+include_languages = "ነጻ ዝርዝር ሞድ: ኣብ ዝርዝር ዘለዉ ቋንቋ ኣይ.ዲ.ታት ጥራይ ምጅማር"
+include_map_names = "ኣብ ዝርዝር ዘለዉ ካርታ ስማት ጥራይ ምጅማር"
+exclude_languages = "ጸሊም ዝርዝር ሞድ: ኣብ ዝርዝር ዘለዉ ቋንቋ ኣይ.ዲ.ታት ኣይትጀምሩ"
+exclude_map_names = "ኣብ ዝርዝር ዘለዉ ካርታ ስማት ኣይትጀምሩ"
+
+base_name = '"ሃይላይት_ማፕ" መሰረታዊ ስም'
+suffix = '"ሃይላይት_ማፕ" ሓድሽ ሰፊክስ'
+true_color = "24-ቢት ናይ ሓቂ ሕብሪ"
+syntax_name = "ሰንታክስ ስም"
+theme_name = "ትስምርታ ስም"
+background = "ጐልባቢ ምንቅርታ"
+custom_syntax_set = "ብፍላይ ሰንታክስ ስብስብ ፋይል"
+custom_theme_set = "ብፍላይ ትስምርታ ስብስብ ፋይል"
+list_all_syntaxes = "ኩሎም ሰንታክስ ስማትን መወጻእታታትን ምርኢት"
+list_all_themes = "ኩሎም ትስምርታ ስማት ምርኢት"
+
+display_config_dir = "ግሎሳ ኮንፍግ ዳይረክቶሪ ምርኢት"
