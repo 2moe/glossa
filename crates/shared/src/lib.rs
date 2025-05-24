@@ -45,5 +45,5 @@ pub type PhfL10nAllInOneMap = phf::OrderedMap<PhfTripleKey<'static>, &'static st
 #[cfg(feature = "decode")]
 pub mod decode;
 
-#[cfg(all(feature = "decode", feature = "std", feature = "type-aliases"))]
+#[cfg(all(feature = "decode", feature = "std"))]
 pub mod load_bincode;

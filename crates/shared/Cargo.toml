@@ -1,7 +1,7 @@
 [package]
 name = "glossa-shared"
 # version.workspace = true
-version = "0.0.3"
+version = "0.0.4"
 authors.workspace = true
 categories.workspace = true
 readme = "docs/Readme.md"
@@ -23,6 +23,7 @@ std = [
     "compact_str/std",
     "smallvec?/std",
     # "itertools/use_std",
+    "dep:rayon",
 ]
 serde = [
     "dep:serde",
@@ -56,6 +57,7 @@ glossa-dsl = { workspace = true, optional = true }
 bincode = { workspace = true, optional = true, features = ["alloc", "serde"] }
 serde = { workspace = true, optional = true, features = ["alloc"] }
 smallvec = { workspace = true, optional = true }
+rayon = { workspace = true, optional = true }
 log.workspace = true
 
 [package.metadata.docs.rs]

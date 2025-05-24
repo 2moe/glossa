@@ -17,8 +17,9 @@ fn build_and_open_rust_doc() -> io::Result<()> {
   };
 
   [
-    "glossa",
+    // "glossa",
     // "glossa-shared",
+    "glossa-cli",
     // "glossa-l10n",
     // "glossa-codegen",
   ]

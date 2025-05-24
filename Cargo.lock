@@ -618,6 +618,7 @@ dependencies = [
  "log",
  "phf",
  "phf_shared",
+ "rayon",
  "serde",
  "smallvec 2.0.0-alpha.11",
  "tap",

@@ -8,11 +8,15 @@ use compact_str::ToCompactString;
 use glossa_dsl::error::ResolverResult;
 use lang_id::LangID;
 use log::debug;
+use rayon::iter::{IntoParallelRefIterator, ParallelBridge, ParallelIterator};
 use tap::Pipe;
 
 use crate::{
-  decode::file::{decode_file_to_maps, decode_single_file_to_flatten_map},
-  type_aliases::L10nMaps,
+  decode::file::{
+    decode_file_to_dsl_maps, decode_file_to_maps, decode_single_file_to_dsl_map,
+    decode_single_file_to_flatten_map,
+  },
+  type_aliases::{DSLMaps, L10nMaps},
 };
 
 // pub trait LoadBincode {
@@ -22,6 +26,7 @@ pub fn list_bincode_files(bincode_dir: Option<&Path>) -> Option<Vec<PathBuf>> {
   bincode_dir?
     .read_dir()
     .ok()?
+    .par_bridge()
     .flatten()
     .map(|x| x.path())
     .filter(|x| !x.is_dir())
@@ -51,18 +56,58 @@ pub fn try_load_files<P: AsRef<Path>>(files: &[P]) -> ResolverResult<L10nMaps> {
       debug!("load: all.bincode");
       decode_file_to_maps(p)
     }
+    _ => {
+      // use `.collect().par_iter()` instead of `iter.par_bridge()`
+      iter
+        .collect::<Vec<_>>()
+        .par_iter()
+        .filter_map(|file| {
+          decode_single_file_to_flatten_map(file)
+            .ok()
+            .and_then(|data| {
+              file
+                .file_stem()
+                .inspect(|s| debug!("file-stem: {s:?}"))
+                .and_then(|s| s.to_str())
+                .map(|lang| (lang.to_compact_string(), data))
+            })
+        })
+        .collect::<L10nMaps>()
+        .pipe(Ok)
+    }
+  }
+}
+
+pub fn try_load_dsl_files<P: AsRef<Path>>(files: &[P]) -> ResolverResult<DSLMaps> {
+  let all = OsStr::new("all");
+  log::debug!("Loading bincode data ...");
+
+  let iter = files.iter().map(AsRef::as_ref);
+
+  match iter
+    .clone()
+    .find(|x| x.file_stem() == Some(all))
+  {
+    Some(p) => {
+      debug!("load DSL: all.bincode");
+      decode_file_to_dsl_maps(p)
+    }
     _ => iter
-      .filter_map(|x| {
-        decode_single_file_to_flatten_map(x)
+      .collect::<Vec<_>>()
+      .par_iter()
+      // .par_bridge()
+      .filter_map(|file| {
+        decode_single_file_to_dsl_map(file)
           .ok()
           .and_then(|data| {
-            x.file_stem()
+            file
+              .file_stem()
               .inspect(|s| debug!("file-stem: {s:?}"))
               .and_then(|s| s.to_str())
               .map(|lang| (lang.to_compact_string(), data))
           })
       })
-      .collect::<L10nMaps>()
+      .collect::<DSLMaps>()
       .pipe(Ok),
   }
 }
