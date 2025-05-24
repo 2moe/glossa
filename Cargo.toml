@@ -58,8 +58,8 @@ derive_more = { version = "2.0.1", default-features = false }
 directories = "6.0.0"
 
 [workspace.dependencies.glossa-shared]
-# path = "./crates/shared"
-version = "0.0.2"
+path = "./crates/shared"
+version = "0.0.3"
 
 [workspace.dependencies.glossa]
 version = "0.0.3"

@@ -20,3 +20,16 @@ pub fn config_dir() -> &'static Path {
     }
   })
 }
+
+pub fn bincode_dir() -> Option<&'static Path> {
+  new_once_lock!(P: Option<PathBuf>);
+
+  P.get_or_init(|| {
+    let dir = config_dir();
+    dir
+      .exists()
+      .then(|| dir.join("bincode"))
+      .filter(|x| x.exists())
+  })
+  .as_deref()
+}

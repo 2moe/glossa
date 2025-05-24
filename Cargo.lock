@@ -549,7 +549,7 @@ dependencies = [
  "dashmap",
  "getset",
  "glossa-dsl",
- "glossa-shared 0.0.2",
+ "glossa-shared",
  "hlight",
  "itertools",
  "kstring",
@@ -606,26 +606,6 @@ dependencies = [
 
 [[package]]
 name = "glossa-shared"
-version = "0.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65a01ca0d5e768c3119e36eab30cc8d46b90a97e6e55821ffd1ca596ed41e492"
-dependencies = [
- "ahash",
- "bincode 2.0.1",
- "compact_str",
- "derive_more",
- "glossa-dsl",
- "kstring",
- "lang-id 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
- "phf",
- "phf_shared",
- "serde",
- "smallvec 2.0.0-alpha.11",
- "tap",
-]
-
-[[package]]
-name = "glossa-shared"
 version = "0.0.3"
 dependencies = [
  "ahash",
@@ -635,6 +615,7 @@ dependencies = [
  "glossa-dsl",
  "kstring",
  "lang-id 0.0.20",
+ "log",
  "phf",
  "phf_shared",
  "serde",
@@ -774,18 +755,6 @@ dependencies = [
  "compact_str",
  "phf",
  "sys-locale",
- "tap",
- "tinystr",
- "unic-langid",
-]
-
-[[package]]
-name = "lang-id"
-version = "0.0.20"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "056e38d42d55e4c6066a721f57faf81d909c75f0f0e14753c5ab2d1c16ad06c2"
-dependencies = [
- "compact_str",
  "tap",
  "tinystr",
  "unic-langid",
@@ -1371,7 +1340,7 @@ dependencies = [
  "glossa",
  "glossa-codegen",
  "glossa-l10n 0.0.1",
- "glossa-shared 0.0.2",
+ "glossa-shared",
  "itertools",
  "log",
  "phf",

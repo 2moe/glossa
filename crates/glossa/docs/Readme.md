@@ -380,7 +380,8 @@ fn test_bilingual() {
   let en_gb_ctx = new_ctx(lang_id_en_gb());
 
   fn get_text<'a>(ctx: &LocaleContext, key: &str) -> Option<&'a str> {
-    let lookup = |(language, key): (_, &str)| match map(language, key.as_bytes()) {
+    let key_bytes = key.as_bytes();
+    let lookup = |language| match map(language, key_bytes) {
       "" => None,
       x => Some(x),
     };
@@ -388,7 +389,7 @@ fn test_bilingual() {
     ctx
       .get_or_try_init_chain()?
       .iter()
-      .map(|id| (id.as_bytes(), key))
+      .map(|id| id.as_bytes())
       .find_map(lookup)
   }
 

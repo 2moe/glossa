@@ -10,3 +10,5 @@ pub use options::Cli;
 pub mod envs;
 
 pub mod static_data;
+
+pub mod context;
