@@ -40,17 +40,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match függvény nyelvi névvel mint kulcs"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match függvény kombinált kulccsal (nyelv + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Csak map_key használata kulcsként (map_name nélkül)"#####
     }
     b"output_phf" => r#####"PHF térképfüggvények generálása nyelvenként"#####,
     b"output_phf_all_in_one" => {
       r#####"Összes PHF térkép összevonása egy függvénybe"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF térkép közönséges sztring kulcsokkal (nem TupleKey)"#####
     }
     b"output_ron" => r#####"Sztring exportálása RON formátumban"#####,

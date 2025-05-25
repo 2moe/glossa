@@ -61,7 +61,7 @@ pub struct GeneratorOpt {
   #[arg(
     long,
     visible_alias = "vis",
-    value_name = "pub | pub(crate)",
+    value_name = "pub| pub(crate)| pub(super)| private",
     help_heading = "Generator Core",
     help = get_text("visibility", None),
   )]
@@ -96,9 +96,9 @@ pub struct GeneratorOpt {
   output_match_fn: bool,
 
   #[arg(long, help_heading = "Output Files", group = "output_map_fn",
-    help = get_text("output_match_fn_by_key", None),
+    help = get_text("output_match_fn_without_map_name", None),
   )]
-  output_match_fn_by_key: bool,
+  output_match_fn_without_map_name: bool,
 
   #[arg(long, help_heading = "Output File",
     help = get_text("output_match_fn_all_in_one", None),
@@ -111,9 +111,9 @@ pub struct GeneratorOpt {
   output_match_fn_all_in_one_by_language: bool,
 
   #[arg(long, help_heading = "Output File",
-    help = get_text("output_match_fn_all_in_one_by_language_and_key", None),
+    help = get_text("output_match_fn_all_in_one_without_map_name", None),
   )]
-  output_match_fn_all_in_one_by_language_and_key: bool,
+  output_match_fn_all_in_one_without_map_name: bool,
 
   #[arg(long, help_heading = "Output Files", group = "output_map_fn",
     help = get_text("output_phf", None),
@@ -121,9 +121,9 @@ pub struct GeneratorOpt {
   output_phf: bool,
 
   #[arg(long, help_heading = "Output Files", group = "output_map_fn",
-    help = get_text("output_phf_by_key", None),
+    help = get_text("output_phf_without_map_name", None),
   )]
-  output_phf_by_key: bool,
+  output_phf_without_map_name: bool,
 
   #[arg(long, help_heading = "Output File",
     help = get_text("output_phf_all_in_one", None),
@@ -154,6 +154,12 @@ pub struct GeneratorOpt {
 
   #[arg(long, help_heading = "Output String")]
   output_router_for_match_fns_without_map_name: bool,
+
+  #[arg(long, help_heading = "Output String")]
+  output_router_for_phf_maps: bool,
+
+  #[arg(long, help_heading = "Output String")]
+  output_router_for_phf_maps_without_map_name: bool,
 }
 
 #[derive(Parser, Debug, Getters, Clone)]

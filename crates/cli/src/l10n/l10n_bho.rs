@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"भाषा नाम के चाबी वाला match फंक्शन"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"मिलावट चाबी (भाषा+map_key) वाला match फंक्शन"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"सिर्फ map_key के चाबी बनावल (map_name ना राखल)"#####
     }
     b"output_phf" => r#####"अलग-अलग भाषा खातिर phf मैप फंक्शन बनावल"#####,
     b"output_phf_all_in_one" => r#####"सभ phf मैप के एकही फंक्शन में मिलावल"#####,
-    b"output_phf_by_key" => r#####"सादा स्ट्रिंग चाबी वाला phf मैप (TupleKey ना)"#####,
+    b"output_phf_without_map_name" => r#####"सादा स्ट्रिंग चाबी वाला phf मैप (TupleKey ना)"#####,
     b"output_ron" => r#####"RON फॉर्मेट में स्ट्रिंग निर्यात करव"#####,
     b"suffix" => r#####""हाइलाइट-मैप" के नया प्रत्यय"#####,
     b"syntax_name" => r#####"सिंटैक्स नाम"#####,

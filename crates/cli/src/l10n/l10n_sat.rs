@@ -34,15 +34,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ᱯᱟᱹᱨᱥᱤ ᱧᱩᱛᱩᱢ ᱠᱤ ᱛᱮ ᱢᱤᱫ ᱢᱟᱪᱮᱛ ᱯᱷᱚᱝᱥᱚᱱ"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ᱯᱟᱹᱨᱥᱤ ᱧᱩᱛᱩᱢ+map_key ᱠᱤ ᱛᱮ ᱢᱤᱫ ᱢᱟᱪᱮᱛ ᱯᱷᱚᱝᱥᱚᱱ"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key ᱛᱮ ᱠᱤ ᱵᱮᱱᱟᱣ (map_name ᱵᱟᱝ ᱥᱮᱞᱮᱫ)"#####
     }
     b"output_phf" => r#####"ᱯᱟᱹᱨᱥᱤ ᱠᱚ ᱞᱟᱹᱜᱤᱫ phf ᱢᱮᱯ ᱯᱷᱚᱝᱥᱚᱱ ᱵᱮᱱᱟᱣ"#####,
     b"output_phf_all_in_one" => r#####"ᱡᱷᱚᱛᱚ phf ᱢᱮᱯ ᱢᱤᱫ ᱯᱷᱚᱝᱥᱚᱱ ᱨᱮ ᱚᱛᱟᱭᱚᱢ"#####,
-    b"output_phf_by_key" => r#####"ᱥᱟᱫᱷᱟᱨᱚᱱ ᱥᱴᱨᱤᱝ ᱠᱤ ᱛᱮ phf ᱢᱮᱯ (TupleKey ᱵᱟᱝ)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"ᱥᱟᱫᱷᱟᱨᱚᱱ ᱥᱴᱨᱤᱝ ᱠᱤ ᱛᱮ phf ᱢᱮᱯ (TupleKey ᱵᱟᱝ)"#####
+    }
     b"output_ron" => r#####"RON ᱯᱷᱚᱨᱢᱮᱴ ᱨᱮ ᱥᱴᱨᱤᱝ ᱚᱛᱟᱭᱚᱢ"#####,
     b"suffix" => r#####""Highlight-Map" ᱨᱮᱭᱟᱜ ᱱᱚᱶᱟ ᱛᱟᱭᱚᱢᱛᱮ"#####,
     b"syntax_name" => r#####"ᱥᱤᱱᱴᱟᱠᱥ ᱧᱩᱛᱩᱢ"#####,

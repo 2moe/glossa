@@ -172,7 +172,7 @@ let generator = Generator::default()
 ```
 
 The `Generator` supports outputting various types.
-If you invoke `generator.output_match_fn_all_in_one_by_language_and_key(MapType::Regular)?`, the generated code will resemble:
+If you invoke `generator.output_match_fn_all_in_one_without_map_name(MapType::Regular)?`, the generated code will resemble:
 
 ```rust
 pub const fn map(language: &[u8], key: &[u8]) -> &'static str {

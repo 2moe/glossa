@@ -187,12 +187,12 @@ impl<'h> Generator<'h> {
   }
 
   /// Generates Perfect Hash Function (PHF) maps for localization data.
-  /// => `const fn map() -> super::OrderedMap<&'static str, &'static str>`
+  /// => `const fn map() -> super::PhfStrMap`
   ///
   /// > Note: The generated PHF map is only for localization data where map_name
   /// > can be ignored. If map_name cannot be ignored, please use
   /// > [output_phf](Self::output_phf).
-  pub fn output_phf_by_key(&'h self, non_dsl: MapType) -> io::Result<()> {
+  pub fn output_phf_without_map_name(&'h self, non_dsl: MapType) -> io::Result<()> {
     let vis_fn = self.get_visibility().as_str();
 
     non_dsl
@@ -206,7 +206,7 @@ impl<'h> Generator<'h> {
             let value = fmt_compact!(r##########"r#####"{v}"#####"##########);
             (k.as_str(), value)
           })
-          .fold(OrderedMap::new(), |mut acc, (k,v)| {
+          .fold(OrderedMap::new(), |mut acc, (k, v)| {
             acc.entry(k, &v);
             acc
           });
@@ -215,7 +215,7 @@ impl<'h> Generator<'h> {
       .try_for_each(|(lang, mut map)| {
         writeln!(
           &mut self.create_rs_mod_file(lang)?,
-          r##"{vis_fn} const fn map() -> super::OrderedMap<&'static str, &'static str> {{
+          r##"{vis_fn} const fn map() -> super::PhfStrMap {{
           {code}  }}"##,
           code = map
             .phf_path("super::phf")

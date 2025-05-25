@@ -36,10 +36,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Dil adını anahtar olarak kullanan match fonksiyonu"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Birleşik anahtarlı match fonksiyonu (dil adı + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Yalnızca map_key'i anahtar olarak kullan (map_name içermez)"#####
     }
     b"output_phf" => {
@@ -48,7 +48,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Tüm phf haritaları tek fonksiyonda birleştir"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Sıradan dize anahtarlı phf harita (TupleKey değil)"#####
     }
     b"output_ron" => r#####"RON formatında dize dışa aktar"#####,

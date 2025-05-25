@@ -30,15 +30,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ભાષાના નામને કી તરીકે વાપરતી match ફંક્શન"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"કોમ્બિનેશન કી (ભાષા+map_key) સાથે match ફંક્શન"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"માત્ર map_key ને કી તરીકે વાપરો (map_name નહીં)"#####
     }
     b"output_phf" => r#####"ભાષા-આધારિત phf મેપ ફંક્શન્સ જનરેટ કરો"#####,
     b"output_phf_all_in_one" => r#####"બધી phf મેપ્સને એક ફંક્શનમાં એકત્રિત કરો"#####,
-    b"output_phf_by_key" => r#####"સાદા સ્ટ્રિંગ કી સાથે phf મેપ (TupleKey નહીં)"#####,
+    b"output_phf_without_map_name" => r#####"સાદા સ્ટ્રિંગ કી સાથે phf મેપ (TupleKey નહીં)"#####,
     b"output_ron" => r#####"RON ફોર્મેટમાં સ્ટ્રિંગ એક્સપોર્ટ કરો"#####,
     b"suffix" => r#####""હાઇલાઇટ-મેપ" નું નવું સફિક્સ"#####,
     b"syntax_name" => r#####"સિન્ટેક્સ નામ"#####,

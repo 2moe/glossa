@@ -44,7 +44,7 @@
     - [Code Generation: Const Functions with `match` Expressions](#code-generation-const-functions-with-match-expressions)
       - [**`output_match_fn()`**](#output_match_fn)
       - [**`output_match_fn_all_in_one()`**](#output_match_fn_all_in_one)
-      - [**`output_match_fn_all_in_one_by_language_and_key()`**](#output_match_fn_all_in_one_by_language_and_key)
+      - [**`output_match_fn_all_in_one_without_map_name()`**](#output_match_fn_all_in_one_without_map_name)
     - [Code Generation: PHF Maps](#code-generation-phf-maps)
       - [**`output_phf()`**](#output_phf)
       - [**`output_phf_all_in_one()`**](#output_phf_all_in_one)
@@ -516,7 +516,7 @@ Key methods:
       - `en` → `tmp/l10n_en.rs`
       - `en-GB` → `tmp/l10n_en_gb.rs`
   - The content of the rs file is `const fn map(map_name: &[u8], key: &[u8]) -> &'static str {...}`
-- **output_match_fn_by_key()**:
+- **output_match_fn_without_map_name()**:
   - The content of the rs file is `const fn map(key: &[u8]) -> &'static str {...}`
 - **`.output_match_fn_all_in_one()`**
   - Aggregates all languages into a single function:
@@ -533,7 +533,7 @@ Key methods:
     ```
 
     > **Use only if both `map_name` and `key` are unique** to avoid conflicts.
-- **`.output_match_fn_all_in_one_by_language_and_key()`**
+- **`.output_match_fn_all_in_one_without_map_name()`**
   - Aggregates all languages into a single function:
 
     ```rust
@@ -619,12 +619,12 @@ pub(crate) const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) -> &'static st
 }
 ```
 
-##### **`output_match_fn_all_in_one_by_language_and_key()`**
+##### **`output_match_fn_all_in_one_without_map_name()`**
 
 **TLDR**:
 
 - If `map_name`
-  - is unique, using `output_match_fn_all_in_one_by_language_and_key()` can improve performance.
+  - is unique, using `output_match_fn_all_in_one_without_map_name()` can improve performance.
   - is not unique, use `.output_match_fn_all_in_one()` instead.
 
 ---
@@ -646,7 +646,7 @@ Comparing these two `match` expressions:
 
 Theoretically, the first is faster due to fewer match arms.
 
-`output_match_fn_all_in_one_by_language_and_key()` generates code similar to the first approach.
+`output_match_fn_all_in_one_without_map_name()` generates code similar to the first approach.
 
 If you aren’t concerned with **nanosecond-level optimizations**, you can safely skip this section.
 
@@ -657,7 +657,7 @@ When `map_name` is unique (e.g., `yes-no`):
 - `en/yes-no { yes: "Yes", no: "No"}`
 - `de/yes-no { yes: "Ja", no: "Nein" }`
 
-Calling `.output_match_fn_all_in_one_by_language_and_key(Regular)?`
+Calling `.output_match_fn_all_in_one_without_map_name(Regular)?`
 
 Output:
 

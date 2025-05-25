@@ -42,10 +42,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Jiang SuoYou YuYan De ShuJu ShuChu Wei TongYiGe Match  HanShu （ ZiFuChuan ）, key  Wei YuYan Ming"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Jiang SuoYou YuYan De ShuJu ShuChu Wei TongYiGe  match  HanShu （ ZiFuChuan ）, key  Wei YuYan Ming He  map_key"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"LeiSi Yu  output_match_fn, Dan ShengCheng De HanShu Zhi Yi  map_key  ZuoWei  key,  Bu BaoHan  map_name"#####
     }
     b"output_phf" => {
@@ -54,7 +54,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Jiang SuoYou YuYan De  phf map  ShuChu Dao TongYiGe HanShu"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"LeiSi Yu  output_phf,  Dan ShengCheng De HanShu De Key  Wei PuTong ZiFuChuan, Er BuShi  TupleKey"#####
     }
     b"output_ron" => r#####"ShuChu Wei  ron  GeShi De ZiFuChuan"#####,

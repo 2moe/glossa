@@ -42,10 +42,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match funkcija su kalbos pavadinimu kaip raktu"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match funkcija su kombinuotu raktu (kalba + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Naudoti tik map_key kaip raktą (be map_name)"#####
     }
     b"output_phf" => {
@@ -54,7 +54,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Visus phf žemėlapius sujungti į vieną funkciją"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf žemėlapis su paprastais eilutės raktais (ne TupleKey)"#####
     }
     b"output_ron" => r#####"Eksportuoti eilutę RON formatu"#####,

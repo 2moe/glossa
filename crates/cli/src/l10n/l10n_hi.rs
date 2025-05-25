@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"भाषा नाम कुंजी के रूप में वाला match फ़ंक्शन"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"संयुक्त कुंजी (भाषा+map_key) वाला match फ़ंक्शन"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"केवल map_key को कुंजी के रूप में प्रयोग करें (map_name नहीं)"#####
     }
     b"output_phf" => r#####"विभिन्न भाषाओं के लिए अलग-अलग phf मैप फ़ंक्शन जनरेट करें"#####,
     b"output_phf_all_in_one" => r#####"सभी phf मैप्स को एक फ़ंक्शन में संयोजित करें"#####,
-    b"output_phf_by_key" => r#####"सामान्य स्ट्रिंग कुंजी वाला phf मैप (TupleKey नहीं)"#####,
+    b"output_phf_without_map_name" => r#####"सामान्य स्ट्रिंग कुंजी वाला phf मैप (TupleKey नहीं)"#####,
     b"output_ron" => r#####"RON फ़ॉर्मेट में स्ट्रिंग एक्सपोर्ट करें"#####,
     b"suffix" => r#####""हाइलाइट-मैप" का नया एक्सटेंशन"#####,
     b"syntax_name" => r#####"सिंटैक्स नाम"#####,

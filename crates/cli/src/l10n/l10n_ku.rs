@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fonksiyona Match bi Navê Zimanê wekî Key"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fonksiyona Match bi Keya Pêkhatî (Ziman + Map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Tenê Map_key wekî Key Bikar Bîne (Map_name Tune)"#####
     }
     b"output_phf" => r#####"Fonksiyonên PHF Map yên Cuda ji bo Zimanan Çêke"#####,
     b"output_phf_all_in_one" => {
       r#####"Hemû PHF Map-ê di Fonksiyonekê de Bihevgire"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF Map bi Keyên Zincîreya Normal (Ne TupleKey)"#####
     }
     b"output_ron" => r#####"Zincîreya Formata RON Derxîne"#####,

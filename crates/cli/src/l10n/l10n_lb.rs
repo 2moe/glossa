@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match-Funktioun mat Sprooche Numm als Schlëssel"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match-Funktioun mat kombinéiertem Schlëssel (Sprooch + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Benotzt nëmmen map_key als Schlëssel (ouni map_name)"#####
     }
     b"output_phf" => r#####"Generéiert PHF-Map Funktiounen pro Sprooch"#####,
     b"output_phf_all_in_one" => {
       r#####"Kombinéiert all PHF-Mappen an eng Funktioun"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF-Map mat normale String-Schlësselen (keen TupleKey)"#####
     }
     b"output_ron" => r#####"Exportéiert String am RON-Format"#####,

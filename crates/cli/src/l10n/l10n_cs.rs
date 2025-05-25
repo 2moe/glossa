@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match funkce s názvem jazyka jako klíčem"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match funkce s kombinovaným klíčem (jazyk+map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Použít pouze map_key jako klíč (bez map_name)"#####
     }
     b"output_phf" => r#####"Generovat samostatné phf map funkce pro jazyky"#####,
     b"output_phf_all_in_one" => {
       r#####"Sloučit všechny phf mapy do jedné funkce"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map s obyčejnými řetězcovými klíči (ne TupleKey)"#####
     }
     b"output_ron" => r#####"Exportovat řetězec ve formátu RON"#####,

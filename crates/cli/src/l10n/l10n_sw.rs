@@ -42,15 +42,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Kazi ya match yenye jina la lugha kama ufunguo"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Kazi ya match yenye ufunguo mchanganyiko (jina la lugha + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Tumia map_key pekee kama ufunguo (bila map_name)"#####
     }
     b"output_phf" => r#####"Tengeneza kazi za PHF Map tofauti kwa lugha"#####,
     b"output_phf_all_in_one" => r#####"Unganisha PHF Map zote kwa kazi moja"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF Map yenye vfunguo vya kawaida vya mfululizo (sio TupleKey)"#####
     }
     b"output_ron" => r#####"Toa mfululizo katika umbizo la RON"#####,

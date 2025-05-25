@@ -32,15 +32,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"زبان جي نالي سان ڪلي وارو match فنڪشن"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ڪمپوزٽ ڪلي (زبان + map_key) سان match فنڪشن"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"صرف map_key کي ڪلي طور استعمال ڪريو (map_name شامل ناهي)"#####
     }
     b"output_phf" => r#####"الڳ زبانن لاءِ phf نقشا فنڪشن ٺاهيو"#####,
     b"output_phf_all_in_one" => r#####"سڀ phf نقشا هڪ فنڪشن ۾ گڏيو"#####,
-    b"output_phf_by_key" => r#####"عام اسٽرنگ ڪلي سان phf نقشا (TupleKey ناهي)"#####,
+    b"output_phf_without_map_name" => r#####"عام اسٽرنگ ڪلي سان phf نقشا (TupleKey ناهي)"#####,
     b"output_ron" => r#####"RON فارميٽ ۾ اسٽرنگ ڪڍيو"#####,
     b"suffix" => r#####"نئين "Highlight-Map" جو سڏايو"#####,
     b"syntax_name" => r#####"سِنٽيڪس نالو"#####,

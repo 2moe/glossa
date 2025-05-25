@@ -40,17 +40,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Функсияи match бо номи забон ҳамчун калид"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Функсияи match бо калиди иловагӣ (забон + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Танҳо map_key-ро ҳамчун калид истифода кунед (бе map_name)"#####
     }
     b"output_phf" => r#####"Эҷоди функсияҳои phf map барои забонҳои гуногун"#####,
     b"output_phf_all_in_one" => {
       r#####"Ҳамаи phf map-ҳоро дар як функсия ҷамъ кунед"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map бо калидҳои сатри оддӣ (на TupleKey)"#####
     }
     b"output_ron" => r#####"Баровардани сатрҳо дар формати RON"#####,

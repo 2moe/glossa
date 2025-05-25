@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"زبان کے نام کو کلید بنانے والا match فنکشن"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"مشترکہ کلید (زبان+map_key) والا match فنکشن"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"صرف map_key کو کلید کے طور پر استعمال کریں (map_name شامل نہیں)"#####
     }
     b"output_phf" => r#####"مختلف زبانوں کے لیے علیحدہ phf میپ فنکشنز"#####,
     b"output_phf_all_in_one" => r#####"تمام phf میپز کو ایک فنکشن میں جمع کریں"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"عام سٹرنگ کلیدوں والی phf میپ (TupleKey نہیں)"#####
     }
     b"output_ron" => r#####"RON فارمیٹ میں سٹرنگ برآمد کریں"#####,

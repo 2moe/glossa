@@ -38,10 +38,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Dil adını açar kimi istifadə edən match funksiyası"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Birləşmiş açar (dil + map_key) ilə match funksiyası"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Yalnız map_key'ni açar kimi istifadə et (map_name olmadan)"#####
     }
     b"output_phf" => {
@@ -50,7 +50,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Bütün phf xəritələri bir funksiyada birləşdir"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Adi sətir açarlı phf xəritə (TupleKey deyil)"#####
     }
     b"output_ron" => r#####"RON formatında sətir çıxar"#####,

@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match-funkcio kun lingvo-nomo kiel ŝlosilo"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match-funkcio kun kombina ŝlosilo (lingvo + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Simila al output_match_fn, sed nur uzas map_key kiel ŝlosilon (sen map_name)"#####
     }
     b"output_phf" => r#####"Generi PHF-mapojn por ĉiu lingvo"#####,
     b"output_phf_all_in_one" => {
       r#####"Kombini ĉiujn PHF-mapojn en unu funkcion"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF-mapoj kun simplaj ĉenaj ŝlosiloj (ne TupleKey)"#####
     }
     b"output_ron" => r#####"Eligi kiel RON-formatan ĉenon"#####,

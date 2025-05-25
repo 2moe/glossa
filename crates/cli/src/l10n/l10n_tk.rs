@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Dil ady bilen açar ulanylýan match funksiýasy"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Birleşdirilen açar (dil+map_key) bilen match funksiýasy"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Diňe map_key açar ulanyň (map_name ýok)"#####
     }
     b"output_phf" => r#####"Aýratyn diller üçin phf kart funksiýalary döretmek"#####,
     b"output_phf_all_in_one" => {
       r#####"Ähli phf kartlary bir funksiýada birleşdirmek"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Adaty setir açarlary bilen phf kart (TupleKey däl)"#####
     }
     b"output_ron" => r#####"RON formatynda setir çykarmak"#####,

@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Funzion match cun non lenghe come clâf"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Funzion match cun clâf combinade (non lenghe + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Dopre dome map_key come clâf (cence map_name)"#####
     }
     b"output_phf" => r#####"Gjenerâ funzions phf map separadis par lenghis"#####,
     b"output_phf_all_in_one" => r#####"Unificâ ducj i phf map intun funzion"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map cun clâf stringhe normâl (no TupleKey)"#####
     }
     b"output_ron" => r#####"Espuartâ stringhe in format RON"#####,

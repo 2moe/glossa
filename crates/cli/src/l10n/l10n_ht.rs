@@ -34,17 +34,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fonksyon match ak non lang kòm kle"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fonksyon match ak kle konpoze (non lang + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Sèlman itilize map_key kòm kle (san map_name)"#####
     }
     b"output_phf" => r#####"Jenere fonksyon phf map pou chak lang"#####,
     b"output_phf_all_in_one" => {
       r#####"Konsolide tout phf map nan yon sèl fonksyon"#####
     }
-    b"output_phf_by_key" => r#####"phf map ak kle chenn òdinè (pa TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map ak kle chenn òdinè (pa TupleKey)"#####,
     b"output_ron" => r#####"Ekspòte chenn nan fòma RON"#####,
     b"suffix" => r#####"Sifiks Nouvo "Highlight-Map""#####,
     b"syntax_name" => r#####"Non Sentaks"#####,

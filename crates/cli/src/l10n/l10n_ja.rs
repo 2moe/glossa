@@ -28,15 +28,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"言語名をキーとした統合match関数"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"言語名+map_key複合キーのmatch関数"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_keyのみをキーとして使用（map_name除外）"#####
     }
     b"output_phf" => r#####"言語別phfマップ関数を生成"#####,
     b"output_phf_all_in_one" => r#####"全phfマップを単一関数に統合"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"通常文字列キーを使用したphfマップ（TupleKey非使用）"#####
     }
     b"output_ron" => r#####"RON形式文字列として出力"#####,

@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match-funktion med sprognavn som nøgle"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match-funktion med kombineret nøgle (sprog+map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Brug kun map_key som nøgle (ekskluder map_name)"#####
     }
     b"output_phf" => r#####"Generer separate phf-map-funktioner per sprog"#####,
     b"output_phf_all_in_one" => r#####"Kombiner alle phf-maps i én funktion"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf-map med almindelige strengnøgler (ikke TupleKey)"#####
     }
     b"output_ron" => r#####"Eksporter streng i RON-format"#####,

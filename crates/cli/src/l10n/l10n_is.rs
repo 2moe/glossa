@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match virkni með tungumálsheiti sem lykil"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match virkni með samsettum lykli (tungumál+map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Nota aðeins map_key sem lykil (án map_name)"#####
     }
     b"output_phf" => r#####"Búa til aðskildar phf kortavirknir fyrir tungumál"#####,
     b"output_phf_all_in_one" => r#####"Sameina öll phf kort í eina virkni"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf kort með venjulegum strenglykli (ekki TupleKey)"#####
     }
     b"output_ron" => r#####"Úttak streng í RON-sniði"#####,

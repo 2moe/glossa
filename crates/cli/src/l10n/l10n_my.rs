@@ -30,15 +30,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ဘာသာစကားအမည်ကို သော့ချက်အဖြစ်ပါသော match လုပ်ဆောင်ချက်"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ဘာသာစကားအမည် + map_key ပေါင်းစပ်သော့ပါသော match လုပ်ဆောင်ချက်"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key ကိုသာ သော့ချက်အဖြစ် အသုံးပြုပါ (map_name မပါဝင်)"#####
     }
     b"output_phf" => r#####"ဘာသာစကားအလိုက် phf မြေပုံလုပ်ဆောင်ချက်များ ထုတ်လုပ်ပါ"#####,
     b"output_phf_all_in_one" => r#####"phf မြေပုံအားလုံးကို လုပ်ဆောင်ချက်တစ်ခုတည်းသို့ ထုတ်ပါ"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"သာမန်စာတန်းသော့များပါသော phf မြေပုံများ (TupleKey မဟုတ်)"#####
     }
     b"output_ron" => r#####"RON ဖော်မတ်ဖြင့် စာတန်းထုတ်ပါ"#####,

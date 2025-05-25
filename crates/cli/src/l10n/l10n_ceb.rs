@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match function nga gamiton ang pinulongan nga ngalan ingon key"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match function nga kombinasyon sa pinulongan + map_key ingon key"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Gamita lamang ang map_key ingon key (walay map_name)"#####
     }
     b"output_phf" => r#####"Mugna phf map functions matag pinulongan"#####,
     b"output_phf_all_in_one" => {
       r#####"Ipagawas tanang phf maps ngadto sa usa ka function"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map nga ordinaryo nga string keys (dili TupleKey)"#####
     }
     b"output_ron" => r#####"Ipagawas string sa RON format"#####,

@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"gengo-mei o kī to shita tōgō match kansū"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"gengo-mei + map_key fukugō kī no match kansū"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key nomi o kī to shite shiyō (map_name jogai)"#####
     }
     b"output_phf" => r#####"gengo-betsu phf mappu kansū o seisei"#####,
     b"output_phf_all_in_one" => r#####"zen-phf mappu o tan'itsu kansū ni tōgō"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"tsūjō mojiretsu kī o shiyō shita phf mappu (TupleKey hi-shiyō)"#####
     }
     b"output_ron" => r#####"RON keishiki mojiretsu to shite shutsuryoku"#####,

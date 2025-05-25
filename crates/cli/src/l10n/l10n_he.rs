@@ -26,15 +26,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"פונקציית match עם שם שפה כמפתח"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"פונקציית match עם מפתח משולב (שפה + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"השתמש רק ב-map_key כמפתח (ללא map_name)"#####
     }
     b"output_phf" => r#####"צור פונקציות phf map נפרדות לשפות"#####,
     b"output_phf_all_in_one" => r#####"מזג את כל ה-phf maps לפונקציה אחת"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map עם מפתחות מחרוזת רגילים (לא TupleKey)"#####
     }
     b"output_ron" => r#####"ייצא מחרוזת בפורמט RON"#####,

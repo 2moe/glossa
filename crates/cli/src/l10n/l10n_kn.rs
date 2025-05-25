@@ -28,13 +28,13 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ಭಾಷಾ ಹೆಸರನ್ನು ಕೀ ಆಗಿ ಬಳಸುವ match ಫಂಕ್ಷನ್"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ಸಂಯುಕ್ತ ಕೀ (ಭಾಷೆ+map_key) ಯೊಂದಿಗೆ match ಫಂಕ್ಷನ್"#####
     }
-    b"output_match_fn_by_key" => r#####"map_key ಮಾತ್ರ ಕೀ ಆಗಿ ಬಳಸಿ (map_name ಬಳಸಬೇಡಿ)"#####,
+    b"output_match_fn_without_map_name" => r#####"map_key ಮಾತ್ರ ಕೀ ಆಗಿ ಬಳಸಿ (map_name ಬಳಸಬೇಡಿ)"#####,
     b"output_phf" => r#####"ವಿಭಿನ್ನ ಭಾಷೆಗಳಿಗಾಗಿ ಪ್ರತ್ಯೇಕ phf map ಫಂಕ್ಷನ್‌ಗಳನ್ನು ರಚಿಸಿ"#####,
     b"output_phf_all_in_one" => r#####"ಎಲ್ಲಾ phf map‌ಗಳನ್ನು ಒಂದೇ ಫಂಕ್ಷನ್‌ಗೆ ಸಂಯೋಜಿಸಿ"#####,
-    b"output_phf_by_key" => r#####"ಸಾಮಾನ್ಯ ಸ್ಟ್ರಿಂಗ್ ಕೀ‌ಗಳೊಂದಿಗೆ phf map (TupleKey ಅಲ್ಲ)"#####,
+    b"output_phf_without_map_name" => r#####"ಸಾಮಾನ್ಯ ಸ್ಟ್ರಿಂಗ್ ಕೀ‌ಗಳೊಂದಿಗೆ phf map (TupleKey ಅಲ್ಲ)"#####,
     b"output_ron" => r#####"RON ಫಾರ್ಮ್ಯಾಟ್‌ನಲ್ಲಿ ಸ್ಟ್ರಿಂಗ್ ಅನ್ನು ರವಾನಿಸಿ"#####,
     b"suffix" => r#####""ಹೈಲೈಟ್-ಮ್ಯಾಪ್" ನ ಹೊಸ ಸಫಿಕ್ಸ್"#####,
     b"syntax_name" => r#####"ವಾಕ್ಯರಚನೆಯ ಹೆಸರು"#####,

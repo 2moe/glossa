@@ -40,15 +40,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fonction ya match ifite izina ry'ururimi nk'urufunguzo"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fonction ya match ifite urufunguzo (izina + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Nka output_match_fn ariko ikoresha map_key nk'urufunguzo gusa"#####
     }
     b"output_phf" => r#####"Kubaka phf map zihariye ku ndimi"#####,
     b"output_phf_all_in_one" => r#####"Gusesa buri phf map muri fonction imwe"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map ifite imibare y'umurongo (Oya TupleKey)"#####
     }
     b"output_ron" => r#####"Gusesa umurongo wa format RON"#####,

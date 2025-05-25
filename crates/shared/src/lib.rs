@@ -40,6 +40,9 @@ pub type PhfL10nOrderedMap = phf::OrderedMap<PhfTupleKey<'static>, &'static str>
 
 #[cfg(feature = "phf")]
 pub type PhfL10nAllInOneMap = phf::OrderedMap<PhfTripleKey<'static>, &'static str>;
+
+#[cfg(feature = "phf")]
+pub type PhfStrMap = phf::OrderedMap<&'static str, &'static str>;
 // -----
 
 #[cfg(feature = "decode")]

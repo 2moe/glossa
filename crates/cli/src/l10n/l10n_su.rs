@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fungsi match maké ngaran basa salaku konci"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fungsi match kalayan konci gabungan (ngaran basa + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Ngan make map_key salaku konci (teu kaasup map_name)"#####
     }
     b"output_phf" => r#####"Nyieun fungsi phf map pikeun tiap basa"#####,
     b"output_phf_all_in_one" => r#####"Nyatak sadaya phf map kana hiji fungsi"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map kalayan konci string biasa (sanés TupleKey)"#####
     }
     b"output_ron" => r#####"Nyitak string dina format RON"#####,

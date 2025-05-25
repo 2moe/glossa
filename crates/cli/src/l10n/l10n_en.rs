@@ -35,17 +35,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"single match function (string) with language name as key"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"single match function (string) with composite key (language + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"similar to output_match_fn, but generates functions using map_key only (without map_name)"#####
     }
     b"output_phf" => r#####"generate PHF map functions per language"#####,
     b"output_phf_all_in_one" => {
       r#####"output all PHF maps into a unified function"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF maps with simple string keys (instead of TupleKey)"#####
     }
     b"output_ron" => r#####"output RON-formatted strings"#####,

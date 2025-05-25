@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Funkcja match z nazwą języka jako kluczem"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Funkcja match z kluczem złożonym (język + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Używaj tylko map_key jako klucza (bez map_name)"#####
     }
     b"output_phf" => r#####"Generuj osobne funkcje phf map dla języków"#####,
     b"output_phf_all_in_one" => {
       r#####"Scal wszystkie phf mapy w jednej funkcji"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map ze zwykłymi kluczami tekstowymi (nie TupleKey)"#####
     }
     b"output_ron" => r#####"Eksportuj ciąg w formacie RON"#####,

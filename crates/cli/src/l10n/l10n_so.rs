@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Shaqo match leh magaca luqada sida fure"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Shaqo match leh fure isku-dhafan (luqad+map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Kaliya isticmaal map_key sida fure (aan la socon map_name)"#####
     }
     b"output_phf" => r#####"Abuur shaqooyin phf map kala duwan luqadaha"#####,
     b"output_phf_all_in_one" => {
       r#####"Dhammaan phf map-yada ku dar shaqo hal ah"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map leh fureyo caadi ah (maahan TupleKey)"#####
     }
     b"output_ron" => r#####"Soo saar xarriiq qaabka RON"#####,

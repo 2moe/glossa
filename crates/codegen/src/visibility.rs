@@ -22,7 +22,7 @@ impl From<&str> for Visibility {
   fn from(value: &str) -> Self {
     use Visibility::*;
     match value {
-      "" => Private,
+      "" | "private" => Private,
       "pub" => Pub,
       "pub(super)" => PubSuper,
       "pub(crate)" => PubCrate,

@@ -171,7 +171,7 @@ let generator = Generator::default()
 ```
 
 Generator 支持输出多种不同的类型。
-若我们调用了 `generator.output_match_fn_all_in_one_by_language_and_key(MapType::Regular)?`，则其输出的内容如下所示。
+若我们调用了 `generator.output_match_fn_all_in_one_without_map_name(MapType::Regular)?`，则其输出的内容如下所示。
 
 ```rust
 pub const fn map(language: &[u8], key: &[u8]) -> &'static str {

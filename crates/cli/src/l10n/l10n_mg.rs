@@ -42,17 +42,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fonction match miaraka amin'ny anaran'ny fiteny ho solokely"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fonction match miaraka amin'ny solokely tambatra (fiteny + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Mampiasa map_key ho solokely (tsy misy map_name)"#####
     }
     b"output_phf" => r#####"Mamorona fonction phf map samihafa ho an'ny fiteny"#####,
     b"output_phf_all_in_one" => {
       r#####"Mamorona fonction iray ho an'ny phf map rehetra"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map miaraka amin'ny string solokely (fa tsy TupleKey)"#####
     }
     b"output_ron" => r#####"Mamoaka string amin'ny format RON"#####,

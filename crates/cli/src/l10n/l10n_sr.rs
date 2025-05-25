@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match funkcija sa imenom jezika kao ključem"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match funkcija sa kombinovanim ključem (jezik + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Koristi samo map_key kao ključ (bez map_name)"#####
     }
     b"output_phf" => r#####"Generisanje phf mapa za različite jezike"#####,
     b"output_phf_all_in_one" => {
       r#####"Konsoliduj sve phf mape u jednu funkciju"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map sa običnim string ključevima (ne TupleKey)"#####
     }
     b"output_ron" => r#####"Izvezi string u RON formatu"#####,

@@ -33,7 +33,7 @@ fn write_contents((map_name, mod_name): (&str, Option<&str>)) -> AnyResult<()> {
         generator.output_match_fn_all_in_one_by_language(MapType::Regular)?
       }
       "yes-no" => {
-        generator.output_match_fn_all_in_one_by_language_and_key(MapType::Regular)?
+        generator.output_match_fn_all_in_one_without_map_name(MapType::Regular)?
       }
       _ => unimplemented!(),
     };

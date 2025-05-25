@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fonction match na nkombo ya ndinga lokola cle"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fonction match na cle ya combinaison (ndinga + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Kosálela map_key kaka lokola cle (map_name tê)"#####
     }
     b"output_phf" => r#####"Kokela fonction phf map indépendant na ndinga"#####,
     b"output_phf_all_in_one" => {
       r#####"Kobimisa phf map nyɔnsɔ na fonction moko"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map na cle ya chaine simple (tô TupleKey)"#####
     }
     b"output_ron" => r#####"Kobimisa chaine na format RON"#####,

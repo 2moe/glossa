@@ -38,15 +38,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Basa rematch rine zita remutauro sekiyi"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Basa rematch rine kiyi yakabatanidzwa (mutauro + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Shandisa map_key chete sekiyi (hapana map_name)"#####
     }
     b"output_phf" => r#####"Gadzira mapu ephf emitauro yakasiyana"#####,
     b"output_phf_all_in_one" => r#####"Batanidza mapu ese ephf mubasa rimwe"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Mapu ephf ane kiyi dzemitsara (kwete TupleKey)"#####
     }
     b"output_ron" => r#####"Buritsa mutsara weRON"#####,

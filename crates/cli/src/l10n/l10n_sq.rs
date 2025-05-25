@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Funksion match me emrin e gjuhës si çelës"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Funksion match me çelës të kombinuar (gjuhë + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Përdor vetëm map_key si çelës (pa map_name)"#####
     }
     b"output_phf" => r#####"Gjenero funksione phf map për gjuhë të ndryshme"#####,
     b"output_phf_all_in_one" => {
       r#####"Kombino të gjitha phf map në një funksion"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map me çelësa të zakonshëm vargu (jo TupleKey)"#####
     }
     b"output_ron" => r#####"Eksporto varg në formatin RON"#####,

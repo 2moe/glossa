@@ -26,13 +26,13 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ฟังก์ชัน match ใช้ชื่อภาษาเป็นคีย์"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ฟังก์ชัน match ใช้คีย์รวม (ชื่อภาษา + map_key)"#####
     }
-    b"output_match_fn_by_key" => r#####"ใช้เฉพาะ map_key เป็นคีย์ (ไม่มี map_name)"#####,
+    b"output_match_fn_without_map_name" => r#####"ใช้เฉพาะ map_key เป็นคีย์ (ไม่มี map_name)"#####,
     b"output_phf" => r#####"สร้างฟังก์ชัน phf map แยกสำหรับแต่ละภาษา"#####,
     b"output_phf_all_in_one" => r#####"รวม phf map ทั้งหมดเป็นฟังก์ชันเดียว"#####,
-    b"output_phf_by_key" => r#####"phf map ใช้คีย์สตริงธรรมดา (ไม่ใช้ TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map ใช้คีย์สตริงธรรมดา (ไม่ใช้ TupleKey)"#####,
     b"output_ron" => r#####"ส่งออกสตริงในรูปแบบ RON"#####,
     b"suffix" => r#####"นามสกุลใหม่ของ "Highlight-Map""#####,
     b"syntax_name" => r#####"ชื่อไวยากรณ์"#####,

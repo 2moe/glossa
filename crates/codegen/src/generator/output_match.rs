@@ -235,7 +235,7 @@ impl<'h> Generator<'h> {
   ///
   /// For example, adding a new map: `en/yes-no2 { yes: "YES", no: "NO"}`
   /// would create conflicting keys ("yes", "no") if `map_name` is omitted.
-  pub fn output_match_fn_all_in_one_by_language_and_key(
+  pub fn output_match_fn_all_in_one_without_map_name(
     &'h self,
     non_dsl: MapType,
   ) -> io::Result<String> {
@@ -292,7 +292,10 @@ impl<'h> Generator<'h> {
   ///
   /// Compared to `output_match_fn`, omits map_name. If you're unsure which one
   /// to use, then use [output_match_fn()](Self::output_match_fn)
-  pub fn output_match_fn_by_key(&'h self, non_dsl: MapType) -> io::Result<()> {
+  pub fn output_match_fn_without_map_name(
+    &'h self,
+    non_dsl: MapType,
+  ) -> io::Result<()> {
     const HEADER: &str = r##"const fn map(key: &[u8]) -> &'static str {
     match key {
     "##;

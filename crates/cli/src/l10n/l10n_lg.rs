@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match function erina erinnya ly'olulimi nga ggulu"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match function nga ggulu liri erinnya ly'olulimi ne map_key"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Kozesa map_key okuba ggulu (tewali map_name)"#####
     }
     b"output_phf" => r#####"Kola phf map functions ez'enjawulo mu nnimi"#####,
     b"output_phf_all_in_one" => r#####"Gatta phf maps zonna mu function emu"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Phf map erina ggulu ez'omukutu ogw'okutendekera (si TupleKey)"#####
     }
     b"output_ron" => r#####"Tuma mukutu mu nkola ya RON"#####,

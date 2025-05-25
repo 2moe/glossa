@@ -32,15 +32,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ቋንቋ ስም እንደ ቁልፍ ያለው match ፋይል"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ተዋህዶ ቁልፍ (ቋንቋ+map_key) ያለው match ፋይል"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key ብቻ እንደ ቁልፍ ይጠቀሙ (map_name አይጨምር)"#####
     }
     b"output_phf" => r#####"ለተለያዩ ቋንቋዎች phf ካርታ ፋይሎችን ፍጠር"#####,
     b"output_phf_all_in_one" => r#####"ሁሉንም phf ካርታዎች በአንድ ፋይል ውስጥ አስገባ"#####,
-    b"output_phf_by_key" => r#####"መደበኛ ገለፃ ቁልፍ ያለው phf ካርታ (TupleKey አይደለም)"#####,
+    b"output_phf_without_map_name" => r#####"መደበኛ ገለፃ ቁልፍ ያለው phf ካርታ (TupleKey አይደለም)"#####,
     b"output_ron" => r#####"RON ፎርማት ያለውን ገለፃ አስገባ"#####,
     b"suffix" => r#####""ብሩህ-ካርታ" አዲስ ቅጥያ"#####,
     b"syntax_name" => r#####"የሰዋሰው ስም"#####,

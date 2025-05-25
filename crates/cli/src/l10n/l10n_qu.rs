@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match funcionpi simi sutitaq llamk'achiy"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match funcionpi simi suti + map_key llamk'achiy"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key-lla llamk'achiy (map_name mana)"#####
     }
     b"output_phf" => r#####"PHF map funcionkunata simikunapaq ruway"#####,
     b"output_phf_all_in_one" => r#####"Llapa phf mapkuna huk funcionman"#####,
-    b"output_phf_by_key" => r#####"PHF map kaq stringwan (mana TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"PHF map kaq stringwan (mana TupleKey)"#####,
     b"output_ron" => r#####"RON formato stringta apay"#####,
     b"suffix" => r#####"Musuq Highlight-Map qipan"#####,
     b"syntax_name" => r#####"Simi kamachiy sutin"#####,

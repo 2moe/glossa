@@ -28,15 +28,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ਭਾਸ਼ਾ ਨਾਮ ਨਾਲ ਕੁੰਜੀ ਵਾਲੀ match ਫੰਕਸ਼ਨ"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ਕੁੰਜੀ (ਭਾਸ਼ਾ+map_key) ਨਾਲ match ਫੰਕਸ਼ਨ"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"ਕੇਵਲ map_key ਨੂੰ ਕੁੰਜੀ ਵਜੋਂ ਵਰਤੋਂ (map_name ਨਾਲ ਨਹੀਂ)"#####
     }
     b"output_phf" => r#####"ਭਾਸ਼ਾਵਾਂ ਲਈ ਅਲੱਗ phf ਮੈਪ ਫੰਕਸ਼ਨ ਬਣਾਓ"#####,
     b"output_phf_all_in_one" => r#####"ਸਾਰੇ phf ਮੈਪ ਇੱਕ ਫੰਕਸ਼ਨ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰੋ"#####,
-    b"output_phf_by_key" => r#####"ਸਧਾਰਨ ਸਟ੍ਰਿੰਗ ਕੁੰਜੀਆਂ ਵਾਲੇ phf ਮੈਪ (TupleKey ਨਹੀਂ)"#####,
+    b"output_phf_without_map_name" => r#####"ਸਧਾਰਨ ਸਟ੍ਰਿੰਗ ਕੁੰਜੀਆਂ ਵਾਲੇ phf ਮੈਪ (TupleKey ਨਹੀਂ)"#####,
     b"output_ron" => r#####"RON ਫਾਰਮੈਟ ਵਿੱਚ ਸਟ੍ਰਿੰਗ ਐਕਸਪੋਰਟ ਕਰੋ"#####,
     b"suffix" => r#####"ਨਵੇਂ "ਹਾਈਲਾਈਟ-ਮੈਪ" ਦਾ ਪਿਛੇਤਰ"#####,
     b"syntax_name" => r#####"ਸਿੰਟੈਕਸ ਨਾਮ"#####,

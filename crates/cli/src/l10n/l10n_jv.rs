@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fungsi match nganggo jeneng basa minangka kunci"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fungsi match nganggo kunci gabung (basa + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Mung nggunakake map_key minangka kunci (ora kalebu map_name)"#####
     }
     b"output_phf" => r#####"Nggawe fungsi phf map kapisah kanggo saben basa"#####,
     b"output_phf_all_in_one" => {
       r#####"Gabung kabeh phf map menyang siji fungsi"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map nganggo kunci string biasa (dudu TupleKey)"#####
     }
     b"output_ron" => r#####"Ekspor string nganggo format RON"#####,

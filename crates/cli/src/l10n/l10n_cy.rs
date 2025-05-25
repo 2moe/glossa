@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Swyddogaeth match gydag enw iaith fel allwedd"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Swyddogaeth match gydag allwedd cyfansawdd (iaith + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Defnyddio map_key yn unig fel allwedd (heb map_name)"#####
     }
     b"output_phf" => r#####"Cynhyrchu mapiau phf annibynnol ar gyfer ieithoedd"#####,
     b"output_phf_all_in_one" => r#####"Cyfuno pob map phf mewn un swyddogaeth"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Mapiau phf gydag allweddi llinyn cyffredin (Nid TupleKey)"#####
     }
     b"output_ron" => r#####"Allbynnu llinyn ar ffurf RON"#####,

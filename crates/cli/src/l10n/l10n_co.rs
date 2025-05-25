@@ -40,15 +40,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Funzione match cù u nome di a lingua cum'è chjave"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Funzione match cù chjave cumbinata (lingua + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Utilizà solu map_key cum'è chjave (senza map_name)"#####
     }
     b"output_phf" => r#####"Generà funzioni phf map separati per lingue"#####,
     b"output_phf_all_in_one" => r#####"Cumbinà tutti i phf map in una funzione"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map cù chjavi stringa simplice (micca TupleKey)"#####
     }
     b"output_ron" => r#####"Esportà stringa in formatu RON"#####,

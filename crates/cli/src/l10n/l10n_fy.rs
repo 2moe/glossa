@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match-funksje mei taalnamme as kaai"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match-funksje mei kombinaasje kaai (taalnamme + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Brûk allinnich map_key as kaai (sûnder map_name)"#####
     }
     b"output_phf" => r#####"Meitsje phf-map funksjes per taal"#####,
     b"output_phf_all_in_one" => {
       r#####"Kombinearje alle phf-maps yn ien funksje"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf-map mei gewoane string-kaaien (gjin TupleKey)"#####
     }
     b"output_ron" => r#####"Eksportearje string yn RON-formaat"#####,

@@ -38,10 +38,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Hizkuntza izena gako gisa duen match funtzioa"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Konbinatutako gakoa (hizkuntza + map_key) duen match funtzioa"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key bakarrik erabili gako gisa (map_name ez da sartzen)"#####
     }
     b"output_phf" => {
@@ -50,7 +50,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"phf mapa guztiak funtzio bakar batean konbinatu"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf mapa kate arrunteko gakorekin (ez TupleKey)"#####
     }
     b"output_ron" => r#####"Esportatu katea RON formatuan"#####,

@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Ntchito ya match yokhala ndi dzina la chiyankhulo ngati khodi"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Ntchito ya match ndi khodi yophatikiza (dzina + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Gwiritsani map_key kokha ngati khodi (osaphimba map_name)"#####
     }
     b"output_phf" => r#####"Pangani ntchito za phf map pazilankhulo"#####,
     b"output_phf_all_in_one" => {
       r#####"Gwirizanitsani ma phf map onse mu ntchito imodzi"#####
     }
-    b"output_phf_by_key" => r#####"phf map ndi mawu owoneka (osati TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map ndi mawu owoneka (osati TupleKey)"#####,
     b"output_ron" => r#####"Tulutsani mawu mu RON format"#####,
     b"suffix" => r#####"Tsatoli latsopano la "Highlight-Map""#####,
     b"syntax_name" => r#####"Dzina la syntax"#####,

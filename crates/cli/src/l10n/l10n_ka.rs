@@ -44,17 +44,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"match ფუნქცია ენის სახელით გასაღებად"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"match ფუნქცია კომბინირებული გასაღებით (ენა + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"გამოიყენეთ მხოლოდ map_key როგორც გასაღები (map_name-ს გარეშე)"#####
     }
     b"output_phf" => r#####"შექმენით ცალკე phf რუკის ფუნქციები ენებისთვის"#####,
     b"output_phf_all_in_one" => {
       r#####"ყველა phf რუკის ერთ ფუნქციაში გაერთიანება"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf რუკა ჩვეულებრივი სტრიქონის გასაღებებით (არა TupleKey)"#####
     }
     b"output_ron" => r#####"სტრიქონის გატანა RON ფორმატში"#####,

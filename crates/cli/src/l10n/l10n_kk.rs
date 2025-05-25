@@ -42,17 +42,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Тіл атауы кілт болатын match функциясы"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Қосылған кілт (тіл+map_key) бар match функциясы"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Тек map_key кілт ретінде (map_name жоқ)"#####
     }
     b"output_phf" => r#####"Әр тілге арналған бөлек phf карта функциялары"#####,
     b"output_phf_all_in_one" => {
       r#####"Барлық phf карталарды бір функцияға біріктіру"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Қарапайым жол кілттері бар phf карта (TupleKey емес)"#####
     }
     b"output_ron" => r#####"RON форматында жолды шығару"#####,

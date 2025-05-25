@@ -606,7 +606,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-shared"
-version = "0.0.6"
+version = "0.0.7"
 dependencies = [
  "ahash",
  "bincode 2.0.1",

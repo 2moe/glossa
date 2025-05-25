@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ভাষাৰ নামৰ সৈতে match ফাংচন"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"সংযুক্ত কী (ভাষা+map_key) ৰে match ফাংচন"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"কেৱল map_key কে কী হিচাপে ব্যৱহাৰ কৰক (map_name নোহোৱা)"#####
     }
     b"output_phf" => r#####"বিভিন্ন ভাষাৰ বাবে পৃথক phf মেপ ফাংচন সৃষ্টি কৰক"#####,
     b"output_phf_all_in_one" => r#####"সকলো phf মেপ এটা ফাংচনত সংযুক্ত কৰক"#####,
-    b"output_phf_by_key" => r#####"সাধাৰণ ষ্ট্ৰিং কীৰে phf মেপ (TupleKey নহয়)"#####,
+    b"output_phf_without_map_name" => r#####"সাধাৰণ ষ্ট্ৰিং কীৰে phf মেপ (TupleKey নহয়)"#####,
     b"output_ron" => r#####"RON ফৰ্মাটত ষ্ট্ৰিং এক্সপ'ৰ্ট কৰক"#####,
     b"suffix" => r#####""হাইলাইট-মেপ" ৰ নতুন প্ৰত্যয়"#####,
     b"syntax_name" => r#####"চিন্টেক্স নাম"#####,

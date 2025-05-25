@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Feidhm match le hainm teanga mar eochair"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Feidhm match le heochair chomhshuite (ainm teanga + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Úsáid map_key mar eochair amháin (gan map_name)"#####
     }
     b"output_phf" => r#####"Gin feidhmeanna léarphort phf do theangacha"#####,
     b"output_phf_all_in_one" => {
       r#####"Comhcheangail gach léarphort phf i bhfeidhm amháin"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Léarphort phf le heochracha teaghrán (ní TupleKey)"#####
     }
     b"output_ron" => r#####"Aschur i bhformáid RON mar theaghrán"#####,

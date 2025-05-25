@@ -28,13 +28,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"មុខងារ match ដោយប្រើឈ្មោះភាសាជា key"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"មុខងារ match ដោយប្រើ key រួម (ភាសា + map_key)"#####
     }
-    b"output_match_fn_by_key" => r#####"ប្រើតែ map_key ជា key ដោយមិនបញ្ចូល map_name"#####,
+    b"output_match_fn_without_map_name" => {
+      r#####"ប្រើតែ map_key ជា key ដោយមិនបញ្ចូល map_name"#####
+    }
     b"output_phf" => r#####"បង្កើតមុខងារ phf map ដាច់ដោយឡែកសម្រាប់ភាសា"#####,
     b"output_phf_all_in_one" => r#####"បញ្ចូល phf map ទាំងអស់ទៅក្នុងមុខងារតែមួយ"#####,
-    b"output_phf_by_key" => r#####"phf map ដោយប្រើខ្សែអក្សរធម្មតា (មិនមែន TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map ដោយប្រើខ្សែអក្សរធម្មតា (មិនមែន TupleKey)"#####,
     b"output_ron" => r#####"នាំចេញជាខ្សែអក្សរ RON"#####,
     b"suffix" => r#####"ចុងក្រោយសម្រាប់ Highlight-Map ថ្មី"#####,
     b"syntax_name" => r#####"ឈ្មោះសិន្តាករ"#####,

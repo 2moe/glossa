@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Mesebetsi ea match e nang le lebitso la puo e le senotlolo"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Mesebetsi ea match e nang le senotlolo sa lebitso + map_key"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Sebelisa map_key feela e le senotlolo (ha se map_name)"#####
     }
     b"output_phf" => r#####"Hlahisa mesebetsi ea phf map ka puo e fapaneng"#####,
     b"output_phf_all_in_one" => {
       r#####"Hlahisa phf map tsohle ka mesebetsi e le 'ngoe"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map e nang le lentsoe le tloaelehileng (eseng TupleKey)"#####
     }
     b"output_ron" => r#####"Hlahisa lentsoe ka foromo ea RON"#####,

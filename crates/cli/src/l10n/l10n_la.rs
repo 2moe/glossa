@@ -40,17 +40,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Functio Match cum Nomine Linguae pro Clave"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Functio Match cum Clave Composita (Lingua + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Simile output_match_fn, sed cum Clave map_key tantum"#####
     }
     b"output_phf" => r#####"Generare Functiones Map PHF pro Linguis Diversis"#####,
     b"output_phf_all_in_one" => {
       r#####"Consolidare Omnes Maps PHF in Unam Functionem"#####
     }
-    b"output_phf_by_key" => r#####"Map PHF cum Clavibus Filorum (Non TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"Map PHF cum Clavibus Filorum (Non TupleKey)"#####,
     b"output_ron" => r#####"Exportare Filum in Formato RON"#####,
     b"suffix" => r#####"Suffixum Novi "Highlight-Map""#####,
     b"syntax_name" => r#####"Nomen Syntaxeos"#####,

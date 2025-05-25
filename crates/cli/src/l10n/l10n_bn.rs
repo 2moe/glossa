@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ভাষার নামকে কী হিসেবে ব্যবহার করে ম্যাচ ফাংশন"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"কম্বাইন্ড কী (ভাষার নাম + map_key) সহ ম্যাচ ফাংশন"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"শুধুমাত্র map_key কে কী হিসেবে ব্যবহার করুন (map_name বাদ দিন)"#####
     }
     b"output_phf" => r#####"প্রতিটি ভাষার জন্য আলাদা phf ম্যাপ ফাংশন জেনারেট করুন"#####,
     b"output_phf_all_in_one" => r#####"সমস্ত phf ম্যাপ একটি ফাংশনে একত্রিত করুন"#####,
-    b"output_phf_by_key" => r#####"সাধারণ স্ট্রিং কী সহ phf ম্যাপ (TupleKey নয়)"#####,
+    b"output_phf_without_map_name" => r#####"সাধারণ স্ট্রিং কী সহ phf ম্যাপ (TupleKey নয়)"#####,
     b"output_ron" => r#####"RON ফরম্যাটে স্ট্রিং এক্সপোর্ট করুন"#####,
     b"suffix" => r#####""হাইলাইট-ম্যাপ" এর নতুন সাফিক্স"#####,
     b"syntax_name" => r#####"সিনট্যাক্সের নাম"#####,

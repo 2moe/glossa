@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"فەنکشنی match بە کلیلی ناوی زمان"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"فەنکشنی match بە کلیلی (نامە زمان + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"وەک output_match_fn، بەڵام تەنها map_key وەک کلیلی فەنکشن"#####
     }
     b"output_phf" => r#####"فەنکشنی phf mapی سەربەخۆ دروست بکە بۆ زمانەکان"#####,
     b"output_phf_all_in_one" => {
       r#####"هەموو phf mapەکان لە فەنکشنێکی تاکدا یەکبخە"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map بە کلیلی سترینگی ئاسایی (نەک TupleKey)"#####
     }
     b"output_ron" => r#####"دەرچوون بە شێوازی RON"#####,

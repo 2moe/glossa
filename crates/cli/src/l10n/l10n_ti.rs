@@ -26,13 +26,13 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ቋንቋ ስም ከም ቁልፊ ዘለዎ ማች ፋንክሽን"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ቋንቋ ስም + ማፕ_ኪ ዝተተባህለ ማች ፋንክሽን"#####
     }
-    b"output_match_fn_by_key" => r#####"ማፕ_ኪ ጥራይ ከም ቁልፊ ብምጥቃም (ማፕ_ነም የልቦን)"#####,
+    b"output_match_fn_without_map_name" => r#####"ማፕ_ኪ ጥራይ ከም ቁልፊ ብምጥቃም (ማፕ_ነም የልቦን)"#####,
     b"output_phf" => r#####"ንቋንቋታት ፂም ፂም ፂ.ኤች.ኤፍ መፍትሕታት ምፍጣር"#####,
     b"output_phf_all_in_one" => r#####"ኩሎም ፂ.ኤች.ኤፍ መፍትሕታት ኣብ ሓደ ፋንክሽን ምውጻእ"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"ብተለቀቅቲ ጽሑፍ ቁልፍታት ዘለዎ ፂ.ኤች.ኤፍ መፍትሕ (ነቲ ቱፕልኪ ዘይኮነ)"#####
     }
     b"output_ron" => r#####"ጽሑፍ ብኣር.ኦ.ኤን ፎርማት ምውጻእ"#####,

@@ -40,281 +40,281 @@ workspace = true
 
 [features]
 default = [
-    "l10n_all",
-    # "l10n_zh",
-    # "l10n_en",
-    # "l10n_en-GB",
-    # "l10n_es",
-    # "l10n_hi",
-    # "l10n_pt",
-    # "l10n_bn",
-    # "l10n_ru",
-    # "l10n_fr",
-    # "l10n_ja",
-    # "l10n_ar",
-    # "l10n_de",
+    "l10n-all",
+    # "l10n-zh",
+    # "l10n-en",
+    # "l10n-en-GB",
+    # "l10n-es",
+    # "l10n-hi",
+    # "l10n-pt",
+    # "l10n-bn",
+    # "l10n-ru",
+    # "l10n-fr",
+    # "l10n-ja",
+    # "l10n-ar",
+    # "l10n-de",
 ]
-l10n_af = []
-l10n_ak = []
-l10n_am = []
-l10n_ar = []
-l10n_as = []
-l10n_az = []
-l10n_bal = []
-l10n_be = []
-l10n_bem = []
-l10n_bg = []
-l10n_bho = []
-l10n_bm = []
-l10n_bn = []
-l10n_bs = []
-l10n_ca = []
-l10n_ceb = []
-l10n_cgg = []
-l10n_ckb = []
-l10n_co = []
-l10n_cs = []
-l10n_cy = []
-l10n_da = []
-l10n_de = []
-l10n_doi = []
-l10n_el = []
-l10n_en = []
-l10n_en-GB = []
-l10n_eo = []
-l10n_es = []
-l10n_et = []
-l10n_eu = []
-l10n_fa = []
-l10n_fi = []
-l10n_fil = []
-l10n_fr = []
-l10n_fur = []
-l10n_fy = []
-l10n_ga = []
-l10n_gd = []
-l10n_gl = []
-l10n_gu = []
-l10n_ha = []
-l10n_he = []
-l10n_hi = []
-l10n_hr = []
-l10n_ht = []
-l10n_hu = []
-l10n_hy = []
-l10n_id = []
-l10n_ig = []
-l10n_is = []
-l10n_it = []
-l10n_ja = []
-l10n_ja-Latn-JP = []
-l10n_jv = []
-l10n_ka = []
-l10n_kk = []
-l10n_km = []
-l10n_kn = []
-l10n_ko = []
-l10n_ku = []
-l10n_ky = []
-l10n_la = []
-l10n_lb = []
-l10n_lg = []
-l10n_ln = []
-l10n_lo = []
-l10n_lt = []
-l10n_luo = []
-l10n_lv = []
-l10n_mai = []
-l10n_mfe = []
-l10n_mg = []
-l10n_mi = []
-l10n_mk = []
-l10n_ml = []
-l10n_mn = []
-l10n_mr = []
-l10n_ms = []
-l10n_mt = []
-l10n_my = []
-l10n_ne = []
-l10n_nl = []
-l10n_no = []
-l10n_nus = []
-l10n_ny = []
-l10n_om = []
-l10n_or = []
-l10n_pa = []
-l10n_pl = []
-l10n_ps = []
-l10n_pt = []
-l10n_qu = []
-l10n_ro = []
-l10n_ru = []
-l10n_rw = []
-l10n_sah = []
-l10n_sat = []
-l10n_sd = []
-l10n_si = []
-l10n_sk = []
-l10n_sl = []
-l10n_sm = []
-l10n_sn = []
-l10n_so = []
-l10n_sq = []
-l10n_sr = []
-l10n_st = []
-l10n_su = []
-l10n_sv = []
-l10n_sw = []
-l10n_ta = []
-l10n_te = []
-l10n_tg = []
-l10n_th = []
-l10n_ti = []
-l10n_tk = []
-l10n_tr = []
-l10n_tt = []
-l10n_ug = []
-l10n_uk = []
-l10n_ur = []
-l10n_uz = []
-l10n_vi = []
-l10n_xh = []
-l10n_yi = []
-l10n_yo = []
-l10n_zh = []
-l10n_zh-Hant = []
-l10n_zh-Latn-CN = []
-l10n_zu = []
-l10n_all = [
-    "l10n_af",
-    "l10n_ak",
-    "l10n_am",
-    "l10n_ar",
-    "l10n_as",
-    "l10n_az",
-    "l10n_bal",
-    "l10n_be",
-    "l10n_bem",
-    "l10n_bg",
-    "l10n_bho",
-    "l10n_bm",
-    "l10n_bn",
-    "l10n_bs",
-    "l10n_ca",
-    "l10n_ceb",
-    "l10n_cgg",
-    "l10n_ckb",
-    "l10n_co",
-    "l10n_cs",
-    "l10n_cy",
-    "l10n_da",
-    "l10n_de",
-    "l10n_doi",
-    "l10n_el",
-    "l10n_en",
-    "l10n_en-GB",
-    "l10n_eo",
-    "l10n_es",
-    "l10n_et",
-    "l10n_eu",
-    "l10n_fa",
-    "l10n_fi",
-    "l10n_fil",
-    "l10n_fr",
-    "l10n_fur",
-    "l10n_fy",
-    "l10n_ga",
-    "l10n_gd",
-    "l10n_gl",
-    "l10n_gu",
-    "l10n_ha",
-    "l10n_he",
-    "l10n_hi",
-    "l10n_hr",
-    "l10n_ht",
-    "l10n_hu",
-    "l10n_hy",
-    "l10n_id",
-    "l10n_ig",
-    "l10n_is",
-    "l10n_it",
-    "l10n_ja",
-    "l10n_ja-Latn-JP",
-    "l10n_jv",
-    "l10n_ka",
-    "l10n_kk",
-    "l10n_km",
-    "l10n_kn",
-    "l10n_ko",
-    "l10n_ku",
-    "l10n_ky",
-    "l10n_la",
-    "l10n_lb",
-    "l10n_lg",
-    "l10n_ln",
-    "l10n_lo",
-    "l10n_lt",
-    "l10n_luo",
-    "l10n_lv",
-    "l10n_mai",
-    "l10n_mfe",
-    "l10n_mg",
-    "l10n_mi",
-    "l10n_mk",
-    "l10n_ml",
-    "l10n_mn",
-    "l10n_mr",
-    "l10n_ms",
-    "l10n_mt",
-    "l10n_my",
-    "l10n_ne",
-    "l10n_nl",
-    "l10n_no",
-    "l10n_nus",
-    "l10n_ny",
-    "l10n_om",
-    "l10n_or",
-    "l10n_pa",
-    "l10n_pl",
-    "l10n_ps",
-    "l10n_pt",
-    "l10n_qu",
-    "l10n_ro",
-    "l10n_ru",
-    "l10n_rw",
-    "l10n_sah",
-    "l10n_sat",
-    "l10n_sd",
-    "l10n_si",
-    "l10n_sk",
-    "l10n_sl",
-    "l10n_sm",
-    "l10n_sn",
-    "l10n_so",
-    "l10n_sq",
-    "l10n_sr",
-    "l10n_st",
-    "l10n_su",
-    "l10n_sv",
-    "l10n_sw",
-    "l10n_ta",
-    "l10n_te",
-    "l10n_tg",
-    "l10n_th",
-    "l10n_ti",
-    "l10n_tk",
-    "l10n_tr",
-    "l10n_tt",
-    "l10n_ug",
-    "l10n_uk",
-    "l10n_ur",
-    "l10n_uz",
-    "l10n_vi",
-    "l10n_xh",
-    "l10n_yi",
-    "l10n_yo",
-    "l10n_zh",
-    "l10n_zh-Hant",
-    "l10n_zh-Latn-CN",
-    "l10n_zu",
+l10n-af = []
+l10n-ak = []
+l10n-am = []
+l10n-ar = []
+l10n-as = []
+l10n-az = []
+l10n-bal = []
+l10n-be = []
+l10n-bem = []
+l10n-bg = []
+l10n-bho = []
+l10n-bm = []
+l10n-bn = []
+l10n-bs = []
+l10n-ca = []
+l10n-ceb = []
+l10n-cgg = []
+l10n-ckb = []
+l10n-co = []
+l10n-cs = []
+l10n-cy = []
+l10n-da = []
+l10n-de = []
+l10n-doi = []
+l10n-el = []
+l10n-en = []
+l10n-en-GB = []
+l10n-eo = []
+l10n-es = []
+l10n-et = []
+l10n-eu = []
+l10n-fa = []
+l10n-fi = []
+l10n-fil = []
+l10n-fr = []
+l10n-fur = []
+l10n-fy = []
+l10n-ga = []
+l10n-gd = []
+l10n-gl = []
+l10n-gu = []
+l10n-ha = []
+l10n-he = []
+l10n-hi = []
+l10n-hr = []
+l10n-ht = []
+l10n-hu = []
+l10n-hy = []
+l10n-id = []
+l10n-ig = []
+l10n-is = []
+l10n-it = []
+l10n-ja = []
+l10n-ja-Latn-JP = []
+l10n-jv = []
+l10n-ka = []
+l10n-kk = []
+l10n-km = []
+l10n-kn = []
+l10n-ko = []
+l10n-ku = []
+l10n-ky = []
+l10n-la = []
+l10n-lb = []
+l10n-lg = []
+l10n-ln = []
+l10n-lo = []
+l10n-lt = []
+l10n-luo = []
+l10n-lv = []
+l10n-mai = []
+l10n-mfe = []
+l10n-mg = []
+l10n-mi = []
+l10n-mk = []
+l10n-ml = []
+l10n-mn = []
+l10n-mr = []
+l10n-ms = []
+l10n-mt = []
+l10n-my = []
+l10n-ne = []
+l10n-nl = []
+l10n-no = []
+l10n-nus = []
+l10n-ny = []
+l10n-om = []
+l10n-or = []
+l10n-pa = []
+l10n-pl = []
+l10n-ps = []
+l10n-pt = []
+l10n-qu = []
+l10n-ro = []
+l10n-ru = []
+l10n-rw = []
+l10n-sah = []
+l10n-sat = []
+l10n-sd = []
+l10n-si = []
+l10n-sk = []
+l10n-sl = []
+l10n-sm = []
+l10n-sn = []
+l10n-so = []
+l10n-sq = []
+l10n-sr = []
+l10n-st = []
+l10n-su = []
+l10n-sv = []
+l10n-sw = []
+l10n-ta = []
+l10n-te = []
+l10n-tg = []
+l10n-th = []
+l10n-ti = []
+l10n-tk = []
+l10n-tr = []
+l10n-tt = []
+l10n-ug = []
+l10n-uk = []
+l10n-ur = []
+l10n-uz = []
+l10n-vi = []
+l10n-xh = []
+l10n-yi = []
+l10n-yo = []
+l10n-zh = []
+l10n-zh-Hant = []
+l10n-zh-Latn-CN = []
+l10n-zu = []
+l10n-all = [
+    "l10n-af",
+    "l10n-ak",
+    "l10n-am",
+    "l10n-ar",
+    "l10n-as",
+    "l10n-az",
+    "l10n-bal",
+    "l10n-be",
+    "l10n-bem",
+    "l10n-bg",
+    "l10n-bho",
+    "l10n-bm",
+    "l10n-bn",
+    "l10n-bs",
+    "l10n-ca",
+    "l10n-ceb",
+    "l10n-cgg",
+    "l10n-ckb",
+    "l10n-co",
+    "l10n-cs",
+    "l10n-cy",
+    "l10n-da",
+    "l10n-de",
+    "l10n-doi",
+    "l10n-el",
+    "l10n-en",
+    "l10n-en-GB",
+    "l10n-eo",
+    "l10n-es",
+    "l10n-et",
+    "l10n-eu",
+    "l10n-fa",
+    "l10n-fi",
+    "l10n-fil",
+    "l10n-fr",
+    "l10n-fur",
+    "l10n-fy",
+    "l10n-ga",
+    "l10n-gd",
+    "l10n-gl",
+    "l10n-gu",
+    "l10n-ha",
+    "l10n-he",
+    "l10n-hi",
+    "l10n-hr",
+    "l10n-ht",
+    "l10n-hu",
+    "l10n-hy",
+    "l10n-id",
+    "l10n-ig",
+    "l10n-is",
+    "l10n-it",
+    "l10n-ja",
+    "l10n-ja-Latn-JP",
+    "l10n-jv",
+    "l10n-ka",
+    "l10n-kk",
+    "l10n-km",
+    "l10n-kn",
+    "l10n-ko",
+    "l10n-ku",
+    "l10n-ky",
+    "l10n-la",
+    "l10n-lb",
+    "l10n-lg",
+    "l10n-ln",
+    "l10n-lo",
+    "l10n-lt",
+    "l10n-luo",
+    "l10n-lv",
+    "l10n-mai",
+    "l10n-mfe",
+    "l10n-mg",
+    "l10n-mi",
+    "l10n-mk",
+    "l10n-ml",
+    "l10n-mn",
+    "l10n-mr",
+    "l10n-ms",
+    "l10n-mt",
+    "l10n-my",
+    "l10n-ne",
+    "l10n-nl",
+    "l10n-no",
+    "l10n-nus",
+    "l10n-ny",
+    "l10n-om",
+    "l10n-or",
+    "l10n-pa",
+    "l10n-pl",
+    "l10n-ps",
+    "l10n-pt",
+    "l10n-qu",
+    "l10n-ro",
+    "l10n-ru",
+    "l10n-rw",
+    "l10n-sah",
+    "l10n-sat",
+    "l10n-sd",
+    "l10n-si",
+    "l10n-sk",
+    "l10n-sl",
+    "l10n-sm",
+    "l10n-sn",
+    "l10n-so",
+    "l10n-sq",
+    "l10n-sr",
+    "l10n-st",
+    "l10n-su",
+    "l10n-sv",
+    "l10n-sw",
+    "l10n-ta",
+    "l10n-te",
+    "l10n-tg",
+    "l10n-th",
+    "l10n-ti",
+    "l10n-tk",
+    "l10n-tr",
+    "l10n-tt",
+    "l10n-ug",
+    "l10n-uk",
+    "l10n-ur",
+    "l10n-uz",
+    "l10n-vi",
+    "l10n-xh",
+    "l10n-yi",
+    "l10n-yo",
+    "l10n-zh",
+    "l10n-zh-Hant",
+    "l10n-zh-Latn-CN",
+    "l10n-zu",
 ]

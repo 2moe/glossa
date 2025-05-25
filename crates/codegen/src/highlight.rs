@@ -222,6 +222,7 @@ pub(crate) mod dbg_shared {
 mod tests {
   use std::io;
 
+  use glossa_shared::display::{puts, puts_dbg};
   use testutils::dbg;
 
   use super::*;
@@ -283,8 +284,7 @@ float = nan
       .run()?;
 
     let highlighted_text = String::from_utf8_lossy(&writer);
-
-    println!("{highlighted_text}");
+    puts(&highlighted_text);
 
     Ok(())
   }
@@ -303,8 +303,8 @@ float = nan
       .iter()
       .flat_map(|(_, map)| map.iter())
     {
-      println!("{map_name} ");
-      println!("{map:?}")
+      puts(map_name);
+      puts_dbg(map);
     }
 
     Ok(())

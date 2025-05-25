@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Funcție match cu numele limbii ca cheie"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Funcție match cu cheie compusă (limbă + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Folosește doar map_key ca cheie (fără map_name)"#####
     }
     b"output_phf" => r#####"Generează funcții phf map pentru limbi diferite"#####,
     b"output_phf_all_in_one" => {
       r#####"Consolidează toate phf map-urile într-o funcție"#####
     }
-    b"output_phf_by_key" => r#####"phf map cu chei șir obișnuite (nu TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map cu chei șir obișnuite (nu TupleKey)"#####,
     b"output_ron" => r#####"Exportă șir în format RON"#####,
     b"suffix" => r#####"Sufixul noului "Highlight-Map""#####,
     b"syntax_name" => r#####"Nume sintaxă"#####,

@@ -42,17 +42,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match funkcija ar valodas nosaukumu kā atslēgu"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match funkcija ar kombinētu atslēgu (valoda + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Lietot tikai map_key kā atslēgu (bez map_name)"#####
     }
     b"output_phf" => r#####"Ģenerēt atsevišķas phf kartes funkcijas valodām"#####,
     b"output_phf_all_in_one" => {
       r#####"Apvienot visas phf kartes vienā funkcijā"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf karte ar parastām virknes atslēgām (ne TupleKey)"#####
     }
     b"output_ron" => r#####"Eksportēt virkni RON formātā"#####,

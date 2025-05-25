@@ -30,15 +30,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"भाषा नाम key के रूप मे match फंक्शन"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"भाषा नाम + map_key क संयुक्त key सहित match फंक्शन"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key केवल key के रूप मे, map_name शामिल नहि"#####
     }
     b"output_phf" => r#####"भिन्न भाषा क लेल अलग phf map फंक्शन निर्माण करू"#####,
     b"output_phf_all_in_one" => r#####"सभी phf map एक फंक्शन मे निर्यात करू"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"सामान्य स्ट्रिंग key सहित phf map (TupleKey नहि)"#####
     }
     b"output_ron" => r#####"RON फॉर्मेट स्ट्रिंग के रूप मे निर्यात करू"#####,

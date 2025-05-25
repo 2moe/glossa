@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Iṣẹ́ match pẹ̀lú orúkọ èdè gẹ́gẹ́ bí key"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Iṣẹ́ match pẹ̀lú key (orúkọ èdè + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Jẹ́rìí output_match_fn, ṣùgbọ́n map_key nìkan ló jẹ́ key"#####
     }
     b"output_phf" => r#####"Ṣẹ̀dá iṣẹ́ phf map oríṣiríṣi fún èdè"#####,
     b"output_phf_all_in_one" => r#####"Ṣe ìṣejáde gbogbo phf map sí iṣẹ́ kan"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map pẹ̀lú ọ̀rọ̀-ńtàkùn deede (kì í ṣe TupleKey)"#####
     }
     b"output_ron" => r#####"Ṣe ìṣejáde ọ̀rọ̀-ńtàkùn fọ́rmátì ron"#####,

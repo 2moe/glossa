@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"மொழி பெயரை சாவியாக கொண்ட match செயல்பாடு"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"மொழி + map_key சாவியுடன் match செயல்பாடு"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key மட்டுமே சாவியாக பயன்படுத்து (map_name இல்லை)"#####
     }
     b"output_phf" => r#####"மொழிகளுக்கு தனி phf வரைபட செயல்பாடுகள்"#####,
     b"output_phf_all_in_one" => r#####"அனைத்து phf வரைபடங்களை ஒரு செயல்பாடாக இணைக்க"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"எளிய சரம் சாவிகள் கொண்ட phf வரைபடங்கள் (TupleKey அல்ல)"#####
     }
     b"output_ron" => r#####"RON வடிவத்தில் சரம் வெளியிடு"#####,

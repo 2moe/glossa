@@ -34,17 +34,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Тил атын ачкыч кылган match функция"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Комбинацияланган ачкыч (тил+map_key) менен match функция"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key гана ачкыч катары колдонуу (map_name жок)"#####
     }
     b"output_phf" => r#####"Тилдер үчүн phf карта функцияларын түзүү"#####,
     b"output_phf_all_in_one" => {
       r#####"Бардык phf карталарды бир функцияга бириктирүү"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Кадимки сап ачкычтары менен phf карта (TupleKey эмес)"#####
     }
     b"output_ron" => r#####"RON форматында сап чыгаруу"#####,

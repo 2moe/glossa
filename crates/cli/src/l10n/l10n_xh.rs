@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Umsebenzi we-match onegama lolwimi njengekhi"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Umsebenzi we-match onekhi edityanisiweyo (igama lolwimi + i-map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Sebenzisa kuphela i-map_key njengekhi (akubandakanyi i-map_name)"#####
     }
     b"output_phf" => r#####"Yenza imisebenzi ye-phf map ngeelwimi ezahlukeneyo"#####,
     b"output_phf_all_in_one" => {
       r#####"Khupha zonke ii-phf map kumsebenzi omnye"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"I-phf map enekhi yomgca oqhelekileyo (hayi i-TupleKey)"#####
     }
     b"output_ron" => r#####"Khupha umgca ngefomethi ye-RON"#####,

@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"将所有语言的数据输出为同一个match 函数（字符串），key 为语言名"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"将所有语言的数据输出为同一个 match 函数（字符串），key 为语言名和 map_key"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"类似于 output_match_fn，但生成的函数只以 map_key 作为 key, 不包含 map_name"#####
     }
     b"output_phf" => r#####"为不同语言生成独立的 phf map 函数"#####,
     b"output_phf_all_in_one" => r#####"将所有语言的 phf map 输出到同一个函数"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"类似于 output_phf, 但生成的函数的key 为普通字符串，而不是 TupleKey"#####
     }
     b"output_ron" => r#####"输出为 ron 格式的字符串"#####,

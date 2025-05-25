@@ -32,15 +32,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ଭାଷା ନାମକୁ କୀ ଭାବରେ ବ୍ୟବହାର କରୁଥିବା match ଫଙ୍କସନ୍"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"କମ୍ବାଇନ୍ କୀ (ଭାଷା+map_key) ସହିତ match ଫଙ୍କସନ୍"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"କେବଳ map_key କୁ କୀ ଭାବରେ ବ୍ୟବହାର କରନ୍ତୁ (map_name ନୁହେଁ)"#####
     }
     b"output_phf" => r#####"ଭିନ୍ନ ଭାଷା ପାଇଁ phf ମ୍ୟାପ୍ ଫଙ୍କସନ୍ ସୃଷ୍ଟି କରନ୍ତୁ"#####,
     b"output_phf_all_in_one" => r#####"ସମସ୍ତ phf ମ୍ୟାପ୍ ଗୁଡିକୁ ଗୋଟିଏ ଫଙ୍କସନ୍ରେ ଏକତ୍ର କରନ୍ତୁ"#####,
-    b"output_phf_by_key" => r#####"ସାଧାରଣ ଷ୍ଟ୍ରିଂ କୀ ସହିତ phf ମ୍ୟାପ୍ (TupleKey ନୁହେଁ)"#####,
+    b"output_phf_without_map_name" => r#####"ସାଧାରଣ ଷ୍ଟ୍ରିଂ କୀ ସହିତ phf ମ୍ୟାପ୍ (TupleKey ନୁହେଁ)"#####,
     b"output_ron" => r#####"RON ଫର୍ମାଟରେ ଷ୍ଟ୍ରିଂ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ"#####,
     b"suffix" => r#####""ହାଇଲାଇଟ-ମ୍ୟାପ୍" ର ନୂତନ ସଫିକ୍ସ"#####,
     b"syntax_name" => r#####"ସିଣ୍ଟାକ୍ସ ନାମ"#####,

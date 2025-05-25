@@ -40,17 +40,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Тыл аата ключ курдук match функция"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Холбоһуктуу ключ (тыл аата + map_key) match функция"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key-ны эрэ ключ курдук тутун (map_name суох)"#####
     }
     b"output_phf" => r#####"Тылларга phf хаарта функцияларын оҥоруу"#####,
     b"output_phf_all_in_one" => {
       r#####"Бары phf хаарталары биир функцияҕа таһаарыы"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Эрээссийэ строка ключтаах phf хаарта (TupleKey буолбатах)"#####
     }
     b"output_ron" => r#####"RON формаатыгар строканы таһаарыы"#####,

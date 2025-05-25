@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"función match con nombre de idioma como clave"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"función match con clave compuesta (idioma + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"solo usa map_key como clave (sin map_name)"#####
     }
     b"output_phf" => r#####"generar funciones phf map por idioma"#####,
     b"output_phf_all_in_one" => {
       r#####"unificar todas las phf map en una función"#####
     }
-    b"output_phf_by_key" => r#####"phf map con claves string (no TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map con claves string (no TupleKey)"#####,
     b"output_ron" => r#####"generar string en formato RON"#####,
     b"suffix" => r#####"sufijo para nuevas Highlight-Maps"#####,
     b"syntax_name" => r#####"nombre de sintaxis"#####,

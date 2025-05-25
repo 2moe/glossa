@@ -34,17 +34,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match function maqaa afaanii fayyadamuun"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match function waliigala (maqaa afaanii + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Fayyadama map_key qofa (map_name hin qabu)"#####
     }
     b"output_phf" => r#####"Uumuu phf map function addaa afaan adda addaaf"#####,
     b"output_phf_all_in_one" => {
       r#####"Madda phf map hunda function tokko keessatti"#####
     }
-    b"output_phf_by_key" => r#####"phf map jijjiirama qaamolee (hin TaplKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map jijjiirama qaamolee (hin TaplKey)"#####,
     b"output_ron" => r#####"Baasii jijjiirama fomataa RON"#####,
     b"suffix" => r#####"Suffix haaraa "Highlight-Map""#####,
     b"syntax_name" => r#####"Maqaa syntax"#####,

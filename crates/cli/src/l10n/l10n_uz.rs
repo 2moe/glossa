@@ -44,17 +44,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Til nomi kalit boʻlgan match funktsiyasi"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Birlashtirilgan kalit (til+map_key) bilan match funktsiyasi"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Faqat map_key'ni kalit sifatida ishlatish (map_name kiritilmaydi)"#####
     }
     b"output_phf" => r#####"Har bir til uchun alohida phf xarita funktsiyalari"#####,
     b"output_phf_all_in_one" => {
       r#####"Barcha phf xaritalarni bitta funktsiyada birlashtirish"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Oddiy satr kalitli phf xarita (TupleKey emas)"#####
     }
     b"output_ron" => r#####"RON formatida satrni eksport qilish"#####,

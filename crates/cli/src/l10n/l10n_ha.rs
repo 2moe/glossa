@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Aikin Match mai Sunan Harshe a matsayin Makulli"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Aikin Match tare da Makullin (Harshe + Map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Kamar output_match_fn amma Map_key kawai ake amfani"#####
     }
     b"output_phf" => r#####"Ƙirƙiri Ayyukan PHF Map na Harsuna"#####,
     b"output_phf_all_in_one" => r#####"Haɗa Dukkan PHF Map cikin Aiki ɗaya"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF Map tare da Makullin String na yau da kullun"#####
     }
     b"output_ron" => r#####"Fitarda Bayanai cikin Tsarin RON"#####,

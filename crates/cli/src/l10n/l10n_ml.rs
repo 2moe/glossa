@@ -30,17 +30,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"ഭാഷാ പേര് കീ ആയി ഉള്ള മാച്ച് ഫംഗ്ഷൻ"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"കോംബിനേഷൻ കീ (ഭാഷ+മാപ്പ്_കീ) ഉള്ള മാച്ച് ഫംഗ്ഷൻ"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"മാപ്പ്_കീ മാത്രം കീ ആയി ഉപയോഗിക്കുക (മാപ്പ്_നേം ഇല്ല)"#####
     }
     b"output_phf" => r#####"വ്യത്യസ്ത ഭാഷകൾക്ക് പിഎച്ച്എഫ് മാപ്പ് ഫംഗ്ഷനുകൾ സൃഷ്ടിക്കുക"#####,
     b"output_phf_all_in_one" => {
       r#####"എല്ലാ പിഎച്ച്എഫ് മാപ്പുകളും ഒരു ഫംഗ്ഷനിലേക്ക് യോജിപ്പിക്കുക"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"സാധാരണ സ്ട്രിംഗ് കീകളുള്ള പിഎച്ച്എഫ് മാപ്പ് (ട്യൂപ്പിൾകീ അല്ല)"#####
     }
     b"output_ron" => r#####"RON ഫോർമാറ്റിൽ സ്ട്രിംഗ് എക്സ്പോർട്ട് ചെയ്യുക"#####,

@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match funkcia s názvom jazyka ako kľúčom"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match funkcia s kombinovaným kľúčom (jazyk + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Použiť iba map_key ako kľúč (bez map_name)"#####
     }
     b"output_phf" => r#####"Generovať PHF mapy pre jednotlivé jazyky"#####,
     b"output_phf_all_in_one" => {
       r#####"Konsolidovať všetky PHF mapy do jednej funkcie"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF mapy s obyčajnými reťazcovými kľúčmi (nie TupleKey)"#####
     }
     b"output_ron" => r#####"Exportovať ako reťazec vo formáte RON"#####,

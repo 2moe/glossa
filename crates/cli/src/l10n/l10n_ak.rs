@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"To kasa data nyinaa to match function baako mu (string) a ɔkyerɛw kasa din"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"To kasa data nyinaa to match function baako mu (string) a ɔkyerɛw kasa din ne map_key"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Sɛnea ɛte wɔ output_match_fn, nanso map_key nko na ɛyɛ key, map_name nni mu"#####
     }
     b"output_phf" => r#####"Yɛ phf map function ahorow ma nnkyekyɛmu kasa"#####,
     b"output_phf_all_in_one" => {
       r#####"To phf map a ɛwɔ kasa nyinaa to function baako mu"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Sɛnea ɛte wɔ output_phf, nanso string key na ɛwɔ hɔ, nnyɛ TupleKey"#####
     }
     b"output_ron" => r#####"To RON format string"#####,

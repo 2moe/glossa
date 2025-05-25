@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Mahi Match me Ingoa Reo hei Kī"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Mahi Match me Kī Honohono (Reo + Map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Whakamahi Map_key Anake hei Kī (Kāore ko Map_name)"#####
     }
     b"output_phf" => r#####"Hanga Mahi PHF Map mō Ngā Reo"#####,
     b"output_phf_all_in_one" => r#####"Hōputu Katoa ki Mahi PHF Kotahi"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"PHF Map me Kī Tūtohi Noa (Ehara i te TupleKey)"#####
     }
     b"output_ron" => r#####"Tuku Tūtohi ki Hōputu RON"#####,

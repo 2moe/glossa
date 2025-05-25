@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"تابع match با نام زبان به عنوان کلید"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"تابع match با کلید ترکیبی (زبان + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"فقط از map_key به عنوان کلید استفاده شود (بدون map_name)"#####
     }
     b"output_phf" => r#####"ایجاد توابع phf map جداگانه برای زبان‌ها"#####,
     b"output_phf_all_in_one" => r#####"ادغام تمام phf mapها در یک تابع"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map با کلیدهای رشته‌ای ساده (نه TupleKey)"#####
     }
     b"output_ron" => r#####"خروجی رشته با فرمت RON"#####,

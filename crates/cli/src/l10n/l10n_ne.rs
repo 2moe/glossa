@@ -34,15 +34,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"भाषा नाम कुञ्जी भएको एकीकृत म्याच प्रकार्य"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"संयुक्त कुञ्जी (भाषा+म्याप_की) भएको म्याच प्रकार्य"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"म्याप_की मात्र कुञ्जीको रूपमा प्रयोग गर्नुहोस् (म्याप_नेम समावेश छैन)"#####
     }
     b"output_phf" => r#####"भाषा अनुसार फेज प्रकार्यहरू सिर्जना गर्नुहोस्"#####,
     b"output_phf_all_in_one" => r#####"सबै फेज म्यापहरू एक प्रकार्यमा समेट्नुहोस्"#####,
-    b"output_phf_by_key" => r#####"साधारण स्ट्रिङ कुञ्जी भएको फेज म्याप (टपलकी होइन)"#####,
+    b"output_phf_without_map_name" => r#####"साधारण स्ट्रिङ कुञ्जी भएको फेज म्याप (टपलकी होइन)"#####,
     b"output_ron" => r#####"RON ढाँचामा स्ट्रिङ निर्यात गर्नुहोस्"#####,
     b"suffix" => r#####"नयाँ हाइलाइट म्यापको सफिक्स"#####,
     b"syntax_name" => r#####"वाक्यरचना नाम"#####,

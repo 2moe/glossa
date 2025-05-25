@@ -34,17 +34,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Galuega match ma igoa gagana e fai ma ki"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Galuega match ma ki tu'ufa'atasi (igoa gagana + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Fa'aaoga na'o le map_key e fai ma ki (leai se map_name)"#####
     }
     b"output_phf" => r#####"Fausia galuega phf map mo gagana eseese"#####,
     b"output_phf_all_in_one" => {
       r#####"Fa'atasi uma phf map i se galuega e tasi"#####
     }
-    b"output_phf_by_key" => r#####"phf map ma ki masani (leai se TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map ma ki masani (leai se TupleKey)"#####,
     b"output_ron" => r#####"Tu'u atu string i le faatulagaga RON"#####,
     b"suffix" => r#####"Fa'ai'uga fou o le "Highlight-Map""#####,
     b"syntax_name" => r#####"Igoa o le syntax"#####,

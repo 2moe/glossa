@@ -42,10 +42,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match function na may language name bilang key"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match function na may kombinasyong key (language + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Katulad ng output_match_fn pero map_key lang ang key (walang map_name)"#####
     }
     b"output_phf" => {
@@ -54,7 +54,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Pagsamasamahin ang lahat ng phf map sa iisang function"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"Phf map na may regular string key (hindi TupleKey)"#####
     }
     b"output_ron" => r#####"Ilabas bilang RON-formatted string"#####,

@@ -40,15 +40,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match-функция с названием языка как ключом"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match-функция с комбинированным ключом (язык+map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Использовать только map_key как ключ (без map_name)"#####
     }
     b"output_phf" => r#####"Генерировать phf-карты для разных языков"#####,
     b"output_phf_all_in_one" => r#####"Объединить все phf-карты в одну функцию"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf-карта с обычными строковыми ключами (не TupleKey)"#####
     }
     b"output_ron" => r#####"Экспортировать строку в формате RON"#####,

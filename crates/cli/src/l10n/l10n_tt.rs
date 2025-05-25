@@ -36,17 +36,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Тел исеме ачкыч булган бердәм match функциясе"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Комбик ачкычлы (тел исеме + map_key) match функциясе"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key'ны генә ачкыч итеп куллану (map_name керми)"#####
     }
     b"output_phf" => r#####"Төрле телләр өчен аерым phf карта функцияләре ясау"#####,
     b"output_phf_all_in_one" => {
       r#####"Барлык phf карталарны бер функциягә берләштерү"#####
     }
-    b"output_phf_by_key" => r#####"Гади юл ачкычлы phf карта (TupleKey түгел)"#####,
+    b"output_phf_without_map_name" => r#####"Гади юл ачкычлы phf карта (TupleKey түгел)"#####,
     b"output_ron" => r#####"RON форматтагы юлны чыгару"#####,
     b"suffix" => r#####"Яңа "Highlight-Map" суффиксы"#####,
     b"syntax_name" => r#####"Синтаксис исеме"#####,

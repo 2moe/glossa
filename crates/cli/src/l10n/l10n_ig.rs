@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Ọrụ match jiri aha asụsụ dị ka isi"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Ọrụ match jiri isi jikọtara (aha asụsụ + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Jiri naanị map_key dị ka isi (enweghị map_name)"#####
     }
     b"output_phf" => r#####"Mepụta ọrụ phf map dị iche iche maka asụsụ"#####,
     b"output_phf_all_in_one" => r#####"Jikọta phf map niile n'otu ọrụ"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map nwere isi eriri nkịtị (abụghị TupleKey)"#####
     }
     b"output_ron" => r#####"Wepụta eriri n'ụdị RON"#####,

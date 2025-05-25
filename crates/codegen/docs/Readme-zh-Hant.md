@@ -44,7 +44,7 @@
     - [生成程式碼: 包含 match-expr 的 const 函式](#生成程式碼-包含-match-expr-的-const-函式)
       - [**output\_match\_fn()**](#output_match_fn)
       - [**output\_match\_fn\_all\_in\_one()**](#output_match_fn_all_in_one)
-      - [**output\_match\_fn\_all\_in\_one\_by\_language\_and\_key()**](#output_match_fn_all_in_one_by_language_and_key)
+      - [**output\_match\_fn\_all\_in\_one\_by\_language\_and\_key()**](#output_match_fn_all_in_one_without_map_name)
     - [生成程式碼: 包含 phf map 的 const 函式](#生成程式碼-包含-phf-map-的-const-函式)
       - [**output\_phf()**](#output_phf)
       - [**output\_phf\_all\_in\_one()**](#output_phf_all_in_one)
@@ -124,11 +124,11 @@ A:
 
 ### L10n 資料
 
-| L10n 型別          | 描述                                   |
-| ------------------ | -------------------------------------- |
-| Raw 文字檔案       | 未經處理的原始檔案，比如 en/hello.toml |
+| L10n 型別            | 描述                                   |
+| -------------------- | -------------------------------------- |
+| Raw 文字檔案         | 未經處理的原始檔案，比如 en/hello.toml |
 | 轉換出來的rust程式碼 | 支援 const fn，直接硬編碼到程式中      |
-| bincode            | 支援高效反序列化的二進位制檔案           |
+| bincode              | 支援高效反序列化的二進位制檔案         |
 
 我們可以簡單將 Raw 檔案理解為原始碼，其他東西都是用 Raw 檔案編譯出來的。
 
@@ -546,7 +546,7 @@ MapType::DSL 只能輸出為 bincode，而其他 MapType 支援所有的輸出�
       - en => tmp/l10n_en.rs
       - en-GB => tmp/l10n_en_gb.rs
   - rs 檔案內容為 `const fn map(map_name: &[u8], key: &[u8]) -> &'static str {...}`
-- `.output_match_fn_by_key() {...}`
+- `.output_match_fn_without_map_name() {...}`
   - 為不同的語言生成獨立的 rust 程式碼檔案
   - rs 檔案內容為 `const fn map(key: &[u8]) -> &'static str {...}`
 - `.output_match_fn_all_in_one() {...}`
@@ -556,7 +556,7 @@ MapType::DSL 只能輸出為 bincode，而其他 MapType 支援所有的輸出�
   - 將所有語言的本地化資源都收集為一個字串
     - 其內容為 `const fn map(language: &[u8]) -> &'static str {...}`
     - 只有當 map_name 和 key 都只有唯一一個時，您才能使用此函式，否則 map_name 和 key 會出現衝突。
-- `.output_match_fn_all_in_one_by_language_and_key()`
+- `.output_match_fn_all_in_one_without_map_name()`
   - 將所有語言的本地化資源都收集為一個字串
     - 其內容為 `const fn map(language: &[u8], key: &[u8]) -> &'static str {...}`
     - 只有當 map_name 只有唯一一個時，您才能使用此函式，否則 key 會出現衝突。
@@ -637,7 +637,7 @@ pub(crate) const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) -> &'static st
 }
 ```
 
-##### **output_match_fn_all_in_one_by_language_and_key()**
+##### **output_match_fn_all_in_one_without_map_name()**
 
 當 map_name 只有唯一一個時，我們可以省略它，以此來達到效能最佳化的目的。
 
@@ -651,7 +651,7 @@ match (lang, map_name, key) { ... }
 
 將兩段 match 表示式進行對比：由於前者少匹配了一個項，所以從理論上來說，前者會更快。
 
-`output_match_fn_all_in_one_by_language_and_key()` 會生成類似於前者的程式碼。
+`output_match_fn_all_in_one_without_map_name()` 會生成類似於前者的程式碼。
 
 您如果不關心納秒級別的效能最佳化，那麼完全不用在意這一小節的內容。
 
@@ -664,7 +664,7 @@ match (lang, map_name, key) { ... }
 
 在本例中，唯一的 map_name 是 yes-no，因此我們可以省略它。
 
-呼叫 `.output_match_fn_all_in_one_by_language_and_key(Regular)?` 會生成如下程式碼：
+呼叫 `.output_match_fn_all_in_one_without_map_name(Regular)?` 會生成如下程式碼：
 
 ```rust
 pub(crate) const fn map(language: &[u8], key: &[u8]) -> &'static str {

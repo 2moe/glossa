@@ -44,15 +44,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match функција со име на јазик како клуч"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match функција со комбиниран клуч (јазик + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Користи само map_key како клуч (без map_name)"#####
     }
     b"output_phf" => r#####"Генерирај посебни phf map функции за јазици"#####,
     b"output_phf_all_in_one" => r#####"Спој ги сите phf карти во една функција"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map со обични стринг клучеви (не TupleKey)"#####
     }
     b"output_ron" => r#####"Експортирај стринг во RON формат"#####,

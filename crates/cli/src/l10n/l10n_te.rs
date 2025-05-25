@@ -26,15 +26,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"భాష పేరును కీగా ఉపయోగించే match ఫంక్షన్"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"కాంబైన్డ్ కీ (భాష+map_key) తో match ఫంక్షన్"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_keyని మాత్రమే కీగా ఉపయోగించు (map_name లేదు)"#####
     }
     b"output_phf" => r#####"భిన్న భాషలకు స్వతంత్ర phf మ్యాప్ ఫంక్షన్‌లు"#####,
     b"output_phf_all_in_one" => r#####"అన్ని phf మ్యాప్‌లను ఒక ఫంక్షన్‌లో కలుపు"#####,
-    b"output_phf_by_key" => r#####"సాధారణ స్ట్రింగ్ కీలతో phf మ్యాప్ (TupleKey కాదు)"#####,
+    b"output_phf_without_map_name" => r#####"సాధారణ స్ట్రింగ్ కీలతో phf మ్యాప్ (TupleKey కాదు)"#####,
     b"output_ron" => r#####"RON ఫార్మాట్‌లో స్ట్రింగ్ ఎగుమతి చేయి"#####,
     b"suffix" => r#####""హైలైట్-మ్యాప్" కొత్త సఫిక్స్"#####,
     b"syntax_name" => r#####"సింటాక్స్ పేరు"#####,

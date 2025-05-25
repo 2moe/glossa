@@ -32,15 +32,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"भाषानाव की असलेले एकीकृत मॅच फंक्शन"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"संयुक्त की (भाषा+map_key) असलेले मॅच फंक्शन"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"फक्त map_key की म्हणून वापरा (map_name वगळा)"#####
     }
     b"output_phf" => r#####"भाषानुसार स्वतंत्र phf नकाशे निर्माण करा"#####,
     b"output_phf_all_in_one" => r#####"सर्व phf नकाशे एकाच फंक्शनमध्ये समाविष्ट करा"#####,
-    b"output_phf_by_key" => r#####"सामान्य स्ट्रिंग की असलेली phf नकाशे (टपलकी नाही)"#####,
+    b"output_phf_without_map_name" => r#####"सामान्य स्ट्रिंग की असलेली phf नकाशे (टपलकी नाही)"#####,
     b"output_ron" => r#####"RON फॉरमॅटमध्ये स्ट्रिंग निर्यात करा"#####,
     b"suffix" => r#####"नवीन हायलाइट नकाशाचा प्रत्यय"#####,
     b"syntax_name" => r#####"सिंटॅक्स नाव"#####,

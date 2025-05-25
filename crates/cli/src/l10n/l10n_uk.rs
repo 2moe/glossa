@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match-функція з назвою мови як ключем"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match-функція з ключем (мова + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Аналогічно output_match_fn, але використовує лише map_key (без map_name)"#####
     }
     b"output_phf" => r#####"Генерувати окремі phf-map функції для кожної мови"#####,
     b"output_phf_all_in_one" => r#####"Об'єднати всі phf-map в одну функцію"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf-map зі звичайними рядковими ключами (не TupleKey)"#####
     }
     b"output_ron" => r#####"Експортувати дані у форматі RON"#####,

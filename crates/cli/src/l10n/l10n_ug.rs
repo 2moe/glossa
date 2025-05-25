@@ -38,10 +38,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"تىل ئىسمى كۇنۇپكا بولغان بىر match فونكسىيە"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"بىرلەشكەن كۇنۇپكا (تىل+map_key) بىلەن match فونكسىيە"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"پەقەت map_key نى كۇنۇپكا قىلىپ (map_name يوق)"#####
     }
     b"output_phf" => {
@@ -50,7 +50,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"بارلىق phf خەرىتىلەرنى بىر فونكسىيەگە چىقىرىش"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"ئادەتتىكى تېمىس كۇنۇپكىسى بىلەن phf خەرىتە (TupleKey ئەمەس)"#####
     }
     b"output_ron" => r#####"RON فورماتىدىكى تېمىسنى چىقىرىش"#####,

@@ -30,15 +30,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"භාෂා නාමය යතුරු ලෙස භාවිත කරන match කාර්යය"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"සංයුක්ත යතුරු සහිත match කාර්යය (භාෂා+map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"map_key පමණක් යතුරක් ලෙස භාවිතා කරන්න (map_name අඩංගු නොවේ)"#####
     }
     b"output_phf" => r#####"භාෂාවලට වෙන්වූ phf සිතියම් කාර්යයන් ජනනය කරන්න"#####,
     b"output_phf_all_in_one" => r#####"සියලු phf සිතියම් එක් කාර්යයකට එක් කරන්න"#####,
-    b"output_phf_by_key" => r#####"සාමාන්ය පේළි යතුරු සහිත phf සිතියම් (TupleKey නොවේ)"#####,
+    b"output_phf_without_map_name" => r#####"සාමාන්ය පේළි යතුරු සහිත phf සිතියම් (TupleKey නොවේ)"#####,
     b"output_ron" => r#####"RON ආකෘතියෙන් පේළිය නිර්යාත කරන්න"#####,
     b"suffix" => r#####""Highlight-Map" අලුත් පසුප්රත්යය"#####,
     b"syntax_name" => r#####"වාක්ය රචනයේ නාමය"#####,

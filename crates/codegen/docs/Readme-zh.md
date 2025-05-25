@@ -44,7 +44,7 @@
     - [生成代码: 包含 match-expr 的 const 函数](#生成代码-包含-match-expr-的-const-函数)
       - [**output\_match\_fn()**](#output_match_fn)
       - [**output\_match\_fn\_all\_in\_one()**](#output_match_fn_all_in_one)
-      - [**output\_match\_fn\_all\_in\_one\_by\_language\_and\_key()**](#output_match_fn_all_in_one_by_language_and_key)
+      - [**output\_match\_fn\_all\_in\_one\_by\_language\_and\_key()**](#output_match_fn_all_in_one_without_map_name)
     - [生成代码: 包含 phf map 的 const 函数](#生成代码-包含-phf-map-的-const-函数)
       - [**output\_phf()**](#output_phf)
       - [**output\_phf\_all\_in\_one()**](#output_phf_all_in_one)
@@ -546,7 +546,7 @@ MapType::DSL 只能输出为 bincode，而其他 MapType 支持所有的输出�
       - en => tmp/l10n_en.rs
       - en-GB => tmp/l10n_en_gb.rs
   - rs 文件内容为 `const fn map(map_name: &[u8], key: &[u8]) -> &'static str {...}`
-- `.output_match_fn_by_key() {...}`
+- `.output_match_fn_without_map_name() {...}`
   - 为不同的语言生成独立的 rust 代码文件
   - rs 文件内容为 `const fn map(key: &[u8]) -> &'static str {...}`
 - `.output_match_fn_all_in_one() {...}`
@@ -556,7 +556,7 @@ MapType::DSL 只能输出为 bincode，而其他 MapType 支持所有的输出�
   - 将所有语言的本地化资源都收集为一个字符串
     - 其内容为 `const fn map(language: &[u8]) -> &'static str {...}`
     - 只有当 map_name 和 key 都只有唯一一个时，您才能使用此函数，否则 map_name 和 key 会出现冲突。
-- `.output_match_fn_all_in_one_by_language_and_key()`
+- `.output_match_fn_all_in_one_without_map_name()`
   - 将所有语言的本地化资源都收集为一个字符串
     - 其内容为 `const fn map(language: &[u8], key: &[u8]) -> &'static str {...}`
     - 只有当 map_name 只有唯一一个时，您才能使用此函数，否则 key 会出现冲突。
@@ -637,7 +637,7 @@ pub(crate) const fn map(lang: &[u8], map_name: &[u8], key: &[u8]) -> &'static st
 }
 ```
 
-##### **output_match_fn_all_in_one_by_language_and_key()**
+##### **output_match_fn_all_in_one_without_map_name()**
 
 当 map_name 只有唯一一个时，我们可以省略它，以此来达到性能优化的目的。
 
@@ -651,7 +651,7 @@ match (lang, map_name, key) { ... }
 
 将两段 match 表达式进行对比：由于前者少匹配了一个项，所以从理论上来说，前者会更快。
 
-`output_match_fn_all_in_one_by_language_and_key()` 会生成类似于前者的代码。
+`output_match_fn_all_in_one_without_map_name()` 会生成类似于前者的代码。
 
 您如果不关心纳秒级别的性能优化，那么完全不用在意这一小节的内容。
 
@@ -664,7 +664,7 @@ match (lang, map_name, key) { ... }
 
 在本例中，唯一的 map_name 是 yes-no，因此我们可以省略它。
 
-调用 `.output_match_fn_all_in_one_by_language_and_key(Regular)?` 会生成如下代码：
+调用 `.output_match_fn_all_in_one_without_map_name(Regular)?` 会生成如下代码：
 
 ```rust
 pub(crate) const fn map(language: &[u8], key: &[u8]) -> &'static str {

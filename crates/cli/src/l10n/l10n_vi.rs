@@ -36,15 +36,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Hàm match sử dụng tên ngôn ngữ làm khóa"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Hàm match với khóa kết hợp (tên ngôn ngữ + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Chỉ sử dụng map_key làm khóa (không chứa map_name)"#####
     }
     b"output_phf" => r#####"Tạo hàm phf map riêng cho từng ngôn ngữ"#####,
     b"output_phf_all_in_one" => r#####"Kết hợp tất cả phf map vào một hàm"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map sử dụng chuỗi thường làm khóa (không phải TupleKey)"#####
     }
     b"output_ron" => r#####"Xuất chuỗi theo định dạng RON"#####,

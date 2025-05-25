@@ -42,10 +42,10 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match ֆունկցիա լեզվի անվամբ որպես բանալի"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match ֆունկցիա համակցված բանալիով (լեզու + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Օգտագործել միայն map_key որպես բանալի (առանց map_name-ի)"#####
     }
     b"output_phf" => {
@@ -54,7 +54,7 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Բոլոր phf քարտեզների միավորում մեկ ֆունկցիայում"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf քարտեզ սովորական տողային բանալիով (ոչ TupleKey)"#####
     }
     b"output_ron" => r#####"Տողի արտահանում RON ձևաչափով"#####,

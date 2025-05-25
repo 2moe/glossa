@@ -30,15 +30,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"د ژبې نوم د کیلي په توګه match فانکشن"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"د ترکیبي کیلي سره match فانکشن (ژبه + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"یوازې map_key د کیلي په توګه کارول (map_name نه لري)"#####
     }
     b"output_phf" => r#####"د مختلفو ژبو لپاره د phf نقشه فانکشنونه جوړول"#####,
     b"output_phf_all_in_one" => r#####"ټولې phf نقشې په یو فانکشن کې یوځای کول"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"د عامو سترګو کیلي سره phf نقشه (نه TupleKey)"#####
     }
     b"output_ron" => r#####"په RON بڼه کې سترګه خپرول"#####,

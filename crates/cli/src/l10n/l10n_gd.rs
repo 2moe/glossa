@@ -38,17 +38,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Gnìomh match le ainm cànain mar iuchair"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Gnìomh match le iuchair còmhla (ainm cànain + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Cleachd map_key mar iuchair a-mhàin (gun map_name)"#####
     }
     b"output_phf" => r#####"Gin gnìomhan phf map airson diofar chànanan"#####,
     b"output_phf_all_in_one" => {
       r#####"Cuir a-mach phf map uile ann an aon ghnìomh"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map le iuchraichean sreang àbhaisteach (chan e TupleKey)"#####
     }
     b"output_ron" => r#####"Cuir a-mach sreang ann an cruth RON"#####,

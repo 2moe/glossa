@@ -38,15 +38,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Ekintu ekikwatana kikozese erinnya ly'olulimi"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Ekintu ekikwatana kikozese erinnya + map_key"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Kukozesa map_key okukka ekintu ekikulu (tetwaliramu map_name)"#####
     }
     b"output_phf" => r#####"Kukora phf map ezaawukana mu nnimi"#####,
     b"output_phf_all_in_one" => r#####"Kushushana phf map zonna mu kintu kimu"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map ezikozesa olukwegu olwa bulijjo (si TupleKey)"#####
     }
     b"output_ron" => r#####"Okushushana olukwegu lwa RON"#####,

@@ -28,15 +28,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Match fonksiyɔ kan dɔrɔn dɔ ka kan tɔgɔ ye"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match fonksiyɔ dɔrɔn dɔ (kan tɔgɔ + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Map_key dɔrɔn de bɛ baara kɛ (map_name tɛ kɛ)"#####
     }
     b"output_phf" => r#####"PHF mɛpifiriw labɛn don kan kɔnɔ"#####,
     b"output_phf_all_in_one" => r#####"PHF mɛpi bɛɛ taa fonksiyɔ kelen na"#####,
-    b"output_phf_by_key" => r#####"PHF mɛpi kuru dɔrɔnw (TupleKey tɛ)"#####,
+    b"output_phf_without_map_name" => r#####"PHF mɛpi kuru dɔrɔnw (TupleKey tɛ)"#####,
     b"output_ron" => r#####"RON format kɔnɔ kuru bɔ"#####,
     b"suffix" => r#####"Kura "Highlight-Map" ka suffixe"#####,
     b"syntax_name" => r#####"Sɛntaksɛ tɔgɔ"#####,

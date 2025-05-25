@@ -32,15 +32,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fungsi match dengan nama bahasa sebagai kunci"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fungsi match dengan kunci gabungan (bahasa + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Hanya gunakan map_key sebagai kunci (tanpa map_name)"#####
     }
     b"output_phf" => r#####"Buat fungsi phf map terpisah per bahasa"#####,
     b"output_phf_all_in_one" => r#####"Gabung semua phf map dalam satu fungsi"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map dengan kunci string biasa (bukan TupleKey)"#####
     }
     b"output_ron" => r#####"Ekspor string dalam format RON"#####,

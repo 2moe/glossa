@@ -30,15 +30,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Fonksyon match avek non langaz kouma kle"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Fonksyon match avek kle konbine (langaz + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Sir map_key kouma kle selman (pa ena map_name)"#####
     }
     b"output_phf" => r#####"Gener fonksyon phf map separe pou langaz"#####,
     b"output_phf_all_in_one" => r#####"Met tou phf map dan enn sel fonksyon"#####,
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"phf map avek kle string ordinær (pa TupleKey)"#####
     }
     b"output_ron" => r#####"Sorti string dan format RON"#####,

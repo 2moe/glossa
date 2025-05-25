@@ -42,17 +42,17 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"I-match function enegama lesiLimi njengesihluthuli"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"I-match function enesihluthuli esihlanganisiwe (igama lesiLimi + map_key)"#####
     }
-    b"output_match_fn_by_key" => {
+    b"output_match_fn_without_map_name" => {
       r#####"Sebenzisa i-map_key kuphela njengesihluthuli (akufaki i-map_name)"#####
     }
     b"output_phf" => r#####"Dala ama-phf map functions ahlukene ngezilimi"#####,
     b"output_phf_all_in_one" => {
       r#####"Hlanganisa zonke iziphakamiso ze-phf map kufayela elilodwa"#####
     }
-    b"output_phf_by_key" => {
+    b"output_phf_without_map_name" => {
       r#####"I-phf map enezihluthuli eziyimvumelwano (hhayi i-TupleKey)"#####
     }
     b"output_ron" => r#####"Khipha uchungechunge ngefomethi ye-RON"#####,

@@ -28,13 +28,15 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_by_language" => {
       r#####"Function match gi nying kod molil"#####
     }
-    b"output_match_fn_all_in_one_by_language_and_key" => {
+    b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Function match gi nying kod gi map_key"#####
     }
-    b"output_match_fn_by_key" => r#####"Tiyo map_key kodi (map_name onge)"#####,
+    b"output_match_fn_without_map_name" => {
+      r#####"Tiyo map_key kodi (map_name onge)"#####
+    }
     b"output_phf" => r#####"Ket phf map machielgi kode duto"#####,
     b"output_phf_all_in_one" => r#####"Goy phf map duto e function achiel"#####,
-    b"output_phf_by_key" => r#####"phf map gi string kodi (kama TupleKey)"#####,
+    b"output_phf_without_map_name" => r#####"phf map gi string kodi (kama TupleKey)"#####,
     b"output_ron" => r#####"Goy string e format RON"#####,
     b"suffix" => r#####"Yien map manyien mar "Highlight-Map""#####,
     b"syntax_name" => r#####"Nying syntax"#####,
