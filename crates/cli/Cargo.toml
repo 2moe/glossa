@@ -9,6 +9,7 @@ keywords = ["i18n", "l10n", "cli"]
 categories = ["internationalization", "command-line-interface"]
 repository.workspace = true
 rust-version.workspace = true
+description = "A command-line (binary) tool that generates Rust source code or bincode files containing localized text by calling the glossa-codegen API."
 
 [dependencies]
 ahash.workspace = true
