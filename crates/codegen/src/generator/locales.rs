@@ -283,22 +283,23 @@ pub(crate) fn ensure_length_equal(
 
 #[cfg(test)]
 mod tests {
+  use glossa_shared::display::puts;
+
   use super::*;
   use crate::generator::dbg_generator::new_generator;
 
   #[ignore]
   #[test]
   fn test_list_all_locales() -> AnyResult<()> {
-    let s = new_generator()
+    new_generator()
       .with_visibility(crate::Visibility::Pub)
       .output_locales_fn(
         MapType::Regular,
         // false,
         true,
-      )?;
-    println!("{s}");
-
-    Ok(())
+      )?
+      .pipe_ref(puts)
+      .pipe(Ok)
   }
 
   #[ignore]
@@ -331,11 +332,11 @@ mod tests {
   #[ignore]
   #[test]
   fn test_output_mod_rs() -> AnyResult<()> {
-    let s = new_generator()
+    new_generator()
       .with_mod_visibility(crate::Visibility::PubCrate)
-      .output_mod_rs(MapType::Regular)?;
-    println!("{s}");
-    Ok(())
+      .output_mod_rs(MapType::Regular)?
+      .pipe_ref(puts)
+      .pipe(Ok)
   }
 
   #[test]
@@ -366,8 +367,9 @@ mod tests {
   #[ignore]
   #[test]
   fn test_output_cargo_features() -> AnyResult<()> {
-    let s = new_generator().output_cargo_features(MapType::DSL)?;
-    println!("{s}");
-    Ok(())
+    new_generator()
+      .output_cargo_features(MapType::DSL)?
+      .pipe_ref(puts)
+      .pipe(Ok)
   }
 }

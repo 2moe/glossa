@@ -80,65 +80,80 @@ pub struct GeneratorOpt {
   mod_prefix: Option<MiniStr>,
 
   // -------
-  #[arg(long, help_heading = "Output",
+  #[arg(long, help_heading = "Output Files",
     help = get_text("output_bincode", None),
   )]
   output_bincode: bool,
 
-  #[arg(long, help_heading = "Output",
+  #[arg(long, help_heading = "Output File",
     help = get_text("output_bincode_all_in_one", None),
   )]
   output_bincode_all_in_one: bool,
 
-  #[arg(long, help_heading = "Output", group = "output_map_fn",
+  #[arg(long, help_heading = "Output Files", group = "output_map_fn",
     help = get_text("output_match_fn", None),
   )]
   output_match_fn: bool,
 
-  #[arg(long, help_heading = "Output", group = "output_map_fn",
+  #[arg(long, help_heading = "Output Files", group = "output_map_fn",
     help = get_text("output_match_fn_by_key", None),
   )]
   output_match_fn_by_key: bool,
 
-  #[arg(long, help_heading = "Output",
+  #[arg(long, help_heading = "Output File",
     help = get_text("output_match_fn_all_in_one", None),
   )]
   output_match_fn_all_in_one: bool,
 
-  #[arg(long, help_heading = "Output",
+  #[arg(long, help_heading = "Output File",
     help = get_text("output_match_fn_all_in_one_by_language", None),
   )]
   output_match_fn_all_in_one_by_language: bool,
 
-  #[arg(long, help_heading = "Output",
+  #[arg(long, help_heading = "Output File",
     help = get_text("output_match_fn_all_in_one_by_language_and_key", None),
   )]
   output_match_fn_all_in_one_by_language_and_key: bool,
 
-  #[arg(long, help_heading = "Output", group = "output_map_fn",
+  #[arg(long, help_heading = "Output Files", group = "output_map_fn",
     help = get_text("output_phf", None),
   )]
   output_phf: bool,
 
-  #[arg(long, help_heading = "Output", group = "output_map_fn",
+  #[arg(long, help_heading = "Output Files", group = "output_map_fn",
     help = get_text("output_phf_by_key", None),
   )]
   output_phf_by_key: bool,
 
-  #[arg(long, help_heading = "Output",
+  #[arg(long, help_heading = "Output File",
     help = get_text("output_phf_all_in_one", None),
   )]
   output_phf_all_in_one: bool,
 
-  #[arg(long, help_heading = "Output",
+  #[arg(long, help_heading = "Output String",
+    help = get_text("output_ron", None),
+  )]
+  output_ron: bool,
+
+  #[arg(long, help_heading = "Output String",
     help = get_text("output_locales_fn", None),
   )]
   output_locales_fn: bool,
 
-  #[arg(long, help_heading = "Output Debug",
-    help = get_text("output_ron", None),
-  )]
-  output_ron: bool,
+  #[arg(long, help_heading = "Output String")]
+  output_raw_locales: bool,
+
+  #[arg(long, help_heading = "Output String")]
+  output_mod_rs: bool,
+
+  #[arg(long, help_heading = "Output String")]
+  output_cargo_features: bool,
+
+  #[arg(long, help_heading = "Output String")]
+  output_router_for_match_fns: bool,
+
+  #[arg(long, help_heading = "Output String")]
+  output_router_for_match_fns_without_map_name: bool,
 }
 
 #[derive(Parser, Debug, Getters, Clone)]

@@ -41,10 +41,6 @@ impl Cli {
   }
 }
 
-pub fn puts<T: core::fmt::Display>(msg: &T) {
-  println!("{msg}")
-}
-
 fn to_kstr(s: &MiniStr) -> KString {
   KString::from_ref(s)
 }

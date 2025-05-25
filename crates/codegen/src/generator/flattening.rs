@@ -146,7 +146,7 @@ fn parse_language_id(language: &str) -> LangID {
 
 #[cfg(test)]
 mod tests {
-  use glossa_shared::type_aliases::ahash::HashMap;
+  use glossa_shared::{tap::Pipe, type_aliases::ahash::HashMap};
   type L10nHashMap = HashMap<(KString, KString), MiniStr>;
 
   use anyhow::{Result as AnyResult, bail};
@@ -159,15 +159,17 @@ mod tests {
   #[ignore]
   #[test]
   fn test_collect_tmpl_maps() -> AnyResult<()> {
+    use glossa_shared::display::puts;
+
     let all_maps = en_generator().flatten_dsl_maps();
 
     let Some((_lang, map)) = all_maps.first_key_value() else {
       bail!("Empty map")
     };
 
-    let toml = toml::to_string_pretty(&map)?;
-    println!("{toml}");
-    Ok(())
+    toml::to_string_pretty(&map)?
+      .pipe_ref(puts)
+      .pipe(Ok)
   }
 
   #[ignore]

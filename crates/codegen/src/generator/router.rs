@@ -11,6 +11,23 @@ use crate::{
 };
 
 impl Generator<'_> {
+  /// Generates a function for routing to the appropriate module.
+  ///
+  /// Example: `self.output_router_for_match_fns(MapType::Regular, false)?`
+  ///
+  /// Output String Sample:
+  ///
+  /// ```ignore
+  /// pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
+  ///   match language {
+  ///     #[cfg(feature = "l10n-de")]
+  ///     b"de" => l10n_de::map(key),
+  ///     #[cfg(feature = "l10n-en-GB")]
+  ///     b"en-GB" => l10n_en_gb::map(key),
+  ///     _ => "",
+  ///   }
+  /// }
+  /// ```
   pub fn output_router_for_match_fns(
     &self,
     map_type: MapType,

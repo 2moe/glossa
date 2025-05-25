@@ -1,6 +1,8 @@
-use glossa_codegen::{AnyResult, Generator, glossa_shared::tap::Pipe};
+use glossa_codegen::{
+  AnyResult, Generator,
+  glossa_shared::{display::puts, tap::Pipe},
+};
 
-use super::puts;
 use crate::options::Cli;
 
 pub(crate) fn output_data<'a>(
@@ -14,6 +16,12 @@ pub(crate) fn output_data<'a>(
     generator
       .output_locales_fn(*map_type, true)?
       .pipe_ref(puts)
+  }
+
+  if *out_args.get_output_raw_locales() {
+    generator
+      .collect_raw_locales(*map_type)?
+      .pipe(|x| println!("{x:?}"))
   }
 
   if *out_args.get_output_ron() {

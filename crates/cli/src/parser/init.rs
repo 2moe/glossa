@@ -1,5 +1,7 @@
 use glossa_codegen::{
-  Generator, L10nResources, glossa_shared::tap::Pipe, highlight::HighlightCfgMap,
+  Generator, L10nResources,
+  glossa_shared::{display::puts, tap::Pipe},
+  highlight::HighlightCfgMap,
 };
 use log::{error, trace};
 
@@ -39,7 +41,7 @@ fn show_themes(map: &HighlightCfgMap) -> Option<()> {
         .themes
         .keys()
     })?
-    .for_each(|k| println!("{k}"));
+    .for_each(puts);
 
   Some(())
 }

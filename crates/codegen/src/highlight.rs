@@ -310,16 +310,6 @@ float = nan
     Ok(())
   }
 
-  // #[ignore]
-  // #[test]
-  // fn test_build_highlight_toml() -> AnyResult<()> {
-  //   let hmap = new_highlight_map();
-  //   let s = toml::to_string_pretty(&hmap)?;
-  //   println!("{s}");
-
-  //   Ok(())
-  // }
-
   #[ignore]
   #[test]
   fn test_build_maps() -> AnyResult<()> {
