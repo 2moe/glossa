@@ -42,7 +42,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"বিভিন্ন ভাষাৰ বাবে পৃথক phf মেপ ফাংচন সৃষ্টি কৰক"#####,
     b"output_phf_all_in_one" => r#####"সকলো phf মেপ এটা ফাংচনত সংযুক্ত কৰক"#####,
-    b"output_phf_without_map_name" => r#####"সাধাৰণ ষ্ট্ৰিং কীৰে phf মেপ (TupleKey নহয়)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"সাধাৰণ ষ্ট্ৰিং কীৰে phf মেপ (TupleKey নহয়)"#####
+    }
     b"output_ron" => r#####"RON ফৰ্মাটত ষ্ট্ৰিং এক্সপ'ৰ্ট কৰক"#####,
     b"suffix" => r#####""হাইলাইট-মেপ" ৰ নতুন প্ৰত্যয়"#####,
     b"syntax_name" => r#####"চিন্টেক্স নাম"#####,

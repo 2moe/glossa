@@ -38,7 +38,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"ભાષા-આધારિત phf મેપ ફંક્શન્સ જનરેટ કરો"#####,
     b"output_phf_all_in_one" => r#####"બધી phf મેપ્સને એક ફંક્શનમાં એકત્રિત કરો"#####,
-    b"output_phf_without_map_name" => r#####"સાદા સ્ટ્રિંગ કી સાથે phf મેપ (TupleKey નહીં)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"સાદા સ્ટ્રિંગ કી સાથે phf મેપ (TupleKey નહીં)"#####
+    }
     b"output_ron" => r#####"RON ફોર્મેટમાં સ્ટ્રિંગ એક્સપોર્ટ કરો"#####,
     b"suffix" => r#####""હાઇલાઇટ-મેપ" નું નવું સફિક્સ"#####,
     b"syntax_name" => r#####"સિન્ટેક્સ નામ"#####,

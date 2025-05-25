@@ -38,7 +38,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"භාෂාවලට වෙන්වූ phf සිතියම් කාර්යයන් ජනනය කරන්න"#####,
     b"output_phf_all_in_one" => r#####"සියලු phf සිතියම් එක් කාර්යයකට එක් කරන්න"#####,
-    b"output_phf_without_map_name" => r#####"සාමාන්ය පේළි යතුරු සහිත phf සිතියම් (TupleKey නොවේ)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"සාමාන්ය පේළි යතුරු සහිත phf සිතියම් (TupleKey නොවේ)"#####
+    }
     b"output_ron" => r#####"RON ආකෘතියෙන් පේළිය නිර්යාත කරන්න"#####,
     b"suffix" => r#####""Highlight-Map" අලුත් පසුප්රත්යය"#####,
     b"syntax_name" => r#####"වාක්ය රචනයේ නාමය"#####,

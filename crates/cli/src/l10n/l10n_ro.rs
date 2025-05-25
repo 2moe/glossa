@@ -48,7 +48,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Consolidează toate phf map-urile într-o funcție"#####
     }
-    b"output_phf_without_map_name" => r#####"phf map cu chei șir obișnuite (nu TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map cu chei șir obișnuite (nu TupleKey)"#####
+    }
     b"output_ron" => r#####"Exportă șir în format RON"#####,
     b"suffix" => r#####"Sufixul noului "Highlight-Map""#####,
     b"syntax_name" => r#####"Nume sintaxă"#####,

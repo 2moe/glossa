@@ -40,7 +40,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"ለተለያዩ ቋንቋዎች phf ካርታ ፋይሎችን ፍጠር"#####,
     b"output_phf_all_in_one" => r#####"ሁሉንም phf ካርታዎች በአንድ ፋይል ውስጥ አስገባ"#####,
-    b"output_phf_without_map_name" => r#####"መደበኛ ገለፃ ቁልፍ ያለው phf ካርታ (TupleKey አይደለም)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"መደበኛ ገለፃ ቁልፍ ያለው phf ካርታ (TupleKey አይደለም)"#####
+    }
     b"output_ron" => r#####"RON ፎርማት ያለውን ገለፃ አስገባ"#####,
     b"suffix" => r#####""ብሩህ-ካርታ" አዲስ ቅጥያ"#####,
     b"syntax_name" => r#####"የሰዋሰው ስም"#####,

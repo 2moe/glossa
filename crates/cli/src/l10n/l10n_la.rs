@@ -50,7 +50,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Consolidare Omnes Maps PHF in Unam Functionem"#####
     }
-    b"output_phf_without_map_name" => r#####"Map PHF cum Clavibus Filorum (Non TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"Map PHF cum Clavibus Filorum (Non TupleKey)"#####
+    }
     b"output_ron" => r#####"Exportare Filum in Formato RON"#####,
     b"suffix" => r#####"Suffixum Novi "Highlight-Map""#####,
     b"syntax_name" => r#####"Nomen Syntaxeos"#####,

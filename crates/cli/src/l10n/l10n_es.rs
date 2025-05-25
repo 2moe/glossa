@@ -46,7 +46,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"unificar todas las phf map en una función"#####
     }
-    b"output_phf_without_map_name" => r#####"phf map con claves string (no TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map con claves string (no TupleKey)"#####
+    }
     b"output_ron" => r#####"generar string en formato RON"#####,
     b"suffix" => r#####"sufijo para nuevas Highlight-Maps"#####,
     b"syntax_name" => r#####"nombre de sintaxis"#####,

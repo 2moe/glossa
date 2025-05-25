@@ -38,7 +38,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"भाषा-विशिष्ट phf मैप फ़ंक्शन बनाएं"#####,
     b"output_phf_all_in_one" => r#####"सभी phf मैप्स को एक फ़ंक्शन में संयोजित करें"#####,
-    b"output_phf_without_map_name" => r#####"सामान्य स्ट्रिंग कुंजी वाले phf मैप (TupleKey नहीं)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"सामान्य स्ट्रिंग कुंजी वाले phf मैप (TupleKey नहीं)"#####
+    }
     b"output_ron" => r#####"RON प्रारूप में स्ट्रिंग निर्यात करें"#####,
     b"suffix" => r#####""हाइलाइट-मैप" का नया प्रत्यय"#####,
     b"syntax_name" => r#####"वाक्यविन्यास नाम"#####,

@@ -33,7 +33,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_without_map_name" => {
       r#####"언어명 + map_key 조합 키 사용 match 함수"#####
     }
-    b"output_match_fn_without_map_name" => r#####"map_key만 키로 사용 (map_name 제외)"#####,
+    b"output_match_fn_without_map_name" => {
+      r#####"map_key만 키로 사용 (map_name 제외)"#####
+    }
     b"output_phf" => r#####"언어별 독립적인 phf map 함수 생성"#####,
     b"output_phf_all_in_one" => r#####"모든 phf map을 단일 함수로 통합"#####,
     b"output_phf_without_map_name" => {

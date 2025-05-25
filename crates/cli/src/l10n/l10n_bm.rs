@@ -36,7 +36,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"PHF mɛpifiriw labɛn don kan kɔnɔ"#####,
     b"output_phf_all_in_one" => r#####"PHF mɛpi bɛɛ taa fonksiyɔ kelen na"#####,
-    b"output_phf_without_map_name" => r#####"PHF mɛpi kuru dɔrɔnw (TupleKey tɛ)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"PHF mɛpi kuru dɔrɔnw (TupleKey tɛ)"#####
+    }
     b"output_ron" => r#####"RON format kɔnɔ kuru bɔ"#####,
     b"suffix" => r#####"Kura "Highlight-Map" ka suffixe"#####,
     b"syntax_name" => r#####"Sɛntaksɛ tɔgɔ"#####,

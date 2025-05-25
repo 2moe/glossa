@@ -42,7 +42,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"PHF map funcionkunata simikunapaq ruway"#####,
     b"output_phf_all_in_one" => r#####"Llapa phf mapkuna huk funcionman"#####,
-    b"output_phf_without_map_name" => r#####"PHF map kaq stringwan (mana TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"PHF map kaq stringwan (mana TupleKey)"#####
+    }
     b"output_ron" => r#####"RON formato stringta apay"#####,
     b"suffix" => r#####"Musuq Highlight-Map qipan"#####,
     b"syntax_name" => r#####"Simi kamachiy sutin"#####,

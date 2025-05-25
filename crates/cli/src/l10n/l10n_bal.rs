@@ -42,7 +42,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"ویکّھے زباناں کٙی خودمختار phf میپ فَنکشنز"#####,
     b"output_phf_all_in_one" => r#####"سٙبھ phf میپز ہک فَنکشن اِچ مٙلاءِ کٙرٙ"#####,
-    b"output_phf_without_map_name" => r#####"عام سٹرنگ کلیداں سان phf میپ (TupleKey نٙہ)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"عام سٹرنگ کلیداں سان phf میپ (TupleKey نٙہ)"#####
+    }
     b"output_ron" => r#####"RON فارمیٹ اِچ سٹرنگ ایکسپورٹ کٙرٙ"#####,
     b"suffix" => r#####""Highlight-Map" کٙا نواں سَڄٙ"#####,
     b"syntax_name" => r#####"سِنٹیکس ناں"#####,

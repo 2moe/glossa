@@ -36,7 +36,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"Ket phf map machielgi kode duto"#####,
     b"output_phf_all_in_one" => r#####"Goy phf map duto e function achiel"#####,
-    b"output_phf_without_map_name" => r#####"phf map gi string kodi (kama TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map gi string kodi (kama TupleKey)"#####
+    }
     b"output_ron" => r#####"Goy string e format RON"#####,
     b"suffix" => r#####"Yien map manyien mar "Highlight-Map""#####,
     b"syntax_name" => r#####"Nying syntax"#####,

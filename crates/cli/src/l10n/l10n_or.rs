@@ -40,7 +40,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"ଭିନ୍ନ ଭାଷା ପାଇଁ phf ମ୍ୟାପ୍ ଫଙ୍କସନ୍ ସୃଷ୍ଟି କରନ୍ତୁ"#####,
     b"output_phf_all_in_one" => r#####"ସମସ୍ତ phf ମ୍ୟାପ୍ ଗୁଡିକୁ ଗୋଟିଏ ଫଙ୍କସନ୍ରେ ଏକତ୍ର କରନ୍ତୁ"#####,
-    b"output_phf_without_map_name" => r#####"ସାଧାରଣ ଷ୍ଟ୍ରିଂ କୀ ସହିତ phf ମ୍ୟାପ୍ (TupleKey ନୁହେଁ)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"ସାଧାରଣ ଷ୍ଟ୍ରିଂ କୀ ସହିତ phf ମ୍ୟାପ୍ (TupleKey ନୁହେଁ)"#####
+    }
     b"output_ron" => r#####"RON ଫର୍ମାଟରେ ଷ୍ଟ୍ରିଂ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ"#####,
     b"suffix" => r#####""ହାଇଲାଇଟ-ମ୍ୟାପ୍" ର ନୂତନ ସଫିକ୍ସ"#####,
     b"syntax_name" => r#####"ସିଣ୍ଟାକ୍ସ ନାମ"#####,

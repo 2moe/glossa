@@ -44,7 +44,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Madda phf map hunda function tokko keessatti"#####
     }
-    b"output_phf_without_map_name" => r#####"phf map jijjiirama qaamolee (hin TaplKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map jijjiirama qaamolee (hin TaplKey)"#####
+    }
     b"output_ron" => r#####"Baasii jijjiirama fomataa RON"#####,
     b"suffix" => r#####"Suffix haaraa "Highlight-Map""#####,
     b"syntax_name" => r#####"Maqaa syntax"#####,

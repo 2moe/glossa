@@ -44,7 +44,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Konsolide tout phf map nan yon sèl fonksyon"#####
     }
-    b"output_phf_without_map_name" => r#####"phf map ak kle chenn òdinè (pa TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map ak kle chenn òdinè (pa TupleKey)"#####
+    }
     b"output_ron" => r#####"Ekspòte chenn nan fòma RON"#####,
     b"suffix" => r#####"Sifiks Nouvo "Highlight-Map""#####,
     b"syntax_name" => r#####"Non Sentaks"#####,

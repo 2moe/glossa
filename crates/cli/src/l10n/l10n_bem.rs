@@ -46,7 +46,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Sanganisha phf map yonse mu function imo"#####
     }
-    b"output_phf_without_map_name" => r#####"Phf map ine key shalapo (shili TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"Phf map ine key shalapo (shili TupleKey)"#####
+    }
     b"output_ron" => r#####"Fumya ulubalushi mu format ya RON"#####,
     b"suffix" => r#####"Ishina lishya lya "Highlight-Map" ya kumapila"#####,
     b"syntax_name" => r#####"Ishina lya syntax"#####,

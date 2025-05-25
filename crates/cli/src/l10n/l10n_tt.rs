@@ -46,7 +46,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Барлык phf карталарны бер функциягә берләштерү"#####
     }
-    b"output_phf_without_map_name" => r#####"Гади юл ачкычлы phf карта (TupleKey түгел)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"Гади юл ачкычлы phf карта (TupleKey түгел)"#####
+    }
     b"output_ron" => r#####"RON форматтагы юлны чыгару"#####,
     b"suffix" => r#####"Яңа "Highlight-Map" суффиксы"#####,
     b"syntax_name" => r#####"Синтаксис исеме"#####,

@@ -40,7 +40,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"إنشاء دوال phf map منفصلة للغات"#####,
     b"output_phf_all_in_one" => r#####"دمج جميع خرائط phf في دالة واحدة"#####,
-    b"output_phf_without_map_name" => r#####"phf map بمفاتيح نصية عادية (ليست TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map بمفاتيح نصية عادية (ليست TupleKey)"#####
+    }
     b"output_ron" => r#####"تصدير سلسلة نصية بصيغة RON"#####,
     b"suffix" => r#####"لاحقة جديدة لـ"الخريطة المضيئة""#####,
     b"syntax_name" => r#####"اسم التركيب النحوي"#####,

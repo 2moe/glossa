@@ -46,7 +46,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Gwirizanitsani ma phf map onse mu ntchito imodzi"#####
     }
-    b"output_phf_without_map_name" => r#####"phf map ndi mawu owoneka (osati TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map ndi mawu owoneka (osati TupleKey)"#####
+    }
     b"output_ron" => r#####"Tulutsani mawu mu RON format"#####,
     b"suffix" => r#####"Tsatoli latsopano la "Highlight-Map""#####,
     b"syntax_name" => r#####"Dzina la syntax"#####,

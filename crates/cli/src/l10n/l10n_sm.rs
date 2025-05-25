@@ -44,7 +44,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_phf_all_in_one" => {
       r#####"Fa'atasi uma phf map i se galuega e tasi"#####
     }
-    b"output_phf_without_map_name" => r#####"phf map ma ki masani (leai se TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map ma ki masani (leai se TupleKey)"#####
+    }
     b"output_ron" => r#####"Tu'u atu string i le faatulagaga RON"#####,
     b"suffix" => r#####"Fa'ai'uga fou o le "Highlight-Map""#####,
     b"syntax_name" => r#####"Igoa o le syntax"#####,

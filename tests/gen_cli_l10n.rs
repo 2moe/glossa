@@ -1,10 +1,8 @@
-use std::{any::Any, fs, io, process::Command};
+use std::{io, process::Command};
 
-use anyhow::Result as AnyResult;
-use glossa::MiniStr;
-use glossa_codegen::generator::to_lower_snake_case;
-use glossa_shared::fmt_compact;
-use tap::{Pipe, Tap};
+// use anyhow::Result as AnyResult;
+// use glossa::MiniStr;
+use tap::Tap;
 
 fn run_glossa_cli() -> Command {
   Command::new("glossa-cli").tap_mut(|x| {

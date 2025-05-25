@@ -27,10 +27,14 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_without_map_name" => {
       r#####"ຟັງຊັ່ນ match ດ້ວຍກະແຈປະສົມ (ຊື່ພາສາ+map_key)"#####
     }
-    b"output_match_fn_without_map_name" => r#####"ໃຊ້ map_key ເປັນກະແຈຢ່າງດຽວ (ບໍ່ມີ map_name)"#####,
+    b"output_match_fn_without_map_name" => {
+      r#####"ໃຊ້ map_key ເປັນກະແຈຢ່າງດຽວ (ບໍ່ມີ map_name)"#####
+    }
     b"output_phf" => r#####"ສ້າງຟັງຊັ່ນ phf map ແຍກຕ່າງຫາພາສາ"#####,
     b"output_phf_all_in_one" => r#####"ສົ່ງ phf map ທັງໝົດເຂົ້າໄຟລ໌ດຽວ"#####,
-    b"output_phf_without_map_name" => r#####"phf map ດ້ວຍກະແຈສະຕຣິງທຳມະດາ (ບໍ່ແມ່ນ TupleKey)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"phf map ດ້ວຍກະແຈສະຕຣິງທຳມະດາ (ບໍ່ແມ່ນ TupleKey)"#####
+    }
     b"output_ron" => r#####"ສົ່ງຂໍ້ມູນເປັນສະຕຣິງ RON"#####,
     b"suffix" => r#####"ນາມສະກຸນໃໝ່ຂອງ "ແຜນທີ່ເດັ່ນ""#####,
     b"syntax_name" => r#####"ຊື່ໂຄງສ້າງ"#####,

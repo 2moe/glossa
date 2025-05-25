@@ -36,7 +36,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"ਭਾਸ਼ਾਵਾਂ ਲਈ ਅਲੱਗ phf ਮੈਪ ਫੰਕਸ਼ਨ ਬਣਾਓ"#####,
     b"output_phf_all_in_one" => r#####"ਸਾਰੇ phf ਮੈਪ ਇੱਕ ਫੰਕਸ਼ਨ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰੋ"#####,
-    b"output_phf_without_map_name" => r#####"ਸਧਾਰਨ ਸਟ੍ਰਿੰਗ ਕੁੰਜੀਆਂ ਵਾਲੇ phf ਮੈਪ (TupleKey ਨਹੀਂ)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"ਸਧਾਰਨ ਸਟ੍ਰਿੰਗ ਕੁੰਜੀਆਂ ਵਾਲੇ phf ਮੈਪ (TupleKey ਨਹੀਂ)"#####
+    }
     b"output_ron" => r#####"RON ਫਾਰਮੈਟ ਵਿੱਚ ਸਟ੍ਰਿੰਗ ਐਕਸਪੋਰਟ ਕਰੋ"#####,
     b"suffix" => r#####"ਨਵੇਂ "ਹਾਈਲਾਈਟ-ਮੈਪ" ਦਾ ਪਿਛੇਤਰ"#####,
     b"syntax_name" => r#####"ਸਿੰਟੈਕਸ ਨਾਮ"#####,

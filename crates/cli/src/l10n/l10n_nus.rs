@@ -25,7 +25,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     b"output_match_fn_all_in_one_without_map_name" => {
       r#####"Match ku key (dhɔ̈k + map_key)"#####
     }
-    b"output_match_fn_without_map_name" => r#####"Map_key ee key, map_name aacï"#####,
+    b"output_match_fn_without_map_name" => {
+      r#####"Map_key ee key, map_name aacï"#####
+    }
     b"output_phf" => r#####"PHF map yic kɔc dhɔ̈kic"#####,
     b"output_phf_all_in_one" => r#####"PHF map dhɔ̈kic ku yic"#####,
     b"output_phf_without_map_name" => r#####"PHF map ku key lɛ̈k (mɛn TupleKey)"#####,

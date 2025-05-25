@@ -40,7 +40,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"الڳ زبانن لاءِ phf نقشا فنڪشن ٺاهيو"#####,
     b"output_phf_all_in_one" => r#####"سڀ phf نقشا هڪ فنڪشن ۾ گڏيو"#####,
-    b"output_phf_without_map_name" => r#####"عام اسٽرنگ ڪلي سان phf نقشا (TupleKey ناهي)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"عام اسٽرنگ ڪلي سان phf نقشا (TupleKey ناهي)"#####
+    }
     b"output_ron" => r#####"RON فارميٽ ۾ اسٽرنگ ڪڍيو"#####,
     b"suffix" => r#####"نئين "Highlight-Map" جو سڏايو"#####,
     b"syntax_name" => r#####"سِنٽيڪس نالو"#####,

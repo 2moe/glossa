@@ -34,7 +34,9 @@ pub(crate) const fn map(key: &[u8]) -> &'static str {
     }
     b"output_phf" => r#####"భిన్న భాషలకు స్వతంత్ర phf మ్యాప్ ఫంక్షన్‌లు"#####,
     b"output_phf_all_in_one" => r#####"అన్ని phf మ్యాప్‌లను ఒక ఫంక్షన్‌లో కలుపు"#####,
-    b"output_phf_without_map_name" => r#####"సాధారణ స్ట్రింగ్ కీలతో phf మ్యాప్ (TupleKey కాదు)"#####,
+    b"output_phf_without_map_name" => {
+      r#####"సాధారణ స్ట్రింగ్ కీలతో phf మ్యాప్ (TupleKey కాదు)"#####
+    }
     b"output_ron" => r#####"RON ఫార్మాట్‌లో స్ట్రింగ్ ఎగుమతి చేయి"#####,
     b"suffix" => r#####""హైలైట్-మ్యాప్" కొత్త సఫిక్స్"#####,
     b"syntax_name" => r#####"సింటాక్స్ పేరు"#####,
