@@ -7,6 +7,17 @@ pub enum Visibility {
   // Custom(MiniStr),
 }
 
+impl core::fmt::Display for Visibility {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> std::fmt::Result {
+    let s = self.as_str();
+    let space = match s {
+      "" => "",
+      _ => " ",
+    };
+    write!(f, "{s}{space}",)
+  }
+}
+
 impl From<&str> for Visibility {
   fn from(value: &str) -> Self {
     use Visibility::*;

@@ -10,8 +10,8 @@ fn cargo_publish() -> AnyResult<()> {
 
   [
     // "crates/codegen",
-    "crates/glossa",
-    // "crates/shared",
+    // "crates/glossa",
+    "crates/shared",
     // "crates/l10n",
     // "crates/cli",
     // "crates/ui",

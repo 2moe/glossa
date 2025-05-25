@@ -1,8 +1,12 @@
 pub(crate) mod flattening;
 mod init_lazy_data;
+pub(crate) mod locales;
+mod router;
+
 pub(crate) mod output_bincode;
 pub(crate) mod output_match;
 pub(crate) mod output_phf;
+
 use std::{io, path::PathBuf, sync::OnceLock};
 
 use getset::{Getters, MutGetters, WithSetters};
@@ -23,7 +27,10 @@ pub struct Generator<'h> {
   resources: Box<L10nResources>,
 
   #[getset(get_mut)]
+  /// function visibility
   visibility: Visibility,
+
+  mod_visibility: Visibility,
 
   #[getset(skip)]
   #[getset(get = "pub", get_mut = "pub")]
@@ -31,6 +38,7 @@ pub struct Generator<'h> {
 
   bincode_suffix: MiniStr,
   mod_prefix: MiniStr,
+  feature_prefix: MiniStr,
 
   #[getset(skip)]
   #[getset(get = "pub")]
@@ -123,6 +131,7 @@ impl Default for Generator<'_> {
   ///   bincode_suffix: ".bincode",
   ///   mod_prefix: "l10n_",
   ///   visibility: Visibility::PubCrate,
+  ///   mod_visibility: Visibility::Private,
   ///   ..Default::default()
   /// }
   /// ```
@@ -134,10 +143,11 @@ impl Default for Generator<'_> {
       // match_bound: 200,
       // doc: true,
       mod_prefix: MiniStr::const_new("l10n_"),
+      feature_prefix: MiniStr::const_new("l10n-"),
       // cargo_feature_prefix: "l10n-".into(),
       // overwrite: true,
       visibility: Default::default(),
-      // visibility_mod: Default::default(),
+      mod_visibility: Visibility::Private,
       highlight: Default::default(),
       lazy_maps: Default::default(),
     }

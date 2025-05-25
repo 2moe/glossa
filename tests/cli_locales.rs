@@ -53,7 +53,8 @@ fn test_gen_router_map() {
   let mut s = String::with_capacity(1024 * 16);
 
   s.push_str(
-    r##"
+    r##"use super::*;
+
   pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
   match language {
   "##,
@@ -80,5 +81,6 @@ fn test_gen_router_map() {
   "##,
   );
 
-  fs::write("tmp.locale-overview.rs", s).unwrap();
+  println!("{s}");
+  // fs::write("tmp.locale-router.rs", s).unwrap();
 }

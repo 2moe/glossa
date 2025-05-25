@@ -258,6 +258,10 @@ pub const fn map(language: &[u8], key: &[u8]) -> &'static str {
     b"yo" => l10n_yo::map(key),
     #[cfg(feature = "l10n_zh")]
     b"zh" => l10n_zh::map(key),
+    #[cfg(feature = "l10n_zh-Hant")]
+    b"zh-Hant" => l10n_zh_hant::map(key),
+    #[cfg(feature = "l10n_zh-Latn-CN")]
+    b"zh-Latn-CN" => l10n_zh_latn_cn::map(key),
     #[cfg(feature = "l10n_zu")]
     b"zu" => l10n_zu::map(key),
 

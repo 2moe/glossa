@@ -1,4 +1,4 @@
-pub const fn all_locales() -> [super::lang_id::LangID; 129] {
+pub const fn all_locales() -> [super::lang_id::LangID; 131] {
   #[allow(unused_imports)]
   use super::lang_id::RawID;
   use super::lang_id::consts::*;
@@ -131,6 +131,8 @@ pub const fn all_locales() -> [super::lang_id::LangID; 129] {
     lang_id_yi(),
     lang_id_yo(),
     lang_id_zh(),
+    lang_id_zh_hant(),
+    lang_id_zh_pinyin(),
     lang_id_zu(),
   ]
 }

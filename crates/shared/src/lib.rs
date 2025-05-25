@@ -47,3 +47,16 @@ pub mod decode;
 
 #[cfg(all(feature = "decode", feature = "std"))]
 pub mod load_bincode;
+
+#[cfg(feature = "std")]
+pub mod display {
+  /// `println!("{msg}");`
+  pub fn puts<T: core::fmt::Display>(msg: &T) {
+    println!("{msg}")
+  }
+
+  /// `eprintln!("{msg}");`
+  pub fn eputs<T: core::fmt::Display>(msg: &T) {
+    eprintln!("{msg}")
+  }
+}

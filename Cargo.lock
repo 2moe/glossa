@@ -542,7 +542,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-codegen"
-version = "0.0.7"
+version = "0.0.8"
 dependencies = [
  "anyhow",
  "bincode 2.0.1",
@@ -606,7 +606,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-shared"
-version = "0.0.4"
+version = "0.0.5"
 dependencies = [
  "ahash",
  "bincode 2.0.1",

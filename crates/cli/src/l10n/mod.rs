@@ -389,5 +389,11 @@ mod l10n_yo;
 #[cfg(feature = "l10n_zh")]
 mod l10n_zh;
 
+#[cfg(feature = "l10n_zh-Hant")]
+mod l10n_zh_hant;
+
+#[cfg(feature = "l10n_zh-Latn-CN")]
+mod l10n_zh_latn_cn;
+
 #[cfg(feature = "l10n_zu")]
 mod l10n_zu;

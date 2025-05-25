@@ -237,13 +237,14 @@ impl<'h> Generator<'h> {
     language: &D,
   ) -> io::Result<BufWriter<File>> {
     let mod_prefix = self.get_mod_prefix();
+    let feat_prefix = self.get_feature_prefix();
     let rs_file_name =
       fmt_compact!("{mod_prefix}{}.rs", to_lower_snake_case(language));
+    let mod_name = rs_file_name.trim_end_matches(".rs");
 
     eprintln!(
-      "#[cfg(feature = \"{mod_prefix}{language}\")]\n\
-      mod {};\n",
-      rs_file_name.trim_end_matches(".rs")
+      "#[cfg(feature = \"{feat_prefix}{language}\")]\n\
+      mod {mod_name};\n",
     );
 
     let out_dir = self.get_outdir().as_deref();

@@ -1,0 +1,37 @@
+outdir = "輸出的目錄"
+visibility = "生成的程式碼的可見性"
+bincode_suffix = "bincode檔案字尾"
+mod_prefix = 'mod 檔案字首 (預設 "l10n_")'
+
+output_bincode = "為不同的語言生成獨立的 bincode 檔案"
+output_bincode_all_in_one = "將所有語言的 bincode 輸出到同一個檔案"
+output_match_fn = "為不同的語言生成獨立的 rust 程式碼的檔案 (包含match表示式的函式)"
+output_match_fn_by_key = "類似於 output_match_fn，但生成的函式只以 map_key 作為 key, 不包含 map_name"
+output_match_fn_all_in_one = "將所有語言的資料都輸出為一個match函式（字串）"
+output_match_fn_all_in_one_by_language = "將所有語言的資料輸出為同一個match 函式（字串），key 為語言名"
+output_match_fn_all_in_one_by_language_and_key = "將所有語言的資料輸出為同一個 match 函式（字串），key 為語言名和 map_key"
+output_phf = "為不同語言生成獨立的 phf map 函式"
+output_phf_by_key = "類似於 output_phf, 但生成的函式的key 為普通字串，而不是 TupleKey"
+output_phf_all_in_one = "將所有語言的 phf map 輸出到同一個函式"
+output_locales_fn = "輸出 all_locales 函式"
+output_ron = "輸出為 ron 格式的字串"
+
+input = "本地化資源的源目錄"
+dsl_suffix = 'DSL 檔案字尾(預設 ".dsl")'
+include_languages = "白名單模式。當其不為空時，只有位於列表中的語言 id 才會被初始化"
+include_map_names = "當其不為空時，只有位於列表中的 map_names 才會被初始化"
+exclude_languages = "黑名單模式。位於黑名單中的語言 id 不會被初始化"
+exclude_map_names = "位於列表中的 map_names 不會被初始化"
+
+base_name = '基礎"高亮Map"的名稱'
+suffix = '新生成的"高亮Map"的字尾'
+true_color = "24位真彩色"
+syntax_name = "語法名稱"
+theme_name = "主題名稱"
+background = "是否啟用背景"
+custom_syntax_set = "自定義語法集檔案"
+custom_theme_set = "自定義主題集檔案"
+list_all_syntaxes = "顯示所有語法名稱及其副檔名"
+list_all_themes = "顯示所有主題名稱"
+
+display_config_dir = "顯示glossa的配置目錄"
