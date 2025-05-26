@@ -56,6 +56,7 @@ impl LocaleContext {
       Some(value) if value.split(':').count() >= 2 => {
         let custom = value
           .split(':')
+          .filter(|x| !x.is_empty())
           .map(|x| x.into())
           .collect::<SmallVec<_, 4>>();
         self.try_push_front_with_custom_chain(&custom)

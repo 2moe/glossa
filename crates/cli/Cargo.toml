@@ -3,12 +3,13 @@ name = "glossa-cli"
 authors.workspace = true
 edition.workspace = true
 # version.workspace = true
-version = "0.0.0"
+version = "0.0.1"
 license.workspace = true
-keywords = ["i18n", "l10n", "cli"]
-categories = ["internationalization", "command-line-interface"]
 repository.workspace = true
 rust-version.workspace = true
+keywords = ["i18n", "l10n", "cli"]
+categories = ["internationalization", "command-line-interface"]
+readme = "./docs/Readme.md"
 description = "A command-line (binary) tool that generates Rust source code or bincode files containing localized text by calling the glossa-codegen API."
 
 [dependencies]
@@ -18,15 +19,13 @@ directories.workspace = true
 env_logger.workspace = true
 getset.workspace = true
 glossa.workspace = true
-# glossa = { version = "0.0.1", path = "../glossa" }
-# compact_str = { workspace = true, features = ["std"] }
 glossa-codegen = { workspace = true, features = [
     "toml",
-    "yaml",
-    "highlight",
+    # "yaml",
+    # "highlight",
+    # "ron",
+    # "json5",
     "json",
-    "json5",
-    "ron",
 ] }
 # glossa-shared.workspace = true
 log.workspace = true
@@ -40,7 +39,18 @@ rustdoc-args = ["--cfg", "__unstable_doc"]
 workspace = true
 
 [features]
+highlight = ["glossa-codegen/highlight"]
+json5 = ["glossa-codegen/json5"]
+yaml = ["glossa-codegen/yaml"]
+ron = ["glossa-codegen/ron"]
+# json = ["glossa-codegen/json"]
+
 default = [
+    "highlight",
+    "json5",
+    "yaml",
+    "ron",
+    #
     "l10n-all",
     # "l10n-zh",
     # "l10n-en",

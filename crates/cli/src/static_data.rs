@@ -10,7 +10,7 @@ pub fn config_dir() -> &'static Path {
       .map(|d| d.config_local_dir().into())
     {
       Some(v) => v,
-      _ => std::env::temp_dir().join("me.tmoe.glossa"),
+      _ => std::env::temp_dir().join("me.tmoe.glossa/config"),
     };
 
     match crate::envs::static_glossa_cfg_dir() {

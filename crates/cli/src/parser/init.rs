@@ -83,12 +83,14 @@ pub(crate) fn init_generator(args: &Cli) -> Generator<'_> {
   log::trace!("raw generator args: {raw:#?}");
 
   Generator::default()
-    .with_visibility(
-      raw
-        .get_visibility()
-        .clone()
-        .unwrap_or_default(),
-    )
+    .pipe(|data| match raw.get_visibility() {
+      Some(vis) => data.with_visibility(vis.clone()),
+      _ => data,
+    })
+    .pipe(|data| match raw.get_mod_visibility() {
+      Some(vis) => data.with_mod_visibility(vis.clone()),
+      _ => data,
+    })
     .pipe(|data| match raw.get_outdir() {
       Some(outdir) => data.with_outdir(outdir),
       _ => data.with_outdir("tmp"),
@@ -99,6 +101,10 @@ pub(crate) fn init_generator(args: &Cli) -> Generator<'_> {
     })
     .pipe(|data| match raw.get_mod_prefix() {
       Some(prefix) => data.with_mod_prefix(prefix.clone()),
+      _ => data,
+    })
+    .pipe(|data| match raw.get_feature_prefix() {
+      Some(prefix) => data.with_feature_prefix(prefix.clone()),
       _ => data,
     })
 }

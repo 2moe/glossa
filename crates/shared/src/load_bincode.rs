@@ -1,7 +1,6 @@
 use std::{
   ffi::OsStr,
   path::{Path, PathBuf},
-  sync::OnceLock,
 };
 
 use compact_str::ToCompactString;
@@ -32,14 +31,6 @@ pub fn list_bincode_files(bincode_dir: Option<&Path>) -> Option<Vec<PathBuf>> {
     .filter(|x| !x.is_dir())
     .collect::<Vec<_>>()
     .pipe(|x| (!x.is_empty()).then_some(x))
-}
-
-pub fn list_static_bincode_files(
-  bincode_dir: Option<&Path>,
-) -> Option<&'static [PathBuf]> {
-  static V: OnceLock<Option<Vec<PathBuf>>> = OnceLock::new();
-  V.get_or_init(|| list_bincode_files(bincode_dir))
-    .as_deref()
 }
 
 pub fn try_load_files<P: AsRef<Path>>(files: &[P]) -> ResolverResult<L10nMaps> {

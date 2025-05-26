@@ -36,6 +36,7 @@ fn output_to_stdout<'a>(args: &Cli, generator: &'a Generator<'a>) -> AnyResult<(
       .pipe_ref(puts)
   }
 
+  // #[cfg(feature = "json")]
   if *out_args.get_output_cargo_features() {
     generator
       .output_cargo_features(*map_type)?

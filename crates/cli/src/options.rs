@@ -50,6 +50,7 @@ pub struct DbgOpt {
 pub struct GeneratorOpt {
   #[arg(
     long,
+    short = 'o',
     value_hint = clap::ValueHint::DirPath,
     help_heading = "Generator Core",
     value_name = "/path/to/output_dir",
@@ -67,17 +68,39 @@ pub struct GeneratorOpt {
   )]
   visibility: Option<Visibility>,
 
-  #[arg(long, value_name = "string",
+  #[arg(
+    long,
+    visible_alias = "mod-vis",
+    value_name = "pub| pub(crate)| pub(super)| private",
+    help_heading = "Generator Core"
+  )]
+  mod_visibility: Option<Visibility>,
+
+  #[arg(
+    long,
+    short = 'b',
+    value_name = "String",
     help_heading = "Generator Core",
     help = get_text("bincode_suffix", None),
   )]
   bincode_suffix: Option<MiniStr>,
 
-  #[arg(long, value_name = "string",
-  help_heading = "Generator Core",
-  help = get_text("mod_prefix", None),
+  #[arg(
+    long,
+    short = 'm',
+    value_name = "String",
+    help_heading = "Generator Core",
+    help = get_text("mod_prefix", None),
   )]
   mod_prefix: Option<MiniStr>,
+
+  #[arg(
+    long,
+    short = 'f',
+    value_name = "String",
+    help_heading = "Generator Core"
+  )]
+  feature_prefix: Option<MiniStr>,
 
   // -------
   #[arg(long, help_heading = "Output Files",
@@ -167,6 +190,7 @@ pub struct GeneratorOpt {
 pub struct ResourcesOpt {
   #[arg(
     long,
+    short = 'i',
     help_heading = "L10nResources",
     value_name = "/path/to/L10nDir",
     default_value = "locales",
@@ -174,13 +198,14 @@ pub struct ResourcesOpt {
   )]
   input: PathBuf,
 
-  #[arg(long, help_heading = "L10nResources", value_name = "string",
+  #[arg(long, help_heading = "L10nResources", value_name = "String",
     help = get_text("dsl_suffix", None),
   )]
   dsl_suffix: Option<MiniStr>,
 
   #[arg(
     long,
+    visible_alias = "langs",
     help_heading = "L10nResources",
     value_name = "en,zh,fr,ru,ar,es,etc.",
     value_delimiter = ',',
@@ -190,6 +215,7 @@ pub struct ResourcesOpt {
 
   #[arg(
     long,
+    visible_alias = "maps",
     help_heading = "L10nResources",
     value_name = "name1,name2,..",
     value_delimiter = ',',
@@ -199,6 +225,7 @@ pub struct ResourcesOpt {
 
   #[arg(
     long,
+    visible_alias = "ex-langs",
     help_heading = "L10nResources",
     value_name = "lang1,lang2,..",
     value_delimiter = ',',
@@ -208,6 +235,7 @@ pub struct ResourcesOpt {
 
   #[arg(
     long,
+    visible_alias = "ex-maps",
     value_name = "Vec<map_name>",
     help_heading = "L10nResources",
     value_name = "name1,name2,..",

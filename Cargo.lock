@@ -507,7 +507,7 @@ dependencies = [
 
 [[package]]
 name = "glossa"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "anyhow",
  "collect-with",
@@ -527,7 +527,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-cli"
-version = "0.0.0"
+version = "0.0.1"
 dependencies = [
  "ahash",
  "clap",
@@ -599,14 +599,14 @@ dependencies = [
 
 [[package]]
 name = "glossa-l10n"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "lang-id 0.0.20",
 ]
 
 [[package]]
 name = "glossa-shared"
-version = "0.0.7"
+version = "0.0.8"
 dependencies = [
  "ahash",
  "bincode 2.0.1",
@@ -626,7 +626,7 @@ dependencies = [
 
 [[package]]
 name = "glossa-ui"
-version = "0.0.5"
+version = "0.0.6"
 
 [[package]]
 name = "hashbrown"

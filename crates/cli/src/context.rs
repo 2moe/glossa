@@ -1,4 +1,7 @@
-use std::sync::Arc;
+use std::{
+  path::{Path, PathBuf},
+  sync::Arc,
+};
 
 use glossa::{
   LangID, LocaleContext, fallback::dbg_ref, misc::normalize_glossa_lang,
@@ -6,7 +9,7 @@ use glossa::{
 };
 use glossa_codegen::glossa_shared::{
   ToCompactString,
-  load_bincode::{self, list_static_bincode_files, try_load_files},
+  load_bincode::{self, list_bincode_files, try_load_files},
   tap::{Pipe, Tap},
   type_aliases::L10nMaps,
 };
@@ -68,6 +71,14 @@ pub fn bincode_exists() -> Option<()> {
     .map(|_| ())
 }
 
+fn list_static_bincode_files(
+  bincode_dir: Option<&Path>,
+) -> Option<&'static [PathBuf]> {
+  new_once_lock!(V: Option<Vec<PathBuf>>);
+  V.get_or_init(|| list_bincode_files(bincode_dir))
+    .as_deref()
+}
+
 pub fn static_bincode_resource() -> Option<&'static Arc<L10nMaps>> {
   bincode_exists()?;
 
@@ -95,8 +106,10 @@ pub fn static_bincode_context() -> Option<&'static LocaleContext> {
   L.get_or_init(|| {
     let locales = merge_locales()?;
     dbg_ref!(locales);
-    LocaleContext::default()
-      .with_current_locale(normalize_glossa_lang(static_glossa_lang()))
+
+    static_glossa_lang()
+      .pipe(normalize_glossa_lang)
+      .pipe(|x| LocaleContext::default().with_current_locale(x))
       .with_all_locales(locales)
       .tap_mut(compatible_with_gnu_language_colon_style)
       .pipe(Some)
@@ -117,8 +130,12 @@ pub(crate) fn merge_locales() -> Option<Box<[LangID]>> {
 pub(crate) fn static_locale_context() -> &'static LocaleContext {
   new_once_lock!(L: LocaleContext);
   L.get_or_init(|| {
-    LocaleContext::default()
-      .with_current_locale(normalize_glossa_lang(static_glossa_lang()))
+    let new_ctx_with_cur_locale =
+      |x| LocaleContext::default().with_current_locale(x);
+
+    static_glossa_lang()
+      .pipe(normalize_glossa_lang)
+      .pipe(new_ctx_with_cur_locale)
       .with_all_locales(crate::l10n::locale_registry::all_locales())
       .tap_mut(compatible_with_gnu_language_colon_style)
   })

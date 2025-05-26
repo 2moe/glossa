@@ -12,7 +12,7 @@ resolver = "3"
 [workspace.package]
 authors = ["Moe <m@tmoe.me>"]
 edition = "2024"
-version = "0.0.5"
+version = "0.0.6"
 license = "Apache-2.0"
 keywords = ["i18n", "l10n"]
 categories = ["internationalization", "localization"]
@@ -57,13 +57,13 @@ derive_more = { version = "2.0.1", default-features = false }
 # cli
 directories = "6.0.0"
 
-[workspace.dependencies.glossa-shared]
-version = "0.0.7"
-path = "crates/shared"
-
 [workspace.dependencies.glossa]
-version = "0.0.5"
+version = "0.0.6"
 path = "crates/glossa"
+
+[workspace.dependencies.glossa-shared]
+version = "0.0.8"
+path = "crates/shared"
 
 [workspace.dependencies.glossa-l10n]
 # path = "./crates/l10n"

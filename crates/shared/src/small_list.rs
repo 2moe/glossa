@@ -1,4 +1,4 @@
-use derive_more::{Deref, DerefMut};
+pub use derive_more::{Deref, DerefMut};
 pub use smallvec::SmallVec;
 use tap::Pipe;
 

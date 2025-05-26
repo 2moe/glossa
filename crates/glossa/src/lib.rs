@@ -37,7 +37,8 @@ pub mod misc {
   pub fn normalize_glossa_lang(language: Option<&str>) -> Option<LangID> {
     language.and_then(|v| {
       v.split(['.', '@', ':'])
-        .next()
+        .map(|x| x.trim_ascii())
+        .find(|x| !x.is_empty())
         .and_then(|x| x.parse().ok())
     })
   }
