@@ -64,7 +64,9 @@ impl Generator<'_> {
             }
             _ => fmt_compact!(r##"b"{locale}" => {mod_name}::map(key),"##),
           };
-          [cfg_line, match_line].map(|s| acc.push_str(&s));
+          [cfg_line, match_line]
+            .iter()
+            .for_each(|s| acc.push_str(s));
           acc.push('\n');
           acc
         },
@@ -121,7 +123,9 @@ impl Generator<'_> {
         |mut acc, ((feat, mod_name), locale)| {
           let cfg_line = fmt_compact!("  #[cfg(feature = \"{feat}\")]\n  ");
           let match_line = fmt_compact!(r##"b"{locale}" => {mod_name}::map(),"##);
-          [cfg_line, match_line].map(|s| acc.push_str(&s));
+          [cfg_line, match_line]
+            .iter()
+            .for_each(|s| acc.push_str(s));
           acc.push('\n');
           acc
         },

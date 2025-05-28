@@ -70,7 +70,7 @@ path = "crates/shared"
 version = "0.0.1"
 
 [workspace.dependencies.glossa-codegen]
-version = "0.0.8"
+version = "0.0.9"
 path = "crates/codegen"
 
 [workspace.dependencies.glossa-dsl]

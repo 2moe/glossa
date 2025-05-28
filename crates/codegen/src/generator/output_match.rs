@@ -43,7 +43,8 @@ impl<'h> Generator<'h> {
                 r###########"#####,"###########, // ###,
                 "\n",
               ]
-              .map(|s| acc.push_str(s));
+              .iter()
+              .for_each(|s| acc.push_str(s));
               acc
             },
           )
@@ -149,7 +150,8 @@ impl<'h> Generator<'h> {
             "#####,",
             "\n",
           ]
-          .map(|s| acc.push_str(s));
+          .iter()
+          .for_each(|s| acc.push_str(s));
           acc
         },
       )
@@ -179,8 +181,8 @@ impl<'h> Generator<'h> {
       .iter()
       .flat_map(|(lang, map_entry)| {
         map_entry
-          .iter()
-          .map(move |(_ks, v)| (lang, v))
+          .values()
+          .map(move |v| (lang, v))
       })
       .fold(
         new_header(), //
@@ -197,7 +199,8 @@ impl<'h> Generator<'h> {
             "#####,",
             "\n",
           ]
-          .map(|s| acc.push_str(s));
+          .iter()
+          .for_each(|s| acc.push_str(s));
           acc
         },
       )
@@ -271,7 +274,8 @@ impl<'h> Generator<'h> {
             "#####,",
             "\n",
           ]
-          .map(|s| acc.push_str(s));
+          .iter()
+          .for_each(|s| acc.push_str(s));
           acc
         },
       )
@@ -283,7 +287,9 @@ impl<'h> Generator<'h> {
   pub fn new_fn_header(&self, header: &str) -> String {
     let vis_fn = self.get_visibility().as_str();
     String::with_capacity(8192).tap_mut(|buf| {
-      [vis_fn, " ", header].map(|s| buf.push_str(s));
+      [vis_fn, " ", header]
+        .iter()
+        .for_each(|s| buf.push_str(s));
     })
   }
 
@@ -322,7 +328,8 @@ impl<'h> Generator<'h> {
                 r###########"#####,"###########, // ###,
                 "\n",
               ]
-              .map(|s| acc.push_str(s));
+              .iter()
+              .for_each(|s| acc.push_str(s));
               acc
             },
           )

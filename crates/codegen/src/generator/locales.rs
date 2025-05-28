@@ -67,7 +67,9 @@ impl Generator<'_> {
       return new_header()
         .tap_mut(|buf| {
           let push_str = |s| buf.push_str(s);
-          [&format!("{raw_locales:#?}"), "}\n"].map(push_str);
+          [&format!("{raw_locales:#?}"), "}\n"]
+            .into_iter()
+            .for_each(push_str);
         })
         .pipe(Ok);
     }
@@ -80,7 +82,9 @@ impl Generator<'_> {
         new_header(), //
         |mut acc, fn_name| {
           let push_str = |s| acc.push_str(s);
-          ["\n    ", &fn_name?, ","].map(push_str);
+          ["\n    ", &fn_name?, ","]
+            .into_iter()
+            .for_each(push_str);
           Ok::<_, anyhow::Error>(acc)
         },
       )?
@@ -96,15 +100,15 @@ impl Generator<'_> {
           .pipe(io::Error::other)
           .pipe(Err),
         data => data
-          .iter()
-          .map(|(id, _)| id.to_compact_string())
+          .keys()
+          .map(|id| id.to_compact_string())
           .collect_vec()
           .pipe(Ok),
       },
       _ => map_type
         .get_non_dsl_maps(self)?
-        .iter()
-        .map(|(id, _)| id.to_compact_string())
+        .keys()
+        .map(|id| id.to_compact_string())
         .collect_vec()
         .pipe(Ok),
     }

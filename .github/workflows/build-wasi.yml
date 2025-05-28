@@ -26,6 +26,39 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: actions/cache@v4
+        with:
+          # ~/.cargo/bin/
+          path: |
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: setup containerd-wasi
+        run: |
+          version = '0.6.0'
+          url = "https://github.com/containerd/runwasi/releases/download/containerd-shim-wasmtime%2Fv#{version}/containerd-shim-wasmtime-x86_64-linux-musl.tar.gz"
+          Dir.chdir 'tmp'
+
+          require 'open-uri'
+          URI.parse(url) do |response|
+            file = Pathname 'shim.tgz'
+            response.read.then { file.binwrite(_1) }
+          end
+          %w[tar -xvf shim.tgz].then(&run)
+          file = 'containerd-shim-wasmtime-v1'
+          %W[sudo mv -vf #{file} /usr/local/bin/].then(&run)
+
+          %({
+            "features": {
+              "containerd-snapshotter": true
+            }
+          }).then { File.write("daemon.json", _1) }
+          %w[sudo mv -vf daemon.json /etc/docker/].then(&run)
+          %w[sudo systemctl restart docker].then(&run)
+
       - name: add wasi target
         run: |
           [1, 2]
@@ -106,7 +139,7 @@ jobs:
                 .then(&hash_to_args)
                 .then(&run)
 
-              Process.wait pid
+              wait_task pid
             end
 
       - name: create & push docker manifest
@@ -131,8 +164,9 @@ jobs:
             .then(&run)
 
       - name: install blake3
+        env:
+          RUBYOPT: ""
         run: |
-          require 'rubygems'
           begin
             require 'digest/blake3'
           rescue LoadError => e
@@ -141,8 +175,9 @@ jobs:
           end
 
       - name: calculate digest
+        env:
+          RUBYOPT: ""
         run: |
-          require 'rubygems'
           require 'json'
           require 'digest/sha2'
           require 'digest/blake3'
