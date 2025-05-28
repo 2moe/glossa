@@ -2,7 +2,7 @@ name: build wasi
 on: { "push": { "paths": [".github/workflows/build-wasi.yml"] } }
 
 env:
-  RELEASE_TAG: "cli@v0.0.0"
+  RELEASE_TAG: "cli@v0.0.1"
   RUBYOPT: "--disable=gems"
   CARGO_TARGET_DIR: target
   BUILDKIT_PROGRESS: plain
