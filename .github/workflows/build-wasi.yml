@@ -2,7 +2,7 @@ name: build wasi
 on: { "push": { "paths": [".github/workflows/build-wasi.yml"] } }
 
 env:
-  RELEASE_TAG: 'cli@v0.0.0'
+  RELEASE_TAG: "cli@v0.0.0"
   RUBYOPT: "--disable=gems"
   CARGO_TARGET_DIR: target
   BUILDKIT_PROGRESS: plain
@@ -47,6 +47,7 @@ jobs:
           # wasi-p2:
           cargo_cfg
             .then(&hash_to_args)
+            .tap { p _1 }
             .then(&run)
 
           # -------
@@ -129,7 +130,6 @@ jobs:
             .push(repo)
             .then(&run)
 
-
       - name: install blake3
         run: |
           require 'rubygems'
@@ -190,5 +190,3 @@ jobs:
             releases/*.zst
             releases/*.json
           body_path: releases/digests.md
-
-
