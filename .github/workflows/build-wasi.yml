@@ -119,6 +119,10 @@ jobs:
             build: nil,
             push: true,
             platform: 'wasi/wasm',
+
+            # it's string, not bool.
+            provenance: "false",
+
             tag: repo,
             file: 'ci/wasi.dockerfile',
             tmp: nil,
