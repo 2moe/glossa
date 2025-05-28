@@ -108,7 +108,6 @@ jobs:
 
               Process.wait pid
             end
-          end
 
       - name: create & push docker manifest
         run: |
