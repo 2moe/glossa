@@ -39,6 +39,7 @@ jobs:
           cargo_cfg = {
             cargo: nil,
             build: nil,
+            package: 'glossa-cli',
             profile: 'thin',
             target: "#{wasi}p2",
             no_default_features: false,
