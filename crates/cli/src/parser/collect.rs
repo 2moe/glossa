@@ -1,15 +1,21 @@
+#![cfg(feature = "highlight")]
+
 use std::{borrow::Cow, fs, path::PathBuf};
 
+use glossa::MiniStr;
 use glossa_codegen::{
   glossa_shared::tap::Pipe,
   highlight::{
-    DerivedMapKey, SyntaxHighlightConfig,
+    DerivedMapKey, KString, SyntaxHighlightConfig,
     hlight::{self, HighlightResource},
   },
 };
 
-use super::to_kstr;
 use crate::options::HighlightOpt;
+
+fn to_kstr(s: &MiniStr) -> KString {
+  KString::from_ref(s)
+}
 
 pub(crate) fn collect_highlight_keys(args: &HighlightOpt) -> Box<[DerivedMapKey]> {
   args

@@ -20,6 +20,7 @@ pub struct Cli {
   #[command(flatten)]
   generator: Box<GeneratorOpt>,
 
+  #[cfg(feature = "highlight")]
   #[command(flatten)]
   highlight: Box<HighlightOpt>,
 
@@ -153,6 +154,7 @@ pub struct GeneratorOpt {
   )]
   output_phf_all_in_one: bool,
 
+  #[cfg(feature = "ron")]
   #[arg(long, help_heading = "Output String",
     help = get_text("output_ron", None),
   )]

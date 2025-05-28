@@ -1,15 +1,14 @@
-use glossa_codegen::{
-  Generator, L10nResources,
-  glossa_shared::{display::puts, tap::Pipe},
-  highlight::HighlightCfgMap,
-};
-use log::{error, trace};
+#[cfg(feature = "highlight")]
+use glossa_codegen::highlight::HighlightCfgMap;
+//
+use glossa_codegen::{Generator, L10nResources, glossa_shared::tap::Pipe};
+use log::trace;
 
-use crate::{
-  options::Cli,
-  parser::collect::{collect_highlight_keys, collect_highlight_values},
-};
+use crate::options::Cli;
+#[cfg(feature = "highlight")]
+use crate::parser::collect::{collect_highlight_keys, collect_highlight_values};
 
+#[cfg(feature = "highlight")]
 fn show_syntaxes(map: &HighlightCfgMap) -> Option<()> {
   map
     .values()
@@ -30,7 +29,10 @@ fn show_syntaxes(map: &HighlightCfgMap) -> Option<()> {
   Some(())
 }
 
+#[cfg(feature = "highlight")]
 fn show_themes(map: &HighlightCfgMap) -> Option<()> {
+  use glossa_codegen::glossa_shared::display::puts;
+
   map
     .values()
     .next()
@@ -46,11 +48,12 @@ fn show_themes(map: &HighlightCfgMap) -> Option<()> {
   Some(())
 }
 
+#[cfg(feature = "highlight")]
 pub(crate) fn init_highlight_cfg_map(args: &Cli) -> Option<HighlightCfgMap<'_>> {
   let raw = args.get_highlight();
   if raw.get_base_name().is_empty() || raw.get_suffix().is_empty() {
     if *raw.get_list_all_syntaxes() || *raw.get_list_all_themes() {
-      error!("Both `--base-name` and `--suffix` must be specified")
+      log::error!("Both `--base-name` and `--suffix` must be specified")
     }
     None?
   }

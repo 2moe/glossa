@@ -649,6 +649,8 @@ checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 [[package]]
 name = "hlight"
 version = "0.0.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5eebde486e7aae33bc13efa15484a384aa4b21e6d21991175530ea0cf34a2ddb"
 dependencies = [
  "ansi_colours",
  "compact_str",
@@ -662,6 +664,8 @@ dependencies = [
 [[package]]
 name = "hlight-assets"
 version = "0.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ff0f572f98854e7c33c589670635edfaa794ae42b87dc12de24d1a227b3129f6"
 
 [[package]]
 name = "indexmap"
@@ -752,6 +756,8 @@ dependencies = [
 [[package]]
 name = "lang-id"
 version = "0.0.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "056e38d42d55e4c6066a721f57faf81d909c75f0f0e14753c5ab2d1c16ad06c2"
 dependencies = [
  "compact_str",
  "phf",
@@ -1358,6 +1364,8 @@ dependencies = [
 [[package]]
 name = "testutils"
 version = "0.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c4fd2680e9241a7a593685fbda4ea64b22f0accb4c98cf841c6a845ba3578af8"
 dependencies = [
  "compact_str",
  "getset",

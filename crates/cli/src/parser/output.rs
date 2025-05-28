@@ -12,6 +12,7 @@ fn output_to_stdout<'a>(args: &Cli, generator: &'a Generator<'a>) -> AnyResult<(
   let map_type = args.get_map_type();
   let out_args = args.get_generator();
 
+  #[cfg(feature = "ron")]
   if *out_args.get_output_ron() {
     map_type
       .output_ron(generator)?

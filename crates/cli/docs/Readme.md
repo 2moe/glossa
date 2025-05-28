@@ -246,6 +246,7 @@ glossa-cli --output-match-fn-all-in-one --include-languages en,es --include-map-
     - macOS: `"/Users/[username]/Library/Application Support/me.tmoe.glossa"`
     - Linux: `"${XDG_CONFIG_HOME:-$HOME/.config}/glossa"`
     - Windows: `"C:\Users\[username]\AppData\Local\tmoe\glossa\config"`
+    - WASI: `tmp/me.tmoe.glossa/config`
 - GLOSSA_LOG
   - Logging level
   - Default: info

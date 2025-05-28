@@ -2,8 +2,8 @@
 /*
 target
 tmp
-_tmp_*.rs
-tmp.*
+_tmp.*
+_tmp_*
 
 .directory
 .thumbnails*
@@ -12,6 +12,7 @@ desktop.ini
 Thumbs.db
 Thumbs.db:encryptable
 
+!/ci
 !/src
 !/build.rs
 !/.rustfmt.toml
