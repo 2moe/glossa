@@ -107,10 +107,16 @@ def hash_to_args
 end
 
 # ------------------
-def run = ->(cmd) { system(*cmd) }
+def run = ->(cmd) do
+    p cmd
+    system(*cmd)
+end
 
 # run_in_background
-def run_in_bg = ->(cmd) { Process.spawn(*cmd) }
+def run_in_bg = ->(cmd) do
+    p cmd
+    Process.spawn(*cmd)
+end
 
 require 'pathname'
 # ------------------

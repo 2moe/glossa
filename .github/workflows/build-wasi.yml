@@ -47,7 +47,6 @@ jobs:
           # wasi-p2:
           cargo_cfg
             .then(&hash_to_args)
-            .tap { p _1 }
             .then(&run)
 
           # -------
@@ -66,6 +65,7 @@ jobs:
                 .join(',')
           }
             .then { cargo_cfg.merge _1 }
+            .then(&hash_to_args)
             .then(&run)
 
       - name: build & push docker image
