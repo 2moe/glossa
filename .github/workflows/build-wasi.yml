@@ -46,7 +46,7 @@ jobs:
           Dir.mktmpdir do |dir|
             Dir.chdir(dir) do
               warn "Enter the temp dir: #{dir}"
-              URI.parse(url) do |response|
+              URI.open(url) do |response|
                 file = Pathname 'shim.tgz'
                 response.read.then { file.binwrite(_1) }
               end
