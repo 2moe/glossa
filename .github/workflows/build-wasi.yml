@@ -108,126 +108,126 @@ jobs:
             .then(&hash_to_args)
             .then(&run)
 
-      # - name: build & push docker image
-      #   run: |
-      #     require 'fileutils'
-      #     fs = FileUtils
-      #     repo = '${{env.ghcr_repo}}'
+      - name: build & push docker image
+        run: |
+          require 'fileutils'
+          fs = FileUtils
+          repo = '${{env.ghcr_repo}}'
 
-      #     docker_opts = {
-      #       docker: nil,
-      #       build: nil,
-      #       push: true,
-      #       platform: 'wasi/wasm',
-      #       tag: repo,
-      #       file: 'ci/wasi.dockerfile',
-      #       tmp: nil,
-      #     }
+          docker_opts = {
+            docker: nil,
+            build: nil,
+            push: true,
+            platform: 'wasi/wasm',
+            tag: repo,
+            file: 'ci/wasi.dockerfile',
+            tmp: nil,
+          }
 
-      #     fs.mkdir_p 'tmp'
-      #     fs.mkdir_p 'releases'
+          fs.mkdir_p 'tmp'
+          fs.mkdir_p 'releases'
 
-      #     [1, 2]
-      #       .map { |i| ["wasi-p#{i}", "wasm32-wasip#{i}"] }
-      #       .each do |tag, target|
-      #         src = "target/#{target}/thin/glossa-cli.wasm"
-      #         dst =  "releases/#{tag}.wasm"
-      #         fs.cp(src, 'tmp')
-      #         fs.cp(src, dst)
+          [1, 2]
+            .map { |i| ["wasi-p#{i}", "wasm32-wasip#{i}"] }
+            .each do |tag, target|
+              src = "target/#{target}/thin/glossa-cli.wasm"
+              dst =  "releases/#{tag}.wasm"
+              fs.cp(src, 'tmp')
+              fs.cp(src, dst)
 
-      #         pid = %w[zstd -T0 --rm -fv -19]
-      #           .push(dst)
-      #           .concat(["-o", "#{dst}.zst"])
-      #           .then(&run_in_bg)
+              pid = %w[zstd -T0 --rm -fv -19]
+                .push(dst)
+                .concat(["-o", "#{dst}.zst"])
+                .then(&run_in_bg)
 
-      #         docker_opts
-      #           .merge(tag: "#{repo}:#{tag}")
-      #           .then(&hash_to_args)
-      #           .then(&run)
+              docker_opts
+                .merge(tag: "#{repo}:#{tag}")
+                .then(&hash_to_args)
+                .then(&run)
 
-      #         wait_task pid
-      #       end
+              wait_task pid
+            end
 
-      # - name: create & push docker manifest
-      #   run: |
-      #     repo = '${{env.ghcr_repo}}'
-      #     tags = [1, 2]
-      #             .map { |i| "#{repo}:wasi-p#{i}" }
+      - name: create & push docker manifest
+        run: |
+          repo = '${{env.ghcr_repo}}'
+          tags = [1, 2]
+                  .map { |i| "#{repo}:wasi-p#{i}" }
 
-      #     %w[
-      #         docker  manifest
-      #         create  --amend
-      #       ]
-      #       .push(repo)
-      #       .concat(tags)
-      #       .then(&run)
+          %w[
+              docker  manifest
+              create  --amend
+            ]
+            .push(repo)
+            .concat(tags)
+            .then(&run)
 
-      #     %w[
-      #         docker  manifest
-      #         push    --purge
-      #       ]
-      #       .push(repo)
-      #       .then(&run)
+          %w[
+              docker  manifest
+              push    --purge
+            ]
+            .push(repo)
+            .then(&run)
 
-      # - name: install blake3
-      #   env:
-      #     RUBYOPT: ""
-      #   run: |
-      #     begin
-      #       require 'digest/blake3'
-      #     rescue LoadError => e
-      #       p e
-      #       pp `gem install blake3-rb`
-      #     end
+      - name: install blake3
+        env:
+          RUBYOPT: ""
+        run: |
+          begin
+            require 'digest/blake3'
+          rescue LoadError => e
+            p e
+            pp `gem install blake3-rb`
+          end
 
-      # - name: calculate digest
-      #   env:
-      #     RUBYOPT: ""
-      #   run: |
-      #     require 'json'
-      #     require 'digest/sha2'
-      #     require 'digest/blake3'
+      - name: calculate digest
+        env:
+          RUBYOPT: ""
+        run: |
+          require 'json'
+          require 'digest/sha2'
+          require 'digest/blake3'
 
-      #     Dir.chdir 'releases'
-      #     digests = {}
-      #     Pathname.glob('*.zst').each do |path|
-      #       file_name = path.basename
-      #       sha256 = Digest::SHA256.file(path).hexdigest
-      #       blake3 = Digest::Blake3.file(path).hexdigest
+          Dir.chdir 'releases'
+          digests = {}
+          Pathname.glob('*.zst').each do |path|
+            file_name = path.basename
+            sha256 = Digest::SHA256.file(path).hexdigest
+            blake3 = Digest::Blake3.file(path).hexdigest
 
-      #       digests[file_name] = {
-      #         file_size: path.size?,
-      #         digest: {
-      #           sha256: sha256,
-      #           blake3: blake3,
-      #         }
-      #       }
-      #     end
+            digests[file_name] = {
+              file_size: path.size?,
+              digest: {
+                sha256: sha256,
+                blake3: blake3,
+              }
+            }
+          end
 
-      #     markdown =  "| File   | Size (bytes)  | SHA256 | Blake3 |\n"
-      #     markdown << "|--------|---------------|--------|--------|\n"
+          markdown =  "| File   | Size (bytes)  | SHA256 | Blake3 |\n"
+          markdown << "|--------|---------------|--------|--------|\n"
 
-      #     digests.each do |file, info|
-      #       digest = info[:digest]
-      #       sha256 = digest[:sha256]
-      #       blake3 = digest[:blake3]
-      #       size   = info[:file_size]
+          digests.each do |file, info|
+            digest = info[:digest]
+            sha256 = digest[:sha256]
+            blake3 = digest[:blake3]
+            size   = info[:file_size]
 
-      #       markdown << "| #{file.to_s} | #{size.to_s} | `#{sha256}` | `#{blake3}` |\n"
-      #     end
+            markdown << "| #{file.to_s} | #{size.to_s} | `#{sha256}` | `#{blake3}` |\n"
+          end
 
-      #     File.write("digests.md", markdown)
+          File.write("digests.md", markdown)
 
-      #     JSON.pretty_generate(digests)
-      #         .then { File.write("digests.json", _1) }
+          JSON.pretty_generate(digests)
+              .then { File.write("digests.json", _1) }
 
-      # - name: release
-      #   uses: softprops/action-gh-release@v2
-      #   with:
-      #     fail_on_unmatched_files: true
-      #     tag_name: ${{env.RELEASE_TAG}}
-      #     name: glossa-${{env.RELEASE_TAG}}
-      #     files: |
-      #       releases/*.zst
-      #       releases/*.json
-      #     body_path: releases/digests.md
+      - name: release
+        uses: softprops/action-gh-release@v2
+        with:
+          fail_on_unmatched_files: true
+          tag_name: ${{env.RELEASE_TAG}}
+          name: glossa-${{env.RELEASE_TAG}}
+          files: |
+            releases/*.zst
+            releases/*.json
+          body_path: releases/digests.md
