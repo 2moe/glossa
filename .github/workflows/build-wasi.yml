@@ -36,27 +36,33 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: setup containerd-wasi
+      - name: setup containerd-shim
         run: |
           version = '0.6.0'
           url = "https://github.com/containerd/runwasi/releases/download/containerd-shim-wasmtime%2Fv#{version}/containerd-shim-wasmtime-x86_64-linux-musl.tar.gz"
-          Dir.chdir 'tmp'
 
           require 'open-uri'
-          URI.parse(url) do |response|
-            file = Pathname 'shim.tgz'
-            response.read.then { file.binwrite(_1) }
-          end
-          %w[tar -xvf shim.tgz].then(&run)
-          file = 'containerd-shim-wasmtime-v1'
-          %W[sudo mv -vf #{file} /usr/local/bin/].then(&run)
+          require 'tmpdir'
+          Dir.mktmpdir do |dir|
+            Dir.chdir(dir) do
+              warn "Enter the temp dir: #{dir}"
+              URI.parse(url) do |response|
+                file = Pathname 'shim.tgz'
+                response.read.then { file.binwrite(_1) }
+              end
+              %w[tar -xvf shim.tgz].then(&run)
+              file = 'containerd-shim-wasmtime-v1'
+              %W[sudo mv -vf #{file} /usr/local/bin/].then(&run)
 
-          %({
-            "features": {
-              "containerd-snapshotter": true
-            }
-          }).then { File.write("daemon.json", _1) }
-          %w[sudo mv -vf daemon.json /etc/docker/].then(&run)
+              %({
+                "features": {
+                  "containerd-snapshotter": true
+                }
+              }).then { File.write("daemon.json", _1) }
+              %w[sudo mv -vf daemon.json /etc/docker/].then(&run)
+            end
+          end
+
           %w[sudo systemctl restart docker].then(&run)
 
       - name: add wasi target
