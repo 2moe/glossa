@@ -23,5 +23,10 @@ def wait_task(pid = nil)
 end
 
 require 'pathname'
+
+SCRIPT_DIR = Pathname(File.expand_path(__dir__))
+def require_ci(script)
+  require SCRIPT_DIR.join(script)
+end
 # ------------------
 load ARGV[0]

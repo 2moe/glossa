@@ -51,14 +51,14 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: setup containerd-shim
-        run: require_relative 'ci/install_wasm_shim'
+        run: require_ci install_wasm_shim
 
       - name: build wasi
-        run: require_relative 'ci/build_wasi'
+        run: require_ci build_wasi
 
       - name: build & push docker image
         run: |
-          require_relative 'ci/docker'
+          require_ci docker
           build_and_push_zstd_docker_image(**{
             target: 'wasi',
             create_manifest: true
@@ -68,13 +68,13 @@ jobs:
         env:
           RUBYOPT: ""
         run: |
-          require_relative 'ci/install_blake3'
+          require_ci install_blake3
           install_gem
 
       - name: calculate digest
         env:
           RUBYOPT: ""
-        run: require_relative 'ci/calculate_digest'
+        run: require_ci calculate_digest
 
       - name: release
         uses: softprops/action-gh-release@v2
