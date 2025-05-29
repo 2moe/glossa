@@ -8,6 +8,7 @@ on:
             ".github/workflows/build-wasi.yml",
             "ci/docker.rb",
             "ci/build_wasi.rb",
+            "ci/calculate_digest.rb",
           ],
       },
   }

@@ -21,8 +21,9 @@ Pathname.glob('*.zst').each do |path|
   }
 end
 
-markdown =  "| File   | Size (bytes)  | SHA256 | Blake3 |\n"
-markdown << "|--------|---------------|--------|--------|\n"
+# mutable String
+markdown = String.new "| File   | Size (bytes)  | SHA256 | Blake3 |\n"
+markdown <<           "|--------|---------------|--------|--------|\n"
 
 digests.each do |file, info|
   digest = info[:digest]
