@@ -17,7 +17,7 @@ URI.parse(url).open(**headers) do |response|
 
   response
     .read
-    .then { file.binwrite(_1) }
+    .then { file.binwrite(it) }
 end
 
 

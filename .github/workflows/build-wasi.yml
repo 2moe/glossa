@@ -1,7 +1,21 @@
 name: build wasi
-on: { "push": { "paths": [".github/workflows/build-wasi.yml"] } }
+on:
+  {
+    "push":
+      {
+        "paths":
+          [
+            ".github/workflows/build-wasi.yml",
+            "ci/docker.rb",
+            "ci/build_wasi.rb",
+          ],
+      },
+  }
 
 env:
+  # it's string, not boolean
+  update_releases: "false"
+  #
   RELEASE_TAG: "cli@v0.0.1"
   RUBYOPT: "--disable=gems"
   CARGO_TARGET_DIR: target
@@ -37,210 +51,39 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: setup containerd-shim
-        run: |
-          version = '0.6.0'
-          url = "https://github.com/containerd/runwasi/releases/download/containerd-shim-wasmtime%2Fv#{version}/containerd-shim-wasmtime-x86_64-linux-musl.tar.gz"
-
-          require 'open-uri'
-          require 'tmpdir'
-          Dir.mktmpdir do |dir|
-            Dir.chdir(dir) do
-              warn "Enter the temp dir: #{dir}"
-              URI.open(url) do |response|
-                file = Pathname 'shim.tgz'
-                response.read.then { file.binwrite(_1) }
-              end
-              %w[tar -xvf shim.tgz].then(&run)
-              file = 'containerd-shim-wasmtime-v1'
-              %W[sudo mv -vf #{file} /usr/local/bin/].then(&run)
-
-              %({
-                "features": {
-                  "containerd-snapshotter": true
-                }
-              }).then { File.write("daemon.json", _1) }
-              %w[sudo mv -vf daemon.json /etc/docker/].then(&run)
-            end
-          end
-
-          %w[sudo systemctl restart docker].then(&run)
-
-      - name: add wasi target
-        run: |
-          [1, 2]
-            .map { "wasm32-wasip#{_1}" }
-            .map { %w[rustup target add] << _1 }
-            .each(&run)
+        run: require_relative 'ci/install_wasm_shim'
 
       - name: build wasi
-        run: |
-          wasi = "wasm32-wasi"
-          cargo_cfg = {
-            cargo: nil,
-            build: nil,
-            package: 'glossa-cli',
-            profile: 'thin',
-            target: "#{wasi}p2",
-            no_default_features: false,
-            features: []
-          }
-          # wasi-p2:
-          cargo_cfg
-            .then(&hash_to_args)
-            .then(&run)
-
-          # -------
-          # wasi-p1:
-
-          locales = %w[
-            zh en en-GB fr ru ar de es pt hi bn ja
-          ].map { "l10n-#{_1}" }
-
-          {
-            target: "#{wasi}p1",
-            no_default_features: true,
-            features:
-              %w[json5 yaml ron]
-                .concat(locales)
-                .join(',')
-          }
-            .then { cargo_cfg.merge _1 }
-            .then(&hash_to_args)
-            .then(&run)
+        run: require_relative 'ci/build_wasi'
 
       - name: build & push docker image
         run: |
-          require 'fileutils'
-          fs = FileUtils
-          repo = '${{env.ghcr_repo}}'
-
-          docker_opts = {
-            docker: nil,
-            build: nil,
-            push: true,
-            platform: 'wasi/wasm',
-
-            # it's string, not bool.
-            provenance: "false",
-
-            tag: repo,
-            file: 'ci/wasi.dockerfile',
-            tmp: nil,
-          }
-
-          fs.mkdir_p 'tmp'
-          fs.mkdir_p 'releases'
-
-          [1, 2]
-            .map { |i| ["wasi-p#{i}", "wasm32-wasip#{i}"] }
-            .each do |tag, target|
-              src = "target/#{target}/thin/glossa-cli.wasm"
-              dst =  "releases/#{tag}.wasm"
-              fs.cp(src, 'tmp')
-              fs.cp(src, dst)
-
-              pid = %w[zstd -T0 --rm -fv -19]
-                .push(dst)
-                .concat(["-o", "#{dst}.zst"])
-                .then(&run_in_bg)
-
-              new_tag = "#{repo}:#{tag}"
-              tag_value =
-                if tag == 'wasi-p2'
-                  [new_tag, "#{repo}:latest"]
-                else
-                  new_tag
-                end
-
-              docker_opts
-                .merge(tag: tag_value)
-                .then(&hash_to_args)
-                .then(&run)
-
-              wait_task pid
-            end
-
-      - name: create & push docker manifest
-        run: |
-          repo = '${{env.ghcr_repo}}'
-          tags = [1, 2]
-                  .map { |i| "#{repo}:wasi-p#{i}" }
-
-          %w[
-              docker  manifest
-              create  --amend
-            ]
-            .push(repo)
-            .concat(tags)
-            .then(&run)
-
-          %w[
-              docker  manifest
-              push    --purge
-            ]
-            .push(repo)
-            .then(&run)
+          require_relative 'ci/docker'
+          build_and_push_zstd_docker_image(**{
+            target: 'wasi',
+            create_manifest: true
+          })
 
       - name: install blake3
         env:
           RUBYOPT: ""
         run: |
-          begin
-            require 'digest/blake3'
-          rescue LoadError => e
-            p e
-            pp `gem install --user-install blake3-rb`
-            File.write(ENV['GITHUB_PATH'], "#{Gem.user_dir}/bin\n", mode: 'a')
-          end
+          require_relative 'ci/install_blake3'
+          install_gem
 
       - name: calculate digest
         env:
           RUBYOPT: ""
-        run: |
-          require 'json'
-          require 'digest/sha2'
-          require 'digest/blake3'
-
-          Dir.chdir 'releases'
-          digests = {}
-          Pathname.glob('*.zst').each do |path|
-            file_name = path.basename
-            sha256 = Digest::SHA256.file(path).hexdigest
-            blake3 = Digest::Blake3.file(path).hexdigest
-
-            digests[file_name] = {
-              file_size: path.size?,
-              digest: {
-                sha256: sha256,
-                blake3: blake3,
-              }
-            }
-          end
-
-          markdown =  "| File   | Size (bytes)  | SHA256 | Blake3 |\n"
-          markdown << "|--------|---------------|--------|--------|\n"
-
-          digests.each do |file, info|
-            digest = info[:digest]
-            sha256 = digest[:sha256]
-            blake3 = digest[:blake3]
-            size   = info[:file_size]
-
-            markdown << "| #{file.to_s} | #{size.to_s} | `#{sha256}` | `#{blake3}` |\n"
-          end
-
-          File.write("digests.md", markdown)
-
-          JSON.pretty_generate(digests)
-              .then { File.write("digests.json", _1) }
+        run: require_relative 'ci/calculate_digest'
 
       - name: release
         uses: softprops/action-gh-release@v2
+        if: ${{ fromJSON(env.update_releases) }}
         with:
           fail_on_unmatched_files: true
           tag_name: ${{env.RELEASE_TAG}}
           name: glossa-${{env.RELEASE_TAG}}
           files: |
-            releases/*.zst
-            releases/*.json
-          body_path: releases/digests.md
+            release/*.zst
+            release/*.json
+          body_path: release/digests.md

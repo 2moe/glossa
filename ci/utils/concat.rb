@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env -S ruby --disable=gems
 #
 # frozen_string_literal
 # ----------------
@@ -16,4 +16,4 @@ end
   File.read('misc/end.rb')
 ]
   .join("\n")
-  .then { File.write('preload.rb', _1) }
+  .then { File.write('preload.rb', it) }

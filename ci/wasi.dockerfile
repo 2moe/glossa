@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1.16
 FROM scratch
 
 COPY glossa-cli.wasm /

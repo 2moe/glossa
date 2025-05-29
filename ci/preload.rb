@@ -119,13 +119,15 @@ def run_in_bg = ->(cmd) do
   Process.spawn(*cmd)
 end
 
+# Waits for a child process to complete and checks its status
+#
+# @raise [RuntimeError] if the process exits with non-zero status
+#
+# sig { params(pid: T.nilable(Integer)).void }
 def wait_task(pid = nil)
-  if pid
-    Process.wait pid
-  end
-
-  status = $?.exitstatus
-  raise "Command failed with status #{status}" unless status == 0
+  Process.wait(pid) if pid
+  status = $?
+  raise %(Command failed with "#{status}") unless status.success?
 end
 
 require 'pathname'
