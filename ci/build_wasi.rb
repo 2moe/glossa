@@ -22,7 +22,7 @@ def build_wasi_p1(cargo_opts)
   ].map { "l10n-#{_1}" }
 
   {
-    target: "#{wasi}p1",
+    target: "wasm32-wasip1",
     no_default_features: true,
     features:
       %w[json5 yaml ron]
@@ -35,13 +35,12 @@ def build_wasi_p1(cargo_opts)
 end
 
 def build_wasi_target
-  wasi = 'wasm32-wasi'
   cargo_cfg = {
     cargo: nil,
     build: nil,
     package: 'glossa-cli',
     profile: 'thin',
-    target: "#{wasi}p2",
+    target: "wasm32-wasip2",
     no_default_features: false,
     features: []
   }
