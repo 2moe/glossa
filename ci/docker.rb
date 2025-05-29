@@ -109,7 +109,9 @@ def build_images(targets)
         platform: config[:platform],
         tag: "#{GHCR_REPO}:#{config[:tag]}",
       }
-    ).then(&run)
+    )
+      .then(&hash_to_args)
+      .then(&run)
 
     # Wait for compression to complete
     wait_task pid
