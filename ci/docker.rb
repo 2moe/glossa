@@ -5,7 +5,6 @@
 # Docker Utilities
 # --------------------
 require 'fileutils'
-require_relative 'ci/docker'
 
 DOCKER_CONTEXT_TMP = 'docker_tmp'
 
