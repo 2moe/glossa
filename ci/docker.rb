@@ -105,7 +105,10 @@ def build_images(targets)
 
     # Prepare Docker command
     DOCKER_BUILD_OPTIONS.merge(
-      config.slice(:platform, :tag)
+      {
+        platform: config[:platform],
+        tag: "#{GHCR_REPO}:#{config[:tag]}",
+      }
     ).then(&run)
 
     # Wait for compression to complete
@@ -118,12 +121,13 @@ def build_wasi
   # Build target configurations
   [
     {
-      tag: "#{GHCR_REPO}:wasi-p1",
+      # tag: "#{GHCR_REPO}:wasi-p1",
+      tag: 'wasi-p1',
       target: 'wasm32-wasip1',
       platform: 'wasip1/wasm'
     },
     {
-      tag: "#{GHCR_REPO}:wasi-p2",
+      tag: 'wasi-p2',
       target: 'wasm32-wasip2',
       platform: 'wasi/wasm'
     }
