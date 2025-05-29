@@ -75,7 +75,9 @@ jobs:
       - name: calculate digest
         env:
           RUBYOPT: ""
-        run: require_ci 'calculate_digest'
+        run: |
+          require_ci 'calculate_digest'
+          calculate_and_output_digests
 
       - name: release
         uses: softprops/action-gh-release@v2
