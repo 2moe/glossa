@@ -68,7 +68,7 @@ jobs:
         env:
           RUBYOPT: ""
         run: |
-          require_ci 'install_blake3'
+          require_ci 'install_gem'
           install_gem
 
       - name: calculate digest
