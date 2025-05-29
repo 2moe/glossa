@@ -144,8 +144,16 @@ jobs:
                 .concat(["-o", "#{dst}.zst"])
                 .then(&run_in_bg)
 
+              new_tag = "#{repo}:#{tag}"
+              tag_value =
+                if tag == 'wasi-p2'
+                  [new_tag, "#{repo}:latest"]
+                else
+                  new_tag
+                end
+
               docker_opts
-                .merge(tag: "#{repo}:#{tag}")
+                .merge(tag: tag_value)
                 .then(&hash_to_args)
                 .then(&run)
 
@@ -181,7 +189,8 @@ jobs:
             require 'digest/blake3'
           rescue LoadError => e
             p e
-            pp `gem install blake3-rb`
+            pp `gem install --user-install blake3-rb`
+            File.write(ENV['GITHUB_PATH'], "#{Gem.user_dir}/bin\n", mode: 'a')
           end
 
       - name: calculate digest
