@@ -6,8 +6,8 @@ require 'digest/blake3'
 
 def calculate_and_output_digests(glob_list = '*.zst', workdir = 'release')
   Pathname(workdir)
-    .then { _1.mkpath unless _1.exist? }
-    .then { Dir.chdir(_1.to_s) }
+    .tap { _1.mkpath unless _1.exist? }
+    .then { Dir.chdir _1 }
 
   digests = calculate_digests(glob_list)
   create_markdown_table(digests)

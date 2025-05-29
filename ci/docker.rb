@@ -119,11 +119,10 @@ def build_images(targets)
 end
 
 # Builds WASI targets and handles compression
-def build_wasi
+def build_wasi_images
   # Build target configurations
   [
     {
-      # tag: "#{GHCR_REPO}:wasi-p1",
       tag: 'wasi-p1',
       target: 'wasm32-wasip1',
       platform: 'wasip1/wasm'
@@ -152,7 +151,7 @@ def build_and_push_zstd_docker_image(target: 'wasi', create_manifest: true)
 
   case target
   when 'wasi'
-    build_wasi
+    build_wasi_images
     tags =
       ['latest'].concat([1, 2].map { |n| "wasi-p#{n}" })
                 .map { "#{GHCR_REPO}:#{_1}" }
