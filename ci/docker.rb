@@ -45,15 +45,17 @@ def compress_file(tag: 'wasi-p2', target: 'wasm32-wasip2', pkg_name: 'glossa-cli
 
   src = "#{target_dir}/#{target}/#{profile}/#{pkg_name}#{suffix}"
   dst = "release/#{tag}#{suffix}"
-  # Copy source file
-  fs.cp(src, tmp)
-  fs.cp(src, dst)
 
   if suffix.to_s.empty?
     new_src = "#{src}.tar"
-    %W[tar --posix -cvf #{new_src} #{src}"].then { system *_1 } or raise 'Failed to create tar archive'
+    %W[tar --posix -cvf #{new_src} #{src}"].then { run *_1 } or
+      raise 'Failed to create tar archive'
     src = new_src
   end
+
+  # Copy source file
+  fs.cp(src, tmp)
+  fs.cp(src, dst)
 
   # Run compression in background
   {
