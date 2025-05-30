@@ -49,7 +49,7 @@ def compress_file(tag: 'wasi-p2', target: 'wasm32-wasip2', pkg_name: 'glossa-cli
   fs.cp(src, tmp)
   fs.cp(src, dst)
 
-  if suffix.empty?
+  if suffix.to_s.empty?
     new_src = "#{src}.tar"
     %W[tar --posix -cvf #{new_src} #{src}"].then { system *_1 } or raise 'Failed to create tar archive'
     src = new_src
