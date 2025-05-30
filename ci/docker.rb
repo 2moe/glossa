@@ -5,6 +5,7 @@
 # ENV:
 #   - cargo_build_profile
 #   - CARGO_TARGET_DIR
+#   - ghcr_repo
 
 # Docker Utilities
 # --------------------
@@ -34,7 +35,7 @@ end
 # @param suffix [String] File suffix
 #
 # @return [Integer] PID of the background compression process
-def compress_file(tag: 'wasi-p2', target: 'wasm32-wasip2', pkg_name: 'glossa-cli', suffix: '.wasm')
+def compress_file(tag: 'wasi-p2', target: 'wasm32-wasip2', pkg_name: 'glossa-cli', suffix: '.wasm', **_rest)
   fs = FileUtils
   tmp = DOCKER_CONTEXT_TMP
   fs.mkdir_p tmp
@@ -62,7 +63,7 @@ def compress_file(tag: 'wasi-p2', target: 'wasm32-wasip2', pkg_name: 'glossa-cli
     zstd: nil,
     # Use `-T0` for multithreaded compression (more portable than zstdmt)
     "-T0": nil,
-    # Delete input file(s) after the operation completes successfully
+    # Delete input file after the operation completes successfully
     rm: true,
     force: true,
     verbose: true,
@@ -116,7 +117,7 @@ DOCKER_BUILD_OPTIONS = {
 def build_images(targets)
   targets.each do |config|
     # Start compression in background
-    pid = compress_file(**config.slice(:tag, :target))
+    pid = compress_file(**config)
 
     # Prepare Docker command
     DOCKER_BUILD_OPTIONS.merge(
@@ -167,7 +168,7 @@ def create_and_push_manifest(tags)
 end
 
 def build_and_push_zstd_docker_image(
-  preset: 'wasi',
+  preset: nil,
   create_manifest: true,
   os: nil, arch: nil,
   tag: nil, file: nil,
@@ -183,6 +184,7 @@ def build_and_push_zstd_docker_image(
                 .map { "#{GHCR_REPO}:#{_1}" }
   else
     raise 'Unsupported tag' unless tag
+    require_ci 'platform_hash'
 
     info = PLATFORM_HASH[os.to_sym][arch.to_sym]
     raise 'Unsupported target' unless info
