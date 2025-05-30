@@ -40,8 +40,8 @@ def compress_file(tag: 'wasi-p2', target: 'wasm32-wasip2', pkg_name: 'glossa-cli
   fs.mkdir_p tmp
   fs.mkdir_p 'release'
 
-  target_dir = ENV["CARGO_TARGET_DIR"] || "target"
-  profile = ENV["cargo_build_profile"] || "thin"
+  target_dir = ENV['CARGO_TARGET_DIR'] || 'target'
+  profile = ENV['cargo_build_profile'] || 'thin'
 
   src = "#{target_dir}/#{target}/#{profile}/#{pkg_name}#{suffix}"
   dst = "release/#{tag}#{suffix}"
@@ -114,10 +114,10 @@ def build_images(targets)
     DOCKER_BUILD_OPTIONS.merge(
       {
         platform: config[:platform],
-        tag: "#{GHCR_REPO}:#{config[:tag]}",
+        tag: "#{GHCR_REPO}:#{config[:tag]}"
       }
     )
-    .tap do |opts|
+                        .tap do |opts|
       # Set the :file option only if config[:file] is present
       file = config[:file]
       opts[:file] = file if file
@@ -163,7 +163,7 @@ def build_and_push_zstd_docker_image(
   create_manifest: true,
   os: nil, arch: nil,
   tag: nil, file: nil,
-  pkg_name: nil, suffix: nil,
+  pkg_name: nil, suffix: nil
 )
   create_zstd_buildx_machine
 
@@ -175,26 +175,24 @@ def build_and_push_zstd_docker_image(
                 .map { "#{GHCR_REPO}:#{_1}" }
   else
     raise 'Unsupported tag' unless tag
+
     info = PLATFORM_HASH[os.to_sym][arch.to_sym]
     raise 'Unsupported target' unless info
+
     {
       tag: tag,
       target: info[:target],
-      platform: info[:oci],
+      platform: info[:oci]
     }
-    .tap { |cfg| cfg[:file] = file if file }
-    .tap { |cfg| cfg[:pkg_name] = pkg_name if pkg_name }
-    .tap { |cfg| cfg[:suffix] = suffix if suffix }
-    .then { [_1] }
-    .then { build_images _1 }
+      .tap { |cfg| cfg[:file] = file if file }
+      .tap { |cfg| cfg[:pkg_name] = pkg_name if pkg_name }
+      .tap { |cfg| cfg[:suffix] = suffix if suffix }
+      .then { [_1] }
+      .then { build_images _1 }
 
-    if create_manifest
-      warn 'Please manually call `create_and_push_manifest(tags)'
-    end
+    warn 'Please manually call `create_and_push_manifest(tags)' if create_manifest
 
     return
-    # return unless tag
-    # tags = ['latest', tag].map { "#{GHCR_REPO}:#{_1}" }
   end
 
   return unless create_manifest
