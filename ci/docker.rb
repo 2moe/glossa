@@ -158,10 +158,16 @@ def create_and_push_manifest(tags)
   %W[docker manifest push --purge #{tags.first}].then(&run)
 end
 
-def build_and_push_zstd_docker_image(target: 'wasi', os: nil, arch: nil, tag: nil, file: nil, create_manifest: true)
+def build_and_push_zstd_docker_image(
+  preset: 'wasi',
+  create_manifest: true,
+  os: nil, arch: nil,
+  tag: nil, file: nil,
+  pkg_name: nil, suffix: nil,
+)
   create_zstd_buildx_machine
 
-  case target
+  case preset
   when 'wasi'
     build_wasi_images
     tags =
@@ -177,8 +183,18 @@ def build_and_push_zstd_docker_image(target: 'wasi', os: nil, arch: nil, tag: ni
       platform: info[:oci],
     }
     .tap { |cfg| cfg[:file] = file if file }
+    .tap { |cfg| cfg[:pkg_name] = pkg_name if pkg_name }
+    .tap { |cfg| cfg[:suffix] = suffix if suffix }
     .then { [_1] }
     .then { build_images _1 }
+
+    if create_manifest
+      warn 'Please manually call `create_and_push_manifest(tags)'
+    end
+
+    return
+    # return unless tag
+    # tags = ['latest', tag].map { "#{GHCR_REPO}:#{_1}" }
   end
 
   return unless create_manifest

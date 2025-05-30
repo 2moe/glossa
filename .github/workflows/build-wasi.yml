@@ -15,7 +15,7 @@ on:
 
 env:
   # it's string, not boolean
-  update_releases: "true"
+  update_releases: "false"
   #
   RELEASE_TAG: "cli@v0.0.1"
   RUBYOPT: "--disable=gems"
@@ -64,7 +64,7 @@ jobs:
           require_ci 'platform_hash'
           require_ci 'docker'
           build_and_push_zstd_docker_image(**{
-            target: 'wasi',
+            preset: 'wasi',
             create_manifest: true
           })
 
