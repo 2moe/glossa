@@ -1,8 +1,3 @@
-def main
-  add_wasi_target
-  build_wasi_target
-end
-
 def add_wasi_target
   [1, 2]
     .map { "wasm32-wasip#{_1}" }
@@ -34,12 +29,12 @@ def build_wasi_p1(cargo_opts)
     .then(&run)
 end
 
-def build_wasi_target
+def build_wasi_target(profile = 'thin')
   cargo_cfg = {
     cargo: nil,
     build: nil,
     package: 'glossa-cli',
-    profile: 'thin',
+    profile: profile,
     target: "wasm32-wasip2",
     no_default_features: false,
     features: []
@@ -53,4 +48,5 @@ def build_wasi_target
   build_wasi_p1(cargo_cfg)
 end
 
-main
+add_wasi_target
+

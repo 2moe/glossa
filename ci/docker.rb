@@ -2,6 +2,10 @@
 
 # rubocop:disable Metrics/MethodLength, Lint/MissingCopEnableDirective
 # --------------------
+# ENV:
+#   - cargo_build_profile
+#   - CARGO_TARGET_DIR
+
 # Docker Utilities
 # --------------------
 require 'fileutils'
@@ -36,7 +40,10 @@ def compress_file(tag: 'wasi-p2', target: 'wasm32-wasip2', pkg_name: 'glossa-cli
   fs.mkdir_p tmp
   fs.mkdir_p 'release'
 
-  src = "target/#{target}/thin/#{pkg_name}#{suffix}"
+  target_dir = ENV["CARGO_TARGET_DIR"] || "target"
+  profile = ENV["cargo_build_profile"] || "thin"
+
+  src = "#{target_dir}/#{target}/#{profile}/#{pkg_name}#{suffix}"
   dst = "release/#{tag}#{suffix}"
   # Copy source file
   fs.cp(src, tmp)
@@ -110,8 +117,13 @@ def build_images(targets)
         tag: "#{GHCR_REPO}:#{config[:tag]}",
       }
     )
-      .then(&hash_to_args)
-      .then(&run)
+    .tap do |opts|
+      # Set the :file option only if config[:file] is present
+      file = config[:file]
+      opts[:file] = file if file
+    end
+    .then(&hash_to_args)
+    .then(&run)
 
     # Wait for compression to complete
     wait_task pid
@@ -146,7 +158,7 @@ def create_and_push_manifest(tags)
   %W[docker manifest push --purge #{tags.first}].then(&run)
 end
 
-def build_and_push_zstd_docker_image(target: 'wasi', create_manifest: true)
+def build_and_push_zstd_docker_image(target: 'wasi', os: nil, arch: nil, tag: nil, file: nil, create_manifest: true)
   create_zstd_buildx_machine
 
   case target
@@ -155,6 +167,18 @@ def build_and_push_zstd_docker_image(target: 'wasi', create_manifest: true)
     tags =
       ['latest'].concat([1, 2].map { |n| "wasi-p#{n}" })
                 .map { "#{GHCR_REPO}:#{_1}" }
+  else
+    raise 'Unsupported tag' unless tag
+    info = PLATFORM_HASH[os.to_sym][arch.to_sym]
+    raise 'Unsupported target' unless info
+    {
+      tag: tag,
+      target: info[:target],
+      platform: info[:oci],
+    }
+    .tap { |cfg| cfg[:file] = file if file }
+    .then { [_1] }
+    .then { build_images _1 }
   end
 
   return unless create_manifest
