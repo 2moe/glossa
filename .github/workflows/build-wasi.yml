@@ -26,7 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
+      - name: clone cinnabar
+        uses: actions/checkout@v4
         with:
           repository: 2moe/cinnabar
           path: cinnabar
@@ -78,10 +79,8 @@ jobs:
           }.then { cfg.merge _1 }
 
           [cfg, cfg2].each do |x|
-            FileCompressor.new(x)
-              .tap(&:compress)
-              .then { DockerBuild.new _1 }
-              .build
+            FileCompressor.new(x).compress
+            DockerBuild.new(x).build
           end
 
           {
