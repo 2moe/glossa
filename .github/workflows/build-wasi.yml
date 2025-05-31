@@ -77,7 +77,7 @@ jobs:
             os: 'wasip2',
           }.then { cfg.merge _1 }
 
-          [cfg, cfg2].eacch do |x|
+          [cfg, cfg2].each do |x|
             FileCompressor.new(x)
               .tap(&:compress)
               .then { DockerBuild.new _1 }
