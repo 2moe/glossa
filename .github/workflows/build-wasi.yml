@@ -7,7 +7,7 @@ on:
 
 env:
   # it's string, not boolean
-  update_releases: "true"
+  update_releases: "false"
   #
   RELEASE_TAG: "cli@v0.0.1"
   RUBYOPT: "--disable=gems"
@@ -16,6 +16,8 @@ env:
   #
   default_ci_shell: ruby cinnabar/ci/preload.rb {0}
   ghcr_repo: ghcr.io/2moe/glossa-cli
+  docker_file: ci/wasi.dockerfile
+  pkg_name: glossa-cli
 
 jobs:
   build:
@@ -68,9 +70,9 @@ jobs:
             tag: 'wasi-p1',
             os: 'wasip1',
             arch: 'wasm32',
-            docker_repo: 'ghcr.io/2moe/glossa-cli',
-            docker_file: 'ci/wasi.dockerfile',
-            pkg_name: 'glossa-cli',
+            docker_repo: '${{env.ghcr_repo}}',
+            docker_file: '${{env.docker_file}}',
+            pkg_name: '${{env.pkg_name}}',
             suffix: '.wasm',
           }
 
