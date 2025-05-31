@@ -69,6 +69,7 @@ jobs:
             os: 'wasip1',
             arch: 'wasm32',
             docker_repo: 'ghcr.io/2moe/glossa-cli',
+            docker_file: 'ci/wasi.dockerfile',
             pkg_name: 'glossa-cli',
             suffix: '.wasm',
           }
