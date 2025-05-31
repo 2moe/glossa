@@ -2,27 +2,19 @@ name: build wasi
 on:
   {
     "push":
-      {
-        "paths":
-          [
-            ".github/workflows/build-wasi.yml",
-            "ci/docker.rb",
-            "ci/build_wasi.rb",
-            "ci/calculate_digest.rb",
-          ],
-      },
+      { "paths": [".github/workflows/build-wasi.yml", "ci/wasi.dockerfile"] },
   }
 
 env:
   # it's string, not boolean
-  update_releases: "false"
+  update_releases: "true"
   #
   RELEASE_TAG: "cli@v0.0.1"
   RUBYOPT: "--disable=gems"
   CARGO_TARGET_DIR: target
   BUILDKIT_PROGRESS: plain
   #
-  default_ci_shell: ruby ci/preload.rb {0}
+  default_ci_shell: ruby cinnabar/ci/preload.rb {0}
   ghcr_repo: ghcr.io/2moe/glossa-cli
 
 jobs:
@@ -33,6 +25,11 @@ jobs:
         shell: ${{env.default_ci_shell}}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: 2moe/cinnabar
+          path: cinnabar
 
       - name: Login to GHCR
         uses: docker/login-action@v3
@@ -61,11 +58,37 @@ jobs:
 
       - name: build & push docker image
         run: |
-          require_ci 'docker'
-          {
-            preset: 'wasi',
+          require_ci 'compression'
+          require_ci 'docker/build'
+          require_ci 'docker/manifest'
+
+          create_zstd_buildx_machine
+          cfg = {
+            tag: 'wasi-p1',
+            os: 'wasip1',
+            arch: 'wasm32',
+            docker_repo: 'ghcr.io/2moe/glossa-cli',
+            pkg_name : 'glossa-cli',
+            suffix: '.wasm',
           }
-            .then { build_and_push_zstd_docker_image **_1 }
+
+          cfg2 = {
+            tag: 'wasi-p2',
+            os: 'wasip2',
+          }.then { cfg.merge _1 }
+
+          [cfg, cfg2].eacch do |x|
+            FileCompressor.new(x)
+              .tap(&:compress)
+              .then { DockerBuild.new _1 }
+              .build
+          end
+
+          {
+            repo: cfg[:docker_repo],
+            tags: [cfg, cfg2].map { |c| c[:tag] }
+          }
+            .then { create_and_push_manifest **_1 }
 
       - name: install blake3
         env:
